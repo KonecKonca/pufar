@@ -1,0 +1,65 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="com.kozitski.pufar:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/com_kozitski_pufar_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="com.kozitski.pufar" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.7.25" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="library" level="project" name="Maven: org.yaml:snakeyaml:1.17" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.3.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.3.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.2.3" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.2.3" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.4" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.12" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:2.6.0" />
+          <element id="library" level="project" name="Maven: org.webjars:bootstrap:3.3.5" />
+          <element id="library" level="project" name="Maven: org.webjars:jquery:1.11.1" />
+          <element id="library" level="project" name="Maven: com.vk.api:sdk:0.5.12" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.1" />
+          <element id="library" level="project" name="Maven: org.asynchttpclient:async-http-client:2.0.33" />
+          <element id="library" level="project" name="Maven: org.asynchttpclient:async-http-client-netty-utils:2.0.33" />
+          <element id="library" level="project" name="Maven: io.netty:netty-buffer:4.0.48.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-codec-http:4.0.48.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-codec:4.0.48.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-handler:4.0.48.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-transport:4.0.48.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-transport-native-epoll:linux-x86_64:4.0.48.Final" />
+          <element id="library" level="project" name="Maven: io.netty:netty-common:4.0.48.Final" />
+          <element id="library" level="project" name="Maven: org.asynchttpclient:netty-resolver-dns:2.0.33" />
+          <element id="library" level="project" name="Maven: org.asynchttpclient:netty-resolver:2.0.33" />
+          <element id="library" level="project" name="Maven: org.asynchttpclient:netty-codec-dns:2.0.33" />
+          <element id="library" level="project" name="Maven: org.reactivestreams:reactive-streams:1.0.0" />
+          <element id="library" level="project" name="Maven: com.typesafe.netty:netty-reactive-streams:1.0.8" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-collections4:4.1" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:2.5" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.3" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.6" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.9" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpmime:4.5.3" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:27.0-jre" />
+          <element id="library" level="project" name="Maven: com.google.guava:failureaccess:1.0" />
+          <element id="library" level="project" name="Maven: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" />
+          <element id="library" level="project" name="Maven: com.google.code.findbugs:jsr305:3.0.2" />
+          <element id="library" level="project" name="Maven: org.checkerframework:checker-qual:2.5.2" />
+          <element id="library" level="project" name="Maven: com.google.errorprone:error_prone_annotations:2.2.0" />
+          <element id="library" level="project" name="Maven: com.google.j2objc:j2objc-annotations:1.1" />
+          <element id="library" level="project" name="Maven: org.codehaus.mojo:animal-sniffer-annotations:1.17" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-server:9.4.12.v20180830" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-http:9.4.12.v20180830" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-util:9.4.12.v20180830" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-io:9.4.12.v20180830" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.9.2" />
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="com.kozitski.pufar/web/Web" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,89 @@
+1)  CREATE TABLE users
+  (
+      user_id bigint PRIMARY KEY AUTO_INCREMENT,
+      login VARCHAR(25),
+      password varchar(25),
+      status int DEFAULT 0,
+      CONSTRAINT status FOREIGN KEY (status) REFERENCES statuses (status_id)
+  );
+  CREATE UNIQUE INDEX users_login_uindex ON users (login);
+
+
+2)  CREATE TABLE statuses
+   (
+     status_id int PRIMARY KEY AUTO_INCREMENT,
+     value VARCHAR(15) NOT NULL
+   );
+
+
+3)  CREATE TABLE notifications
+    (
+        notification_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+        message VARCHAR(1000),
+        unit_id int,
+        price double,
+        rate_id int,
+        user_id bigint,
+        date datetime,
+        CONSTRAINT notifications_units_unit_id_fk FOREIGN KEY (unit_id) REFERENCES units (unit_id),
+        CONSTRAINT notifications_users_user_id_fk FOREIGN KEY (user_id) REFERENCES users (user_id)
+    );
+    ALTER TABLE notifications MODIFY message varchar(1000) NOT NULL;
+    ALTER TABLE notifications MODIFY unit_id int(11) NOT NULL;
+    ALTER TABLE notifications MODIFY user_id bigint(20) NOT NULL;
+
+    ALTER TABLE notifications DROP rate;
+
+
+
+4)  CREATE TABLE units
+    (
+        unit_id int PRIMARY KEY AUTO_INCREMENT,
+        name varchar(25) NOT NULL
+    );
+
+
+5)  CREATE TABLE chats
+    (
+        chat_id bigint PRIMARY KEY AUTO_INCREMENT,
+        user1_id bigint NOT NULL,
+        user2_id bigint NOT NULL,
+        CONSTRAINT chats_users_user_id_fk FOREIGN KEY (user1_id) REFERENCES users (user_id),
+        CONSTRAINT chats_users_user_id_fk_2 FOREIGN KEY (user2_id) REFERENCES users (user_id)
+    );
+
+
+6)  CREATE TABLE dialoges
+    (
+        dialog_id bigint PRIMARY KEY AUTO_INCREMENT,
+        user_id bigint NOT NULL,
+        chat_id bigint NOT NULL,
+        message varchar(500) NOT NULL,
+        time datetime,
+        CONSTRAINT dialoges_chats_chat_id_fk FOREIGN KEY (chat_id) REFERENCES chats (chat_id),
+        CONSTRAINT dialoges_users_user_id_fk FOREIGN KEY (user_id) REFERENCES users (user_id)
+    );
+
+
+7)  CREATE TABLE rates
+    (
+        notification_id bigint PRIMARY KEY NOT NULL,
+        user_id bigint NOT NULL,
+        mark int NOT NULL,
+        CONSTRAINT rates_users_user_id_fk FOREIGN KEY (user_id) REFERENCES users (user_id),
+        CONSTRAINT rates_notifications_notification_id_fk FOREIGN KEY (notification_id) REFERENCES notifications (notification_id)
+    );
+    ALTER TABLE rates ADD CONSTRAINT rates_pk UNIQUE (notification_id, user_id);
+    ALTER TABLE rates DROP PRIMARY KEY;
+
+8)  CREATE TABLE comments
+    (
+        comment_id bigint PRIMARY KEY AUTO_INCREMENT,
+        notification_id bigint NOT NULL,
+        user_id bigint,
+        comment varchar(500) NOT NULL,
+        CONSTRAINT comments_users_user_id_fk FOREIGN KEY (user_id) REFERENCES users (user_id),
+        CONSTRAINT comments_notifications_notification_id_fk FOREIGN KEY (notification_id) REFERENCES notifications (notification_id)
+    );
+
+

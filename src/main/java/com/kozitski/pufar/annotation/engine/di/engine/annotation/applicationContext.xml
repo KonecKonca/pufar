@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<context>
+
+    <bean name="dao" class="di.engine.entity.DaoImpl"/>
+    <bean name="service" class="di.engine.entity.ServiceImpl"/>
+
+</context>

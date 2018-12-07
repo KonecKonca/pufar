@@ -1,0 +1,5 @@
+minLoginLength: 5
+maxLoginLength: 22
+
+minPasswordSize: 6
+maxPasswordSize: 20

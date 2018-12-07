@@ -1,0 +1,21 @@
+/*for error message*/
+.error{
+    color: red;
+    font-size: 19px;
+    font-style: italic;
+    text-shadow: white 0 0 15px;
+}
+
+.form{
+    background: url(../../image/phone.jpg) top right no-repeat;
+
+    -moz-background-size: 100%; /* Firefox 3.6+ */
+    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: 100%; /* Opera 9.6+ */
+    background-size: 100%; /* Современные браузеры */
+
+    opacity: 0.9;
+    height: 100%;
+
+    text-shadow: white 2px 2px 15px;
+}

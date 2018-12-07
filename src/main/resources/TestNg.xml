@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite thread-count="1" verbose="1" name="MainSuit" annotations="JDK" parallel="tests">
+
+    <test name="MainTest">
+        <classes>
+            <class name="com.kozitski.task3.interpreter.InterpreterTest"/>
+
+            <class name="com.kozitski.task3.service.ExpressionConverterTest"/>
+            <class name="com.kozitski.task3.service.TextComponentCreatorTest"/>
+            <class name="com.kozitski.task3.service.TextOperationTest"/>
+
+            <class name="com.kozitski.task3.util.polishnotation.PolishNotationConverterTest"/>
+            <class name="com.kozitski.task3.util.reader.TextReaderTest"/>
+        </classes>
+    </test>
+
+    <test name="TimeTest">
+        <classes>
+            <class name="com.kozitski.task3.time.TimeTest"/>
+        </classes>
+    </test>
+
+</suite>
