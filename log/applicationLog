@@ -1,0 +1,756 @@
+2018-11-27 19:19:55 INFO  ValidationAspect:25 - validation advice is executing
+2018-11-27 19:19:55 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:39)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:27)
+	at com.kozitski.pufar.validation.TestSample.fasad(TestSample.java:24)
+	at com.kozitski.pufar.validation.TestSample.main(TestSample.java:10)
+2018-12-02 14:21:33 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 14:21:33 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:51)
+2018-12-02 14:21:33 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:51)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 3 more
+2018-12-02 14:21:33 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 14:21:33 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 14:21:33 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:51)
+2018-12-02 14:21:33 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:51)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 4 more
+2018-12-02 14:21:33 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 14:21:33 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 14:21:33 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:52)
+2018-12-02 14:21:33 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:52)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 3 more
+2018-12-02 14:21:33 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 14:21:33 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 14:21:33 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:52)
+2018-12-02 14:21:33 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:52)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 4 more
+2018-12-02 14:21:33 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 14:21:33 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 14:21:33 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.comparePasswordsWithEncoding(PasswordEncoder.java:38)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:54)
+2018-12-02 14:21:33 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.comparePasswordsWithEncoding(PasswordEncoder.java:38)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:54)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 4 more
+2018-12-02 14:21:33 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 14:21:33 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 14:21:33 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.comparePasswordsWithEncoding(PasswordEncoder.java:38)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:54)
+2018-12-02 14:21:33 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.comparePasswordsWithEncoding(PasswordEncoder.java:38)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:54)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 5 more
+2018-12-02 14:21:33 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 14:21:33 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 14:21:33 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.comparePasswordsWithEncoding(PasswordEncoder.java:39)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:54)
+2018-12-02 14:21:33 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.comparePasswordsWithEncoding(PasswordEncoder.java:39)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:54)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 4 more
+2018-12-02 14:21:33 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 14:21:33 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 14:21:33 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.comparePasswordsWithEncoding(PasswordEncoder.java:39)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:54)
+2018-12-02 14:21:33 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.comparePasswordsWithEncoding(PasswordEncoder.java:39)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:54)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 5 more
+2018-12-02 14:21:33 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 14:21:55 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 14:21:55 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:52)
+2018-12-02 14:21:55 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:52)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 3 more
+2018-12-02 14:21:55 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 14:21:55 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 14:21:55 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:19)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:52)
+2018-12-02 14:21:55 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:19)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:52)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 4 more
+2018-12-02 14:21:55 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 14:21:55 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 14:21:55 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:53)
+2018-12-02 14:21:55 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:53)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 3 more
+2018-12-02 14:21:55 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 14:21:55 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 14:21:55 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:19)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:53)
+2018-12-02 14:21:55 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:19)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:53)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 4 more
+2018-12-02 14:21:55 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 14:21:55 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 14:21:55 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.comparePasswordsWithEncoding(PasswordEncoder.java:39)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:55)
+2018-12-02 14:21:55 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.comparePasswordsWithEncoding(PasswordEncoder.java:39)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:55)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 4 more
+2018-12-02 14:21:55 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 14:21:55 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 14:21:55 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:19)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.comparePasswordsWithEncoding(PasswordEncoder.java:39)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:55)
+2018-12-02 14:21:55 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:19)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.comparePasswordsWithEncoding(PasswordEncoder.java:39)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:55)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 5 more
+2018-12-02 14:21:55 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 14:21:55 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 14:21:55 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.comparePasswordsWithEncoding(PasswordEncoder.java:40)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:55)
+2018-12-02 14:21:55 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.comparePasswordsWithEncoding(PasswordEncoder.java:40)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:55)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 4 more
+2018-12-02 14:21:55 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 14:21:55 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 14:21:55 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:19)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.comparePasswordsWithEncoding(PasswordEncoder.java:40)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:55)
+2018-12-02 14:21:55 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:19)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.comparePasswordsWithEncoding(PasswordEncoder.java:40)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:55)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 5 more
+2018-12-02 14:21:55 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 17:08:27 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 17:08:27 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:48)
+2018-12-02 17:08:27 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:48)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 3 more
+2018-12-02 17:08:27 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 17:08:27 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 17:08:27 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:48)
+2018-12-02 17:08:27 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:48)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 4 more
+2018-12-02 17:08:27 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 17:08:27 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 17:08:27 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:49)
+2018-12-02 17:08:27 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:49)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 3 more
+2018-12-02 17:08:27 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 17:08:27 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 17:08:27 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:49)
+2018-12-02 17:08:27 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:49)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 4 more
+2018-12-02 17:08:27 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 17:08:27 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 17:08:27 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:50)
+2018-12-02 17:08:27 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:50)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 3 more
+2018-12-02 17:08:27 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 17:08:27 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 17:08:27 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:50)
+2018-12-02 17:08:27 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:50)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 4 more
+2018-12-02 17:08:27 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 17:08:31 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 17:08:31 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:48)
+2018-12-02 17:08:31 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:48)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 3 more
+2018-12-02 17:08:31 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 17:08:31 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 17:08:31 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:48)
+2018-12-02 17:08:31 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:48)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 4 more
+2018-12-02 17:08:31 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 17:08:31 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 17:08:31 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:49)
+2018-12-02 17:08:31 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:49)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 3 more
+2018-12-02 17:08:31 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 17:08:31 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 17:08:31 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:49)
+2018-12-02 17:08:31 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:49)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 4 more
+2018-12-02 17:08:31 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 17:08:31 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 17:08:31 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:50)
+2018-12-02 17:08:31 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:50)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 3 more
+2018-12-02 17:08:31 INFO  ValidationAspect:35 - validation complete successfully
+2018-12-02 17:08:31 INFO  ValidationAspect:26 - validation advice is executing
+2018-12-02 17:08:31 ERROR ValidatorRegister:27 - Properties file with validation config was not founded
+java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:50)
+2018-12-02 17:08:31 ERROR ValidationAspect:32 - Annotation Validation engine is not working
+com.kozitski.pufar.exception.PufarValidationException: Properties file with validation config was not founded
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:28)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validate(ValidationAspect.java:45)
+	at com.kozitski.pufar.validation.aspect.ValidationAspect.validateString(ValidationAspect.java:29)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.encode(PasswordEncoder.java:18)
+	at com.kozitski.pufar.util.encoder.PasswordEncoder.main(PasswordEncoder.java:50)
+Caused by: java.io.FileNotFoundException: null\WEB-INF\classes\validation\validator.properties (The system cannot find the path specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at com.kozitski.pufar.validation.util.ValidatorRegister.initValidators(ValidatorRegister.java:23)
+	... 4 more
+2018-12-02 17:08:31 INFO  ValidationAspect:35 - validation complete successfully

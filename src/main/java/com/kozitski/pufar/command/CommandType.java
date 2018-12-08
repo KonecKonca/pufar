@@ -3,6 +3,10 @@ package com.kozitski.pufar.command;
 import com.kozitski.pufar.command.impl.*;
 import com.kozitski.pufar.command.impl.autorization.LoginCommand;
 import com.kozitski.pufar.command.impl.autorization.RegistrationCommand;
+import com.kozitski.pufar.command.impl.dialog.GetContactCommand;
+import com.kozitski.pufar.command.impl.dialog.NextMessageCommand;
+import com.kozitski.pufar.command.impl.dialog.PreviousMessageCommand;
+import com.kozitski.pufar.command.impl.dialog.SendMessageCommand;
 import com.kozitski.pufar.command.impl.error.ErrorCommand;
 import com.kozitski.pufar.command.impl.locale.SetEnLocaleCommand;
 import com.kozitski.pufar.command.impl.locale.SetRuLocaleCommand;
@@ -16,6 +20,9 @@ public enum CommandType {
     CHANGE_LOCALE_RU(new SetRuLocaleCommand()),
     CHANGE_LOCALE_EN(new SetEnLocaleCommand()),
     REGISTRATION(new RegistrationCommand()),
+    MESSAGE_NEXT(new NextMessageCommand()),
+    MESSAGE_PREVIOUS(new PreviousMessageCommand()),
+    SEND_MESSAGE(new SendMessageCommand()),
 
     LOGOUT(new IndexCommand()),
     SHOW_DIALOGS(new IndexCommand()),

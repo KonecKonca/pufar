@@ -1,0 +1,20 @@
+1) were some problems with JDBC from servlet, but worked good from simple Main
+    decision: put Connector-J to dir lib into current TomCat
+
+2)  Live edit --- we need in plugin in idea && plugin IntelliJ IDEA Support в Chrome
+
+3)  including of footer:
+      -      <%--importnat for footer--%>
+             <script src="assets/js/jquery-3.2.1.min.js"></script>
+      - copy folfer assets
+
+      -  add include
+      <div>
+          <jsp:include page="../footer/footer.jsp"/>
+      </div>
+
+4) жарку для aspectj подкинуть тому
+
+5) \apache-tomcat-8.5.31\bin\log  --- логи моего веб приложения
+
+6) нельзя несколько forward-ов через ифы нельзя

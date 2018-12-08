@@ -2,6 +2,8 @@ package com.kozitski.pufar.command;
 
 public enum PagePath {
 
+    PUFAR_CONTROLLER("/pufar"),
+
     INDEX_PAGE("index.jsp"),
     CHAT_PAGE("jsp/chat/chat.jsp"),
     USER_ERROR_PAGE("jsp/error/userErrorPage.jsp"),

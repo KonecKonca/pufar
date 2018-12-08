@@ -10,11 +10,10 @@ import com.kozitski.pufar.validation.validator.CommentValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class MySQLDialogDao implements DialogDAO {
@@ -54,7 +53,9 @@ public class MySQLDialogDao implements DialogDAO {
             "UNION " +
             "(SELECT u2.user_id, u2.login, u2.password, u2.status FROM users u2 " +
                 "INNER JOIN dialoges d2 ON u2.user_id = d2.user_sender_id WHERE d2.user_receiver_id = ? GROUP BY u2.login ORDER BY d2.date) LIMIT ?";
+    private static final String ADD_MESSAGE = "INSERT INTO dialoges values(null, ?, ?, ?, ?)";
 
+    private static final long TIME_DIFFERENCE = 7_200_000;
 
     @Override
     public List<UserMessage> searchAllMessagesFromTo(long fromUserId, long toUserId) {
@@ -125,7 +126,6 @@ public class MySQLDialogDao implements DialogDAO {
 
         return messages;
     }
-
     @Override
     public ArrayList<User> searchPopularUser(long forWhomUserId, int howMuch) {
         ArrayList<User> users;
@@ -146,6 +146,26 @@ public class MySQLDialogDao implements DialogDAO {
         }
 
         return users;
+    }
+
+    @Override
+    public void addMessage(long senderId, long receiverId, String message) {
+
+        try(Connection connection = PoolConnection.getInstance().getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(ADD_MESSAGE);
+
+            preparedStatement.setLong(1, senderId);
+            preparedStatement.setLong(2, receiverId);
+            preparedStatement.setString(3, message);
+            preparedStatement.setTimestamp(4, new Timestamp(System.currentTimeMillis() + TIME_DIFFERENCE));
+
+            preparedStatement.executeUpdate();
+
+        }
+        catch (SQLException e){
+
+        }
+
     }
 
 }

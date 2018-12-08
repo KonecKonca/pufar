@@ -76,17 +76,6 @@ public class RequestValueTransformer {
             request.setAttribute(entry.getKey(),entry.getValue());
         }
 
-        // request Parameters
-        Enumeration<String> requestParametersNames = request.getParameterNames();
-        while (requestParametersNames.hasMoreElements()){
-            String attributeName = requestParametersNames.nextElement();
-            request.removeAttribute(attributeName);
-        }
-        Map<String, Object> requestParameters = requestValue.getRequestParameterMap();
-        for(Map.Entry<String, Object> entry : requestParameters.entrySet()){
-            request.getParameterValues(entry.getKey())[0] = entry.getValue().toString();
-        }
-
     }
 
 }

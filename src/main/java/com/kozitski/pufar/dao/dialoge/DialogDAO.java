@@ -15,6 +15,6 @@ public interface DialogDAO{
 
     ArrayList<User> searchPopularUser(long forWhomUserId, int howMuch);
 
-//    List<UserMessage> searchAllMessagesFromToInPeriod(long fromUserId, long toUserId, int numberOfDays);
+    void addMessage(long senderId, long receiverId, String message);
 
 }

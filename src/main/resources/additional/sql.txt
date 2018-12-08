@@ -59,7 +59,7 @@
         user_id bigint NOT NULL,
         chat_id bigint NOT NULL,
         message varchar(500) NOT NULL,
-        time datetime,
+        date datetime,
         CONSTRAINT dialoges_chats_chat_id_fk FOREIGN KEY (chat_id) REFERENCES chats (chat_id),
         CONSTRAINT dialoges_users_user_id_fk FOREIGN KEY (user_id) REFERENCES users (user_id)
     );

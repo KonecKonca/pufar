@@ -1,17 +1,13 @@
 package com.kozitski.pufar.connection;
 
-import com.kozitski.pufar.exception.PufarDAOException;
 import com.kozitski.pufar.util.path.WebPathReturner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.mysql.jdbc.Driver;
-import org.slf4j.Marker;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
-import java.util.Enumeration;
 import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.locks.ReentrantLock;

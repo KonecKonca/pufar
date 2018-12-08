@@ -21,7 +21,7 @@ public class MessageValidator implements Validator{
 
     private void messageValidation(MessageValid annotation, UserMessage userMessage) {
 
-        if(userMessage == null || userMessage.getTime() == null || userMessage.getMessage() == null
+        if(userMessage == null || userMessage.getDate() == null || userMessage.getMessage() == null
                 || userMessage.getSenderLogin() == null || userMessage.getReceiverLogin() == null){
 
             LOGGER.error("Notification can not be and contains NULL");

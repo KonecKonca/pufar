@@ -46,7 +46,7 @@
                                             <div class="media-body" >
                                                     ${message.message}
                                                 <br />
-                                                <small class="text-muted">${message.senderLogin} | ${message.time}</small>
+                                                <small class="text-muted">${message.senderLogin} | ${message.date} | ${message.time}</small>
                                                 <hr />
                                             </div>
                                         </div>
@@ -55,13 +55,35 @@
                             </c:forEach>
 
                             <div class="panel-footer">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Enter Message" />
-                                    <span class="input-group-btn">
-                                                <button class="btn btn-info" type="button">${locale.getValue("chatSentButton")}</button>
-                                            </span>
+
+                                <%--<div class="input-group">--%>
+                                <%--</div>--%>
+
+                                <form action="/pufar" method="post">
+                                    <input type="hidden" value="SEND_MESSAGE" name="command">
+
+                                    <input type="text" class="form-control" placeholder="Enter Message" name="sentValue" />
+                                    <input class="btn btn-info" type="submit" value="${locale.getValue("chatSentButton")}">
+                                </form>
+
+                                <div>
+                                    <div style="float: left;">
+                                        <form action="/pufar" method="post">
+                                            <input type="hidden" value="MESSAGE_PREVIOUS" name="command">
+                                            <input type="submit" name="button1" value="<<" class="btn btn-outline-info">
+                                        </form>
+                                    </div>
+                                    <div style="float: right;">
+                                        <form action="/pufar" method="post">
+                                            <input type="hidden" value="MESSAGE_NEXT" name="command">
+                                            <input type="submit" name="button1" value=">>" class="btn btn-outline-info">
+                                        </form>
+                                    </div>
                                 </div>
+
                             </div>
+
+
 
                         </ul>
                     </div>
@@ -86,7 +108,7 @@
                                             </a>
                                             <div class="media-body" >
                                                 <h5>${user.login} [${user.status}] </h5>
-                                                <small class="text-muted">Active From 3 hours</small>
+                                                <%--<small class="text-muted">Active From 3 hours</small>--%>
                                             </div>
                                         </div>
 
