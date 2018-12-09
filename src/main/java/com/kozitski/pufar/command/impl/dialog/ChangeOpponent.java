@@ -4,28 +4,21 @@ import com.kozitski.pufar.command.AbstractCommand;
 import com.kozitski.pufar.command.PagePath;
 import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.command.Router;
-import com.kozitski.pufar.entity.message.UserMessage;
-import com.kozitski.pufar.entity.user.User;
-import com.kozitski.pufar.entity.user.Users;
 import com.kozitski.pufar.service.dialoge.DialogService;
 import com.kozitski.pufar.service.dialoge.DialogServiceImpl;
-import com.kozitski.pufar.util.CommonConstant;
 
-import java.util.List;
-
-public class NextMessageCommand extends AbstractCommand {
-
+public class ChangeOpponent extends AbstractCommand {
     private DialogService dialogService = new DialogServiceImpl();
 
     @Override
     public Router execute(RequestValue requestValue) {
         Router router = new Router();
         router.setPagePath(PagePath.CHAT_PAGE.getJspPath());
-        dialogService.showNextDialogs(requestValue);
+
+        dialogService.chooseDialogWithUser(requestValue);
 
         return router;
     }
 
+
 }
-
-

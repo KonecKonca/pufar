@@ -29,7 +29,7 @@
             <div class="col-md-8">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        ${locale.getValue("chatTable")} <strong>${topUsers.get(0).login}</strong>
+                        ${locale.getValue("chatTable")} <strong>${currentOpponent.login}</strong>
 
                     </div>
                     <div class="panel-body">
@@ -40,7 +40,7 @@
                                 <li class="media">
                                     <div class="media-body">
                                         <div class="media">
-                                            <a class="pull-left" href="#">
+                                            <a class="pull-left">
                                                 <img class="media-object img-circle " src="${context}/image/chat/user.png" />
                                             </a>
                                             <div class="media-body" >
@@ -59,10 +59,10 @@
                                 <%--<div class="input-group">--%>
                                 <%--</div>--%>
 
-                                <form action="/pufar" method="post">
+                                <form action="/pufar" accept-charset="utf-8" method="post" >
                                     <input type="hidden" value="SEND_MESSAGE" name="command">
 
-                                    <input type="text" class="form-control" placeholder="Enter Message" name="sentValue" />
+                                    <input type="text" class="form-control" placeholder="Enter Message"  name="sentValue" />
                                     <input class="btn btn-info" type="submit" value="${locale.getValue("chatSentButton")}">
                                 </form>
 
@@ -103,13 +103,22 @@
                                 <li class="media">
                                     <div class="media-body">
                                         <div class="media">
-                                            <a class="pull-left" href="#">
+
+                                            <div class="pull-left">
                                                 <img class="media-object img-circle" style="max-height:40px;" src="${context}/image/chat/user.png" />
-                                            </a>
+                                            </div>
+
                                             <div class="media-body" >
-                                                <h5>${user.login} [${user.status}] </h5>
+                                                <form action="pufar" method="post">
+                                                    <input type="hidden" value="CHANGE_OPPONENT" name="command">
+                                                    <input type="hidden" value="${user.userId}" name="chosenUser">
+
+                                                    <input type="submit" value="${user.login} [${user.status}]" class="btn btn-outline-info">
+                                                </form>
+
                                                 <%--<small class="text-muted">Active From 3 hours</small>--%>
                                             </div>
+
                                         </div>
 
                                     </div>

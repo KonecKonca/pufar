@@ -19,33 +19,7 @@ public class GetContactCommand extends AbstractCommand {
     @Override
     public Router execute(RequestValue requestValue) {
         Router router = new Router();
-
-        User currentUser = ((User)(requestValue.getAttribute(CommonConstant.CURRENT_USER)));
-        long currentUserId = currentUser.getUserId();
-
-        int msgStartNumber;
-        int howMuchMessages = (int) requestValue.getAttribute(CommonConstant.HOW_MUCH_MESSAGES);
-
-        List<User> users = Users.createUserArrayList(dialogService.searchPopularUser(currentUserId, CommonConstant.HOW_MUCH_USERS));
-
-        List<UserMessage> lastMessagesWithTopUser = null;
-        if(users.size() > 0){
-            User currentOpponent = users.get(0);
-            requestValue.servletSessionPut(CommonConstant.CURRENT_OPPONENT, currentOpponent);
-
-            msgStartNumber = dialogService.numberOfMessagesBetween(currentUserId, currentOpponent.getUserId());
-            requestValue.servletSessionPut(CommonConstant.LAST_MESSAGE, msgStartNumber);
-
-            if(msgStartNumber - howMuchMessages < 0){
-                lastMessagesWithTopUser = dialogService.searchMessagesBetweenWithLimit(currentUserId, currentOpponent.getUserId(), 0, howMuchMessages);
-            }
-            else {
-                lastMessagesWithTopUser = dialogService.searchMessagesBetweenWithLimit(currentUserId, currentOpponent.getUserId(), msgStartNumber - howMuchMessages, howMuchMessages);
-            }
-        }
-
-        requestValue.requestAttributePut(CommonConstant.TOP_USERS, users);
-        requestValue.requestAttributePut(CommonConstant.LAST_MESSAGES, lastMessagesWithTopUser);
+        dialogService.showDialogs(requestValue);
         router.setPagePath(PagePath.CHAT_PAGE.getJspPath());
 
         return router;

@@ -1,10 +1,12 @@
 package com.kozitski.pufar.service.dialoge;
 
+import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.dao.dialoge.DialogDAO;
 import com.kozitski.pufar.dao.dialoge.MySQLDialogDao;
 import com.kozitski.pufar.entity.message.UserMessage;
 import com.kozitski.pufar.entity.user.User;
-import com.kozitski.pufar.validation.annotation.primitive.string.StringValid;
+import com.kozitski.pufar.entity.user.Users;
+import com.kozitski.pufar.util.CommonConstant;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -36,9 +38,140 @@ public class DialogServiceImpl implements DialogService {
     }
     @Override
     public void addMessage(long senderId, long receiverId, String message) {
+        dialogDAO.addMessage(senderId, receiverId, message);
+    }
 
-        String utf8Message = new String(message.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-        dialogDAO.addMessage(senderId, receiverId, utf8Message);
+    @Override
+    public void showDialogs(RequestValue requestValue){
+
+        User currentUser = ((User)(requestValue.getAttribute(CommonConstant.CURRENT_USER)));
+        long currentUserId = currentUser.getUserId();
+
+        int msgStartNumber;
+        int howMuchMessages = (int) requestValue.getAttribute(CommonConstant.HOW_MUCH_MESSAGES);
+
+        List previousList = (List) requestValue.getAttribute(CommonConstant.TOP_USERS);
+        if(previousList == null){
+            List<User> users = Users.createUserArrayList(searchPopularUser(currentUserId, CommonConstant.HOW_MUCH_USERS_CHAT_PAGE));
+
+            List<UserMessage> lastMessagesWithTopUser = null;
+            if(users.size() > 0){
+                User currentOpponent = users.get(0);
+                requestValue.servletSessionPut(CommonConstant.CURRENT_OPPONENT, currentOpponent);
+
+                msgStartNumber = numberOfMessagesBetween(currentUserId, currentOpponent.getUserId());
+                requestValue.servletSessionPut(CommonConstant.LAST_MESSAGE, msgStartNumber);
+
+                if(msgStartNumber - howMuchMessages < 0){
+                    lastMessagesWithTopUser = searchMessagesBetweenWithLimit(currentUserId, currentOpponent.getUserId(), 0, howMuchMessages);
+                }
+                else {
+                    lastMessagesWithTopUser = searchMessagesBetweenWithLimit(currentUserId, currentOpponent.getUserId(), msgStartNumber - howMuchMessages, howMuchMessages);
+                }
+            }
+
+            requestValue.servletSessionPut(CommonConstant.TOP_USERS, users);
+            requestValue.servletSessionPut(CommonConstant.LAST_MESSAGES, lastMessagesWithTopUser);
+        }
+        else {
+            List<User> users = Users.createUserArrayList(searchPopularUser(currentUserId, CommonConstant.HOW_MUCH_USERS_CHAT_PAGE));
+
+            List<UserMessage> lastMessagesWithTopUser;
+            User currentOpponent = (User) requestValue.getAttribute(CommonConstant.CURRENT_OPPONENT);
+
+            msgStartNumber = numberOfMessagesBetween(currentUserId, currentOpponent.getUserId());
+            requestValue.servletSessionPut(CommonConstant.LAST_MESSAGE, msgStartNumber);
+
+            if(msgStartNumber - howMuchMessages < 0){
+                lastMessagesWithTopUser = searchMessagesBetweenWithLimit(currentUserId, currentOpponent.getUserId(), 0, howMuchMessages);
+            }
+            else {
+                lastMessagesWithTopUser = searchMessagesBetweenWithLimit(currentUserId, currentOpponent.getUserId(), msgStartNumber - howMuchMessages, howMuchMessages);
+            }
+
+            requestValue.servletSessionPut(CommonConstant.TOP_USERS, users);
+            requestValue.servletSessionPut(CommonConstant.LAST_MESSAGES, lastMessagesWithTopUser);
+        }
+
+    }
+    @Override
+    public void showNextDialogs(RequestValue requestValue){
+        User currentUser = ((User)(requestValue.getAttribute(CommonConstant.CURRENT_USER)));
+        long currentUserId = currentUser.getUserId();
+
+        int msgStartNumber = (int)requestValue.getAttribute(CommonConstant.LAST_MESSAGE);
+
+        List<User> users = Users.createUserArrayList(searchPopularUser(currentUserId, CommonConstant.HOW_MUCH_USERS_CHAT_PAGE));
+
+        List<UserMessage> lastMessagesWithTopUser = null;
+        if(users.size() > 0){
+            User currentOpponent = (User) requestValue.getAttribute(CommonConstant.CURRENT_OPPONENT);
+
+            int fullSize = numberOfMessagesBetween(currentUserId,currentOpponent.getUserId());
+            int howMuchMessages = (int) requestValue.getAttribute(CommonConstant.HOW_MUCH_MESSAGES);
+
+            msgStartNumber = msgStartNumber + howMuchMessages;
+            if(msgStartNumber > fullSize){
+                msgStartNumber = fullSize;
+            }
+            if(msgStartNumber - howMuchMessages < 0){
+                msgStartNumber = howMuchMessages;
+            }
+            lastMessagesWithTopUser = searchMessagesBetweenWithLimit(currentUserId, currentOpponent.getUserId(), msgStartNumber - howMuchMessages, howMuchMessages);
+            requestValue.servletSessionPut(CommonConstant.LAST_MESSAGE, msgStartNumber);
+
+        }
+
+        requestValue.servletSessionPut(CommonConstant.TOP_USERS, users);
+        requestValue.servletSessionPut(CommonConstant.LAST_MESSAGES, lastMessagesWithTopUser);
+    }
+    @Override
+    public void showPreviousDialogs(RequestValue requestValue){
+        User currentUser = ((User)(requestValue.getAttribute(CommonConstant.CURRENT_USER)));
+        long currentUserId = currentUser.getUserId();
+
+        int msgStartNumber = (int)requestValue.getAttribute(CommonConstant.LAST_MESSAGE);
+
+        List<User> users = Users.createUserArrayList(searchPopularUser(currentUserId, CommonConstant.HOW_MUCH_USERS_CHAT_PAGE));
+
+        List<UserMessage> lastMessagesWithTopUser = null;
+        if(users.size() > 0){
+            User currentOpponent = (User) requestValue.getAttribute(CommonConstant.CURRENT_OPPONENT);
+
+            int howMuchMessages = (int) requestValue.getAttribute(CommonConstant.HOW_MUCH_MESSAGES);
+            msgStartNumber = msgStartNumber - howMuchMessages;
+            if(msgStartNumber - howMuchMessages < 0){
+                msgStartNumber = howMuchMessages;
+            }
+
+            lastMessagesWithTopUser = searchMessagesBetweenWithLimit(currentUserId, currentOpponent.getUserId(), msgStartNumber - howMuchMessages, howMuchMessages);
+            requestValue.servletSessionPut(CommonConstant.LAST_MESSAGE, msgStartNumber);
+
+        }
+
+        requestValue.servletSessionPut(CommonConstant.TOP_USERS, users);
+        requestValue.servletSessionPut(CommonConstant.LAST_MESSAGES, lastMessagesWithTopUser);
+    }
+
+    @Override
+    public void chooseDialogWithUser(RequestValue requestValue){
+
+     long chosenUserID = Long.parseLong(requestValue.getAttribute(CommonConstant.CHOSEN_USER).toString());
+
+     User chosenUser = null;
+     List topUsers = (List) requestValue.getAttribute(CommonConstant.TOP_USERS);
+
+     for(Object o : topUsers){
+         User user = (User) o;
+         if(user.getUserId() == chosenUserID){
+             chosenUser = user;
+             break;
+         }
+     }
+
+     requestValue.servletSessionPut(CommonConstant.CURRENT_OPPONENT, chosenUser);
+
+     showDialogs(requestValue);
 
     }
 

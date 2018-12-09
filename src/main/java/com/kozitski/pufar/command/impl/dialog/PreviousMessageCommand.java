@@ -19,32 +19,8 @@ public class PreviousMessageCommand extends AbstractCommand {
     @Override
     public Router execute(RequestValue requestValue) {
         Router router = new Router();
-
-        User currentUser = ((User)(requestValue.getAttribute(CommonConstant.CURRENT_USER)));
-        long currentUserId = currentUser.getUserId();
-
-        int msgStartNumber = (int)requestValue.getAttribute(CommonConstant.LAST_MESSAGE);
-
-        List<User> users = Users.createUserArrayList(dialogService.searchPopularUser(currentUserId, CommonConstant.HOW_MUCH_USERS));
-
-        List<UserMessage> lastMessagesWithTopUser = null;
-        if(users.size() > 0){
-            User currentOpponent = (User) requestValue.getAttribute(CommonConstant.CURRENT_OPPONENT);
-
-            int howMuchMessages = (int) requestValue.getAttribute(CommonConstant.HOW_MUCH_MESSAGES);
-            msgStartNumber = msgStartNumber - howMuchMessages;
-            if(msgStartNumber - howMuchMessages < 0){
-                msgStartNumber = howMuchMessages;
-            }
-
-            lastMessagesWithTopUser = dialogService.searchMessagesBetweenWithLimit(currentUserId, currentOpponent.getUserId(), msgStartNumber - howMuchMessages, howMuchMessages);
-            requestValue.servletSessionPut(CommonConstant.LAST_MESSAGE, msgStartNumber);
-
-        }
-
-        requestValue.requestAttributePut(CommonConstant.TOP_USERS, users);
-        requestValue.requestAttributePut(CommonConstant.LAST_MESSAGES, lastMessagesWithTopUser);
         router.setPagePath(PagePath.CHAT_PAGE.getJspPath());
+        dialogService.showPreviousDialogs(requestValue);
 
         return router;
     }

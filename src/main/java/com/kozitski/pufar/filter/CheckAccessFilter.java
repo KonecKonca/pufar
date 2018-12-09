@@ -19,9 +19,7 @@ public class CheckAccessFilter implements Filter {
     private static final String CURRENT_USER = "currentUser";
     private static final String FORWARD_PATH = "index.jsp";
 
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-    }
+
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain) throws IOException, ServletException {
@@ -39,11 +37,6 @@ public class CheckAccessFilter implements Filter {
             req.setAttribute("accessRight", "You try to get access on page, witch defined only for logined users");
             req.getRequestDispatcher(FORWARD_PATH).forward(req, resp);
         }
-
-    }
-
-    @Override
-    public void destroy() {
 
     }
 
