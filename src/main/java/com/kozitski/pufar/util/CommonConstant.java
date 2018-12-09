@@ -1,6 +1,7 @@
 package com.kozitski.pufar.util;
 
 public class CommonConstant {
+    public static final long TIME_DIFFERENCE = 7_200_000;
 
     // request attributes
     public static final String CURRENT_USER = "currentUser";

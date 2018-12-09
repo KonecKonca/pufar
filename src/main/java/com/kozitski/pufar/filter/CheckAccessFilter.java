@@ -40,4 +40,12 @@ public class CheckAccessFilter implements Filter {
 
     }
 
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
+    @Override
+    public void destroy() {
+    }
+
+
 }

@@ -6,7 +6,9 @@ public enum UnitType {
     AUTO,
     HOME,
     CHILD,
-    PRODUCT,
-    // ...
+    FOOD,
+    WORK,
+    BEAUTY,
+    ELECTRONICS
 
 }

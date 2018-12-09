@@ -1,5 +1,6 @@
 package com.kozitski.pufar.entity.notification;
 
+import java.sql.Date;
 import java.sql.Time;
 
 public class Notification {
@@ -8,18 +9,21 @@ public class Notification {
     private UnitType unit;
     private double price;
     private long userId;
+    private Date date;
     private Time time;
     private double rate;
 
+
     public Notification() {
     }
-    public Notification(long notificationId, String message, UnitType unit, double price, long userId, Time time) {
+    public Notification(long notificationId, String message, UnitType unit, double price, long userId, Time time, Date date) {
         this.notificationId = notificationId;
         this.message = message;
         this.unit = unit;
         this.price = price;
         this.userId = userId;
         this.time = time;
+        this.date = date;
     }
 
     public long getNotificationId() {
@@ -63,6 +67,12 @@ public class Notification {
     }
     public void setRate(double rate) {
         this.rate = rate;
+    }
+    public Date getDate() {
+        return date;
+    }
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @Override

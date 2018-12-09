@@ -15,13 +15,20 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class NotificationDaoImpl implements NotificationDao {
-    private static final String SEARCH_TOP_NOTIFICATIONS_SQL = "SELECT * FROM notifications";
+    private static final String SEARCH_TOP_NOTIFICATIONS_SQL =
+            "SELECT n.notification_id, n.message, un.name, n.price, u.user_id, n.date, AVG(r.mark) mark FROM notifications n " +
+                "LEFT JOIN units un ON n.unit_id=un.unit_id " +
+                "LEFT JOIN users u ON n.user_id=u.user_id " +
+                "LEFT JOIN rates r ON n.notification_id=r.notification_id " +
+            "GROUP BY r.notification_id " +
+            "ORDER BY mark ASC " +
+            "LIMIT ?";
 
     public ArrayList<Notification> searchTopNotificationsWithLimit(int limit){
 
         try(Connection connection = PoolConnection.getInstance().getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_TOP_NOTIFICATIONS_SQL);
-//            preparedStatement.setLong(1, id);
+            preparedStatement.setLong(1, limit);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             return NotificationMapper.searchTopNotificationsWithLimit(resultSet);

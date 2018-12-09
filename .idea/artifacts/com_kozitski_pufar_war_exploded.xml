@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" build-on-make="true" name="com.kozitski.pufar:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/com_kozitski_pufar_war_exploded</output-path>
+    <output-path>$PROJECT_DIR$/target/com.kozitski.pufar-1.0-SNAPSHOT</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -16,8 +16,6 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.2.3" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.2.3" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.4" />
-          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.12" />
-          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:2.6.0" />
           <element id="library" level="project" name="Maven: org.webjars:bootstrap:3.3.5" />
           <element id="library" level="project" name="Maven: org.webjars:jquery:1.11.1" />
           <element id="library" level="project" name="Maven: com.vk.api:sdk:0.5.12" />
@@ -57,7 +55,12 @@
           <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-io:9.4.12.v20180830" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.9.2" />
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.12" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:2.6.0" />
         </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/com.kozitski.pufar-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="com.kozitski.pufar/web/Web" />
     </root>
