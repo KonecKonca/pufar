@@ -37,12 +37,6 @@ public class NotificationMapper  {
             result.add(notification);
         }
 
-        System.out.println(result);
-
-        for(Notification notification : result){
-            System.out.println(notification);
-        }
-
         return result;
     }
 

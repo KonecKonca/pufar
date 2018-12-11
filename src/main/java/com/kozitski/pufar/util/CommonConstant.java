@@ -18,5 +18,8 @@ public class CommonConstant {
     // notifications
     public static final String CURRENT_NOTIFICATIONS = "currentNotifications";
 
+    // admin
+    public static final String ADMIN_INPUT_MESSAGE = "adminInputMessage";
+
 
 }

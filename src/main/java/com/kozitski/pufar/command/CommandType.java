@@ -1,6 +1,14 @@
 package com.kozitski.pufar.command;
 
 import com.kozitski.pufar.command.impl.*;
+import com.kozitski.pufar.command.impl.admin.notification.ChangeNotificationMessageCommand;
+import com.kozitski.pufar.command.impl.admin.notification.ChooseNotificationCommand;
+import com.kozitski.pufar.command.impl.admin.notification.DropCommentCommand;
+import com.kozitski.pufar.command.impl.admin.notification.DropNotificationCommand;
+import com.kozitski.pufar.command.impl.admin.user.ChangeUserLoginCommand;
+import com.kozitski.pufar.command.impl.admin.user.ChangeUserStatusCommand;
+import com.kozitski.pufar.command.impl.admin.user.ChooseUserCommand;
+import com.kozitski.pufar.command.impl.admin.user.DropUserCommand;
 import com.kozitski.pufar.command.impl.autorization.LoginCommand;
 import com.kozitski.pufar.command.impl.autorization.RegistrationCommand;
 import com.kozitski.pufar.command.impl.dialog.*;
@@ -29,7 +37,19 @@ public enum CommandType {
     SHOW_NOTIFICATIONS(new IndexCommand()),
     SHOW_NOTIFICATION(new IndexCommand()),
     PROFILE(new IndexCommand()),
-    SHOW_INFO_PAGE(new IndexCommand());
+    SHOW_INFO_PAGE(new IndexCommand()),
+
+    // admin commands
+    DROP_USER(new DropUserCommand()),
+    CHANGE_USER_LOGIN(new ChangeUserLoginCommand()),
+    CHANGE_USER_STATUS(new ChangeUserStatusCommand()),
+    DROP_NOTIFICATION(new DropNotificationCommand()),
+    CHANGE_NOTIFICATION_MESSAGE(new ChangeNotificationMessageCommand()),
+    DROP_COMMENT(new DropCommentCommand()),
+    CHOOSE_USER(new ChooseUserCommand()),
+    CHOOSE_NOTIFICATION(new ChooseNotificationCommand());
+
+
 
     private AbstractCommand command;
 

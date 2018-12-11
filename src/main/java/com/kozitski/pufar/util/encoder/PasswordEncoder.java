@@ -12,6 +12,7 @@ import java.security.NoSuchAlgorithmException;
 public class PasswordEncoder {
     private static Logger LOGGER = LoggerFactory.getLogger(PasswordEncoder.class);
     private static final String ENCODING_TYPE = "MD5";
+    private static final String STRING_FORMAT_CONSTANT = "%02X ";
 
     @AspectValid
     public static String encode(String password){
@@ -23,7 +24,7 @@ public class PasswordEncoder {
             byte[] bytes = md5.digest(password.getBytes());
 
             for(byte b : bytes){
-                stringBuilder.append(String.format("%02X ", b));
+                stringBuilder.append(String.format(STRING_FORMAT_CONSTANT, b));
             }
 
         }

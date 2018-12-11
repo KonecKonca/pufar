@@ -163,7 +163,7 @@ public class MySQLDialogDao implements DialogDAO {
 
         }
         catch (SQLException e){
-
+            LOGGER.warn("Message wan't added", e);
         }
 
     }

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.*;
 
+
+// remake logic according command
 @WebFilter("/*")
 public class CheckAccessFilter implements Filter {
     private static Logger LOGGER = LoggerFactory.getLogger(CheckAccessFilter.class);
