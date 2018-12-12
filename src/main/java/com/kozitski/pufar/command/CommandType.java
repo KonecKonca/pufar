@@ -1,6 +1,7 @@
 package com.kozitski.pufar.command;
 
 import com.kozitski.pufar.command.impl.*;
+import com.kozitski.pufar.command.impl.admin.AdminControlPanelCommand;
 import com.kozitski.pufar.command.impl.admin.notification.ChangeNotificationMessageCommand;
 import com.kozitski.pufar.command.impl.admin.notification.ChooseNotificationCommand;
 import com.kozitski.pufar.command.impl.admin.notification.DropCommentCommand;
@@ -47,7 +48,8 @@ public enum CommandType {
     CHANGE_NOTIFICATION_MESSAGE(new ChangeNotificationMessageCommand()),
     DROP_COMMENT(new DropCommentCommand()),
     CHOOSE_USER(new ChooseUserCommand()),
-    CHOOSE_NOTIFICATION(new ChooseNotificationCommand());
+    CHOOSE_NOTIFICATION(new ChooseNotificationCommand()),
+    CONTROL_PANEL(new AdminControlPanelCommand());
 
 
 

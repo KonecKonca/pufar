@@ -12,6 +12,7 @@ import java.util.*;
 
 
 // remake logic according command
+// add parameters to catch forwards
 @WebFilter("/*")
 public class CheckAccessFilter implements Filter {
     private static Logger LOGGER = LoggerFactory.getLogger(CheckAccessFilter.class);
