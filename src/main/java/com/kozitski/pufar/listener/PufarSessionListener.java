@@ -16,7 +16,6 @@ import java.util.List;
 @WebListener
 public class PufarSessionListener implements HttpSessionListener {
     private static final String CURRENT_USER = "currentUser";
-    private static final String LOCALE = "locale";
 
     private static final int HOW_MUCH_MESSAGES = 6;
     private static final int HOW_MUCH_NOTIFICATIONS = 10;
@@ -32,7 +31,7 @@ public class PufarSessionListener implements HttpSessionListener {
 
         // define default locale
         PufarLanguage pufarLanguage = new PufarLanguage();
-        sessionEvent.getSession().setAttribute(LOCALE, pufarLanguage);
+        sessionEvent.getSession().setAttribute(CommonConstant.LOCALE, pufarLanguage);
 
         // define default messages config
         sessionEvent.getSession().setAttribute(CommonConstant.HOW_MUCH_MESSAGES, HOW_MUCH_MESSAGES);

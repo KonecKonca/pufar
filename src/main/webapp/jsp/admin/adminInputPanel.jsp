@@ -10,8 +10,11 @@
 
 <div class="adminContainer">
 
-    <%--<h3>${locale.getValue("footerContact")}</h3>--%>
+    <form action="/pufar" method="post" >
+        <input type="hidden" value="DROP_USER" name="command">
 
+        <input class="btn btn-danger" type="submit" value="${locale.getValue("adminDropUserButton")}">
+    </form>
 
 
 </div>

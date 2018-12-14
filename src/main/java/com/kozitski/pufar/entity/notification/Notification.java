@@ -105,7 +105,7 @@ public class Notification {
     @Override
     public String toString() {
         return "Notification: Id-" + notificationId +  "message-" + message + " price-" + price +
-                " userId-" + userId + " time-" + time + " rate-" + rate;
+                " userId-" + userId + " date-" + date +  " time-" + time + " rate-" + rate;
     }
 
 }

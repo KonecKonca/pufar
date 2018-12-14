@@ -10,8 +10,12 @@ public enum PagePath {
     ADMIN_ERROR_PAGE("jsp/error/errorPage.jsp"),
     LOGIN_PAGE("jsp/login/login.jsp"),
     TEMPLATE_PAGE("jsp/template/template.jsp"),
+
+    // admin
     ADMIN_CONTROL_PANEL("jsp/admin/adminControlPanel.jsp"),
     ADMIN_INPUT_PANEL("jsp/admin/adminInputPanel.jsp"),
+    ADMIN_SEARCH_NOTIFICATION("jsp/admin/search/notificationSearch.jsp"),
+    ADMIN_USER_NOTIFICATION("jsp/admin/userSearch.jsp"),
 
 
     INFO_PAGE("jsp/infoPage.jsp"),

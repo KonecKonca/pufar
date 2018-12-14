@@ -16,7 +16,7 @@ public class CommandFactory {
         try {
             CommandType type = CommandType.valueOf(commandName.toUpperCase());
             command = type.getCommand();
-            LOGGER.info("Command defined correctly");
+            LOGGER.info("Command defined correctly: [" + commandName.toUpperCase() + "]");
         }
         catch (IllegalArgumentException e){
             LOGGER.warn("Command is not found");

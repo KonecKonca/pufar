@@ -96,15 +96,26 @@
 
                 </tr>
 
-            <tbody>
+            </tbody>
         </table>
 
-    </div>
+        <br><br>
 
-    <div class="footer">
-        <jsp:include page="${context}/jsp/footer/footer.jsp"/>
+        <h2>${adminInputMessage}</h2>
+        <h2>......</h2>
+        <c:forEach var="listElement" items="${adminInputResult}">
+            <h3>
+                ${listElement}
+            </h3>
+        </c:forEach>
+        <h2>......</h2>
     </div>
 
 
 </body>
+
+<div class="footer">
+    <jsp:include page="${context}/jsp/footer/footer.jsp"/>
+</div>
+
 </html>

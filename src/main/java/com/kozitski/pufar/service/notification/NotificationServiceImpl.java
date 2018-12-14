@@ -3,6 +3,7 @@ package com.kozitski.pufar.service.notification;
 import com.kozitski.pufar.dao.notification.NotificationDao;
 import com.kozitski.pufar.dao.notification.NotificationDaoImpl;
 import com.kozitski.pufar.entity.notification.Notification;
+import com.kozitski.pufar.entity.notification.NotificationParameters;
 
 import java.util.ArrayList;
 
@@ -11,9 +12,13 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public ArrayList<Notification> searchTopNotificationsWithLimit(int limit) {
-
         return notificationDao.searchTopNotificationsWithLimit(limit);
-
     }
+
+    @Override
+    public ArrayList<Notification> searchNotificationByParameters(NotificationParameters parameters) {
+        return notificationDao.searchNotificationByParameters(parameters);
+}
+
 
 }

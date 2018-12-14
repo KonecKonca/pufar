@@ -6,10 +6,12 @@ body{
     -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
     -o-background-size: 100%; /* Opera 9.6+ */
     background-size: 100%; /* Современные браузеры */
+
+    overflow:scroll;
 }
 
 .footer{
-    position: absolute;
+    position: relative;
     bottom: 0px;
 
     width: 100%;
