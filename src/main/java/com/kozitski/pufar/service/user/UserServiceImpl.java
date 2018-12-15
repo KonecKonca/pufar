@@ -4,6 +4,7 @@ import com.kozitski.pufar.command.impl.autorization.RegistrationCommand;
 import com.kozitski.pufar.dao.user.MySQLUserDao;
 import com.kozitski.pufar.dao.user.UserDao;
 import com.kozitski.pufar.entity.user.User;
+import com.kozitski.pufar.entity.user.UserParameter;
 import com.kozitski.pufar.entity.user.UserStatus;
 import com.kozitski.pufar.exception.PufarDAOException;
 import com.kozitski.pufar.exception.PufarServiceException;
@@ -56,6 +57,11 @@ public class UserServiceImpl implements UserService {
             throw new PufarServiceException("Registration is failed", e);
         }
 
+    }
+
+    @Override
+    public ArrayList<User> searchUsersByParameters(UserParameter parameter) {
+        return userDao.searchByParameters(parameter);
     }
 
 

@@ -2,11 +2,12 @@ package com.kozitski.pufar.dao.notification;
 
 import com.kozitski.pufar.connection.PoolConnection;
 import com.kozitski.pufar.entity.notification.Notification;
-import com.kozitski.pufar.entity.notification.NotificationParameters;
+import com.kozitski.pufar.entity.notification.NotificationParameter;
 import com.kozitski.pufar.util.mapper.notification.NotificationMapper;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class NotificationDaoImpl implements NotificationDao {
     private static final String SEARCH_TOP_NOTIFICATIONS_SQL =
@@ -23,11 +24,12 @@ public class NotificationDaoImpl implements NotificationDao {
             "SELECT n.notification_id, n.message, un.name, n.price, u.user_id, n.date, AVG(r.mark) mark FROM notifications n " +
                 "INNER JOIN units un ON n.unit_id=un.unit_id " +
                 "INNER JOIN users u ON n.user_id=u.user_id " +
-                "LEFT JOIN rates r ON n.notification_id=r.notification_id " +
-            "WHERE ";
+                "LEFT JOIN rates r ON n.notification_id=r.notification_id ";
+    private static final String SEARCH_WITH_PARAMETERS_SQL_WHERE = "WHERE ";
+
     private static final String SEARCH_WITH_PARAMETERS_SQL_ID = "n.notification_id=?";
     private static final String SEARCH_WITH_PARAMETERS_SQL_SENDER_ID = "u.user_id=?";
-    private static final String SEARCH_WITH_PARAMETERS_SQL_PASSED_TIME = "n.date>=?";
+    private static final String SEARCH_WITH_PARAMETERS_SQL_PASSED_TIME = "n.date>=DATE_ADD(NOW(), INTERVAL -? HOUR)" /*"n.date>=?"*/;
     private static final String SEARCH_WITH_PARAMETERS_UNIT = "un.name=?";
 
     private static final String SEARCH_WITH_PARAMETERS_SQL_HIGHER_PRICE = "n.price<=?";
@@ -36,10 +38,13 @@ public class NotificationDaoImpl implements NotificationDao {
     private static final String SEARCH_WITH_PARAMETERS_LOWER_RATE = "mark>=?";
 
     private static final String SEARCH_WITH_PARAMETERS_SQL_END = "GROUP BY r.notification_id";
+    private static final String SEARCH_WITH_PARAMETERS_SQL_LIMIT = "LIMIT 200";
     private static final String AND = " AND ";
-    private static final int HOUR_TO_MS = 3_600_000;
 
-
+    @Override
+    public Optional<Notification> searchById(long id) {
+        return Optional.empty();
+    }
     @Override
     public ArrayList<Notification> searchTopNotificationsWithLimit(int limit){
 
@@ -59,7 +64,7 @@ public class NotificationDaoImpl implements NotificationDao {
 
     // todo: ask opinion about my decision
     @Override
-    public ArrayList<Notification> searchNotificationByParameters(NotificationParameters parameters) {
+    public ArrayList<Notification> searchByParameters(NotificationParameter parameters) {
 
         try(Connection connection = PoolConnection.getInstance().getConnection()){
             String parametersSql = generateSearchWithParametersSql(parameters);
@@ -78,9 +83,8 @@ public class NotificationDaoImpl implements NotificationDao {
 
     }
 
-
     // here methods get contract on each other (their use )
-    private String generateSearchWithParametersSql(NotificationParameters parameters){
+    private String generateSearchWithParametersSql(NotificationParameter parameters){
         StringBuilder addSql = new StringBuilder();
         addSql.append(SEARCH_WITH_PARAMETERS_SQL_START);
 
@@ -111,17 +115,25 @@ public class NotificationDaoImpl implements NotificationDao {
             whereConditions.add(SEARCH_WITH_PARAMETERS_LOWER_RATE);
         }
 
-        for (int i = 0; i < whereConditions.size() - 1; i++) {
-            addSql.append(whereConditions.get(i));
-            addSql.append(AND);
+        if(whereConditions.size() != 0){
+            addSql.append(SEARCH_WITH_PARAMETERS_SQL_WHERE);
+            for (int i = 0; i < whereConditions.size() - 1; i++) {
+                addSql.append(whereConditions.get(i));
+                addSql.append(AND);
+            }
+            addSql.append(whereConditions.get(whereConditions.size() - 1));
+            addSql.append(" ");
+            addSql.append(SEARCH_WITH_PARAMETERS_SQL_END);
         }
-        addSql.append(whereConditions.get(whereConditions.size() - 1));
-        addSql.append(" ");
-        addSql.append(SEARCH_WITH_PARAMETERS_SQL_END);
+        else {
+            addSql.append(SEARCH_WITH_PARAMETERS_SQL_END);
+            addSql.append(" ");
+            addSql.append(SEARCH_WITH_PARAMETERS_SQL_LIMIT);
+        }
 
         return addSql.toString();
     }
-    private void fullFillPreparedStatement(PreparedStatement preparedStatement, NotificationParameters parameters) throws SQLException {
+    private void fullFillPreparedStatement(PreparedStatement preparedStatement, NotificationParameter parameters) throws SQLException {
         int counter = 1;
 
         if(parameters.getNotificationId() != null){
@@ -131,10 +143,7 @@ public class NotificationDaoImpl implements NotificationDao {
             preparedStatement.setLong(counter++, parameters.getSenderId());
         }
         if(parameters.getPassedTime() != null){
-            java.util.Date date = new java.util.Date();
-//            System.out.println(new Timestamp(date.getTime() - HOUR_TO_MS * parameters.getPassedTime()));
-
-            preparedStatement.setTimestamp(counter++, new Timestamp(date.getTime() - HOUR_TO_MS * parameters.getPassedTime()));
+            preparedStatement.setInt(counter++, parameters.getPassedTime());
         }
         if(parameters.getUnitType() != null){
             preparedStatement.setString(counter++, parameters.getUnitType().name().toLowerCase());

@@ -1,9 +1,12 @@
 package com.kozitski.pufar.dao.user;
 
 import com.kozitski.pufar.connection.PoolConnection;
+import com.kozitski.pufar.entity.notification.NotificationParameter;
 import com.kozitski.pufar.entity.user.User;
+import com.kozitski.pufar.entity.user.UserParameter;
 import com.kozitski.pufar.entity.user.UserStatus;
 import com.kozitski.pufar.exception.PufarDAOException;
+import com.kozitski.pufar.util.mapper.notification.NotificationMapper;
 import com.kozitski.pufar.util.mapper.user.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +25,16 @@ public class MySQLUserDao implements UserDao {
     private static final String SEARCH_USER_BY_LOGIN = "SELECT u.user_id , u.login, u.password, s.value FROM users u LEFT JOIN statuses s ON u.status = s.status_id WHERE u.login = ?";
     private static final String SEARCH_USER_BY_STATUS = "SELECT u.user_id, u.login, u.password, s.value FROM users u LEFT JOIN statuses s ON u.status = s.status_id WHERE s.value = ?";
     private static final String INSERT_NEW_USER_COMMON = "INSERT INTO users values(null, ?, ?, ?)";
+
+    // search with parameters
+    private static final String SEARCH_USER_WITH_PARAMETERS_SQL_START = "SELECT u.user_id, u.login, u.password, s.value status FROM users u LEFT JOIN statuses s ON u.status = s.status_id ";
+    private static final String SEARCH_USER_WITH_PARAMETERS_SQL_WHERE = "WHERE ";
+    private static final String AND = " AND ";
+    private static final String SEARCH_USER_WITH_PARAMETERS_SQL_LIMIT = "LIMIT 200";
+
+    private static final String SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_ID = "u.user_id=?";
+    private static final String SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_LOGIN = "u.login LIKE ?";
+    private static final String SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_STATUS = "s.value=?";
 
     //  need in debug
     @Override
@@ -82,7 +95,6 @@ public class MySQLUserDao implements UserDao {
 
         return result;
     }
-
     @Override
     public User addUser(User user) throws PufarDAOException {
 
@@ -116,5 +128,68 @@ public class MySQLUserDao implements UserDao {
         }
 
     }
+
+    @Override
+    public ArrayList<User> searchByParameters(UserParameter parameters) {
+
+        try(Connection connection = PoolConnection.getInstance().getConnection()){
+            String parametersSql = generateSearchWithParametersSql(parameters);
+
+            PreparedStatement preparedStatement = connection.prepareStatement(parametersSql);
+            fullFillPreparedStatement(preparedStatement, parameters);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            return UserMapper.createUsers(resultSet);
+        }
+
+        catch (SQLException e) {
+            return new ArrayList<>();
+        }
+
+    }
+    private String generateSearchWithParametersSql(UserParameter parameters){
+        StringBuilder addSql = new StringBuilder();
+        addSql.append(SEARCH_USER_WITH_PARAMETERS_SQL_START);
+
+        ArrayList<String> whereConditions = new ArrayList<>();
+        if(parameters.getUserId() != null){
+            whereConditions.add(SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_ID);
+        }
+        if(parameters.getLoginStart() != null){
+            whereConditions.add(SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_LOGIN);
+        }
+        if(parameters.getStatus() != null){
+            whereConditions.add(SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_STATUS);
+        }
+
+        if(whereConditions.size() != 0){
+            addSql.append(SEARCH_USER_WITH_PARAMETERS_SQL_WHERE);
+            for (int i = 0; i < whereConditions.size() - 1; i++) {
+                addSql.append(whereConditions.get(i));
+                addSql.append(AND);
+            }
+            addSql.append(whereConditions.get(whereConditions.size() - 1));
+
+        }
+        addSql.append(" ");
+        addSql.append(SEARCH_USER_WITH_PARAMETERS_SQL_LIMIT);
+
+        return addSql.toString();
+    }
+    private void fullFillPreparedStatement(PreparedStatement preparedStatement, UserParameter parameters) throws SQLException {
+        int counter = 1;
+
+        if(parameters.getUserId() != null){
+            preparedStatement.setLong(counter++, parameters.getUserId());
+        }
+        if(parameters.getLoginStart() != null){
+            preparedStatement.setString(counter++, parameters.getLoginStart() + "%");
+        }
+        if(parameters.getStatus() != null){
+            preparedStatement.setString(counter, parameters.getStatus().name().toUpperCase());
+        }
+    }
+
 
 }

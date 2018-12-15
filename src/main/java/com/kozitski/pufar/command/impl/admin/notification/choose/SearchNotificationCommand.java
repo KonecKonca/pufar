@@ -7,7 +7,7 @@ import com.kozitski.pufar.command.Router;
 import com.kozitski.pufar.util.CommonConstant;
 import com.kozitski.pufar.util.language.PufarLanguage;
 
-public class ChooseNotificationCommand extends AbstractCommand {
+public class SearchNotificationCommand extends AbstractCommand {
 
     @Override
     public Router execute(RequestValue request) {

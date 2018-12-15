@@ -1,11 +1,14 @@
 package com.kozitski.pufar.service.user;
 
+import com.google.common.collect.Lists;
 import com.kozitski.pufar.entity.user.User;
+import com.kozitski.pufar.entity.user.UserParameter;
 import com.kozitski.pufar.entity.user.UserStatus;
 import com.kozitski.pufar.exception.PufarServiceException;
 import com.kozitski.pufar.validation.annotation.AspectValid;
 import com.kozitski.pufar.validation.annotation.primitive.string.StringValid;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +26,7 @@ public interface UserService {
 
     List<User> searchUsersByStatus(UserStatus status);
 
+    ArrayList<User> searchUsersByParameters(UserParameter parameter);
 
 
 }

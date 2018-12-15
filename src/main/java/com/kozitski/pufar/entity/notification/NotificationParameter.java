@@ -1,6 +1,6 @@
 package com.kozitski.pufar.entity.notification;
 
-public class NotificationParameters {
+public class NotificationParameter {
     private Long notificationId;
     private Double lowerPrice;
     private Double higherPrice;
@@ -12,8 +12,8 @@ public class NotificationParameters {
     private Double lowerRate;
     private Double higherRate;
 
-    public NotificationParameters(long notificationId, double lowerPrice, double higherPrice,
-                                  int passedTime, long senderId, UnitType unitType, double lowerRate, double higherRate) {
+    public NotificationParameter(long notificationId, double lowerPrice, double higherPrice,
+                                 int passedTime, long senderId, UnitType unitType, double lowerRate, double higherRate) {
         this.notificationId = notificationId;
         this.lowerPrice = lowerPrice;
         this.higherPrice = higherPrice;
@@ -23,7 +23,7 @@ public class NotificationParameters {
         this.lowerRate = lowerRate;
         this.higherRate = higherRate;
     }
-    public NotificationParameters() {
+    public NotificationParameter() {
     }
 
     public Long getNotificationId() {
@@ -77,7 +77,7 @@ public class NotificationParameters {
 
     @Override
     public String toString() {
-        return "NotificationParameters{" +
+        return "NotificationParameter{" +
                 "notificationId=" + notificationId +
                 ", lowerPrice=" + lowerPrice +
                 ", higherPrice=" + higherPrice +

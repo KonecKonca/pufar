@@ -64,7 +64,7 @@ public class UserMessage {
     }
     @Override
     public String toString() {
-        return "Message: from (" + senderLogin + "), to" + "(" + receiverLogin + "), content: " + message;
+        return "Message: from (" + senderLogin + "), to" + "(" + receiverLogin + "), content: " + message + " Date-" + date + " Time-" + time;
     }
 
 }

@@ -102,13 +102,20 @@
         <br><br>
 
         <h2>${adminInputMessage}</h2>
-        <h2>......</h2>
-        <c:forEach var="listElement" items="${adminInputResult}">
-            <h3>
-                ${listElement}
+
+        <c:if test="${adminInputResult != null}">
+            <h2>......</h2>
+        </c:if>
+        <c:forEach var="listElement" items="${adminInputResult}" varStatus="status">
+            <h3 class="font-weight-bold">
+                ${status.count}) ${listElement}
             </h3>
         </c:forEach>
-        <h2>......</h2>
+        <c:if test="${adminInputResult != null}">
+            <h2>......</h2>
+        </c:if>
+
+
     </div>
 
 

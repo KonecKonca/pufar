@@ -3,14 +3,15 @@ package com.kozitski.pufar.command;
 import com.kozitski.pufar.command.impl.*;
 import com.kozitski.pufar.command.impl.admin.AdminControlPanelCommand;
 import com.kozitski.pufar.command.impl.admin.notification.choose.ChangeNotificationMessageCommand;
-import com.kozitski.pufar.command.impl.admin.notification.choose.ChooseNotificationCommand;
+import com.kozitski.pufar.command.impl.admin.notification.choose.SearchNotificationCommand;
 import com.kozitski.pufar.command.impl.admin.notification.choose.DropCommentCommand;
 import com.kozitski.pufar.command.impl.admin.notification.choose.DropNotificationCommand;
-import com.kozitski.pufar.command.impl.admin.notification.execute.ChoseNotificationExecuteCommand;
-import com.kozitski.pufar.command.impl.admin.user.ChangeUserLoginCommand;
-import com.kozitski.pufar.command.impl.admin.user.ChangeUserStatusCommand;
-import com.kozitski.pufar.command.impl.admin.user.ChooseUserCommand;
-import com.kozitski.pufar.command.impl.admin.user.DropUserCommand;
+import com.kozitski.pufar.command.impl.admin.notification.execute.SearchNotificationExecuteCommand;
+import com.kozitski.pufar.command.impl.admin.user.choose.ChangeUserLoginCommand;
+import com.kozitski.pufar.command.impl.admin.user.choose.ChangeUserStatusCommand;
+import com.kozitski.pufar.command.impl.admin.user.choose.ChooseUserCommand;
+import com.kozitski.pufar.command.impl.admin.user.choose.DropUserCommand;
+import com.kozitski.pufar.command.impl.admin.user.execute.SearchUserCommand;
 import com.kozitski.pufar.command.impl.autorization.LoginCommand;
 import com.kozitski.pufar.command.impl.autorization.RegistrationCommand;
 import com.kozitski.pufar.command.impl.dialog.*;
@@ -50,10 +51,11 @@ public enum CommandType {
     CHANGE_NOTIFICATION_MESSAGE(new ChangeNotificationMessageCommand()),
     DROP_COMMENT(new DropCommentCommand()),
     CHOOSE_USER(new ChooseUserCommand()),
-    CHOOSE_NOTIFICATION(new ChooseNotificationCommand()),
+    CHOOSE_NOTIFICATION(new SearchNotificationCommand()),
     CONTROL_PANEL(new AdminControlPanelCommand()),
         // execute
-    CHOSE_NOTIFICATION_EXECUTE(new ChoseNotificationExecuteCommand());
+    CHOSE_USER_EXECUTE(new SearchUserCommand()),
+    CHOSE_NOTIFICATION_EXECUTE(new SearchNotificationExecuteCommand());
 
     private AbstractCommand command;
 

@@ -15,7 +15,7 @@ public enum PagePath {
     ADMIN_CONTROL_PANEL("jsp/admin/adminControlPanel.jsp"),
     ADMIN_INPUT_PANEL("jsp/admin/adminInputPanel.jsp"),
     ADMIN_SEARCH_NOTIFICATION("jsp/admin/search/notificationSearch.jsp"),
-    ADMIN_USER_NOTIFICATION("jsp/admin/userSearch.jsp"),
+    ADMIN_SEARCH_USER("jsp/admin/search/userSearch.jsp"),
 
 
     INFO_PAGE("jsp/infoPage.jsp"),

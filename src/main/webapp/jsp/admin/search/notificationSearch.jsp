@@ -35,6 +35,8 @@
             ${locale.getValue("adminBiggerRate")}:
             <input type="text" class="form-control" placeholder="${locale.getValue("adminBiggerRate")}" name="adminBiggerRate"/>
 
+            <br>
+
             <input class="btn btn-dark" type="submit" value="${locale.getValue("adminChooseNotificationButton")}">
         </form>
     </div>
