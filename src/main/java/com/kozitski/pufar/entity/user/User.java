@@ -7,14 +7,16 @@ public class User {
     private String login;
     private String password;
     private UserStatus status;
+    private boolean isBanned;
 
     public User() {
     }
-    public User(long userId, String login, String password, UserStatus status) {
+    public User(long userId, String login, String password, UserStatus status, boolean isBanned) {
         this.userId = userId;
         this.login = login;
         this.password = password;
         this.status = status;
+        this.isBanned = isBanned;
     }
 
     public void setStatus(UserStatus status) {
@@ -25,6 +27,12 @@ public class User {
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+    public void setBanned(boolean banned) {
+        isBanned = banned;
     }
 
     public long getUserId() {
@@ -39,7 +47,9 @@ public class User {
     public UserStatus getStatus() {
         return status;
     }
-
+    public boolean isBanned() {
+        return isBanned;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -57,7 +67,7 @@ public class User {
     }
     @Override
     public String toString() {
-        return "UserServiceImpl: " + "id-" + userId + " login-" + login + " status-" + status;
+        return "UserServiceImpl: " + "id-" + userId + " login-" + login + " status-" + status + " isBanned-" + isBanned;
     }
 
 }

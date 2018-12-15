@@ -37,7 +37,6 @@ public class UserServiceImpl implements UserService {
         // any validation
         return userDao.searchUsersByStatus(status);
     }
-
     @Override
     public User addUser(String login, String password) throws PufarServiceException {
         User user = new User();
@@ -58,11 +57,14 @@ public class UserServiceImpl implements UserService {
         }
 
     }
-
     @Override
     public ArrayList<User> searchUsersByParameters(UserParameter parameter) {
         return userDao.searchByParameters(parameter);
     }
 
+    @Override
+    public boolean banUserById(long id, User currentUser) {
+        return userDao.insertBanStatus(id, currentUser);
+    }
 
 }

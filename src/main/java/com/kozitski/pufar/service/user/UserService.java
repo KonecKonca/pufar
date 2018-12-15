@@ -25,8 +25,9 @@ public interface UserService {
                  @StringValid(minLength = 5, maxLength = 20, validateRegExp = PASSWORD_REGEXP) String password) throws PufarServiceException;
 
     List<User> searchUsersByStatus(UserStatus status);
-
     ArrayList<User> searchUsersByParameters(UserParameter parameter);
+
+    boolean banUserById(long id, User currentUser);
 
 
 }

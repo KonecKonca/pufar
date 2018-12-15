@@ -1226,25 +1226,31 @@ user_id</ColNames>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="297" parent="248" name="users_login_uindex">
+    <column id="297" parent="248" name="ban_status">
+      <Position>5</Position>
+      <DataType>tinyint(1)|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="298" parent="248" name="users_login_uindex">
       <ColNames>login</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="298" parent="248" name="status">
+    <index id="299" parent="248" name="status">
       <ColNames>status</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="299" parent="248" name="PRIMARY">
+    <key id="300" parent="248" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="300" parent="248" name="users_login_uindex">
+    <key id="301" parent="248" name="users_login_uindex">
       <ColNames>login</ColNames>
       <UnderlyingIndexName>users_login_uindex</UnderlyingIndexName>
     </key>
-    <foreign-key id="301" parent="248" name="status">
+    <foreign-key id="302" parent="248" name="status">
       <ColNames>status</ColNames>
       <RefSchemaName>pufar</RefSchemaName>
       <RefTableName>statuses</RefTableName>

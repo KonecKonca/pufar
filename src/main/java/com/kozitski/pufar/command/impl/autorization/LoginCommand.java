@@ -35,7 +35,7 @@ public class LoginCommand extends AbstractCommand {
         try{
             Optional<User> user = loginService.searchUserByLoginPassword(login, password);
 
-            if(user.isPresent()){
+            if(user.isPresent() && !user.get().isBanned()){
                 request.servletSessionPut(CommonConstant.CURRENT_USER, user.get());
                 router.setPagePath(PagePath.TEMPLATE_PAGE.getJspPath());
             }

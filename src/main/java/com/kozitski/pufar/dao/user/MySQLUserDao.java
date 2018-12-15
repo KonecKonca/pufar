@@ -21,13 +21,13 @@ public class MySQLUserDao implements UserDao {
 
     private static final int USER_ORDINAL_STATUS_INCREMENT = 1;
 
-    private static final String SEARCH_USER_BY_ID = "SELECT u.user_id, u.login, u.password, s.value FROM users u LEFT JOIN statuses s ON u.status = s.status_id WHERE user_id = ?";
-    private static final String SEARCH_USER_BY_LOGIN = "SELECT u.user_id , u.login, u.password, s.value FROM users u LEFT JOIN statuses s ON u.status = s.status_id WHERE u.login = ?";
-    private static final String SEARCH_USER_BY_STATUS = "SELECT u.user_id, u.login, u.password, s.value FROM users u LEFT JOIN statuses s ON u.status = s.status_id WHERE s.value = ?";
-    private static final String INSERT_NEW_USER_COMMON = "INSERT INTO users values(null, ?, ?, ?)";
+    private static final String SEARCH_USER_BY_ID = "SELECT u.user_id, u.login, u.password, s.value status, ban_status isBanned FROM users u LEFT JOIN statuses s ON u.status = s.status_id WHERE user_id = ?";
+    private static final String SEARCH_USER_BY_LOGIN = "SELECT u.user_id , u.login, u.password, s.value status, ban_status isBanned FROM users u LEFT JOIN statuses s ON u.status = s.status_id WHERE u.login = ?";
+    private static final String SEARCH_USER_BY_STATUS = "SELECT u.user_id, u.login, u.password, s.value status, ban_status isBanned FROM users u LEFT JOIN statuses s ON u.status = s.status_id WHERE s.value = ?";
+    private static final String INSERT_NEW_USER_COMMON = "INSERT INTO users values(null, ?, ?, ?, 0)";
 
     // search with parameters
-    private static final String SEARCH_USER_WITH_PARAMETERS_SQL_START = "SELECT u.user_id, u.login, u.password, s.value status FROM users u LEFT JOIN statuses s ON u.status = s.status_id ";
+    private static final String SEARCH_USER_WITH_PARAMETERS_SQL_START = "SELECT u.user_id, u.login, u.password, s.value status, ban_status isBanned FROM users u LEFT JOIN statuses s ON u.status = s.status_id ";
     private static final String SEARCH_USER_WITH_PARAMETERS_SQL_WHERE = "WHERE ";
     private static final String AND = " AND ";
     private static final String SEARCH_USER_WITH_PARAMETERS_SQL_LIMIT = "LIMIT 200";
@@ -35,6 +35,8 @@ public class MySQLUserDao implements UserDao {
     private static final String SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_ID = "u.user_id=?";
     private static final String SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_LOGIN = "u.login LIKE ?";
     private static final String SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_STATUS = "s.value=?";
+
+    private static final String BAN_USER_SQL = "UPDATE users SET ban_status=1 WHERE user_id=?";
 
     //  need in debug
     @Override
@@ -50,7 +52,7 @@ public class MySQLUserDao implements UserDao {
             return Optional.of(user);
         }
 
-        catch (SQLException e) {
+        catch (SQLException | PufarDAOException e) {
             return Optional.empty();
         }
 
@@ -71,7 +73,7 @@ public class MySQLUserDao implements UserDao {
             return Optional.ofNullable(user);
         }
 
-        catch (SQLException e) {
+        catch (SQLException | PufarDAOException e) {
             return Optional.empty();
         }
 
@@ -89,7 +91,7 @@ public class MySQLUserDao implements UserDao {
             result = UserMapper.createUsers(resultSet);
 
         }
-        catch (SQLException e) {
+        catch (SQLException | PufarDAOException e) {
             return new  ArrayList<>();
         }
 
@@ -128,7 +130,6 @@ public class MySQLUserDao implements UserDao {
         }
 
     }
-
     @Override
     public ArrayList<User> searchByParameters(UserParameter parameters) {
 
@@ -143,7 +144,7 @@ public class MySQLUserDao implements UserDao {
             return UserMapper.createUsers(resultSet);
         }
 
-        catch (SQLException e) {
+        catch (SQLException | PufarDAOException e) {
             return new ArrayList<>();
         }
 
@@ -189,6 +190,43 @@ public class MySQLUserDao implements UserDao {
         if(parameters.getStatus() != null){
             preparedStatement.setString(counter, parameters.getStatus().name().toUpperCase());
         }
+    }
+
+    @Override
+    public boolean insertBanStatus(long userId, User currentUser) {
+
+        try(Connection  connection = PoolConnection.getInstance().getConnection()){
+            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+            connection.setAutoCommit(false);
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
+            preparedStatement.setLong(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            User user;
+            if(resultSet.next()){
+                 user = UserMapper.createUser(resultSet);
+
+                if((user.getStatus().equals(UserStatus.SIMPLE_USER) && currentUser.getStatus().equals(UserStatus.ADMIN))
+                        || (currentUser.getStatus().equals(UserStatus.SUPER_ADMIN)) && (user.getStatus().equals(UserStatus.SIMPLE_USER) || user.getStatus().equals(UserStatus.ADMIN))){
+                    PreparedStatement dropStatement = connection.prepareStatement(BAN_USER_SQL);
+                    dropStatement.setLong(1, userId);
+                    dropStatement.executeUpdate();
+
+                    connection.commit();
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+
+            return false;
+        }
+        catch (SQLException | PufarDAOException e) {
+            return false;
+        }
+
     }
 
 

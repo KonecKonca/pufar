@@ -48,10 +48,10 @@ public class MySQLDialogDao implements DialogDAO {
             "ORDER BY date ASC " +
             "LIMIT ?, ?";
     private static final String SEARCH_POPULAR_USER_SQL =
-            "(SELECT u1.user_id, u1.login, u1.password, u1.status FROM users u1 " +
-                "INNER JOIN dialoges d1 ON u1.user_id = d1.user_receiver_id WHERE d1.user_sender_id = ? GROUP BY u1.login ORDER BY d1.date) " +
+            "(SELECT u.user_id, u.login, u.password, u.status, u.ban_status isBanned FROM users u " +
+                "INNER JOIN dialoges d1 ON u.user_id = d1.user_receiver_id WHERE d1.user_sender_id = ? GROUP BY u.login ORDER BY d1.date) " +
             "UNION " +
-            "(SELECT u2.user_id, u2.login, u2.password, u2.status FROM users u2 " +
+            "(SELECT u2.user_id, u2.login, u2.password, u2.status, u2.ban_status isBanned FROM users u2 " +
                 "INNER JOIN dialoges d2 ON u2.user_id = d2.user_sender_id WHERE d2.user_receiver_id = ? GROUP BY u2.login ORDER BY d2.date) LIMIT ?";
     private static final String ADD_MESSAGE = "INSERT INTO dialoges values(null, ?, ?, ?, ?)";
 
@@ -140,7 +140,7 @@ public class MySQLDialogDao implements DialogDAO {
             users = UserMapper.createUsers(resultSet);
 
         }
-        catch (SQLException e) {
+        catch (SQLException | PufarDAOException e) {
             LOGGER.warn("popular users are not founded", e);
             return new ArrayList<>();
         }

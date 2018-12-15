@@ -1,0 +1,14 @@
+
+# COMMON
+1) admin panel
+2) add notification
+3) add notification pictures
+4) add User mobile phones
+5) add page with Notification add [rate & comments]
+6) introduce DI to services
+
+
+# ADDITIONAL
+1) forward from footer on template Page
+2) filter on FORWARDS(and check access rights)
+3) forbid banned users write comments and put marks

@@ -20,8 +20,9 @@ public interface UserDao extends PufarDao<User, UserParameter>{
     Optional<User> searchUserByLogin(String login);
     ArrayList<User> searchUsersByStatus(UserStatus status);
     User addUser(User user) throws PufarDAOException;
-
     @Override
     ArrayList<User> searchByParameters(UserParameter parameter);
+
+    boolean insertBanStatus(long userId, User currentUser);
 
 }

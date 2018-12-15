@@ -24,17 +24,20 @@
                 <tr>
                     <th>
                         <form action="/pufar" method="post" >
-                            <input type="hidden" value="DROP_USER" name="command">
+                            <input type="hidden" value="BAN_USER" name="command">
 
+                            <input type="text" name="id" placeholder="${locale.getValue("commonId")}" size="5" class="form-control-sm"/><br>
                             <input class="btn btn-danger" type="submit" value="${locale.getValue("adminDropUserButton")}">
                         </form>
                     </th>
 
                     <th>
                         <form action="/pufar" accept-charset="utf-8" method="post" >
-                            <input type="hidden" value="DROP_NOTIFICATION" name="command">
+                            <input type="hidden" value="CHANGE_USER_LOGIN" name="command">
 
-                            <input class="btn btn-warning" type="submit" value="${locale.getValue("adminDropNotificationButton")}">
+                            <input type="text" name="id" placeholder="${locale.getValue("commonId")}" size="5" class="form-control-sm"/>
+                            <input type="text" name="login" placeholder="${locale.getValue("adminChangeNewLoginField")}" size="8" class="form-control-sm"/><br>
+                            <input class="btn btn-warning" type="submit" value="${locale.getValue("adminChangeUserLoginButton")}">
                         </form>
                     </th>
 
@@ -51,10 +54,11 @@
                 <tr>
 
                     <th>
-                        <form action="/pufar" accept-charset="utf-8" method="post" >
-                            <input type="hidden" value="CHANGE_USER_LOGIN" name="command">
+                        <form action="/pufar" method="post" >
+                            <input type="hidden" value="UNBAN_USER" name="command">
 
-                            <input class="btn btn-danger" type="submit" value="${locale.getValue("adminChangeUserLoginButton")}">
+                            <input type="text" name="id" placeholder="${locale.getValue("commonId")}" size="5" class="form-control-sm"/><br>
+                            <input class="btn btn-danger" type="submit" value="${locale.getValue("adminUnDropUserButton")}">
                         </form>
                     </th>
 
@@ -62,6 +66,8 @@
                         <form action="/pufar" accept-charset="utf-8" method="post" >
                             <input type="hidden" value="CHANGE_NOTIFICATION_MESSAGE" name="command">
 
+                            <input type="text" name="id" placeholder="${locale.getValue("commonId")}" size="5" class="form-control-sm"/>
+                            <input type="text" name="message" placeholder="${locale.getValue("adminChangeNewMessageField")}" size="8" class="form-control-sm"/><br>
                             <input class="btn btn-warning" type="submit" value="${locale.getValue("adminChangeNotificationButton")}">
                         </form>
                     </th>
@@ -77,20 +83,36 @@
                 </tr>
 
                 <tr>
-                    <th>
-                        <form action="/pufar" accept-charset="utf-8" method="post" >
-                            <input type="hidden" value="CHANGE_USER_STATUS" name="command">
-
-                            <input class="btn btn-danger" type="submit" value="${locale.getValue("adminChangeUserStatusButton")}">
-                        </form>
-
-                    </th>
 
                     <th>
                         <form action="/pufar" accept-charset="utf-8" method="post" >
                             <input type="hidden" value="DROP_COMMENT" name="command">
 
-                            <input class="btn btn-warning" type="submit" value="${locale.getValue("adminDropCommentButton")}">
+                            <input type="text" name="id" placeholder="${locale.getValue("commonId")}" size="5" class="form-control-sm"/><br>
+                            <input class="btn btn-danger" type="submit" value="${locale.getValue("adminDropCommentButton")}">
+                        </form>
+                    </th>
+
+                    <th>
+                        <form action="/pufar" accept-charset="utf-8" method="post" >
+                            <input type="hidden" value="CHANGE_USER_STATUS" name="command">
+
+                            <input type="text" name="id" placeholder="${locale.getValue("commonId")}" size="5" class="form-control-sm"/>
+                            <input type="text" name="status" placeholder="${locale.getValue("adminChangeNewStatusField")}" size="8" class="form-control-sm"/><br>
+                            <input class="btn btn-warning" type="submit" value="${locale.getValue("adminChangeUserStatusButton")}">
+                        </form>
+
+                    </th>
+
+                </tr>
+
+                <tr>
+                    <th>
+                        <form action="/pufar" accept-charset="utf-8" method="post" >
+                            <input type="hidden" value="DROP_NOTIFICATION" name="command">
+
+                            <input type="text" name="id" placeholder="${locale.getValue("commonId")}" size="5" class="form-control-sm"/><br>
+                            <input class="btn btn-danger" type="submit" value="${locale.getValue("adminDropNotificationButton")}">
                         </form>
                     </th>
 

@@ -2,6 +2,7 @@ package com.kozitski.pufar.util.mapper.user;
 
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserStatus;
+import com.kozitski.pufar.exception.PufarDAOException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,34 +13,50 @@ public class UserMapper {
     private static final String USER_ID = "user_id";
     private static final String USER_LOGIN = "login";
     private static final String USER_PASSWORD = "password";
-    private static final String USER_VALUE = "value";
+//    private static final String USER_VALUE = "value";
     private static final String USER_STATUS = "status";
+    private static final String BAN = "isBanned";
 
-    public static User createUser(ResultSet resultSet) throws SQLException {
+    public static User createUser(ResultSet resultSet) throws PufarDAOException {
 
-        long userId = resultSet.getLong(USER_ID);
-        String login = resultSet.getString(USER_LOGIN);
-        String password = resultSet.getString(USER_PASSWORD);
-        UserStatus status = defineUserStatus(resultSet.getString(USER_VALUE));
-
-        return new User(userId, login, password, status);
-
-    }
-    public static ArrayList<User> createUsers(ResultSet resultSet) throws SQLException {
-        ArrayList<User> result = new ArrayList<>();
-
-        while (resultSet.next()){
+        try {
 
             long userId = resultSet.getLong(USER_ID);
             String login = resultSet.getString(USER_LOGIN);
             String password = resultSet.getString(USER_PASSWORD);
-
             UserStatus status = defineUserStatus(resultSet.getString(USER_STATUS));
+            boolean isBanned = resultSet.getBoolean(BAN);
 
-            result.add(new User(userId, login, password, status));
+            return new User(userId, login, password, status, isBanned);
+        }
+        catch (SQLException e){
+            throw new PufarDAOException("User is not created", e);
         }
 
-        return result;
+
+
+    }
+    public static ArrayList<User> createUsers(ResultSet resultSet) throws PufarDAOException {
+
+        try {
+            ArrayList<User> result = new ArrayList<>();
+
+            while (resultSet.next()){
+
+                long userId = resultSet.getLong(USER_ID);
+                String login = resultSet.getString(USER_LOGIN);
+                String password = resultSet.getString(USER_PASSWORD);
+                UserStatus status = defineUserStatus(resultSet.getString(USER_STATUS));
+                boolean isBanned = resultSet.getBoolean(BAN);
+
+                result.add(new User(userId, login, password, status, isBanned));
+            }
+
+            return result;
+        }
+        catch (SQLException e){
+            throw new PufarDAOException("Users are not created", e);
+        }
 
     }
 
