@@ -49,7 +49,7 @@ public class AspectMainTest extends HttpServlet {
 //        test.message(new UserMessage("efefef@!*", new Time(43654242), "efefeef", "23453535"));
 
 //        @NotificationValid not success
-        test.notification(new Notification(2, "3r43", UnitType.OTHER, 23.5, 343, null, new Date(33)));
+        test.notification(new Notification(2, "3r43", UnitType.OTHER, 23.5, 343, null, new Date(33), null));
 
         //@UserValid not success
         test.user(new User());

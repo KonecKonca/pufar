@@ -46,15 +46,16 @@ public class CommentValidator implements Validator{
         }
 
 
-        long commentId = comment.getCommentId();
-        long userId = comment.getUserId();
-        long maxId = annotation.maxId();
-        long minId = 0;
-
-        if(commentId < 0 || userId < 0 || commentId > maxId || userId > maxId){
-            LOGGER.error("id is not in allowed range [" + minId +  ", " + maxId + "] (" + commentId + ", "  + userId + ")");
-            throw new RuntimeException("id is not in allowed range [" + minId +  ", " + maxId + "] (" + commentId + ", "  + userId + ")");
-        }
+        // HERE must be senderlogin Validation
+//        long commentId = comment.getCommentId();
+//        long userId = comment.getSenderLogin();
+//        long maxId = annotation.maxId();
+//        long minId = 0;
+//
+//        if(commentId < 0 || userId < 0 || commentId > maxId || userId > maxId){
+//            LOGGER.error("id is not in allowed range [" + minId +  ", " + maxId + "] (" + commentId + ", "  + userId + ")");
+//            throw new RuntimeException("id is not in allowed range [" + minId +  ", " + maxId + "] (" + commentId + ", "  + userId + ")");
+//        }
 
     }
 

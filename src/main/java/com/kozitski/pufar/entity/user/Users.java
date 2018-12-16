@@ -28,5 +28,30 @@ public class Users {
 
         return users;
     }
+    public static int statusPriority(UserStatus userStatus){
+        int result;
+
+        switch (userStatus){
+            case SIMPLE_USER:
+                result = 1;
+                break;
+            case ADMIN:
+                result = 2;
+                break;
+            case SUPER_ADMIN:
+                result = 3;
+                break;
+            default:
+                result = 1;
+        }
+
+        return result;
+    }
+
+    public static boolean checkAccessRight(User currentUser, User foundUser){
+        return ((foundUser.getStatus().equals(UserStatus.SIMPLE_USER) && currentUser.getStatus().equals(UserStatus.ADMIN))
+                    || ((currentUser.getStatus().equals(UserStatus.SUPER_ADMIN)) &&
+                (foundUser.getStatus().equals(UserStatus.SIMPLE_USER) || foundUser.getStatus().equals(UserStatus.ADMIN))));
+    }
 
 }

@@ -28,6 +28,8 @@ public interface UserService {
     ArrayList<User> searchUsersByParameters(UserParameter parameter);
 
     boolean banUserById(long id, User currentUser);
-
+    boolean unBanUserById(long id, User currentUser);
+    boolean changeUserLogin(long id, String newLogin, User currentUser);
+    boolean changeUserStatusByUserId(long id, String newStatus, User currentUser);
 
 }

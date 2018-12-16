@@ -81,7 +81,7 @@
         comment_id bigint PRIMARY KEY AUTO_INCREMENT,
         notification_id bigint NOT NULL,
         user_id bigint,
-        comment varchar(500) NOT NULL,
+        comments varchar(500) NOT NULL,
         CONSTRAINT comments_users_user_id_fk FOREIGN KEY (user_id) REFERENCES users (user_id),
         CONSTRAINT comments_notifications_notification_id_fk FOREIGN KEY (notification_id) REFERENCES notifications (notification_id)
     );

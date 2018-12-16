@@ -1,8 +1,10 @@
 package com.kozitski.pufar.dao.notification;
 
 import com.kozitski.pufar.connection.PoolConnection;
+import com.kozitski.pufar.entity.comment.NotificationComment;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.NotificationParameter;
+import com.kozitski.pufar.util.mapper.comment.CommentMapper;
 import com.kozitski.pufar.util.mapper.notification.NotificationMapper;
 
 import java.sql.*;
@@ -29,7 +31,7 @@ public class NotificationDaoImpl implements NotificationDao {
 
     private static final String SEARCH_WITH_PARAMETERS_SQL_ID = "n.notification_id=?";
     private static final String SEARCH_WITH_PARAMETERS_SQL_SENDER_ID = "u.user_id=?";
-    private static final String SEARCH_WITH_PARAMETERS_SQL_PASSED_TIME = "n.date>=DATE_ADD(NOW(), INTERVAL -? HOUR)" /*"n.date>=?"*/;
+    private static final String SEARCH_WITH_PARAMETERS_SQL_PASSED_TIME = "n.date>=DATE_ADD(NOW(), INTERVAL -? HOUR)";
     private static final String SEARCH_WITH_PARAMETERS_UNIT = "un.name=?";
 
     private static final String SEARCH_WITH_PARAMETERS_SQL_HIGHER_PRICE = "n.price<=?";
@@ -41,10 +43,60 @@ public class NotificationDaoImpl implements NotificationDao {
     private static final String SEARCH_WITH_PARAMETERS_SQL_LIMIT = "LIMIT 200";
     private static final String AND = " AND ";
 
+    private static final String SEARCH_COMMENTS_BY_NOTIFICATION_ID =
+            "SELECT c.comment_id, u.login, c.comment FROM comments c " +
+                "LEFT JOIN notifications n ON c.notification_id=n.notification_id " +
+                "LEFT JOIN users u ON u.user_id=c.user_id " +
+            "WHERE n.notification_id=? " +
+            "LIMIT 100";
+
+    private static final String DELETE_COMMENT_BY_COMMENT_ID = "DELETE FROM comments WHERE comment_id=?";
+    private static final String DELETE_NOTIFICATION_BY_NOTIFICATION_ID = "DELETE FROM notifications WHERE notification_id=?";
+    private static final String DELETE_RATE_BY_NOTIFICATION_ID = "DELETE FROM rates WHERE notification_id=?";
+    private static final String DELETE_COMMENT_BY_NOTIFICATION_ID = "DELETE FROM comments WHERE notification_id=?";
+    private static final String CHANGE_NOTIFICATION_MESSAGE = "UPDATE notifications SET message=? WHERE notification_id=?";
+
+
     @Override
     public Optional<Notification> searchById(long id) {
         return Optional.empty();
     }
+
+    // comments
+    @Override
+    public ArrayList<NotificationComment> searchCommentByNotificationId(long notificationId){
+
+        try(Connection connection = PoolConnection.getInstance().getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_COMMENTS_BY_NOTIFICATION_ID);
+            preparedStatement.setLong(1, notificationId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            return CommentMapper.mapComments(resultSet);
+        }
+
+        catch (SQLException e) {
+            return new ArrayList<>();
+        }
+    }
+    @Override
+    public boolean dropCommentById(long commentId) {
+        boolean result;
+
+        try(Connection connection = PoolConnection.getInstance().getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_COMMENT_BY_COMMENT_ID);
+            preparedStatement.setLong(1, commentId);
+            preparedStatement.executeUpdate();
+
+            result = true;
+        }
+        catch (SQLException e) {
+            result = false;
+        }
+
+        return result;
+    }
+
+
     @Override
     public ArrayList<Notification> searchTopNotificationsWithLimit(int limit){
 
@@ -53,7 +105,13 @@ public class NotificationDaoImpl implements NotificationDao {
             preparedStatement.setLong(1, limit);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            return NotificationMapper.mapNotification(resultSet);
+            ArrayList<Notification> notifications = NotificationMapper.mapNotification(resultSet);
+            for(Notification notification : notifications){
+                ArrayList<NotificationComment> notificationComments = searchCommentByNotificationId(notification.getNotificationId());
+                notification.setComments(notificationComments);
+            }
+
+            return notifications;
         }
 
         catch (SQLException e) {
@@ -61,7 +119,6 @@ public class NotificationDaoImpl implements NotificationDao {
         }
 
     }
-
     // todo: ask opinion about my decision
     @Override
     public ArrayList<Notification> searchByParameters(NotificationParameter parameters) {
@@ -74,7 +131,13 @@ public class NotificationDaoImpl implements NotificationDao {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            return NotificationMapper.mapNotification(resultSet);
+            ArrayList<Notification> notifications = NotificationMapper.mapNotification(resultSet);
+            for(Notification notification : notifications){
+                ArrayList<NotificationComment> notificationComments = searchCommentByNotificationId(notification.getNotificationId());
+                notification.setComments(notificationComments);
+            }
+
+            return notifications;
         }
 
         catch (SQLException e) {
@@ -82,7 +145,6 @@ public class NotificationDaoImpl implements NotificationDao {
         }
 
     }
-
     // here methods get contract on each other (their use )
     private String generateSearchWithParametersSql(NotificationParameter parameters){
         StringBuilder addSql = new StringBuilder();
@@ -164,5 +226,54 @@ public class NotificationDaoImpl implements NotificationDao {
 
     }
 
+    @Override
+    public boolean dropNotificationById(long notificationId) {
+        boolean result;
+
+        try(Connection connection = PoolConnection.getInstance().getConnection()){
+            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+            connection.setAutoCommit(false);
+
+            PreparedStatement dropComments = connection.prepareStatement(DELETE_RATE_BY_NOTIFICATION_ID);
+            dropComments.setLong(1, notificationId);
+            dropComments.executeUpdate();
+
+            PreparedStatement dropRates = connection.prepareStatement(DELETE_COMMENT_BY_NOTIFICATION_ID);
+            dropRates.setLong(1, notificationId);
+            dropRates.executeUpdate();
+
+            // last, case foreigen keys
+            PreparedStatement dropNotification = connection.prepareStatement(DELETE_NOTIFICATION_BY_NOTIFICATION_ID);
+            dropNotification.setLong(1, notificationId);
+            dropNotification.executeUpdate();
+
+            connection.commit();
+            result = true;
+        }
+        catch (SQLException e) {
+            result = false;
+        }
+
+        return result;
+    }
+    @Override
+    public boolean changeNotificationMessage(long notificationId, String newMessage) {
+        boolean result;
+
+        try(Connection connection = PoolConnection.getInstance().getConnection()){
+
+            PreparedStatement preparedStatement = connection.prepareStatement(CHANGE_NOTIFICATION_MESSAGE);
+            preparedStatement.setString(1, newMessage);
+            preparedStatement.setLong(2, notificationId);
+            preparedStatement.executeUpdate();
+
+            result = true;
+        }
+        catch (SQLException e) {
+            result = false;
+        }
+
+        return result;
+    }
 
 }

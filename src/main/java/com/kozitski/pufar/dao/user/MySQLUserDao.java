@@ -1,19 +1,17 @@
 package com.kozitski.pufar.dao.user;
 
 import com.kozitski.pufar.connection.PoolConnection;
-import com.kozitski.pufar.entity.notification.NotificationParameter;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserParameter;
 import com.kozitski.pufar.entity.user.UserStatus;
+import com.kozitski.pufar.entity.user.Users;
 import com.kozitski.pufar.exception.PufarDAOException;
-import com.kozitski.pufar.util.mapper.notification.NotificationMapper;
 import com.kozitski.pufar.util.mapper.user.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class MySQLUserDao implements UserDao {
@@ -36,7 +34,9 @@ public class MySQLUserDao implements UserDao {
     private static final String SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_LOGIN = "u.login LIKE ?";
     private static final String SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_STATUS = "s.value=?";
 
-    private static final String BAN_USER_SQL = "UPDATE users SET ban_status=1 WHERE user_id=?";
+    private static final String BAN_USER_SQL = "UPDATE users SET ban_status=? WHERE user_id=?";
+    private static final String CHANGE_USER_LOGIN_SQL = "UPDATE users SET login=? WHERE user_id=?";
+    private static final String CHANGE_USER_STATUS_SQL = "UPDATE users SET status=? WHERE user_id=?";
 
     //  need in debug
     @Override
@@ -193,7 +193,7 @@ public class MySQLUserDao implements UserDao {
     }
 
     @Override
-    public boolean insertBanStatus(long userId, User currentUser) {
+    public boolean insertBanStatus(long userId, User currentUser, int banStatus) {
 
         try(Connection  connection = PoolConnection.getInstance().getConnection()){
             connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
@@ -207,11 +207,11 @@ public class MySQLUserDao implements UserDao {
             if(resultSet.next()){
                  user = UserMapper.createUser(resultSet);
 
-                if((user.getStatus().equals(UserStatus.SIMPLE_USER) && currentUser.getStatus().equals(UserStatus.ADMIN))
-                        || (currentUser.getStatus().equals(UserStatus.SUPER_ADMIN)) && (user.getStatus().equals(UserStatus.SIMPLE_USER) || user.getStatus().equals(UserStatus.ADMIN))){
-                    PreparedStatement dropStatement = connection.prepareStatement(BAN_USER_SQL);
-                    dropStatement.setLong(1, userId);
-                    dropStatement.executeUpdate();
+                if(Users.checkAccessRight(currentUser, user)){
+                    PreparedStatement banStatement = connection.prepareStatement(BAN_USER_SQL);
+                    banStatement.setInt(1, banStatus);
+                    banStatement.setLong(2, userId);
+                    banStatement.executeUpdate();
 
                     connection.commit();
                     return true;
@@ -228,6 +228,87 @@ public class MySQLUserDao implements UserDao {
         }
 
     }
+    @Override
+    public boolean changeUserLogin(long id, String newLogin, User currentUser) {
 
+        try(Connection  connection = PoolConnection.getInstance().getConnection()){
+            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+            connection.setAutoCommit(false);
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
+            preparedStatement.setLong(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            User user;
+            if(resultSet.next()){
+                user = UserMapper.createUser(resultSet);
+
+                if(Users.checkAccessRight(currentUser, user)){
+
+                    PreparedStatement searchByNewLogin = connection.prepareStatement(SEARCH_USER_BY_LOGIN);
+                    searchByNewLogin.setString(1, newLogin);
+                    ResultSet checkNewLoginResultSet = searchByNewLogin.executeQuery();
+
+                    if(!checkNewLoginResultSet.next()){
+
+                        PreparedStatement changeLoginStatement = connection.prepareStatement(CHANGE_USER_LOGIN_SQL);
+                        changeLoginStatement.setString(1, newLogin);
+                        changeLoginStatement.setLong(2, id);
+                        changeLoginStatement.executeUpdate();
+
+                        connection.commit();
+                        return true;
+                    }
+
+                }
+                else{
+                    return false;
+                }
+            }
+
+            return false;
+        }
+        catch (SQLException | PufarDAOException e) {
+            return false;
+        }
+
+    }
+    @Override
+    public boolean changeUserStatusByUserId(long id, UserStatus newStatus, User currentUser) {
+        try(Connection  connection = PoolConnection.getInstance().getConnection()){
+            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+            connection.setAutoCommit(false);
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
+            preparedStatement.setLong(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            User user;
+            if(resultSet.next()){
+                user = UserMapper.createUser(resultSet);
+
+                if(Users.checkAccessRight(currentUser, user)){
+
+                    PreparedStatement changeUserStatus = connection.prepareStatement(CHANGE_USER_STATUS_SQL);
+                    int status = Users.statusPriority(newStatus);
+                    changeUserStatus.setInt(1, status);
+                    changeUserStatus.setLong(2, id);
+
+                    changeUserStatus.executeUpdate();
+
+                    connection.commit();
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+
+            return false;
+        }
+        catch (SQLException | PufarDAOException e) {
+            return false;
+        }
+    }
 
 }

@@ -7,10 +7,7 @@ import com.kozitski.pufar.command.impl.admin.notification.choose.SearchNotificat
 import com.kozitski.pufar.command.impl.admin.notification.choose.DropCommentCommand;
 import com.kozitski.pufar.command.impl.admin.notification.choose.DropNotificationCommand;
 import com.kozitski.pufar.command.impl.admin.notification.execute.SearchNotificationExecuteCommand;
-import com.kozitski.pufar.command.impl.admin.user.choose.ChangeUserLoginCommand;
-import com.kozitski.pufar.command.impl.admin.user.choose.ChangeUserStatusCommand;
-import com.kozitski.pufar.command.impl.admin.user.choose.ChooseUserCommand;
-import com.kozitski.pufar.command.impl.admin.user.choose.BanUserCommand;
+import com.kozitski.pufar.command.impl.admin.user.choose.*;
 import com.kozitski.pufar.command.impl.admin.user.execute.SearchUserCommand;
 import com.kozitski.pufar.command.impl.autorization.LoginCommand;
 import com.kozitski.pufar.command.impl.autorization.RegistrationCommand;
@@ -45,6 +42,7 @@ public enum CommandType {
     // admin commands
         // define inputPage
     BAN_USER(new BanUserCommand()),
+    UNBAN_USER(new UnBanUserCommand()),
     CHANGE_USER_LOGIN(new ChangeUserLoginCommand()),
     CHANGE_USER_STATUS(new ChangeUserStatusCommand()),
     DROP_NOTIFICATION(new DropNotificationCommand()),

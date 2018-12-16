@@ -1,7 +1,10 @@
 package com.kozitski.pufar.entity.notification;
 
+import com.kozitski.pufar.entity.comment.NotificationComment;
+
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 
 public class Notification {
     private long notificationId;
@@ -12,11 +15,11 @@ public class Notification {
     private Date date;
     private Time time;
     private double rate;
-
+    private ArrayList<NotificationComment> comments;
 
     public Notification() {
     }
-    public Notification(long notificationId, String message, UnitType unit, double price, long userId, Time time, Date date) {
+    public Notification(long notificationId, String message, UnitType unit, double price, long userId, Time time, Date date, ArrayList<NotificationComment> comments) {
         this.notificationId = notificationId;
         this.message = message;
         this.unit = unit;
@@ -24,6 +27,7 @@ public class Notification {
         this.userId = userId;
         this.time = time;
         this.date = date;
+        this.comments = new ArrayList<>(comments);
     }
 
     public long getNotificationId() {
@@ -74,6 +78,12 @@ public class Notification {
     public void setDate(Date date) {
         this.date = date;
     }
+    public ArrayList<NotificationComment> getComments() {
+        return new ArrayList<>(comments);
+    }
+    public void setComments(ArrayList<NotificationComment> comments) {
+        this.comments = new ArrayList<>(comments);
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -105,7 +115,7 @@ public class Notification {
     @Override
     public String toString() {
         return "Notification: Id-" + notificationId +  "message-" + message + " price-" + price +
-                " userId-" + userId + " date-" + date +  " time-" + time + " rate-" + rate;
+                " userId-" + userId + " date-" + date +  " time-" + time + " rate-" + rate + "|| COMMENTS: " + comments;
     }
 
 }

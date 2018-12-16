@@ -19,6 +19,8 @@ import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
     private static Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final int BAN_STATUS_TRUE = 1;
+    private static final int BAN_STATUS_FALSE = 0;
 
     private UserDao userDao = new MySQLUserDao();
 
@@ -64,7 +66,31 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean banUserById(long id, User currentUser) {
-        return userDao.insertBanStatus(id, currentUser);
+        return userDao.insertBanStatus(id, currentUser, BAN_STATUS_TRUE);
     }
+    @Override
+    public boolean unBanUserById(long id, User currentUser) {
+        return userDao.insertBanStatus(id, currentUser, BAN_STATUS_FALSE);
+    }
+    @Override
+    public boolean changeUserLogin(long id, String newLogin, User currentUser) {
+        return userDao.changeUserLogin(id, newLogin, currentUser);
+    }
+
+    @Override
+    public boolean changeUserStatusByUserId(long id, String newStatus, User currentUser){
+        boolean result = false;
+
+        try {
+            UserStatus userStatus = UserStatus.valueOf(newStatus.toUpperCase());
+            result = userDao.changeUserStatusByUserId(id, userStatus, currentUser);
+        }
+        catch (IllegalArgumentException e){
+            LOGGER.warn("Was entered incorrect user status", e);
+        }
+
+        return result;
+    }
+
 
 }

@@ -23,6 +23,8 @@ public interface UserDao extends PufarDao<User, UserParameter>{
     @Override
     ArrayList<User> searchByParameters(UserParameter parameter);
 
-    boolean insertBanStatus(long userId, User currentUser);
+    boolean insertBanStatus(long userId, User currentUser, int banStatus);
+    boolean changeUserLogin(long id, String newLogin, User currentUser);
+    boolean changeUserStatusByUserId(long id, UserStatus newStatus, User currentUser);
 
 }

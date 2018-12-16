@@ -12,3 +12,7 @@
 1) forward from footer on template Page
 2) filter on FORWARDS(and check access rights)
 3) forbid banned users write comments and put marks
+4) create index for comments.notification_id
+    5) in services check on admin rights(was problems with connetc by /admin)
+    6) button ofa logOut (destroy session)
+    7) change user status (admin panel) -> make sticky note
