@@ -4,6 +4,7 @@ import com.kozitski.pufar.connection.PoolConnection;
 import com.kozitski.pufar.entity.comment.NotificationComment;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.NotificationParameter;
+import com.kozitski.pufar.exception.PufarDAOException;
 import com.kozitski.pufar.util.mapper.comment.CommentMapper;
 import com.kozitski.pufar.util.mapper.notification.NotificationMapper;
 
@@ -13,7 +14,7 @@ import java.util.Optional;
 
 public class NotificationDaoImpl implements NotificationDao {
     private static final String SEARCH_TOP_NOTIFICATIONS_SQL =
-            "SELECT n.notification_id, n.message, un.name, n.price, u.user_id, n.date, AVG(r.mark) mark FROM notifications n " +
+            "SELECT n.notification_id, n.message, un.name, n.price, u.user_id, n.date, n.content, AVG(r.mark) mark FROM notifications n " +
                 "LEFT JOIN units un ON n.unit_id=un.unit_id " +
                 "LEFT JOIN users u ON n.user_id=u.user_id " +
                 "LEFT JOIN rates r ON n.notification_id=r.notification_id " +
@@ -23,7 +24,7 @@ public class NotificationDaoImpl implements NotificationDao {
 
     // for search with parameters
     private static final String SEARCH_WITH_PARAMETERS_SQL_START =
-            "SELECT n.notification_id, n.message, un.name, n.price, u.user_id, n.date, AVG(r.mark) mark FROM notifications n " +
+            "SELECT n.notification_id, n.message, un.name, n.price, u.user_id, n.content, n.date, AVG(r.mark) mark FROM notifications n " +
                 "INNER JOIN units un ON n.unit_id=un.unit_id " +
                 "INNER JOIN users u ON n.user_id=u.user_id " +
                 "LEFT JOIN rates r ON n.notification_id=r.notification_id ";
@@ -96,7 +97,6 @@ public class NotificationDaoImpl implements NotificationDao {
         return result;
     }
 
-
     @Override
     public ArrayList<Notification> searchTopNotificationsWithLimit(int limit){
 
@@ -145,7 +145,7 @@ public class NotificationDaoImpl implements NotificationDao {
         }
 
     }
-    // here methods get contract on each other (their use )
+    // here methods get contract on each other (their use same order of argument)
     private String generateSearchWithParametersSql(NotificationParameter parameters){
         StringBuilder addSql = new StringBuilder();
         addSql.append(SEARCH_WITH_PARAMETERS_SQL_START);
@@ -225,7 +225,6 @@ public class NotificationDaoImpl implements NotificationDao {
         }
 
     }
-
     @Override
     public boolean dropNotificationById(long notificationId) {
         boolean result;
@@ -275,5 +274,11 @@ public class NotificationDaoImpl implements NotificationDao {
 
         return result;
     }
+
+    @Override
+    public void addNotification(Notification notification) throws PufarDAOException {
+        System.out.println(notification);
+    }
+
 
 }

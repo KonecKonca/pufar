@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -36,6 +37,7 @@
         <div class= "tm-content col-xl-6 col-sm-8 col-xs-8 ml-auto section">
             <header class="mb-5"><h1>${locale.getValue("indexGreeting")}</h1></header>
             <P class="mb-5"> ${accessRight} ${locale.getValue("indexMessage")} ${currentUser.login}!</P>
+            <h2>${indexMessage}</h2>
 
             <form action="/jsp/login/login.jsp" method="get" class="subscribe-form">
                 <div class="row form-section">

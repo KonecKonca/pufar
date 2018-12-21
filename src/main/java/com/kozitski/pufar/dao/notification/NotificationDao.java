@@ -5,6 +5,8 @@ import com.kozitski.pufar.entity.comment.NotificationComment;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.NotificationParameter;
 import com.kozitski.pufar.entity.user.User;
+import com.kozitski.pufar.exception.PufarDAOException;
+import com.kozitski.pufar.validation.annotation.notification.NotificationValid;
 
 import java.util.ArrayList;
 
@@ -17,5 +19,6 @@ public interface NotificationDao extends PufarDao<Notification, NotificationPara
     boolean dropCommentById(long commentId);
     boolean dropNotificationById(long notificationId);
     boolean changeNotificationMessage(long notificationId, String newMessage);
+    void addNotification(Notification notification) throws PufarDAOException;
 
 }

@@ -66,10 +66,10 @@ public class NotificationValidator implements Validator {
             LOGGER.error("Unit can not be NULL");
             throw  new RuntimeException("Unit can not be NULL");
         }
-        if(notification.getTime() == null){
-            LOGGER.error("Time can not be NULL");
-            throw  new RuntimeException("Time can not be NULL");
-        }
+//        if(notification.getTime() == null){
+//            LOGGER.error("Time can not be NULL");
+//            throw  new RuntimeException("Time can not be NULL");
+//        }
 
         String realMessage = notification.getMessage();
         if(realMessage.contains(annotation.xssPattern())){

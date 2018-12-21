@@ -1,31 +1,33 @@
 package com.kozitski.pufar.entity.notification;
 
+import com.kozitski.pufar.entity.Imagenable;
 import com.kozitski.pufar.entity.comment.NotificationComment;
 
-import java.sql.Date;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 
-public class Notification {
+public class Notification implements Imagenable {
     private long notificationId;
     private String message;
     private UnitType unit;
     private double price;
     private long userId;
     private Date date;
-    private Time time;
+    private BufferedImage image;
     private double rate;
     private ArrayList<NotificationComment> comments;
 
     public Notification() {
     }
-    public Notification(long notificationId, String message, UnitType unit, double price, long userId, Time time, Date date, ArrayList<NotificationComment> comments) {
+    public Notification(long notificationId, String message, UnitType unit, double price, long userId, Date date, BufferedImage image, ArrayList<NotificationComment> comments) {
         this.notificationId = notificationId;
         this.message = message;
         this.unit = unit;
         this.price = price;
         this.userId = userId;
-        this.time = time;
         this.date = date;
         this.comments = new ArrayList<>(comments);
     }
@@ -60,12 +62,6 @@ public class Notification {
     public void setUserId(long userId) {
         this.userId = userId;
     }
-    public Time getTime() {
-        return time;
-    }
-    public void setTime(Time time) {
-        this.time = time;
-    }
     public double getRate() {
         return rate;
     }
@@ -78,6 +74,14 @@ public class Notification {
     public void setDate(Date date) {
         this.date = date;
     }
+    @Override
+    public BufferedImage getImage() {
+        return image;
+    }
+    public void setImage(BufferedImage image) {
+        this.image = image;
+    }
+
     public ArrayList<NotificationComment> getComments() {
         return new ArrayList<>(comments);
     }
@@ -86,36 +90,9 @@ public class Notification {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Notification)) return false;
-
-        Notification that = (Notification) o;
-
-        if (getNotificationId() != that.getNotificationId()) return false;
-        if (Double.compare(that.getPrice(), getPrice()) != 0) return false;
-        if (getUserId() != that.getUserId()) return false;
-        if (getMessage() != null ? !getMessage().equals(that.getMessage()) : that.getMessage() != null) return false;
-        if (getUnit() != that.getUnit()) return false;
-        return getTime() != null ? getTime().equals(that.getTime()) : that.getTime() == null;
-    }
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = (int) (getNotificationId() ^ (getNotificationId() >>> 32));
-        result = 31 * result + (getMessage() != null ? getMessage().hashCode() : 0);
-        result = 31 * result + (getUnit() != null ? getUnit().hashCode() : 0);
-        temp = Double.doubleToLongBits(getPrice());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (int) (getUserId() ^ (getUserId() >>> 32));
-        result = 31 * result + (getTime() != null ? getTime().hashCode() : 0);
-        return result;
-    }
-    @Override
     public String toString() {
-        return "Notification: Id-" + notificationId +  "message-" + message + " price-" + price +
-                " userId-" + userId + " date-" + date +  " time-" + time + " rate-" + rate + "|| COMMENTS: " + comments;
+        return "Notification: Id-" + notificationId +  " message-" + message + " price-" + price + " unit-" + unit +
+                " userId-" + userId + " date-" + date + " rate-" + rate + " image-" + image + "|| COMMENTS: " + comments;
     }
 
 }

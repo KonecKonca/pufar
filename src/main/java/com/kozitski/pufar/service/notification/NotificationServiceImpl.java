@@ -7,6 +7,8 @@ import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.NotificationParameter;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserStatus;
+import com.kozitski.pufar.exception.PufarDAOException;
+import com.kozitski.pufar.exception.PufarServiceException;
 
 import java.util.ArrayList;
 
@@ -55,6 +57,15 @@ public class NotificationServiceImpl implements NotificationService {
         }
 
         return result;
+    }
+    @Override
+    public void addNotification(Notification notification) throws PufarServiceException {
+        try {
+            notificationDao.addNotification(notification);
+        }
+        catch (PufarDAOException e) {
+            throw new PufarServiceException(e);
+        }
     }
 
 

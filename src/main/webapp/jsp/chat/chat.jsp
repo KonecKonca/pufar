@@ -46,7 +46,7 @@
                                             <div class="media-body" >
                                                     ${message.message}
                                                 <br />
-                                                <small class="text-muted">${message.senderLogin} | ${message.date} | ${message.time}</small>
+                                                <small class="text-muted">${message.senderLogin} | ${message.date}</small>
                                                 <hr />
                                             </div>
                                         </div>

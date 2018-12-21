@@ -1,6 +1,7 @@
 package com.kozitski.pufar.listener;
 
 import com.kozitski.pufar.entity.notification.Notification;
+import com.kozitski.pufar.entity.notification.UnitType;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.Users;
 import com.kozitski.pufar.service.notification.NotificationService;
@@ -11,6 +12,8 @@ import com.kozitski.pufar.util.language.PufarLanguage;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @WebListener
@@ -37,8 +40,12 @@ public class PufarSessionListener implements HttpSessionListener {
         sessionEvent.getSession().setAttribute(CommonConstant.HOW_MUCH_MESSAGES, HOW_MUCH_MESSAGES);
 
         //search top notifications
-        List<Notification> topNotifications = notificationService.searchTopNotificationsWithLimit(HOW_MUCH_NOTIFICATIONS);
+        ArrayList<Notification> topNotifications = notificationService.searchTopNotificationsWithLimit(HOW_MUCH_NOTIFICATIONS);
         sessionEvent.getSession().setAttribute(CommonConstant.CURRENT_NOTIFICATIONS, topNotifications);
+
+        // define all units
+        ArrayList<UnitType> units = new ArrayList<>(Arrays.asList(UnitType.values()));
+        sessionEvent.getSession().setAttribute(CommonConstant.UNIT_LIST, units);
 
     }
 

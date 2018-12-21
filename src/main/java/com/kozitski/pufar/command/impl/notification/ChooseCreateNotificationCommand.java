@@ -9,11 +9,9 @@ public class ChooseCreateNotificationCommand extends AbstractCommand {
 
     @Override
     public Router execute(RequestValue request) {
-
         Router router = new Router();
         router.setPagePath(PagePath.CREATE_NOTIFICATION.getJspPath());
         return router;
-
     }
 
 }

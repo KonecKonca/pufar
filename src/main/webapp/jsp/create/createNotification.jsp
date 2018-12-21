@@ -10,24 +10,81 @@
 </head>
 <body>
 
-<br><br><br>
+<br><br>
 
 <div class="controlPanel">
 
-    <form action="/pufar" method="post" >
-        <input type="hidden" value="CREATE_NOTIFICATION" name="command">
+    <h2>${locale.getValue("createNotificationCommonMessage")}</h2>
 
-        ${locale.getValue("adminSearchUserId")}:
-        <input type="text" class="form-control" placeholder="${locale.getValue("adminSearchUserId")}" name="adminSearchUserId"/>
-        ${locale.getValue("adminSearchUserLoginStart")}:
-        <input type="text" class="form-control" placeholder="${locale.getValue("adminSearchUserLoginStart")}" name="adminSearchUserLoginStart"/>
-        ${locale.getValue("adminSearchUserStatus")}:
-        <input type="text" class="form-control" placeholder="${locale.getValue("adminSearchUserStatus")}" name="adminSearchUserStatus"/>
+    <form action="/upload" enctype="multipart/form-data" method="POST">
 
-        <br>
-
-        <input class="btn btn-dark" type="submit" value="${locale.getValue("adminSearchUserButton")}">
+        <h3>${locale.getValue("createNotificationImage")}</h3>
+        <input type="file" name="${locale.getValue("createNotificationImage")}">
+        <input class="btn btn-dark" type="submit" value="${locale.getValue("createNotificationImage")}" title="${locale.getValue("createNotificationButtonAltChose")}">
     </form>
+
+    <form action="/pufar" method="post" >
+        <input type="hidden" name="command" value="CREATE_NOTIFICATION">
+
+        ${locale.getValue("createNotificationUnit")}:
+        <%--<input type="text" class="form-control" placeholder="${locale.getValue("createNotificationCommonMessage")}" name="adminSearchUserId"/>--%>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radios" id="option1" checked>
+            <label class="form-check-label" for="option1">
+                ${locale.getValue("createNotificationUnit1")}
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radios" id="option2">
+            <label class="form-check-label" for="option2">
+                ${locale.getValue("createNotificationUnit2")}
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radios" id="option3">
+            <label class="form-check-label" for="option3">
+                ${locale.getValue("createNotificationUnit3")}
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radios" id="option4">
+            <label class="form-check-label" for="option4">
+                ${locale.getValue("createNotificationUnit4")}
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radios" id="option5">
+            <label class="form-check-label" for="option5">
+                ${locale.getValue("createNotificationUnit5")}
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radios" id="option6">
+            <label class="form-check-label" for="option6">
+                ${locale.getValue("createNotificationUnit6")}
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radios" id="option7">
+            <label class="form-check-label" for="option7">
+                ${locale.getValue("createNotificationUnit7")}
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radios" id="option8">
+            <label class="form-check-label" for="option8">
+                ${locale.getValue("createNotificationUnit8")}
+            </label>
+        </div>
+
+        ${locale.getValue("createNotificationMessage")}:
+        <input type="text" class="form-control" placeholder="${locale.getValue("createNotificationMessage")}" name="createNotificationMessage"/>
+        ${locale.getValue("createNotificationPrice")}:
+        <input type="text" class="form-control" placeholder="${locale.getValue("createNotificationPrice")}" name="createNotificationPrice"/>
+
+        <input class="btn btn-dark" type="submit" value="${locale.getValue("createNotificationButton")}" title="${locale.getValue("createNotificationButtonAltCreate")}">
+    </form>
+    <br>
 
 </div>
 

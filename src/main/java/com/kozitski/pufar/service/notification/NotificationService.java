@@ -4,6 +4,9 @@ import com.kozitski.pufar.entity.comment.NotificationComment;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.NotificationParameter;
 import com.kozitski.pufar.entity.user.User;
+import com.kozitski.pufar.exception.PufarServiceException;
+import com.kozitski.pufar.validation.annotation.AspectValid;
+import com.kozitski.pufar.validation.annotation.notification.NotificationValid;
 
 import java.util.ArrayList;
 
@@ -15,5 +18,7 @@ public interface NotificationService {
     boolean dropCommentById(long commentId, User currentUser);
     boolean dropNotificationById(long notificationId, User currentUser);
     boolean changeNotificationMessage(long notificationId, String newMessage, User currentUser);
+    @AspectValid
+    void addNotification(@NotificationValid(minRate = 0) Notification notification) throws PufarServiceException;
 
 }

@@ -55,8 +55,6 @@ public class MySQLDialogDao implements DialogDAO {
                 "INNER JOIN dialoges d2 ON u2.user_id = d2.user_sender_id WHERE d2.user_receiver_id = ? GROUP BY u2.login ORDER BY d2.date) LIMIT ?";
     private static final String ADD_MESSAGE = "INSERT INTO dialoges values(null, ?, ?, ?, ?)";
 
-    private static final long TIME_DIFFERENCE = 7_200_000;
-
     @Override
     public List<UserMessage> searchAllMessagesFromTo(long fromUserId, long toUserId) {
         List<UserMessage> messages;
@@ -157,7 +155,7 @@ public class MySQLDialogDao implements DialogDAO {
             preparedStatement.setLong(1, senderId);
             preparedStatement.setLong(2, receiverId);
             preparedStatement.setString(3, message);
-            preparedStatement.setTimestamp(4, new Timestamp(System.currentTimeMillis() + TIME_DIFFERENCE));
+            preparedStatement.setLong(4, System.currentTimeMillis());
 
             preparedStatement.executeUpdate();
 
