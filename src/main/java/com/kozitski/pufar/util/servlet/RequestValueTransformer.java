@@ -1,4 +1,4 @@
-package com.kozitski.pufar.util.request;
+package com.kozitski.pufar.util.servlet;
 
 import com.kozitski.pufar.command.RequestValue;
 
@@ -40,7 +40,6 @@ public class RequestValueTransformer {
 
         return new RequestValue(servletContext, servletSession, requestAttribute, requestParameter);
     }
-
     public static void transformTo(HttpServletRequest request, RequestValue requestValue){
 
         // context
@@ -65,7 +64,7 @@ public class RequestValueTransformer {
             request.getSession().setAttribute(entry.getKey(),entry.getValue());
         }
 
-        // request Attributes
+        // servlet Attributes
         Enumeration<String> requestAttributeNames = request.getAttributeNames();
         while (requestAttributeNames.hasMoreElements()){
             String attributeName = requestAttributeNames.nextElement();

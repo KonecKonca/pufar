@@ -77,9 +77,9 @@
                         </div>
 
                         <div class="col-md-6">
-                            <p><a href="${context}/index.jsp">${locale.getValue("footerIndexLink")}</a></p>
-                            <p><a href="${context}/jsp/login/login.jsp">${locale.getValue("footerLoginPage")}</a></p>
                             <p><a href="${context}/jsp/template/template.jsp">${locale.getValue("footerTemplatePage")}</a></p>
+                            <p><a href="${context}/jsp/login/login.jsp">${locale.getValue("footerLoginPage")}</a></p>
+                            <p><a href="${context}/index.jsp">${locale.getValue("footerIndexLink")}</a></p>
                         </div>
 
                     </div>

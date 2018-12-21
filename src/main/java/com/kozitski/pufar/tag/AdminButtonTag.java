@@ -50,9 +50,11 @@ public class AdminButtonTag extends TagSupport {
         boolean access = false;
 
         User user = (User) pageContext.getSession().getAttribute(CommonConstant.CURRENT_USER);
-        UserStatus status = user.getStatus();
-        if(status.equals(UserStatus.ADMIN) || status.equals(UserStatus.SUPER_ADMIN)){
-            access = true;
+        if(user != null){
+            UserStatus status = user.getStatus();
+            if( status != null && (status.equals(UserStatus.ADMIN) || status.equals(UserStatus.SUPER_ADMIN))){
+                access = true;
+            }
         }
 
         return access;

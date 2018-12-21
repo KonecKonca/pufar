@@ -30,7 +30,7 @@ public class Router {
     }
 
     public boolean isForward(){
-        return routeType.getClass() == RouteType.FORWARD.getClass();
+        return routeType.equals(RouteType.FORWARD);
     }
 
 }

@@ -2,7 +2,7 @@ package com.kozitski.pufar.util;
 
 public class CommonConstant {
 
-    // request attributes
+    // servlet attributes
     public static final String CURRENT_USER = "currentUser";
     public static final String CURRENT_OPPONENT = "currentOpponent";
     public static final String LAST_MESSAGE = "firstMessage";
@@ -10,6 +10,7 @@ public class CommonConstant {
     public static final String CHOSEN_USER = "chosenUser";
 
 
+    public static final String ACCESS_RIGHT_MESSAGE = "accessRight";
     public static final String TOP_USERS = "topUsers";
     public static final String LAST_MESSAGES = "lastMessages";
     public static final int HOW_MUCH_USERS_CHAT_PAGE = 12;

@@ -48,7 +48,6 @@ public class LoginCommand extends AbstractCommand {
             router.setPagePath(PagePath.LOGIN_PAGE.getJspPath());
         }
 
-
         return router;
     }
 

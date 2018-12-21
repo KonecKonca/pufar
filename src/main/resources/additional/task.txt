@@ -1,6 +1,6 @@
 
 # COMMON
-1) admin panel
++ 1) admin panel
 2) add notification
 3) add notification pictures
 4) add User mobile phones
@@ -15,4 +15,5 @@
 4) create index for comments.notification_id
     5) in services check on admin rights(was problems with connetc by /admin)
     6) button ofa logOut (destroy session)
-    7) change user status (admin panel) -> make sticky note
++ 7) change user status (admin panel) -> make sticky note
+    8) data|time save how long

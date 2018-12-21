@@ -8,6 +8,7 @@ import com.mysql.jdbc.Driver;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
+import java.util.Enumeration;
 import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.locks.ReentrantLock;
@@ -140,6 +141,18 @@ public class PoolConnection {
             catch (InterruptedException e) {
                 LOGGER.error("Connection close exception", e);
             }
+        }
+
+        try {
+            Enumeration<java.sql.Driver> drivers = DriverManager.getDrivers();
+            while (drivers.hasMoreElements()) {
+                java.sql.Driver driver = drivers.nextElement();
+                DriverManager.deregisterDriver(driver);
+
+            }
+        }
+        catch (SQLException e) {
+            LOGGER.error("Drivers were not deregistrated", e);
         }
 
         poolConnection = null;

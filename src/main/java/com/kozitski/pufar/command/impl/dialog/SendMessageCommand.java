@@ -34,7 +34,7 @@ public class SendMessageCommand extends AbstractCommand {
             dialogService.addMessage(currentUser.getUserId(), currentOpponent.getUserId(), new String(sentMessage.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
         }
         catch (Exception e){
-            LOGGER.warn("In[ut message incorrect diu to validation parameters", e);
+            LOGGER.warn("Input message incorrect diu to validation parameters", e);
         }
         dialogService.showDialogs(requestValue);
 

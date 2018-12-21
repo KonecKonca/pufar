@@ -18,7 +18,7 @@ public class PufarSessionListener implements HttpSessionListener {
     private static final String CURRENT_USER = "currentUser";
 
     private static final int HOW_MUCH_MESSAGES = 6;
-    private static final int HOW_MUCH_NOTIFICATIONS = 10;
+    private static final int HOW_MUCH_NOTIFICATIONS = 6;
 
     private NotificationService notificationService = new NotificationServiceImpl();
 
