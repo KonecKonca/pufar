@@ -67,6 +67,21 @@ public class NotificationDaoImpl implements NotificationDao {
     private static final String ADD_NOTIFICATION_SET_DEFAULT_RATE = "INSERT INTO rates VALUES(?, ?, ?)";
     private static final int DEFAULT_MARK = 5;
 
+    private static final String SEARCH_NOTIFICATION_BY_UNIT_NUMBER =
+            "SELECT COUNT(n.notification_id) numberNotifications FROM notifications n " +
+                    "LEFT JOIN units u ON n.unit_id=u.unit_id " +
+                "WHERE u.unit_id=?";
+    private static final String SEARCH_NOTIFICATION_BY_UNIT_COUNT_VALUE = "numberNotifications";
+    private static final String SEARCH_NOTIFICATION_BY_UNIT =
+            "SELECT n.notification_id, n.message, un.name, n.price, u.user_id, n.date, n.content, AVG(r.mark) mark FROM notifications n " +
+                    "LEFT JOIN units un ON n.unit_id=un.unit_id " +
+                    "LEFT JOIN users u ON n.user_id=u.user_id " +
+                    "LEFT JOIN rates r ON n.notification_id=r.notification_id " +
+                "WHERE un.unit_id=? " +
+                "GROUP BY r.notification_id " +
+                "ORDER BY n.date DESC " +
+                "LIMIT ?, ?";
+
     @Override
     public Optional<Notification> searchById(long id) {
         return Optional.empty();
@@ -283,7 +298,6 @@ public class NotificationDaoImpl implements NotificationDao {
 
         return result;
     }
-
     @Override
     public void addNotification(Notification notification) throws PufarDAOException {
 
@@ -305,26 +319,17 @@ public class NotificationDaoImpl implements NotificationDao {
 
             preparedStatement.setBinaryStream(6, inputStream);
             preparedStatement.executeUpdate();
-            connection.commit();
 
+            // search last Auto_increment value
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
             generatedKeys.next();
             long lastId =  generatedKeys.getLong(1);
 
-
-            // НЕ ПОЛУЧАЛОСЬ ДОСТАТЬ ПОЛСЕДНИЙ АЙДИШНИК
-            // jdbc mysql узнать auto_increment
-//            Statement statement = connection.createStatement();
-//            ResultSet resultSet = statement.executeQuery("SELECT last_insert_id() AS last_id FROM notifications");
-////            ResultSet resultSet = preparedStatementSearchID.executeQuery();
-//            long lastNotificationId = Long.parseLong(resultSet.getString("last_id"));
-
-
+            // Insert default mark
             PreparedStatement preparedStatementRate = connection.prepareStatement(ADD_NOTIFICATION_SET_DEFAULT_RATE);
-            preparedStatement.setLong(1, lastId);
-            preparedStatement.setLong(2, CommonConstant.SYSTEM_USER_ID);
-            preparedStatement.setInt(3, DEFAULT_MARK);
-            // ТЕПЕРЬ ЗДЕСЬ НЕ УДАЁТСЯ ЗАКОММИТИТСЯ
+            preparedStatementRate.setLong(1,lastId);
+            preparedStatementRate.setLong(2, CommonConstant.SYSTEM_USER_ID);
+            preparedStatementRate.setInt(3, DEFAULT_MARK);
             preparedStatementRate.executeUpdate();
 
             connection.commit();
@@ -336,6 +341,47 @@ public class NotificationDaoImpl implements NotificationDao {
             throw new PufarDAOException("Notification was'n added, case image wasn't convert to BLOB", e);
         }
 
+    }
+
+    @Override
+    public long searchNotificationsByUnitNumber(UnitType unitType){
+        long result;
+
+        try(Connection connection = PoolConnection.getInstance().getConnection()){
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_NOTIFICATION_BY_UNIT_NUMBER);
+            preparedStatement.setInt(1, UnitType.getUnitDBPosition(unitType));
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            result = resultSet.getInt(SEARCH_NOTIFICATION_BY_UNIT_COUNT_VALUE);
+
+        }
+        catch (SQLException e) {
+            result = 0;
+        }
+
+        return result;
+    }
+    @Override
+    public ArrayList<Notification> searchNotificationsByUnit(UnitType unitType, int limitStart, int limitStep){
+        ArrayList<Notification> result;
+
+        try(Connection connection = PoolConnection.getInstance().getConnection()){
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_NOTIFICATION_BY_UNIT);
+            preparedStatement.setInt(1, UnitType.getUnitDBPosition(unitType));
+            preparedStatement.setInt(2, limitStart);
+            preparedStatement.setInt(3, limitStep);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            result = NotificationMapper.mapNotification(resultSet);
+        }
+        catch (SQLException e) {
+            result = new ArrayList<>();
+        }
+
+        return result;
     }
 
 }

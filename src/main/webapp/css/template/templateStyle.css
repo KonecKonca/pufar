@@ -27,5 +27,12 @@
     /*overflow:scroll;*/
 /*}*/
 .animate{
-    opacity: 0.835;
+    opacity: 0.9;
+}
+.sideNote{
+    color: yellow;
+    font-weight: bolder;
+}
+.sideLink{
+    color: deepskyblue;
 }

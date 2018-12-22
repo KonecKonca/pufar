@@ -22,10 +22,12 @@ public class CommonConstant {
 
     // notifications
     public static final String CURRENT_NOTIFICATIONS = "currentNotifications";
+    public static final String NOTIFICATIONS_CURSOR = "notificationsCursor";
+    public static final String NOTIFICATIONS_LAST_UNIT = "notificationsLastUnit";
+    public static final int HOW_MUCH_NOTIFICATIONS = 6;
 
     // admin
     public static final String ADMIN_INPUT_MESSAGE = "adminInputMessage";
     public static final String ADMIN_INPUT_RESULT = "adminInputResult";
-
 
 }

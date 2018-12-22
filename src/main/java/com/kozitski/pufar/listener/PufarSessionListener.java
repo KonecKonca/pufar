@@ -21,7 +21,7 @@ public class PufarSessionListener implements HttpSessionListener {
     private static final String CURRENT_USER = "currentUser";
 
     private static final int HOW_MUCH_MESSAGES = 6;
-    private static final int HOW_MUCH_NOTIFICATIONS = 6;
+
 
     private NotificationService notificationService = new NotificationServiceImpl();
 
@@ -40,7 +40,7 @@ public class PufarSessionListener implements HttpSessionListener {
         sessionEvent.getSession().setAttribute(CommonConstant.HOW_MUCH_MESSAGES, HOW_MUCH_MESSAGES);
 
         //search top notifications
-        ArrayList<Notification> topNotifications = notificationService.searchTopNotificationsWithLimit(HOW_MUCH_NOTIFICATIONS);
+        ArrayList<Notification> topNotifications = notificationService.searchTopNotificationsWithLimit(CommonConstant.HOW_MUCH_NOTIFICATIONS);
         sessionEvent.getSession().setAttribute(CommonConstant.CURRENT_NOTIFICATIONS, topNotifications);
 
         // define all units

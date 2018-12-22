@@ -48,11 +48,14 @@ public class FileUploadingServlet extends HttpServlet {
             if (part.getSubmittedFileName() != null) {
                 part.write(fullName);
 
+                if(part.getSize() != 0){
+                    request.getSession().setAttribute(CommonConstant.CURRENT_NOTIFICATION_IMAGE_PATH, fullName);
+                }
+
                 this.getServletContext().getRequestDispatcher(PagePath.CREATE_NOTIFICATION.getJspPath()).forward(request, response);
             }
         }
 
-        request.getSession().setAttribute(CommonConstant.CURRENT_NOTIFICATION_IMAGE_PATH, fullName);
     }
 
 }
