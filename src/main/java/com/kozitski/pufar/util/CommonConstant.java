@@ -12,6 +12,7 @@ public class CommonConstant {
     public static final String CHOSEN_USER = "chosenUser";
     public static final String UNIT_LIST = "unitList";
     public static final String INDEX_MESSAGE = "indexMessage";
+    public static final long SYSTEM_USER_ID = 19;
 
     public static final String ACCESS_RIGHT_MESSAGE = "accessRight";
     public static final String TOP_USERS = "topUsers";

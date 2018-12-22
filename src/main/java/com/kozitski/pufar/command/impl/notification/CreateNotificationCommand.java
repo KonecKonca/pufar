@@ -20,20 +20,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class CreateNotificationCommand extends AbstractCommand {
     private static Logger LOGGER = LoggerFactory.getLogger(CreateNotificationCommand.class);
     private NotificationService notificationService = new NotificationServiceImpl();
 
-    private static final String RADIO_BUTTON1 = "radios1";
-    private static final String RADIO_BUTTON2 = "radios2";
-    private static final String RADIO_BUTTON3 = "radios3";
-    private static final String RADIO_BUTTON4 = "radios4";
-    private static final String RADIO_BUTTON5 = "radios5";
-    private static final String RADIO_BUTTON6 = "radios6";
-    private static final String RADIO_BUTTON7 = "radios7";
-    private static final String RADIO_BUTTON8 = "radios8";
+    private static final String RADIO_BUTTON = "radios";
 
     private static final String NOTIFICATION_MESSAGE = "createNotificationMessage";
     private static final String NOTIFICATION_PRICE = "createNotificationPrice";
@@ -46,13 +41,7 @@ public class CreateNotificationCommand extends AbstractCommand {
         Router router = new Router();
         router.setPagePath(PagePath.INDEX_PAGE.getJspPath());
 
-        UnitType unitType = defineUnitType(
-                Boolean.parseBoolean((String) request.getAttribute(RADIO_BUTTON1)),  Boolean.parseBoolean((String) request.getAttribute(RADIO_BUTTON2)),
-                Boolean.parseBoolean((String) request.getAttribute(RADIO_BUTTON3)),  Boolean.parseBoolean((String) request.getAttribute(RADIO_BUTTON4)),
-                Boolean.parseBoolean((String) request.getAttribute(RADIO_BUTTON5)), Boolean.parseBoolean((String) request.getAttribute(RADIO_BUTTON6)),
-                Boolean.parseBoolean((String) request.getAttribute(RADIO_BUTTON7)), Boolean.parseBoolean((String) request.getAttribute(RADIO_BUTTON8)));
-
-        System.out.println(unitType);
+        UnitType unitType = UnitType.valueOf(((String) request.getAttribute(RADIO_BUTTON)).toUpperCase());
 
         String message = (String) request.getAttribute(NOTIFICATION_MESSAGE);
         if(message != null && !message.isEmpty()){
@@ -63,9 +52,14 @@ public class CreateNotificationCommand extends AbstractCommand {
         }
 
         String stringPrice = (String) request.getAttribute(NOTIFICATION_PRICE);
-        double price = 0;
+        double price = DEFAULT_VALUE;
         if(stringPrice != null && !stringPrice.isEmpty()){
-            price = Double.parseDouble(stringPrice);
+            try {
+                price = Double.parseDouble(stringPrice);
+            }
+            catch(IllegalArgumentException e){
+                LOGGER.warn("was entered incorrect price", e);
+            }
         }
 
         User user = (User) request.getAttribute(CommonConstant.CURRENT_USER);
@@ -106,22 +100,6 @@ public class CreateNotificationCommand extends AbstractCommand {
         }
 
         return router;
-    }
-
-    private UnitType defineUnitType(boolean ... variants){
-        UnitType result = UnitType.OTHER;
-
-        for (int i = 0; i < variants.length; i++) {
-            if(variants[i]){
-                for(UnitType type : UnitType.values()){
-                    if(type.ordinal() == i){
-                        result = type;
-                    }
-                }
-            }
-        }
-
-        return result;
     }
 
 }

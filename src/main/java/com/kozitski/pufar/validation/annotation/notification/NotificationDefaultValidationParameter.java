@@ -11,7 +11,7 @@ class NotificationDefaultValidationParameter {
     static final double MIN_RATE = 0;
     static final double MAX_RATE = 10;
 
-    static final String STRING_FIELD_PATTERN = "[\\w.@]+";
+    static final String STRING_FIELD_PATTERN = "[\\w.@]*";
     static final String XSS_PATTERN = "<script>";
 
 }

@@ -4,10 +4,16 @@ import com.kozitski.pufar.connection.PoolConnection;
 import com.kozitski.pufar.entity.comment.NotificationComment;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.NotificationParameter;
+import com.kozitski.pufar.entity.notification.UnitType;
 import com.kozitski.pufar.exception.PufarDAOException;
+import com.kozitski.pufar.util.CommonConstant;
 import com.kozitski.pufar.util.mapper.comment.CommentMapper;
 import com.kozitski.pufar.util.mapper.notification.NotificationMapper;
+import com.mysql.cj.Query;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -19,7 +25,7 @@ public class NotificationDaoImpl implements NotificationDao {
                 "LEFT JOIN users u ON n.user_id=u.user_id " +
                 "LEFT JOIN rates r ON n.notification_id=r.notification_id " +
             "GROUP BY r.notification_id " +
-            "ORDER BY mark ASC " +
+            "ORDER BY n.date DESC " +
             "LIMIT ?";
 
     // for search with parameters
@@ -57,6 +63,9 @@ public class NotificationDaoImpl implements NotificationDao {
     private static final String DELETE_COMMENT_BY_NOTIFICATION_ID = "DELETE FROM comments WHERE notification_id=?";
     private static final String CHANGE_NOTIFICATION_MESSAGE = "UPDATE notifications SET message=? WHERE notification_id=?";
 
+    private static final String ADD_NOTIFICATION = "INSERT INTO notifications VALUES(null, ?, ?, ?, ?, ?, ?)";
+    private static final String ADD_NOTIFICATION_SET_DEFAULT_RATE = "INSERT INTO rates VALUES(?, ?, ?)";
+    private static final int DEFAULT_MARK = 5;
 
     @Override
     public Optional<Notification> searchById(long id) {
@@ -277,8 +286,56 @@ public class NotificationDaoImpl implements NotificationDao {
 
     @Override
     public void addNotification(Notification notification) throws PufarDAOException {
-        System.out.println(notification);
-    }
 
+        try(Connection connection = PoolConnection.getInstance().getConnection()){
+            connection.setAutoCommit(false);
+            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+
+            PreparedStatement preparedStatement = connection.prepareStatement(ADD_NOTIFICATION, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, notification.getMessage());
+            preparedStatement.setInt(2, UnitType.getUnitDBPosition(notification.getUnit()));
+            preparedStatement.setDouble(3, notification.getPrice());
+            preparedStatement.setLong(4, notification.getUserId());
+            preparedStatement.setLong(5, notification.getDate().getTime());
+
+            BufferedImage image = notification.getImage();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            ImageIO.write(image, "jpg", outputStream);
+            InputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+
+            preparedStatement.setBinaryStream(6, inputStream);
+            preparedStatement.executeUpdate();
+            connection.commit();
+
+            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+            generatedKeys.next();
+            long lastId =  generatedKeys.getLong(1);
+
+
+            // НЕ ПОЛУЧАЛОСЬ ДОСТАТЬ ПОЛСЕДНИЙ АЙДИШНИК
+            // jdbc mysql узнать auto_increment
+//            Statement statement = connection.createStatement();
+//            ResultSet resultSet = statement.executeQuery("SELECT last_insert_id() AS last_id FROM notifications");
+////            ResultSet resultSet = preparedStatementSearchID.executeQuery();
+//            long lastNotificationId = Long.parseLong(resultSet.getString("last_id"));
+
+
+            PreparedStatement preparedStatementRate = connection.prepareStatement(ADD_NOTIFICATION_SET_DEFAULT_RATE);
+            preparedStatement.setLong(1, lastId);
+            preparedStatement.setLong(2, CommonConstant.SYSTEM_USER_ID);
+            preparedStatement.setInt(3, DEFAULT_MARK);
+            // ТЕПЕРЬ ЗДЕСЬ НЕ УДАЁТСЯ ЗАКОММИТИТСЯ
+            preparedStatementRate.executeUpdate();
+
+            connection.commit();
+        }
+        catch (SQLException e) {
+            throw new PufarDAOException("Notification was'n added", e);
+        }
+        catch (IOException e) {
+            throw new PufarDAOException("Notification was'n added, case image wasn't convert to BLOB", e);
+        }
+
+    }
 
 }

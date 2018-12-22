@@ -19,6 +19,6 @@ public interface NotificationService {
     boolean dropNotificationById(long notificationId, User currentUser);
     boolean changeNotificationMessage(long notificationId, String newMessage, User currentUser);
     @AspectValid
-    void addNotification(@NotificationValid(minRate = 0) Notification notification) throws PufarServiceException;
+    void addNotification(@NotificationValid(minRate = 0, stringPattern = ".*") Notification notification) throws PufarServiceException;
 
 }
