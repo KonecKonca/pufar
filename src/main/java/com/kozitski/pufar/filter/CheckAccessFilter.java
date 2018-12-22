@@ -22,7 +22,7 @@ public class CheckAccessFilter implements Filter {
     private static Set<String> adminPages = new HashSet<>(Arrays.asList(PagePath.ADMIN_CONTROL_PANEL.getJspPath(), PagePath.ADMIN_ERROR_PAGE.getJspPath(),
             PagePath.ADMIN_SEARCH_NOTIFICATION.getJspPath(), PagePath.ADMIN_SEARCH_USER.getJspPath()));
     private static Set<String> notLoginPages = new HashSet<>(Arrays.asList(PagePath.PUFAR_INDEX.getJspPath(), PagePath.PUFAR_CONTROLLER.getJspPath(),
-            PagePath.INDEX_PAGE.getJspPath(), PagePath.LOGIN_PAGE.getJspPath(), PagePath.TEMPLATE_PAGE.getJspPath()));
+            PagePath.INDEX_PAGE.getJspPath(), PagePath.LOGIN_PAGE.getJspPath(), PagePath.TEMPLATE_PAGE.getJspPath(), PagePath.NOTIFICATION_ADDITIONAL.getJspPath()));
     private static Set<String> allExistPages;
     static {
         PagePath[] paths = PagePath.values();

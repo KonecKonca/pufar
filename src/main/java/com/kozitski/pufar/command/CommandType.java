@@ -15,10 +15,7 @@ import com.kozitski.pufar.command.impl.dialog.*;
 import com.kozitski.pufar.command.impl.error.ErrorCommand;
 import com.kozitski.pufar.command.impl.locale.SetEnLocaleCommand;
 import com.kozitski.pufar.command.impl.locale.SetRuLocaleCommand;
-import com.kozitski.pufar.command.impl.notification.ChangeNotificationCommand;
-import com.kozitski.pufar.command.impl.notification.ChooseCreateNotificationCommand;
-import com.kozitski.pufar.command.impl.notification.CreateNotificationCommand;
-import com.kozitski.pufar.command.impl.notification.ShowNotificationByUnitTypeCommand;
+import com.kozitski.pufar.command.impl.notification.*;
 
 public enum CommandType {
 
@@ -36,7 +33,9 @@ public enum CommandType {
     CHOOSE_CREATE_NOTIFICATION(new ChooseCreateNotificationCommand()),
     CREATE_NOTIFICATION(new CreateNotificationCommand()),
     SHOW_NOTIFICATION_BY_UNIT_TYPE(new ShowNotificationByUnitTypeCommand()),
+    SHOW_ADDITIONAL_NOTIFICATION(new ShowAdditionalNotificationCommand()),
     CHANGE_NOTIFICATION(new ChangeNotificationCommand()),
+
 
     // admin commands
         // define inputPage

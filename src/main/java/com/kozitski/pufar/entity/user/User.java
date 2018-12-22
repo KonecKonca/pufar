@@ -1,5 +1,7 @@
 package com.kozitski.pufar.entity.user;
 
+import com.kozitski.pufar.entity.nomber.MobilPhoneNumber;
+
 import java.util.Objects;
 
 public class User {
@@ -8,15 +10,17 @@ public class User {
     private String password;
     private UserStatus status;
     private boolean isBanned;
+    private MobilPhoneNumber number;
 
     public User() {
     }
-    public User(long userId, String login, String password, UserStatus status, boolean isBanned) {
+    public User(long userId, String login, String password, UserStatus status, boolean isBanned, MobilPhoneNumber number) {
         this.userId = userId;
         this.login = login;
         this.password = password;
         this.status = status;
         this.isBanned = isBanned;
+        this.number = number;
     }
 
     public void setStatus(UserStatus status) {
@@ -34,6 +38,9 @@ public class User {
     public void setBanned(boolean banned) {
         isBanned = banned;
     }
+    public void setNumber(MobilPhoneNumber number) {
+        this.number = number;
+    }
 
     public long getUserId() {
         return userId;
@@ -49,6 +56,9 @@ public class User {
     }
     public boolean isBanned() {
         return isBanned;
+    }
+    public MobilPhoneNumber getNumber() {
+        return number;
     }
 
     @Override
@@ -67,7 +77,8 @@ public class User {
     }
     @Override
     public String toString() {
-        return "UserServiceImpl: " + "id-" + userId + " login-" + login + " status-" + status + " isBanned-" + isBanned;
+        return "UserServiceImpl: " + "id-" + userId + " login-" + login + " status-" + status +
+                " isBanned-" + isBanned + " number-" + number;
     }
 
 }

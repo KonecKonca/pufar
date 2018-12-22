@@ -13,7 +13,6 @@ public class UserMapper {
     private static final String USER_ID = "user_id";
     private static final String USER_LOGIN = "login";
     private static final String USER_PASSWORD = "password";
-//    private static final String USER_VALUE = "value";
     private static final String USER_STATUS = "status";
     private static final String BAN = "isBanned";
 
@@ -27,7 +26,7 @@ public class UserMapper {
             UserStatus status = defineUserStatus(resultSet.getString(USER_STATUS));
             boolean isBanned = resultSet.getBoolean(BAN);
 
-            return new User(userId, login, password, status, isBanned);
+            return new User(userId, login, password, status, isBanned, null);
         }
         catch (SQLException e){
             throw new PufarDAOException("User is not created", e);
@@ -49,7 +48,7 @@ public class UserMapper {
                 UserStatus status = defineUserStatus(resultSet.getString(USER_STATUS));
                 boolean isBanned = resultSet.getBoolean(BAN);
 
-                result.add(new User(userId, login, password, status, isBanned));
+                result.add(new User(userId, login, password, status, isBanned, null));
             }
 
             return result;

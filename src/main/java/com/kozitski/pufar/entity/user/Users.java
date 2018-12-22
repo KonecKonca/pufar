@@ -8,7 +8,7 @@ import java.util.List;
 public class Users {
 
     public static User createDefaultUser(){
-        return new User( -666, "\\_/(.)(.)\\_/", "****", null, false);
+        return new User( -666, "\\_/(.)(.)\\_/", "****", null, false, null);
     }
     public static ArrayList<User> createUserArrayList(List<User> list){
 

@@ -12,14 +12,13 @@ public enum PagePath {
     LOGIN_PAGE("/jsp/login/login.jsp"),
     TEMPLATE_PAGE("/jsp/template/template.jsp"),
     CREATE_NOTIFICATION("/jsp/create/createNotification.jsp"),
+    NOTIFICATION_ADDITIONAL("/jsp/notificationAdditional.jsp"),
 
     // admin
     ADMIN_CONTROL_PANEL("/jsp/admin/adminControlPanel.jsp"),
     ADMIN_SEARCH_NOTIFICATION("/jsp/admin/search/notificationSearch.jsp"),
     ADMIN_SEARCH_USER("/jsp/admin/search/userSearch.jsp"),
 
-
-    INFO_PAGE("/jsp/infoPage.jsp"),
     PROFILE_PAGE("/jsp/profile/profile.jsp");
 
     String jspPath;

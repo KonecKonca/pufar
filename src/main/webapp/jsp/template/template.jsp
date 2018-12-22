@@ -189,7 +189,7 @@
                      <br><br><br><br><br><br><br>
                  </c:if>
 
-                <c:forEach var="notification" items="${currentNotifications}" >
+                <c:forEach var="notification" items="${currentNotifications}">
 
                     <div class="col">
                         <div class="card">
@@ -205,7 +205,8 @@
                                 <p class="card-text">${notification.rate}</p>
 
                                 <form action="/pufar" method="post">
-                                    <input type="hidden" name="command" value="notDefine">
+                                    <input type="hidden" name="command" value="SHOW_ADDITIONAL_NOTIFICATION">
+                                    <input type="hidden" name="notification" value="${notification.notificationId}">
 
                                     <input type="submit" value="${locale.getValue("templateNotificationButton")}" class="btn btn-outline-info">
                                 </form>
