@@ -22,7 +22,7 @@ public class MySQLUserDao implements UserDao {
     private static final String SEARCH_USER_BY_ID = "SELECT u.user_id, u.login, u.password, s.value status, ban_status isBanned FROM users u LEFT JOIN statuses s ON u.status = s.status_id WHERE user_id = ?";
     private static final String SEARCH_USER_BY_LOGIN = "SELECT u.user_id , u.login, u.password, s.value status, ban_status isBanned FROM users u LEFT JOIN statuses s ON u.status = s.status_id WHERE u.login = ?";
     private static final String SEARCH_USER_BY_STATUS = "SELECT u.user_id, u.login, u.password, s.value status, ban_status isBanned FROM users u LEFT JOIN statuses s ON u.status = s.status_id WHERE s.value = ?";
-    private static final String INSERT_NEW_USER_COMMON = "INSERT INTO users values(null, ?, ?, ?, 0)";
+    private static final String INSERT_NEW_USER_COMMON = "INSERT INTO users values(null, ?, ?, ?, 0, null)";
 
     // search with parameters
     private static final String SEARCH_USER_WITH_PARAMETERS_SQL_START = "SELECT u.user_id, u.login, u.password, s.value status, ban_status isBanned FROM users u LEFT JOIN statuses s ON u.status = s.status_id ";
@@ -41,21 +41,27 @@ public class MySQLUserDao implements UserDao {
     //  need in debug
     @Override
     public Optional<User> searchById(long id) {
+        Optional<User> user;
 
         try(Connection  connection = PoolConnection.getInstance().getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            User user = UserMapper.createUser(resultSet);
+            if(resultSet.next()){
+                User findUser = UserMapper.createUser(resultSet);
+                user = Optional.of(findUser);
+            }
+            else {
+                user = Optional.empty();
+            }
 
-            return Optional.of(user);
         }
-
         catch (SQLException | PufarDAOException e) {
             return Optional.empty();
         }
 
+        return user;
     }
     @Override
     public Optional<User> searchUserByLogin(String login) {

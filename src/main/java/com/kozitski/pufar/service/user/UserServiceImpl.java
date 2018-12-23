@@ -1,8 +1,11 @@
 package com.kozitski.pufar.service.user;
 
 import com.kozitski.pufar.command.impl.autorization.RegistrationCommand;
+import com.kozitski.pufar.dao.number.MysqlNumberDao;
+import com.kozitski.pufar.dao.number.NumberDao;
 import com.kozitski.pufar.dao.user.MySQLUserDao;
 import com.kozitski.pufar.dao.user.UserDao;
+import com.kozitski.pufar.entity.number.MobilPhoneNumber;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserParameter;
 import com.kozitski.pufar.entity.user.UserStatus;
@@ -23,10 +26,22 @@ public class UserServiceImpl implements UserService {
     private static final int BAN_STATUS_FALSE = 0;
 
     private UserDao userDao = new MySQLUserDao();
+    private NumberDao numberDao = new MysqlNumberDao();
 
     public Optional<User> searchUserById(long id){
-        // any validation
-        return userDao.searchById(id);
+        Optional<User> user = userDao.searchById(id);
+
+        if(user.isPresent()){
+            User findUser = user.get();
+            Optional<MobilPhoneNumber> mobilPhoneNumber = numberDao.searchById(findUser.getUserId());
+
+            if(mobilPhoneNumber.isPresent()){
+                MobilPhoneNumber findNumber = mobilPhoneNumber.get();
+                findUser.setNumber(findNumber);
+            }
+        }
+
+        return user;
     }
     @Override
     public Optional<User> searchUserByLogin(String login) {

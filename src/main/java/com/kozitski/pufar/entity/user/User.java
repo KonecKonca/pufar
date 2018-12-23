@@ -1,6 +1,6 @@
 package com.kozitski.pufar.entity.user;
 
-import com.kozitski.pufar.entity.nomber.MobilPhoneNumber;
+import com.kozitski.pufar.entity.number.MobilPhoneNumber;
 
 import java.util.Objects;
 

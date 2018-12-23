@@ -1,6 +1,7 @@
 package com.kozitski.pufar.service.notification;
 
 import com.kozitski.pufar.command.RequestValue;
+import com.kozitski.pufar.controller.LogoutController;
 import com.kozitski.pufar.dao.notification.NotificationDao;
 import com.kozitski.pufar.dao.notification.NotificationDaoImpl;
 import com.kozitski.pufar.entity.comment.NotificationComment;
@@ -13,10 +14,16 @@ import com.kozitski.pufar.exception.PufarDAOException;
 import com.kozitski.pufar.exception.PufarServiceException;
 import com.kozitski.pufar.util.CommonConstant;
 import com.kozitski.pufar.util.cursor.NotificationsCursor;
+import com.kozitski.pufar.validation.annotation.primitive.integer.IntValid;
+import com.kozitski.pufar.validation.annotation.primitive.string.StringValid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 
 public class NotificationServiceImpl implements NotificationService {
+    private static Logger LOGGER = LoggerFactory.getLogger(NotificationServiceImpl.class);
+
     private NotificationDao notificationDao =  new NotificationDaoImpl();
 
     @Override
@@ -101,6 +108,37 @@ public class NotificationServiceImpl implements NotificationService {
 
         return result;
     }
+    @Override
+    public long sentComment(@StringValid String comment, long senderId, long notificationId) throws PufarServiceException{
+        try {
+            return notificationDao.addComment(comment, senderId, notificationId);
+        }
+        catch (PufarDAOException e) {
+            throw new PufarServiceException(e);
+        }
+    }
+    @Override
+    @SuppressWarnings("unchecked")
+    public void putMark(RequestValue requestValue, int mark, long senderId, long notificationId){
+        try {
+            double newRate = notificationDao.putMark(mark, senderId, notificationId);
 
+            Notification handledNotification;
+            ArrayList<Notification> notifications = (ArrayList<Notification>) requestValue.getAttribute(CommonConstant.CURRENT_NOTIFICATIONS);
+            for(Notification notification : notifications){
+                if(notification.getNotificationId() == notificationId){
+
+                    handledNotification = notification;
+                    handledNotification.setRate(newRate);
+                    break;
+
+                }
+            }
+
+        }
+        catch (PufarDAOException e) {
+            LOGGER.warn("Mark wasn't put", e);
+        }
+    }
 
 }

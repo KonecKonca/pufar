@@ -9,6 +9,8 @@ import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.exception.PufarServiceException;
 import com.kozitski.pufar.validation.annotation.AspectValid;
 import com.kozitski.pufar.validation.annotation.notification.NotificationValid;
+import com.kozitski.pufar.validation.annotation.primitive.integer.IntValid;
+import com.kozitski.pufar.validation.annotation.primitive.string.StringValid;
 
 import java.util.ArrayList;
 
@@ -23,5 +25,10 @@ public interface NotificationService {
     @AspectValid
     void addNotification(@NotificationValid(minRate = 0, stringPattern = ".*") Notification notification) throws PufarServiceException;
     ArrayList<Notification> searchNotificationsWithChangingCursor(RequestValue requestValue, UnitType unitType, int stepValue);
+
+    @AspectValid
+    long sentComment(@StringValid String comment, long senderId, long notificationId) throws PufarServiceException;
+    @AspectValid
+    void putMark(RequestValue requestValue, @IntValid(minValue = 1, maxValue = 5) int mark, long senderId, long notificationId);
 
 }

@@ -9,7 +9,6 @@ import com.kozitski.pufar.exception.PufarDAOException;
 import com.kozitski.pufar.util.CommonConstant;
 import com.kozitski.pufar.util.mapper.comment.CommentMapper;
 import com.kozitski.pufar.util.mapper.notification.NotificationMapper;
-import com.mysql.cj.Query;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -51,10 +50,11 @@ public class NotificationDaoImpl implements NotificationDao {
     private static final String AND = " AND ";
 
     private static final String SEARCH_COMMENTS_BY_NOTIFICATION_ID =
-            "SELECT c.comment_id, u.login, c.comment FROM comments c " +
+            "SELECT c.comment_id, u.login, c.comment, c.date FROM comments c " +
                 "LEFT JOIN notifications n ON c.notification_id=n.notification_id " +
                 "LEFT JOIN users u ON u.user_id=c.user_id " +
             "WHERE n.notification_id=? " +
+            "ORDER BY c.date DESC " +
             "LIMIT 100";
 
     private static final String DELETE_COMMENT_BY_COMMENT_ID = "DELETE FROM comments WHERE comment_id=?";
@@ -82,11 +82,67 @@ public class NotificationDaoImpl implements NotificationDao {
                 "ORDER BY n.date DESC " +
                 "LIMIT ?, ?";
 
+    private static final String ADD_COMMENT = "INSERT INTO comments VALUES(null, ?, ?, ?, ?)";
+
+    private static final String CHECK_IS_MARK_EXIST = "SELECT mark FROM rates WHERE user_id=? AND notification_id=?";
+    private static final String INSERT_MARK = "INSERT INTO rates VALUES(?, ?, ?)";
+    private static final String UPDATE_MARK = "UPDATE rates SET mark=? WHERE user_id=? AND notification_id=?";
+    private static final String SEARCH_RATE =
+            "SELECT AVG(mark) rate FROM rates " +
+                "WHERE notification_id=? " +
+                "GROUP BY notification_id";
+    private static final String RATE = "rate";
+
+
     @Override
     public Optional<Notification> searchById(long id) {
         return Optional.empty();
     }
 
+    // mark
+    @Override
+    public double putMark(int mark, long senderId, long notificationId) throws PufarDAOException{
+        try(Connection connection = PoolConnection.getInstance().getConnection()){
+            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+            connection.setAutoCommit(false);
+
+            PreparedStatement checkStatement = connection.prepareStatement(CHECK_IS_MARK_EXIST);
+            checkStatement.setLong(1, senderId);
+            checkStatement.setLong(2, notificationId);
+            ResultSet checkResultSet = checkStatement.executeQuery();
+
+            if(checkResultSet.next()){
+                PreparedStatement updateStatement = connection.prepareStatement(UPDATE_MARK);
+                updateStatement.setInt(1, mark);
+                updateStatement.setLong(2, senderId);
+                updateStatement.setLong(3, notificationId);
+
+                updateStatement.executeUpdate();
+            }
+            else {
+                PreparedStatement insertStatement = connection.prepareStatement(INSERT_MARK);
+                insertStatement.setLong(1, notificationId);
+                insertStatement.setLong(2, senderId);
+                insertStatement.setInt(3, mark);
+
+                insertStatement.executeUpdate();
+            }
+
+            PreparedStatement findNewRateStatement = connection.prepareStatement(SEARCH_RATE);
+            findNewRateStatement.setLong(1, notificationId);
+            ResultSet findRateResultSet = findNewRateStatement.executeQuery();
+
+            findRateResultSet.next();
+            double rate = findRateResultSet.getDouble(RATE);
+
+            connection.commit();
+
+            return rate;
+        }
+        catch (SQLException e) {
+            throw new PufarDAOException("Mark wasn't added", e);
+        }
+    }
     // comments
     @Override
     public ArrayList<NotificationComment> searchCommentByNotificationId(long notificationId){
@@ -119,6 +175,27 @@ public class NotificationDaoImpl implements NotificationDao {
         }
 
         return result;
+    }
+    @Override
+    public long addComment(String comment, long senderId, long notificationId) throws PufarDAOException{
+        long date = System.currentTimeMillis();
+
+        try(Connection connection = PoolConnection.getInstance().getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(ADD_COMMENT);
+            preparedStatement.setLong(1, notificationId);
+            preparedStatement.setLong(2, senderId);
+            preparedStatement.setString(3, comment);
+
+            preparedStatement.setLong(4, date);
+
+            preparedStatement.executeUpdate();
+
+        }
+        catch (SQLException e) {
+            throw new PufarDAOException("Comment wasn't added", e);
+        }
+
+        return date;
     }
 
     @Override
@@ -342,7 +419,6 @@ public class NotificationDaoImpl implements NotificationDao {
         }
 
     }
-
     @Override
     public long searchNotificationsByUnitNumber(UnitType unitType){
         long result;
@@ -368,7 +444,6 @@ public class NotificationDaoImpl implements NotificationDao {
         ArrayList<Notification> result;
 
         try(Connection connection = PoolConnection.getInstance().getConnection()){
-
             PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_NOTIFICATION_BY_UNIT);
             preparedStatement.setInt(1, UnitType.getUnitDBPosition(unitType));
             preparedStatement.setInt(2, limitStart);
@@ -376,6 +451,11 @@ public class NotificationDaoImpl implements NotificationDao {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             result = NotificationMapper.mapNotification(resultSet);
+
+            for(Notification notification : result){
+                notification.setComments(searchCommentByNotificationId(notification.getNotificationId()));
+            }
+
         }
         catch (SQLException e) {
             result = new ArrayList<>();

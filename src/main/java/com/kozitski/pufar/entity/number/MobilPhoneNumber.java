@@ -1,4 +1,4 @@
-package com.kozitski.pufar.entity.nomber;
+package com.kozitski.pufar.entity.number;
 
 public class MobilPhoneNumber {
     private long MobilPhoneNumberId;

@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 @WebListener
 public class PufarSessionListener implements HttpSessionListener {

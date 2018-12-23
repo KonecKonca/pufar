@@ -88,11 +88,14 @@ public class Notification implements Imagenable {
     public void setComments(ArrayList<NotificationComment> comments) {
         this.comments = new ArrayList<>(comments);
     }
+    public void insertNewComment(NotificationComment comment){
+        comments.add(0, comment);
+    }
 
     @Override
     public String toString() {
         return "Notification: Id-" + notificationId +  " message-" + message + " price-" + price + " unit-" + unit +
-                " userId-" + userId + " date-" + date + " rate-" + rate + " image-" + image + "|| COMMENTS: " + comments;
+                " userId-" + userId + " date-" + date + " rate-" + rate + "|| COMMENTS: " + comments;
     }
 
 }

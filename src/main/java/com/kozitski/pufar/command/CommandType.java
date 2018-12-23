@@ -16,6 +16,10 @@ import com.kozitski.pufar.command.impl.error.ErrorCommand;
 import com.kozitski.pufar.command.impl.locale.SetEnLocaleCommand;
 import com.kozitski.pufar.command.impl.locale.SetRuLocaleCommand;
 import com.kozitski.pufar.command.impl.notification.*;
+import com.kozitski.pufar.command.impl.notification.additional.PutMarkCommand;
+import com.kozitski.pufar.command.impl.notification.additional.SentCommentCommand;
+import com.kozitski.pufar.command.impl.notification.additional.SentMessageToAutorCommand;
+import com.kozitski.pufar.command.impl.notification.additional.ShowAdditionalNotificationCommand;
 
 public enum CommandType {
 
@@ -35,6 +39,9 @@ public enum CommandType {
     SHOW_NOTIFICATION_BY_UNIT_TYPE(new ShowNotificationByUnitTypeCommand()),
     SHOW_ADDITIONAL_NOTIFICATION(new ShowAdditionalNotificationCommand()),
     CHANGE_NOTIFICATION(new ChangeNotificationCommand()),
+    SENT_COMMENT(new SentCommentCommand()),
+    PUT_MARK(new PutMarkCommand()),
+    SENT_MESSAGE_TO_NOTIFICATION_AUTOR(new SentMessageToAutorCommand()),
 
 
     // admin commands
