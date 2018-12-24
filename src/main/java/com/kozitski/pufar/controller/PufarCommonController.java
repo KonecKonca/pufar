@@ -1,6 +1,7 @@
 package com.kozitski.pufar.controller;
 
 import com.kozitski.pufar.command.*;
+import com.kozitski.pufar.util.CommonConstant;
 import com.kozitski.pufar.util.servlet.RequestValueTransformer;
 
 import javax.servlet.ServletException;
@@ -27,6 +28,8 @@ public class PufarCommonController extends HttpServlet {
 
         Router router = command.execute(requestValue);
         RequestValueTransformer.transformTo(request, requestValue);
+
+        request.getSession().setAttribute(CommonConstant.CURRENT_PAGE, router.getPagePath());
 
         if(router.isForward()){
             request.getRequestDispatcher(router.getPagePath()).forward(request, response);

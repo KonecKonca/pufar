@@ -1,14 +1,12 @@
 package com.kozitski.pufar.entity.user;
 
-import com.kozitski.pufar.util.CommonConstant;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Users {
 
     public static User createDefaultUser(){
-        return new User( -666, "\\_/(.)(.)\\_/", "****", null, false, null);
+        return new User( -666, "", "****", null, false, null);
     }
     public static ArrayList<User> createUserArrayList(List<User> list){
 

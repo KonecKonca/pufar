@@ -20,7 +20,7 @@
                 <img src="/imageShow/${lookingNotification.notificationId}" >
 
                 <h6><strong>${locale.getValue("additionalNotificationDescription")}: </strong>${lookingNotification.message}</h6>
-                <h6><strong>${locale.getValue("additionalNotificationDate")}: </strong>${lookingNotification.date}</h6>
+                <h6><strong>${locale.getValue("additionalNotificationDate")}: </strong>${lookingNotification.getStringDate()}</h6>
 
                 <h6><strong>${locale.getValue("additionalNotificationUserName")}: </strong>${ownerUser.login}</h6>
                 <h6><strong>${locale.getValue("additionalNotificationUserNumber")}: </strong>${ownerUser.number}</h6>
@@ -28,9 +28,10 @@
 
                 <c:if test="${currentUser.status != null}">
                     <form action="/pufar" method="post">
-                        <input type="hidden" name="command" value="SENT_MESSAGE_TO_NOTIFICATION_AUTOR">
+                        <input type="hidden" name="command" value="SENT_MESSAGE_TO_NOTIFICATION_AUTHOR">
 
                         <input type="text" class="form-control" placeholder="${locale.getValue("additionalNotificationSentMessage")} ${ownerUser.login}" name="inputMessage"/>
+                        <input type="hidden" value="${lookingNotification.userId}" name="ownerId"/>
                         <input type="submit" value="${locale.getValue("additionalNotificationSentMessage")} ${ownerUser.login}" class="btn btn-info">
                     </form>
                 </c:if>
@@ -90,7 +91,7 @@
                     <h6>${locale.getValue("additionalNotificationComment")}: </h6>
                 </c:if>
                 <c:forEach var="comment" items="${lookingNotification.comments}" >
-                    <h5><i>${comment.date} -${comment.senderLogin}: ${comment.comment}</i><br></h5>
+                    <h5><i>${comment.getStringDate()} -${comment.senderLogin}: ${comment.comment}</i><br></h5>
                 </c:forEach>
 
                 <form action="${context}/jsp/template/template.jsp" method="post">

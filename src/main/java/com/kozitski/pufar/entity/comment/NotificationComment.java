@@ -1,5 +1,8 @@
 package com.kozitski.pufar.entity.comment;
 
+import com.kozitski.pufar.util.CommonConstant;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class NotificationComment {
@@ -35,12 +38,17 @@ public class NotificationComment {
     public void setComment(String comment) {
         this.comment = comment;
     }
-    public Date getDate() {
-        return date;
-    }
     public void setDate(Date date) {
         this.date = date;
     }
+    public Date getDate() {
+        return date;
+    }
+
+    public String getStringDate(){
+        return new SimpleDateFormat(CommonConstant.DATE_TIME_COMMON_PATTERN).format(date);
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -68,7 +76,7 @@ public class NotificationComment {
     @Override
     public String toString() {
         return "Comment: id: " + commentId +  "commentId-" + senderLogin + " senderLogin-" + senderLogin +
-                " comment-" + comment + " date-" + date;
+                " comment-" + comment + " date-" + getStringDate();
     }
 
 }

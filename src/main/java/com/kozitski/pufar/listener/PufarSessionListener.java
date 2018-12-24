@@ -1,5 +1,6 @@
 package com.kozitski.pufar.listener;
 
+import com.kozitski.pufar.command.PagePath;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.UnitType;
 import com.kozitski.pufar.entity.user.User;
@@ -26,6 +27,9 @@ public class PufarSessionListener implements HttpSessionListener {
 
     @Override
     public void sessionCreated(HttpSessionEvent sessionEvent) {
+
+        //  set default page after changing locale
+        sessionEvent.getSession().setAttribute(CommonConstant.CURRENT_PAGE, PagePath.TEMPLATE_PAGE.getJspPath());
 
         // define default user
         User defaultUser = Users.createDefaultUser();

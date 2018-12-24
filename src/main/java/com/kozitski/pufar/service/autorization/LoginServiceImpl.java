@@ -1,8 +1,11 @@
 package com.kozitski.pufar.service.autorization;
 
 
+import com.kozitski.pufar.dao.number.MysqlNumberDao;
+import com.kozitski.pufar.dao.number.NumberDao;
 import com.kozitski.pufar.dao.user.MySQLUserDao;
 import com.kozitski.pufar.dao.user.UserDao;
+import com.kozitski.pufar.entity.number.MobilPhoneNumber;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserStatus;
 import com.kozitski.pufar.util.encoder.PasswordEncoder;
@@ -16,6 +19,7 @@ public class LoginServiceImpl implements LoginService {
     private static Logger LOGGER = LoggerFactory.getLogger(LoginServiceImpl.class);
 
     private UserDao userDao = new MySQLUserDao();
+    private NumberDao numberDao = new MysqlNumberDao();
 
     @Override
     public Optional<User> searchUserByLoginPassword(String login, String password){
@@ -31,6 +35,12 @@ public class LoginServiceImpl implements LoginService {
 
             if(PasswordEncoder.comparePasswordsWithoutEncoding(PasswordEncoder.encode(utf8Password), currentUser.getPassword())){
                 result = Optional.of(currentUser);
+            }
+
+            Optional<MobilPhoneNumber> mobilPhoneNumber = numberDao.searchById(currentUser.getUserId());
+            if(mobilPhoneNumber.isPresent()){
+                MobilPhoneNumber findNumber = mobilPhoneNumber.get();
+                currentUser.setNumber(findNumber);
             }
         }
 

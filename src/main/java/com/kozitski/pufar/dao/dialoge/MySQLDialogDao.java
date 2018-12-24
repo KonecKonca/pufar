@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -26,9 +27,7 @@ public class MySQLDialogDao implements DialogDAO {
             "SELECT u1.login sender_login, u2.login receiver_login, message, date FROM dialoges d " +
                 "LEFT JOIN users u1 ON d.user_sender_id = u1.user_id " +
                 "LEFT JOIN users u2 ON d.user_receiver_id = u2.user_id WHERE d.user_sender_id = ? AND d.user_receiver_id = ? " +
-
-            "UNION " +
-
+                    "UNION " +
             "SELECT u3.login sender_login, u4.login receiver_login, message, date FROM dialoges d " +
                 "LEFT JOIN users u3 ON d.user_sender_id = u3.user_id " +
                 "LEFT JOIN users u4 ON d.user_receiver_id = u4.user_id WHERE d.user_sender_id = ? AND d.user_receiver_id = ? " +
@@ -38,9 +37,7 @@ public class MySQLDialogDao implements DialogDAO {
             "SELECT u1.login sender_login, u2.login receiver_login, message, date FROM dialoges d " +
                 "LEFT JOIN users u1 ON d.user_sender_id = u1.user_id " +
                 "LEFT JOIN users u2 ON d.user_receiver_id = u2.user_id WHERE d.user_sender_id = ? AND d.user_receiver_id = ? " +
-
-            "UNION " +
-
+                    "UNION " +
             "SELECT u3.login sender_login, u4.login receiver_login, message, date FROM dialoges d " +
                 "LEFT JOIN users u3 ON d.user_sender_id = u3.user_id " +
                 "LEFT JOIN users u4 ON d.user_receiver_id = u4.user_id WHERE d.user_sender_id = ? AND d.user_receiver_id = ? " +
@@ -50,7 +47,7 @@ public class MySQLDialogDao implements DialogDAO {
     private static final String SEARCH_POPULAR_USER_SQL =
             "(SELECT u.user_id, u.login, u.password, u.status, u.ban_status isBanned FROM users u " +
                 "INNER JOIN dialoges d1 ON u.user_id = d1.user_receiver_id WHERE d1.user_sender_id = ? GROUP BY u.login ORDER BY d1.date) " +
-            "UNION " +
+                    "UNION " +
             "(SELECT u2.user_id, u2.login, u2.password, u2.status, u2.ban_status isBanned FROM users u2 " +
                 "INNER JOIN dialoges d2 ON u2.user_id = d2.user_sender_id WHERE d2.user_receiver_id = ? GROUP BY u2.login ORDER BY d2.date) LIMIT ?";
     private static final String ADD_MESSAGE = "INSERT INTO dialoges values(null, ?, ?, ?, ?)";
@@ -147,21 +144,22 @@ public class MySQLDialogDao implements DialogDAO {
     }
 
     @Override
-    public void addMessage(long senderId, long receiverId, String message) {
+    public void addMessage(long senderId, long receiverId, String message) throws PufarDAOException{
 
         try(Connection connection = PoolConnection.getInstance().getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(ADD_MESSAGE);
+            PreparedStatement insertStatement = connection.prepareStatement(ADD_MESSAGE);
 
-            preparedStatement.setLong(1, senderId);
-            preparedStatement.setLong(2, receiverId);
-            preparedStatement.setString(3, message);
-            preparedStatement.setLong(4, System.currentTimeMillis());
+            insertStatement.setLong(1, senderId);
+            insertStatement.setLong(2, receiverId);
+            insertStatement.setString(3, message);
+            long currentTime = System.currentTimeMillis();
+            insertStatement.setLong(4, currentTime);
 
-            preparedStatement.executeUpdate();
+            insertStatement.executeUpdate();
 
         }
         catch (SQLException e){
-            LOGGER.warn("Message wan't added", e);
+            throw new PufarDAOException(e);
         }
 
     }

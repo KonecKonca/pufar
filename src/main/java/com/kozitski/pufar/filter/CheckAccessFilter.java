@@ -22,7 +22,8 @@ public class CheckAccessFilter implements Filter {
     private static Set<String> adminPages = new HashSet<>(Arrays.asList(PagePath.ADMIN_CONTROL_PANEL.getJspPath(), PagePath.ADMIN_ERROR_PAGE.getJspPath(),
             PagePath.ADMIN_SEARCH_NOTIFICATION.getJspPath(), PagePath.ADMIN_SEARCH_USER.getJspPath()));
     private static Set<String> notLoginPages = new HashSet<>(Arrays.asList(PagePath.PUFAR_INDEX.getJspPath(), PagePath.PUFAR_CONTROLLER.getJspPath(),
-            PagePath.INDEX_PAGE.getJspPath(), PagePath.LOGIN_PAGE.getJspPath(), PagePath.TEMPLATE_PAGE.getJspPath(), PagePath.NOTIFICATION_ADDITIONAL.getJspPath()));
+            PagePath.INDEX_PAGE.getJspPath(), PagePath.LOGIN_PAGE.getJspPath(), PagePath.TEMPLATE_PAGE.getJspPath(),
+            PagePath.NOTIFICATION_ADDITIONAL.getJspPath()));
     private static Set<String> allExistPages;
     static {
         PagePath[] paths = PagePath.values();
@@ -46,7 +47,7 @@ public class CheckAccessFilter implements Filter {
                 (currentUser.getStatus().equals(UserStatus.ADMIN) || currentUser.getStatus().equals(UserStatus.SUPER_ADMIN))){
             filterChain.doFilter(req, resp);
         }
-        else if(allExistPages.contains(path) && notLoginPages.contains(path) && !adminPages.contains(path)
+        else if(allExistPages.contains(path) && !adminPages.contains(path)
                 && currentUser!= null && currentUser.getStatus()!=null){
             filterChain.doFilter(req, resp);
         }

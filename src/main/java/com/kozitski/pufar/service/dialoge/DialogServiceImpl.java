@@ -6,13 +6,18 @@ import com.kozitski.pufar.dao.dialoge.MySQLDialogDao;
 import com.kozitski.pufar.entity.message.UserMessage;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.Users;
+import com.kozitski.pufar.exception.PufarDAOException;
 import com.kozitski.pufar.util.CommonConstant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DialogServiceImpl implements DialogService {
+    private static Logger LOGGER = LoggerFactory.getLogger(DialogServiceImpl.class);
+
     private DialogDAO dialogDAO = new MySQLDialogDao();
 
     @Override
@@ -38,7 +43,12 @@ public class DialogServiceImpl implements DialogService {
     }
     @Override
     public void addMessage(long senderId, long receiverId, String message) {
-        dialogDAO.addMessage(senderId, receiverId, message);
+        try {
+            dialogDAO.addMessage(senderId, receiverId, message);
+        }
+        catch (PufarDAOException e) {
+            LOGGER.warn("Message was not added", e);
+        }
     }
 
     @Override
@@ -152,7 +162,6 @@ public class DialogServiceImpl implements DialogService {
         requestValue.servletSessionPut(CommonConstant.TOP_USERS, users);
         requestValue.servletSessionPut(CommonConstant.LAST_MESSAGES, lastMessagesWithTopUser);
     }
-
     @Override
     public void chooseDialogWithUser(RequestValue requestValue){
 

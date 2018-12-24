@@ -25,7 +25,6 @@ public interface DialogService {
     void showDialogs(RequestValue requestValue);
     void showNextDialogs(RequestValue requestValue);
     void showPreviousDialogs(RequestValue requestValue);
-
     void chooseDialogWithUser(RequestValue requestValue);
 
 

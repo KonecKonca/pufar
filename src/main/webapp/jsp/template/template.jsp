@@ -32,9 +32,19 @@
             <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
                 <span class="navbar-toggler-icon leftmenutrigger"></span>
 
-                <c:if test="${currentUser.status != null}">
-                    <a class="navbar-brand" href="#"> ${currentUser.login} </a>
-                </c:if>
+                <c:choose>
+                    <c:when test="${currentUser.status != null}">
+                        <form action="/pufar" method="post">
+                            <input type="hidden" name="command" value="OPEN_PROFILE_PAGE">
+
+                            <input type="submit" value="${currentUser.login}" class="btn btn-outline-info">
+                        </form>
+                    </c:when>
+
+                    <c:otherwise>
+                        <a class="navbar-brand" href="${context}/jsp/login/login.jsp"> ${locale.getValue("commonWelcomePhrase")} </a>
+                    </c:otherwise>
+                </c:choose>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -196,13 +206,13 @@
                             <div class="card-body">
 
                                 <h5 class="card-title">${notification.unit}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">${notification.price}</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">${locale.getValue("additionalNotificationPrice")}: ${notification.price}</h6>
 
                                 <img src="/imageShow/${notification.notificationId}" >
 
                                 <p class="card-text">${notification.message}</p>
-                                <p class="card-text">${notification.date}</p>
-                                <p class="card-text">${notification.rate}</p>
+                                <p class="card-text">${notification.getStringDate()}</p>
+                                <p class="card-text">${locale.getValue("additionalNotificationRate")}: ${notification.rate}</p>
 
                                 <form action="/pufar" method="post">
                                     <input type="hidden" name="command" value="SHOW_ADDITIONAL_NOTIFICATION">

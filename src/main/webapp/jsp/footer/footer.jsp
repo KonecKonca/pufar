@@ -64,13 +64,13 @@
                             <%--<p><a class="scroll-link" href="#top-content">Top</a></p>--%>
                             <p><a class="scroll-link" href="#section-1">${locale.getValue("footerAdditionalLink")}</a></p>
 
-                            <form action="/pufar" method="post" id="loginForm">
-                                <input type="hidden" value="CHANGE_LOCALE_RU" name="command">
+                            <form action="/locale" method="post" id="loginForm">
+                                <input type="hidden" value="CHANGE_LOCALE_RU" name="localeType">
 
                                 <input type="submit" value="ru" class="btn btn-outline-success"/>
                             </form>
-                            <form action="/pufar" method="post" id="loginForm">
-                                <input type="hidden" value="CHANGE_LOCALE_EN" name="command">
+                            <form action="/locale" method="post" id="loginForm">
+                                <input type="hidden" value="CHANGE_LOCALE_EN" name="localeType">
 
                                 <input type="submit" value="en" class="btn btn-outline-success"/>
                             </form>

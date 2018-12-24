@@ -2,6 +2,9 @@ package com.kozitski.pufar.util;
 
 public class CommonConstant {
 
+    public static final String DATE_TIME_COMMON_PATTERN = "d.MM.yyyy HH:mm:ss";
+    public static final String CURRENT_PAGE = "currentPage";
+
     // servlet attributes
     public static final String DEFAULT_IMAGE_PATH = "/image/notificationDefault.png";
     public static final String CURRENT_NOTIFICATION_IMAGE_PATH = "notificationImagePath";
@@ -25,6 +28,7 @@ public class CommonConstant {
     public static final String NOTIFICATIONS_CURSOR = "notificationsCursor";
     public static final String NOTIFICATIONS_LAST_UNIT = "notificationsLastUnit";
     public static final int HOW_MUCH_NOTIFICATIONS = 6;
+    public static final String CURRENT_USER_NOTIFICATION = "currentUserNotification";
 
     // admin
     public static final String ADMIN_INPUT_MESSAGE = "adminInputMessage";

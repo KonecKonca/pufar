@@ -4,6 +4,6 @@ import java.awt.image.BufferedImage;
 
 public interface Imagenable {
 
-    public BufferedImage getImage();
+    BufferedImage getImage();
 
 }

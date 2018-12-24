@@ -13,13 +13,12 @@ import com.kozitski.pufar.command.impl.autorization.LoginCommand;
 import com.kozitski.pufar.command.impl.autorization.RegistrationCommand;
 import com.kozitski.pufar.command.impl.dialog.*;
 import com.kozitski.pufar.command.impl.error.ErrorCommand;
-import com.kozitski.pufar.command.impl.locale.SetEnLocaleCommand;
-import com.kozitski.pufar.command.impl.locale.SetRuLocaleCommand;
 import com.kozitski.pufar.command.impl.notification.*;
 import com.kozitski.pufar.command.impl.notification.additional.PutMarkCommand;
 import com.kozitski.pufar.command.impl.notification.additional.SentCommentCommand;
-import com.kozitski.pufar.command.impl.notification.additional.SentMessageToAutorCommand;
+import com.kozitski.pufar.command.impl.notification.additional.SentMessageToAuthorCommand;
 import com.kozitski.pufar.command.impl.notification.additional.ShowAdditionalNotificationCommand;
+import com.kozitski.pufar.command.impl.profile.OpenProfilePageCommand;
 
 public enum CommandType {
 
@@ -27,8 +26,6 @@ public enum CommandType {
     GET_CONTACT(new GetContactCommand()),
     LOGIN(new LoginCommand()),
     ERROR(new ErrorCommand()),
-    CHANGE_LOCALE_RU(new SetRuLocaleCommand()),
-    CHANGE_LOCALE_EN(new SetEnLocaleCommand()),
     REGISTRATION(new RegistrationCommand()),
     MESSAGE_NEXT(new NextMessageCommand()),
     MESSAGE_PREVIOUS(new PreviousMessageCommand()),
@@ -41,8 +38,10 @@ public enum CommandType {
     CHANGE_NOTIFICATION(new ChangeNotificationCommand()),
     SENT_COMMENT(new SentCommentCommand()),
     PUT_MARK(new PutMarkCommand()),
-    SENT_MESSAGE_TO_NOTIFICATION_AUTOR(new SentMessageToAutorCommand()),
+    SENT_MESSAGE_TO_NOTIFICATION_AUTHOR(new SentMessageToAuthorCommand()),
 
+    // profile page
+    OPEN_PROFILE_PAGE(new OpenProfilePageCommand()),
 
     // admin commands
         // define inputPage

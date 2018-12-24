@@ -2,10 +2,12 @@ package com.kozitski.pufar.entity.notification;
 
 import com.kozitski.pufar.entity.Imagenable;
 import com.kozitski.pufar.entity.comment.NotificationComment;
+import com.kozitski.pufar.util.CommonConstant;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -92,10 +94,14 @@ public class Notification implements Imagenable {
         comments.add(0, comment);
     }
 
+    public String getStringDate(){
+        return new SimpleDateFormat(CommonConstant.DATE_TIME_COMMON_PATTERN).format(date);
+    }
+
     @Override
     public String toString() {
         return "Notification: Id-" + notificationId +  " message-" + message + " price-" + price + " unit-" + unit +
-                " userId-" + userId + " date-" + date + " rate-" + rate + "|| COMMENTS: " + comments;
+                " userId-" + userId + " date-" + getStringDate() + " rate-" + rate + "|| COMMENTS: " + comments;
     }
 
 }

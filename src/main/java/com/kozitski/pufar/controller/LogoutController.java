@@ -2,6 +2,7 @@ package com.kozitski.pufar.controller;
 
 import com.kozitski.pufar.command.PagePath;
 import com.kozitski.pufar.command.impl.autorization.RegistrationCommand;
+import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +26,8 @@ public class LogoutController extends HttpServlet {
             session.invalidate();
             LOGGER.info("Session was invalidated");
         }
+
+        request.getSession().setAttribute(CommonConstant.CURRENT_PAGE, PagePath.LOGIN_PAGE.getJspPath());
 
         response.sendRedirect(PagePath.LOGIN_PAGE.getJspPath());
     }

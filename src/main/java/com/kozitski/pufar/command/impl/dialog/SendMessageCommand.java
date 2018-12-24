@@ -8,7 +8,6 @@ import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.service.dialoge.DialogService;
 import com.kozitski.pufar.service.dialoge.DialogServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
-import com.kozitski.pufar.validation.validator.CommentValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
