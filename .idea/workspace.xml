@@ -7,9 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a33205b4-1dbf-4b0e-ae85-adb6d00845a0" name="Default Changelist" comment="start profile page">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log.loggInfo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/applicationLog" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -76,7 +75,8 @@
           <entry key="css" value="10" />
           <entry key="dialoges" value="1" />
           <entry key="gif" value="1" />
-          <entry key="gitignore" value="3" />
+          <entry key="gitignore" value="5" />
+          <entry key="iml" value="1" />
           <entry key="java" value="408" />
           <entry key="jsp" value="67" />
           <entry key="md" value="1" />
@@ -90,27 +90,28 @@
           <entry key="txt" value="2" />
           <entry key="units" value="9" />
           <entry key="users" value="19" />
-          <entry key="xml" value="2" />
+          <entry key="xml" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="10" />
           <entry key="Database Element" value="104" />
+          <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="4" />
           <entry key="JAVA" value="408" />
           <entry key="JSP" value="67" />
           <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="5" />
+          <entry key="PLAIN_TEXT" value="7" />
           <entry key="Properties" value="39" />
-          <entry key="XML" value="3" />
+          <entry key="XML" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="cell" value="234" />
           <entry key="css" value="83" />
-          <entry key="gitignore" value="11" />
+          <entry key="gitignore" value="13" />
           <entry key="java" value="14309" />
           <entry key="jsp" value="1478" />
           <entry key="properties" value="1857" />
@@ -123,7 +124,7 @@
           <entry key="CSS" value="83" />
           <entry key="JAVA" value="14306" />
           <entry key="JSP" value="1478" />
-          <entry key="PLAIN_TEXT" value="398" />
+          <entry key="PLAIN_TEXT" value="400" />
           <entry key="Properties" value="1857" />
           <entry key="SQL" value="26" />
           <entry key="Scratch" value="234" />
@@ -298,8 +299,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/service/notification/NotificationServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/command/impl/profile/OpenProfilePageCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/listener/PufarSessionListener.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/command/impl/profile/DropMyselfNotificationCommand.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -333,8 +334,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="254" />
-    <option name="y" value="-26" />
+    <option name="x" value="9" />
+    <option name="y" value="-8" />
     <option name="width" value="1456" />
     <option name="height" value="916" />
   </component>
@@ -388,7 +389,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545743055639" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545743835571" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../javaProjects/labs/TIIT 2 sem/all last/расчётка" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
@@ -698,7 +699,7 @@
       <workItem from="1545478914161" duration="28838000" />
       <workItem from="1545558919695" duration="25391000" />
       <workItem from="1545653589043" duration="19879000" />
-      <workItem from="1545731579837" duration="7883000" />
+      <workItem from="1545731579837" duration="8664000" />
     </task>
     <task id="LOCAL-00001" summary="adminPanel before LONg data">
       <created>1545405367654</created>
@@ -763,12 +764,12 @@
       <option name="project" value="LOCAL" />
       <updated>1545741942502</updated>
     </task>
-    <task id="LOCAL-00010" summary="adminPanel before LONg data">
-      <created>1545388563093</created>
+    <task id="LOCAL-00010" summary="start profile page">
+      <created>1545743076793</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1545388563093</updated>
+      <updated>1545743076793</updated>
     </task>
     <task id="LOCAL-00011" summary="chat view start change">
       <created>1541704880064</created>
@@ -917,16 +918,16 @@
       <option name="project" value="LOCAL" />
       <updated>1544225343682</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110228000" />
+    <option name="totallyTimeSpent" value="111009000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17590618" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17590618" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -947,7 +948,7 @@
       <window_info anchor="bottom" id="Messages" order="10" weight="0.10822511" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.32900432" />
       <window_info anchor="bottom" id="Database Changes" order="12" weight="0.6482684" />
-      <window_info anchor="bottom" id="Version Control" order="13" visible="true" weight="0.42857143" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="13" visible="true" weight="0.241342" />
       <window_info anchor="bottom" id="Database Console" order="14" weight="0.3225108" />
       <window_info anchor="bottom" id="Statistic" order="15" weight="0.6731602" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -1054,14 +1055,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/controller/image/FileUploadingServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/command/impl/locale/SetEnLocaleCommand.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/controller/locale/SetEnLocaleController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1450,6 +1443,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/service/notification/NotificationServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1470,18 +1471,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/finalTask.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="6" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        <state relative-caret-position="119">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
