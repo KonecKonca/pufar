@@ -28,4 +28,6 @@ public interface NotificationDao extends PufarDao<Notification, NotificationPara
     long addComment(String comment, long senderId, long notificationId) throws PufarDAOException;
     double putMark(int mark, long senderId, long notificationId) throws PufarDAOException;
 
+    ArrayList<Notification> searchAllNotificationsByAuthorId(long authorIdw);
+
 }

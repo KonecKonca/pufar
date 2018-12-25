@@ -60,6 +60,11 @@ public class NotificationServiceImpl implements NotificationService {
         return result;
     }
     @Override
+    public boolean dropMyselfNotificationById(long notificationId){
+        return notificationDao.dropNotificationById(notificationId);
+    }
+
+    @Override
     public boolean changeNotificationMessage(long notificationId,String newMessage, User currentUser) {
         boolean result = false;
 
@@ -139,6 +144,11 @@ public class NotificationServiceImpl implements NotificationService {
         catch (PufarDAOException e) {
             LOGGER.warn("Mark wasn't put", e);
         }
+    }
+
+    @Override
+    public ArrayList<Notification> searchAllNotificationsByAuthorId(long authorIdw){
+        return notificationDao.searchAllNotificationsByAuthorId(authorIdw);
     }
 
 }

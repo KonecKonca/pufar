@@ -21,6 +21,8 @@ public interface NotificationService {
     ArrayList<NotificationComment> searchCommentByNotificationId(long notificationId);
     boolean dropCommentById(long commentId, User currentUser);
     boolean dropNotificationById(long notificationId, User currentUser);
+    boolean dropMyselfNotificationById(long notificationId);
+
     boolean changeNotificationMessage(long notificationId, String newMessage, User currentUser);
     @AspectValid
     void addNotification(@NotificationValid(minRate = 0, stringPattern = ".*") Notification notification) throws PufarServiceException;
@@ -30,5 +32,7 @@ public interface NotificationService {
     long sentComment(@StringValid String comment, long senderId, long notificationId) throws PufarServiceException;
     @AspectValid
     void putMark(RequestValue requestValue, @IntValid(minValue = 1, maxValue = 5) int mark, long senderId, long notificationId);
+
+    ArrayList<Notification> searchAllNotificationsByAuthorId(long authorIdw);
 
 }

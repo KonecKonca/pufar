@@ -18,6 +18,7 @@ import com.kozitski.pufar.command.impl.notification.additional.PutMarkCommand;
 import com.kozitski.pufar.command.impl.notification.additional.SentCommentCommand;
 import com.kozitski.pufar.command.impl.notification.additional.SentMessageToAuthorCommand;
 import com.kozitski.pufar.command.impl.notification.additional.ShowAdditionalNotificationCommand;
+import com.kozitski.pufar.command.impl.profile.DropMyselfNotificationCommand;
 import com.kozitski.pufar.command.impl.profile.OpenProfilePageCommand;
 
 public enum CommandType {
@@ -42,6 +43,7 @@ public enum CommandType {
 
     // profile page
     OPEN_PROFILE_PAGE(new OpenProfilePageCommand()),
+    DROP_MYSELF_NOTIFICATION(new DropMyselfNotificationCommand()),
 
     // admin commands
         // define inputPage

@@ -56,7 +56,7 @@
                     <h3>
                         <i>${status.count}) ${notification.unit} | ${notification.price} | ${notification.message}</i>
                         <form action="/pufar" method="post">
-                            <input type="hidden" name="command" value="XXXXXXxxXXXX">
+                            <input type="hidden" name="command" value="DROP_MYSELF_NOTIFICATION">
 
                             <input type="hidden" name="notificationId" value="${notification.notificationId}">
                             <input type="submit" value="${locale.getValue("profileDeleteNotification")}" class="btn btn-outline-success">

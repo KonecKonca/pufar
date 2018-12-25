@@ -93,6 +93,15 @@ public class NotificationDaoImpl implements NotificationDao {
                 "GROUP BY notification_id";
     private static final String RATE = "rate";
 
+    private static final String SEARCH_ALL_NOTIFICATIONS_BY_AUTHOR_ID =
+            "SELECT n.notification_id, n.message, un.name, n.price, u.user_id, n.date, n.content, AVG(r.mark) mark FROM notifications n " +
+                    "LEFT JOIN units un ON n.unit_id=un.unit_id " +
+                    "LEFT JOIN users u ON n.user_id=u.user_id " +
+                    "LEFT JOIN rates r ON n.notification_id=r.notification_id " +
+                        "WHERE u.user_id=? " +
+                    "GROUP BY r.notification_id " +
+                    "ORDER BY n.date DESC " +
+                    "LIMIT 50";
 
     @Override
     public Optional<Notification> searchById(long id) {
@@ -462,6 +471,20 @@ public class NotificationDaoImpl implements NotificationDao {
         }
 
         return result;
+    }
+
+    @Override
+    public ArrayList<Notification> searchAllNotificationsByAuthorId(long authorIdw){
+        try(Connection connection = PoolConnection.getInstance().getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_ALL_NOTIFICATIONS_BY_AUTHOR_ID);
+            preparedStatement.setLong(1, authorIdw);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            return NotificationMapper.mapNotification(resultSet);
+        }
+        catch (SQLException e) {
+            return new ArrayList<>();
+        }
     }
 
 }
