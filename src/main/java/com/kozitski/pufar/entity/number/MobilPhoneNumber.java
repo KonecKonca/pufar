@@ -1,7 +1,9 @@
 package com.kozitski.pufar.entity.number;
 
 public class MobilPhoneNumber {
-    private long MobilPhoneNumberId;
+    public static final String BELARUS_CODE = "+375";
+
+    private long mobilPhoneNumberId;
     private String country;
     private String operator;
     private String number;
@@ -9,17 +11,17 @@ public class MobilPhoneNumber {
     public MobilPhoneNumber() {
     }
     public MobilPhoneNumber(long mobilPhoneNumberId, String country, String operator, String number) {
-        MobilPhoneNumberId = mobilPhoneNumberId;
+        this.mobilPhoneNumberId = mobilPhoneNumberId;
         this.country = country;
         this.operator = operator;
         this.number = number;
     }
 
     public long getMobilPhoneNumberId() {
-        return MobilPhoneNumberId;
+        return mobilPhoneNumberId;
     }
     public void setMobilPhoneNumberId(long mobilPhoneNumberId) {
-        MobilPhoneNumberId = mobilPhoneNumberId;
+        this.mobilPhoneNumberId = mobilPhoneNumberId;
     }
     public String getCountry() {
         return country;

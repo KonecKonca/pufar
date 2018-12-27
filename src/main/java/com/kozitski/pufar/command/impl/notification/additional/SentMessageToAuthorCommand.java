@@ -50,9 +50,21 @@ public class SentMessageToAuthorCommand extends AbstractCommand {
                 LOGGER.warn("Input message incorrect diu to validation parameters", e);
             }
 
+
+        // HERE INCREASE NullPointer (in case with sent message to new notification)
+        // Для новых юзеров(с которыми ещё нет сообщений) не проходит транзакция и крутит колесо (Transaction timeout)
+
             ArrayList<User> users = (ArrayList<User>) requestValue.getAttribute(CommonConstant.TOP_USERS);
-            users.add(0, currentOpponent);
             requestValue.servletSessionPut(CommonConstant.CURRENT_OPPONENT, currentOpponent);
+            if(users != null){
+                users.add(0, currentOpponent);
+            }
+            else {
+                ArrayList<User> newUsers = new ArrayList<>();
+                newUsers.add(currentOpponent);
+                requestValue.servletSessionPut(CommonConstant.TOP_USERS, newUsers);
+            }
+
 
             dialogService.showDialogs(requestValue);
         }

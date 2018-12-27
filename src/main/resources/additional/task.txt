@@ -7,7 +7,7 @@
 + 5) add page with Notification add [rate & comments]
     6) introduce DI to services
     7) create UserInfo page (data about login user with abilities to change mobile phone ... )
-
+    8) Validation lid to normal condition
 
 # ADDITIONAL
 + 1) forward from footer on template Page
@@ -19,3 +19,8 @@
 + 7) change user status (admin panel) -> make sticky note
 + 8) data|time save how long
     9) change date int toString(all entities with data)
+
+
+
+    SOME INFORMATION:
+http://qaru.site/questions/35253/closing-database-connections-in-java  -- закрытие соединеия с базой

@@ -28,6 +28,7 @@ public class ShowAdditionalNotificationCommand extends AbstractCommand {
         router.setPagePath(PagePath.NOTIFICATION_ADDITIONAL.getJspPath());
 
         long notificationId = Long.parseLong((String) request.getAttribute(GOT_NOTIFICATION));
+
         Notification notification = null;
         for(Notification notif : (ArrayList<Notification>) request.getAttribute(CommonConstant.CURRENT_NOTIFICATIONS)){
             if(notif.getNotificationId() == notificationId){

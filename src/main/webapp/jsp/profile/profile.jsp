@@ -23,7 +23,8 @@
 
                 <h3><strong> ${locale.getValue("profileMobilePhone")}: </strong>${currentUser.number}</h3>
                 <form action="/pufar" method="post">
-                    <input type="hidden" name="command" value="XXXXXXxxXXXX">
+                    <input type="hidden" name="command" value="CHANGE_MOBILE_PHONE">
+                    <input type="hidden" name="isNumberExist" value="${currentUser.number}">
 
                     <input type="submit" value="${locale.getValue("profileMobilePhoneChange")}" class="btn btn-success">
 

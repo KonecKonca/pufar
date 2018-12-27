@@ -8,6 +8,7 @@ import com.kozitski.pufar.entity.comment.NotificationComment;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.NotificationParameter;
 import com.kozitski.pufar.entity.notification.UnitType;
+import com.kozitski.pufar.entity.number.MobilPhoneNumber;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserStatus;
 import com.kozitski.pufar.exception.PufarDAOException;
@@ -104,7 +105,6 @@ public class NotificationServiceImpl implements NotificationService {
             }
 
             long notificationsNumber = notificationDao.searchNotificationsByUnitNumber(unitType);
-            System.out.println("                " +notificationsNumber);
             cursor.setMaxCursorValue((int) notificationsNumber);
 
             int limitStartRange = cursor.setCursor(unitType, character);
@@ -145,10 +145,11 @@ public class NotificationServiceImpl implements NotificationService {
             LOGGER.warn("Mark wasn't put", e);
         }
     }
-
     @Override
     public ArrayList<Notification> searchAllNotificationsByAuthorId(long authorIdw){
         return notificationDao.searchAllNotificationsByAuthorId(authorIdw);
     }
+
+
 
 }

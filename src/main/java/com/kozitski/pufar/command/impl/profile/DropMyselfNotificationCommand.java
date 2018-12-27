@@ -28,11 +28,12 @@ public class DropMyselfNotificationCommand extends AbstractCommand {
 
         notificationService.dropMyselfNotificationById(notificationId);
 
-        // drop notification in session e  eeee
+        // drop notification in session
         ArrayList<Notification> notifications = (ArrayList<Notification>) request.getAttribute(CommonConstant.CURRENT_USER_NOTIFICATION);
-        notifications.removeIf( n -> n.getNotificationId() == notificationId);
+        notifications.removeIf(n -> n.getNotificationId() == notificationId);
 
         return router;
     }
+
 
 }

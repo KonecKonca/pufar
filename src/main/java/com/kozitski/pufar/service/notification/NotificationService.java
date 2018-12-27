@@ -5,6 +5,7 @@ import com.kozitski.pufar.entity.comment.NotificationComment;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.NotificationParameter;
 import com.kozitski.pufar.entity.notification.UnitType;
+import com.kozitski.pufar.entity.number.MobilPhoneNumber;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.exception.PufarServiceException;
 import com.kozitski.pufar.validation.annotation.AspectValid;
@@ -32,7 +33,9 @@ public interface NotificationService {
     long sentComment(@StringValid String comment, long senderId, long notificationId) throws PufarServiceException;
     @AspectValid
     void putMark(RequestValue requestValue, @IntValid(minValue = 1, maxValue = 5) int mark, long senderId, long notificationId);
-
     ArrayList<Notification> searchAllNotificationsByAuthorId(long authorIdw);
+
+
+
 
 }
