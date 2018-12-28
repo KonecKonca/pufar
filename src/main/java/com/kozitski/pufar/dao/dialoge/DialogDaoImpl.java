@@ -6,19 +6,15 @@ import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.exception.PufarDAOException;
 import com.kozitski.pufar.util.mapper.dialog.DialogMapper;
 import com.kozitski.pufar.util.mapper.user.UserMapper;
-import com.kozitski.pufar.validation.validator.CommentValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
-public class MySQLDialogDao implements DialogDAO {
-    private static Logger LOGGER = LoggerFactory.getLogger(MySQLDialogDao.class);
+public class DialogDaoImpl implements DialogDAO {
+    private static Logger LOGGER = LoggerFactory.getLogger(DialogDaoImpl.class);
 
     private static final String SEARCH_MESSAGE_FROM_TO_SQL =
             "SELECT u1.login sender_login, u2.login receiver_login, message, date FROM dialoges d LEFT JOIN users u1 ON d.user_sender_id = u1.user_id " +

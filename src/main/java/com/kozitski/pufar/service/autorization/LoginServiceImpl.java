@@ -1,13 +1,14 @@
 package com.kozitski.pufar.service.autorization;
 
 
-import com.kozitski.pufar.dao.number.MysqlNumberDao;
+import com.kozitski.pufar.dao.number.NumberDaoImpl;
 import com.kozitski.pufar.dao.number.NumberDao;
-import com.kozitski.pufar.dao.user.MySQLUserDao;
+import com.kozitski.pufar.dao.user.UserDaoImpl;
 import com.kozitski.pufar.dao.user.UserDao;
 import com.kozitski.pufar.entity.number.MobilPhoneNumber;
 import com.kozitski.pufar.entity.user.User;
-import com.kozitski.pufar.entity.user.UserStatus;
+import com.kozitski.pufar.service.AbstractService;
+import com.kozitski.pufar.service.InjectDao;
 import com.kozitski.pufar.util.encoder.PasswordEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,11 +16,13 @@ import org.slf4j.LoggerFactory;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
-public class LoginServiceImpl implements LoginService {
+public class LoginServiceImpl extends AbstractService implements LoginService {
     private static Logger LOGGER = LoggerFactory.getLogger(LoginServiceImpl.class);
 
-    private UserDao userDao = new MySQLUserDao();
-    private NumberDao numberDao = new MysqlNumberDao();
+    @InjectDao
+    private UserDao userDao;
+    @InjectDao
+    private NumberDao numberDao;
 
     @Override
     public Optional<User> searchUserByLoginPassword(String login, String password){

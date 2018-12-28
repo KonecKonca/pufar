@@ -1,9 +1,6 @@
 package com.kozitski.pufar.command.impl.autorization;
 
-import com.kozitski.pufar.command.AbstractCommand;
-import com.kozitski.pufar.command.PagePath;
-import com.kozitski.pufar.command.RequestValue;
-import com.kozitski.pufar.command.Router;
+import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.service.autorization.LoginService;
 import com.kozitski.pufar.service.autorization.LoginServiceImpl;
@@ -21,7 +18,8 @@ public class LoginCommand extends AbstractCommand {
     private static final String LOGIN = "login";
     private static final String PASSWORD = "password";
 
-    private LoginService loginService = new LoginServiceImpl();
+    @InjectService
+    private LoginService loginService;
 
     @Override
     public Router execute(RequestValue request){

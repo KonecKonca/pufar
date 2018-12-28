@@ -34,4 +34,8 @@ public class CommonConstant {
     public static final String ADMIN_INPUT_MESSAGE = "adminInputMessage";
     public static final String ADMIN_INPUT_RESULT = "adminInputResult";
 
+    // profile
+    public static final String CHANGE_PASSWORD_MESSAGE = "changePasswordMessage";
+
+
 }

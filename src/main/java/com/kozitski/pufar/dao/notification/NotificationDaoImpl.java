@@ -15,7 +15,9 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 public class NotificationDaoImpl implements NotificationDao {
     private static final String SEARCH_TOP_NOTIFICATIONS_SQL =
@@ -37,7 +39,7 @@ public class NotificationDaoImpl implements NotificationDao {
 
     private static final String SEARCH_WITH_PARAMETERS_SQL_ID = "n.notification_id=?";
     private static final String SEARCH_WITH_PARAMETERS_SQL_SENDER_ID = "u.user_id=?";
-    private static final String SEARCH_WITH_PARAMETERS_SQL_PASSED_TIME = "n.date>=DATE_ADD(NOW(), INTERVAL -? HOUR)";
+    private static final String SEARCH_WITH_PARAMETERS_SQL_PASSED_TIME = "n.date>=?";
     private static final String SEARCH_WITH_PARAMETERS_UNIT = "un.name=?";
 
     private static final String SEARCH_WITH_PARAMETERS_SQL_HIGHER_PRICE = "n.price<=?";
@@ -341,7 +343,7 @@ public class NotificationDaoImpl implements NotificationDao {
             preparedStatement.setLong(counter++, parameters.getSenderId());
         }
         if(parameters.getPassedTime() != null){
-            preparedStatement.setInt(counter++, parameters.getPassedTime());
+            preparedStatement.setLong(counter++, System.currentTimeMillis() - TimeUnit.MILLISECONDS.convert(parameters.getPassedTime(), TimeUnit.HOURS));
         }
         if(parameters.getUnitType() != null){
             preparedStatement.setString(counter++, parameters.getUnitType().name().toLowerCase());

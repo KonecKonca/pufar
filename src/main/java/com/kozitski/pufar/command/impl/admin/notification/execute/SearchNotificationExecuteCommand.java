@@ -29,7 +29,8 @@ public class SearchNotificationExecuteCommand extends AbstractCommand {
     private static final String OK_INPUT_MESSAGE = "were founded next notifications: ";
     private static final String BAD_INPUT_MESSAGE = "Were entered incorrect notifications searching attributes";
 
-    private NotificationService notificationService = new NotificationServiceImpl();
+    @InjectService
+    private NotificationService notificationService;
 
     @Override
     public Router execute(RequestValue request) {
@@ -76,9 +77,9 @@ public class SearchNotificationExecuteCommand extends AbstractCommand {
                 double lowerRate = Double.parseDouble(stringLowerRate);
                 parameters.setLowerRate(lowerRate);
             }
-            String StringHigherRate = (String) request.getAttribute(HIGHER_RATE);
-            if(StringHigherRate != null && !StringHigherRate.isEmpty()){
-                double higherRate = Double.parseDouble(StringHigherRate);
+            String stringHigherRate = (String) request.getAttribute(HIGHER_RATE);
+            if(stringHigherRate != null && !stringHigherRate.isEmpty()){
+                double higherRate = Double.parseDouble(stringHigherRate);
                 parameters.setHigherRate(higherRate);
             }
 

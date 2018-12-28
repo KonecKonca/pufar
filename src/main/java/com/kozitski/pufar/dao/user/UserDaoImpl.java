@@ -14,8 +14,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class MySQLUserDao implements UserDao {
-    private static Logger LOGGER = LoggerFactory.getLogger(MySQLUserDao.class);
+public class UserDaoImpl implements UserDao {
+    private static Logger LOGGER = LoggerFactory.getLogger(UserDaoImpl.class);
 
     private static final int USER_ORDINAL_STATUS_INCREMENT = 1;
 
@@ -38,7 +38,8 @@ public class MySQLUserDao implements UserDao {
     private static final String CHANGE_USER_LOGIN_SQL = "UPDATE users SET login=? WHERE user_id=?";
     private static final String CHANGE_USER_STATUS_SQL = "UPDATE users SET status=? WHERE user_id=?";
 
-    //  need in debug
+    private static final String CHANGE_PASSWORD = "UPDATE users SET password=? WHERE user_id=?";
+
     @Override
     public Optional<User> searchById(long id) {
         Optional<User> user;
@@ -315,6 +316,24 @@ public class MySQLUserDao implements UserDao {
         catch (SQLException | PufarDAOException e) {
             return false;
         }
+    }
+
+    @Override
+    public void changePassword(long userId, String newPassword) throws PufarDAOException {
+
+        try(Connection connection = PoolConnection.getInstance().getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(CHANGE_PASSWORD);
+            preparedStatement.setString(1, newPassword);
+            preparedStatement.setLong(2, userId);
+
+            preparedStatement.executeUpdate();
+
+        }
+
+        catch (SQLException  e) {
+            throw new PufarDAOException(e);
+        }
+
     }
 
 }

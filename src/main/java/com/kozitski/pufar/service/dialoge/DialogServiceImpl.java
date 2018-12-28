@@ -2,23 +2,25 @@ package com.kozitski.pufar.service.dialoge;
 
 import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.dao.dialoge.DialogDAO;
-import com.kozitski.pufar.dao.dialoge.MySQLDialogDao;
+import com.kozitski.pufar.dao.dialoge.DialogDaoImpl;
 import com.kozitski.pufar.entity.message.UserMessage;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.Users;
 import com.kozitski.pufar.exception.PufarDAOException;
+import com.kozitski.pufar.service.AbstractService;
+import com.kozitski.pufar.service.InjectDao;
 import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DialogServiceImpl implements DialogService {
+public class DialogServiceImpl extends AbstractService implements DialogService {
     private static Logger LOGGER = LoggerFactory.getLogger(DialogServiceImpl.class);
 
-    private DialogDAO dialogDAO = new MySQLDialogDao();
+    @InjectDao
+    private DialogDAO dialogDAO;
 
     @Override
     public List<UserMessage> searchAllMessagesFromTo(long fromUserId, long toUserId) {

@@ -35,17 +35,26 @@
 
                 <h3><strong> ${locale.getValue("profileChangePasswordLabel")}: </h3>
                 <form action="/pufar" method="post">
-                    <input type="hidden" name="command" value="XXXXXXxxXXXX">
+                    <input type="hidden" name="command" value="CHANGE_PASSWORD">
 
                     ${locale.getValue("profileOldPassword")}
-                    <input type="text" name="operator" placeholder="${locale.getValue("profileOldPassword")}" size="25" class="form-control-sm"/><br>
+                    <input type="password" name="oldPassword" placeholder="${locale.getValue("profileOldPassword")}" size="25" class="form-control-sm"/><br>
 
                     ${locale.getValue("profileNewPassword")}
-                    <input type="text" name="operator" placeholder="${locale.getValue("profileNewPassword")}" size="25" class="form-control-sm"/><br>
+                    <input type="password" name="newPassword" placeholder="${locale.getValue("profileNewPassword")}" size="25" class="form-control-sm"/><br>
 
                     ${locale.getValue("profileNewPasswordConfirm")}
-                    <input type="text" name="operator" placeholder="${locale.getValue("profileNewPasswordConfirm")}" size="25" class="form-control-sm"/><br>
+                    <input type="password" name="newPasswordConfirm" placeholder="${locale.getValue("profileNewPasswordConfirm")}" size="25" class="form-control-sm"/><br>
 
+                    <c:choose>
+                        <c:when test="${changePasswordMessage == true}">
+                            ${locale.getValue("profilePasswordChanged")}<br>
+                        </c:when>
+
+                        <c:otherwise>
+                            ${locale.getValue("profilePasswordNotChanged")}<br>
+                        </c:otherwise>
+                    </c:choose>
                     <input type="submit" value="${locale.getValue("profileChangePasswordLabel")}" class="btn btn-success">
                 </form>
 

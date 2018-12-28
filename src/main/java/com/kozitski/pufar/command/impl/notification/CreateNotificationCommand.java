@@ -1,9 +1,6 @@
 package com.kozitski.pufar.command.impl.notification;
 
-import com.kozitski.pufar.command.AbstractCommand;
-import com.kozitski.pufar.command.PagePath;
-import com.kozitski.pufar.command.RequestValue;
-import com.kozitski.pufar.command.Router;
+import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.UnitType;
 import com.kozitski.pufar.entity.user.User;
@@ -24,7 +21,6 @@ import java.util.Date;
 
 public class CreateNotificationCommand extends AbstractCommand {
     private static Logger LOGGER = LoggerFactory.getLogger(CreateNotificationCommand.class);
-    private NotificationService notificationService = new NotificationServiceImpl();
 
     private static final String RADIO_BUTTON = "radios";
 
@@ -33,6 +29,9 @@ public class CreateNotificationCommand extends AbstractCommand {
     private static final String RESULT_MESSAGE = "commonAddMessage";
 
     private static final int DEFAULT_VALUE = 666;
+
+    @InjectService
+    private NotificationService notificationService;
 
     @Override
     public Router execute(RequestValue request) {

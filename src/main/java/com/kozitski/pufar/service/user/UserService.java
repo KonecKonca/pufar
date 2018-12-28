@@ -1,9 +1,10 @@
 package com.kozitski.pufar.service.user;
 
-import com.google.common.collect.Lists;
+import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserParameter;
 import com.kozitski.pufar.entity.user.UserStatus;
+import com.kozitski.pufar.exception.PufarDAOException;
 import com.kozitski.pufar.exception.PufarServiceException;
 import com.kozitski.pufar.validation.annotation.AspectValid;
 import com.kozitski.pufar.validation.annotation.primitive.string.StringValid;
@@ -31,5 +32,9 @@ public interface UserService {
     boolean unBanUserById(long id, User currentUser);
     boolean changeUserLogin(long id, String newLogin, User currentUser);
     boolean changeUserStatusByUserId(long id, String newStatus, User currentUser);
+
+    @AspectValid
+    void changePassword(RequestValue requestValue, long userId, @StringValid String oldPassword,
+                        @StringValid String newPassword, @StringValid String newPasswordConfirm) throws PufarServiceException;
 
 }

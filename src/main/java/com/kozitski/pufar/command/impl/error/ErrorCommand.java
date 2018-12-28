@@ -1,15 +1,19 @@
 package com.kozitski.pufar.command.impl.error;
 
 import com.kozitski.pufar.command.AbstractCommand;
+import com.kozitski.pufar.command.InjectService;
 import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.command.Router;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserStatus;
 import com.kozitski.pufar.service.error.ErrorHandleService;
+import com.kozitski.pufar.service.error.ErrorHandleServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
 
 public class ErrorCommand extends AbstractCommand {
-    private ErrorHandleService service = new ErrorHandleService();
+
+    @InjectService
+    private ErrorHandleService service;
 
     @Override
     public Router execute(RequestValue request) {

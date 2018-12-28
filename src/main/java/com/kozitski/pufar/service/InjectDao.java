@@ -1,4 +1,4 @@
-package com.kozitski.pufar.command;
+package com.kozitski.pufar.service;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface InjectService {
+public @interface InjectDao {
 
 }

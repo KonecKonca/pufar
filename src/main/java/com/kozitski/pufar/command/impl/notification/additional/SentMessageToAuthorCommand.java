@@ -1,9 +1,6 @@
 package com.kozitski.pufar.command.impl.notification.additional;
 
-import com.kozitski.pufar.command.AbstractCommand;
-import com.kozitski.pufar.command.PagePath;
-import com.kozitski.pufar.command.RequestValue;
-import com.kozitski.pufar.command.Router;
+import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.controller.LogoutController;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.service.dialoge.DialogService;
@@ -24,8 +21,10 @@ public class SentMessageToAuthorCommand extends AbstractCommand {
     private static final String RECEIVED_MESSAGE = "inputMessage";
     private static final String OWNER = "ownerId";
 
-    private UserService userService = new UserServiceImpl();
-    private DialogService dialogService = new DialogServiceImpl();
+    @InjectService
+    private UserService userService;
+    @InjectService
+    private DialogService dialogService;
 
     @Override
     @SuppressWarnings("unchecked")

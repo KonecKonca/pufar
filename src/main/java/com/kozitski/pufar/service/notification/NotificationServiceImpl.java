@@ -13,6 +13,8 @@ import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserStatus;
 import com.kozitski.pufar.exception.PufarDAOException;
 import com.kozitski.pufar.exception.PufarServiceException;
+import com.kozitski.pufar.service.AbstractService;
+import com.kozitski.pufar.service.InjectDao;
 import com.kozitski.pufar.util.CommonConstant;
 import com.kozitski.pufar.util.cursor.NotificationsCursor;
 import com.kozitski.pufar.validation.annotation.primitive.integer.IntValid;
@@ -22,10 +24,11 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 
-public class NotificationServiceImpl implements NotificationService {
+public class NotificationServiceImpl extends AbstractService implements NotificationService {
     private static Logger LOGGER = LoggerFactory.getLogger(NotificationServiceImpl.class);
 
-    private NotificationDao notificationDao =  new NotificationDaoImpl();
+    @InjectDao
+    private NotificationDao notificationDao;
 
     @Override
     public ArrayList<Notification> searchTopNotificationsWithLimit(int limit) {

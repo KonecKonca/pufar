@@ -1,9 +1,6 @@
 package com.kozitski.pufar.command.impl.notification.additional;
 
-import com.kozitski.pufar.command.AbstractCommand;
-import com.kozitski.pufar.command.PagePath;
-import com.kozitski.pufar.command.RequestValue;
-import com.kozitski.pufar.command.Router;
+import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.service.user.UserService;
@@ -19,7 +16,8 @@ public class ShowAdditionalNotificationCommand extends AbstractCommand {
     private static final String OWNER_USER = "ownerUser";
     private static final String LOOKING_NOTIFICATION = "lookingNotification";
 
-    private UserService userService = new UserServiceImpl();
+    @InjectService
+    private UserService userService;
 
     @Override
     @SuppressWarnings("unchecked")

@@ -1,9 +1,6 @@
 package com.kozitski.pufar.command.impl.profile;
 
-import com.kozitski.pufar.command.AbstractCommand;
-import com.kozitski.pufar.command.PagePath;
-import com.kozitski.pufar.command.RequestValue;
-import com.kozitski.pufar.command.Router;
+import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.service.notification.NotificationService;
 import com.kozitski.pufar.service.notification.NotificationServiceImpl;
@@ -15,7 +12,8 @@ import java.util.List;
 public class DropMyselfNotificationCommand extends AbstractCommand {
     private static final String DROPPED_NOTIFICATION_ID = "notificationId";
 
-    private NotificationService notificationService = new NotificationServiceImpl();
+    @InjectService
+    private NotificationService notificationService;
 
     @Override
     @SuppressWarnings("unchecked")

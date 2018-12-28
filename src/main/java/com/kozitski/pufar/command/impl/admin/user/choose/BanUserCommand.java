@@ -1,9 +1,6 @@
 package com.kozitski.pufar.command.impl.admin.user.choose;
 
-import com.kozitski.pufar.command.AbstractCommand;
-import com.kozitski.pufar.command.PagePath;
-import com.kozitski.pufar.command.RequestValue;
-import com.kozitski.pufar.command.Router;
+import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.exception.PufarLogicException;
 import com.kozitski.pufar.service.user.UserService;
@@ -19,7 +16,8 @@ public class BanUserCommand extends AbstractCommand {
     private static final String OK_INPUT_MESSAGE = "user was banned ";
     private static final String BAD_INPUT_MESSAGE = "was entered incorrect user ID to BAN user";
 
-    private UserService userService = new UserServiceImpl();
+    @InjectService
+    private UserService userService;
 
     @Override
     public Router execute(RequestValue request) {

@@ -1,9 +1,6 @@
 package com.kozitski.pufar.command.impl.admin.user.execute;
 
-import com.kozitski.pufar.command.AbstractCommand;
-import com.kozitski.pufar.command.PagePath;
-import com.kozitski.pufar.command.RequestValue;
-import com.kozitski.pufar.command.Router;
+import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserParameter;
 import com.kozitski.pufar.entity.user.UserStatus;
@@ -25,7 +22,8 @@ public class SearchUserCommand extends AbstractCommand {
     private static final String OK_INPUT_MESSAGE = "were founded next users: ";
     private static final String BAD_INPUT_MESSAGE = "Were entered incorrect user searching attributes";
 
-    private UserService userService = new UserServiceImpl();
+    @InjectService
+    private UserService userService;
 
     @Override
     public Router execute(RequestValue request) {

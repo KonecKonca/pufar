@@ -1,9 +1,6 @@
 package com.kozitski.pufar.command.impl.admin.notification.choose;
 
-import com.kozitski.pufar.command.AbstractCommand;
-import com.kozitski.pufar.command.PagePath;
-import com.kozitski.pufar.command.RequestValue;
-import com.kozitski.pufar.command.Router;
+import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.service.notification.NotificationService;
 import com.kozitski.pufar.service.notification.NotificationServiceImpl;
@@ -18,7 +15,8 @@ public class DropNotificationCommand extends AbstractCommand {
     private static final String OK_INPUT_MESSAGE = "notification(+ binding comments, rates) was deleted ";
     private static final String BAD_INPUT_MESSAGE = "was entered incorrect notification id";
 
-    private NotificationService notificationService = new NotificationServiceImpl();
+    @InjectService
+    private NotificationService notificationService;
 
     @Override
     public Router execute(RequestValue request) {

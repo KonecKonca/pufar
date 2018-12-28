@@ -43,36 +43,21 @@ public class RequestValueTransformer {
     public static void transformTo(HttpServletRequest request, RequestValue requestValue){
 
         // context
-        Enumeration<String> servletContextAttributeNames = request.getServletContext().getAttributeNames();
-        while (servletContextAttributeNames.hasMoreElements()){
-            String attributeName = servletContextAttributeNames.nextElement();
-            request.getServletContext().removeAttribute(attributeName);
-        }
         Map<String, Object> contextAttributes = requestValue.getServletContextMap();
         for(Map.Entry<String, Object> entry : contextAttributes.entrySet()){
-            request.getServletContext().setAttribute(entry.getKey(),entry.getValue());
+            request.getServletContext().setAttribute(entry.getKey(), entry.getValue());
         }
 
         // session
-        Enumeration<String> sessionAttributeNames = request.getSession().getAttributeNames();
-        while (sessionAttributeNames.hasMoreElements()){
-            String attributeName = sessionAttributeNames.nextElement();
-            request.getSession().removeAttribute(attributeName);
-        }
         Map<String, Object> sessionAttributes = requestValue.getServletSessionMap();
         for(Map.Entry<String, Object> entry : sessionAttributes.entrySet()){
-            request.getSession().setAttribute(entry.getKey(),entry.getValue());
+            request.getSession().setAttribute(entry.getKey(), entry.getValue());
         }
 
         // servlet Attributes
-        Enumeration<String> requestAttributeNames = request.getAttributeNames();
-        while (requestAttributeNames.hasMoreElements()){
-            String attributeName = requestAttributeNames.nextElement();
-            request.removeAttribute(attributeName);
-        }
         Map<String, Object> requestAttributes = requestValue.getRequestAttributeMap();
         for(Map.Entry<String, Object> entry : requestAttributes.entrySet()){
-            request.setAttribute(entry.getKey(),entry.getValue());
+            request.setAttribute(entry.getKey(), entry.getValue());
         }
 
     }

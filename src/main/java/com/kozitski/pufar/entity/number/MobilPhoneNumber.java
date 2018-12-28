@@ -66,7 +66,7 @@ public class MobilPhoneNumber {
 
     @Override
     public String toString() {
-        return "+" + country + " (" + operator + ") " + number;
+        return country + " (" + operator + ") " + number;
     }
 
 }

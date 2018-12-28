@@ -9,7 +9,6 @@
         <location>/error</location>
     </error-page>
 
-
     <jsp-config>
         <taglib>
             <taglib-uri>pufarTag</taglib-uri>

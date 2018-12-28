@@ -27,4 +27,6 @@ public interface UserDao extends PufarDao<User, UserParameter>{
     boolean changeUserLogin(long id, String newLogin, User currentUser);
     boolean changeUserStatusByUserId(long id, UserStatus newStatus, User currentUser);
 
+    void changePassword(long userId, String newPassword) throws PufarDAOException;
+
 }

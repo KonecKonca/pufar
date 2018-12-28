@@ -12,7 +12,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class MysqlNumberDao implements NumberDao {
+public class NumberDaoImpl implements NumberDao {
 
     private static final String SEARCH_NUMBER_BY_USER_ID =
             "SELECT n.number_id, n.country, n.operator, n.number FROM numbers n " +

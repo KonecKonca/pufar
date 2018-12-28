@@ -1,9 +1,6 @@
 package com.kozitski.pufar.command.impl.notification;
 
-import com.kozitski.pufar.command.AbstractCommand;
-import com.kozitski.pufar.command.PagePath;
-import com.kozitski.pufar.command.RequestValue;
-import com.kozitski.pufar.command.Router;
+import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.UnitType;
 import com.kozitski.pufar.service.notification.NotificationService;
@@ -14,7 +11,9 @@ import java.util.ArrayList;
 
 public class ChangeNotificationCommand extends AbstractCommand {
     private static final String CHARACTER_IDENTIFIER = "nextCharacter";
-    private NotificationService notificationService = new NotificationServiceImpl();
+
+    @InjectService
+    private NotificationService notificationService;
 
     @Override
     public Router execute(RequestValue requestValue) {

@@ -1,9 +1,6 @@
 package com.kozitski.pufar.command.impl.notification.additional;
 
-import com.kozitski.pufar.command.AbstractCommand;
-import com.kozitski.pufar.command.PagePath;
-import com.kozitski.pufar.command.RequestValue;
-import com.kozitski.pufar.command.Router;
+import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.controller.LogoutController;
 import com.kozitski.pufar.entity.comment.NotificationComment;
 import com.kozitski.pufar.entity.notification.Notification;
@@ -25,7 +22,8 @@ public class SentCommentCommand extends AbstractCommand {
     private static final String COMMENT_VALUE = "commentValue";
     private static final String NOTIFICATION_ID = "notificationId";
 
-    private NotificationService notificationService = new NotificationServiceImpl();
+    @InjectService
+    private NotificationService notificationService;
 
     @Override
     @SuppressWarnings("unchecked")

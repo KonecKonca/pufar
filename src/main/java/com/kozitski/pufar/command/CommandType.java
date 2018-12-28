@@ -19,6 +19,7 @@ import com.kozitski.pufar.command.impl.notification.additional.SentCommentComman
 import com.kozitski.pufar.command.impl.notification.additional.SentMessageToAuthorCommand;
 import com.kozitski.pufar.command.impl.notification.additional.ShowAdditionalNotificationCommand;
 import com.kozitski.pufar.command.impl.profile.ChangeNumberCommand;
+import com.kozitski.pufar.command.impl.profile.ChangePasswordCommand;
 import com.kozitski.pufar.command.impl.profile.DropMyselfNotificationCommand;
 import com.kozitski.pufar.command.impl.profile.OpenProfilePageCommand;
 
@@ -46,6 +47,7 @@ public enum CommandType {
     OPEN_PROFILE_PAGE(new OpenProfilePageCommand()),
     DROP_MYSELF_NOTIFICATION(new DropMyselfNotificationCommand()),
     CHANGE_MOBILE_PHONE(new ChangeNumberCommand()),
+    CHANGE_PASSWORD(new ChangePasswordCommand()),
 
     // admin commands
         // define inputPage

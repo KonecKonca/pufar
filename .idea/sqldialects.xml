@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/dialoge/MySQLDialogDao.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/dialoge/DialogDaoImpl.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/notification/NotificationDaoImpl.java" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/number/MysqlNumberDao.java" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/user/MySQLUserDao.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/number/NumberDaoImpl.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/user/UserDaoImpl.java" dialect="MySQL" />
   </component>
 </project>

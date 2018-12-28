@@ -9,6 +9,7 @@ import com.kozitski.pufar.service.notification.NotificationService;
 import com.kozitski.pufar.service.notification.NotificationServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
 import com.kozitski.pufar.util.language.PufarLanguage;
+import com.kozitski.pufar.util.path.WebPathReturner;
 
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
@@ -21,9 +22,6 @@ public class PufarSessionListener implements HttpSessionListener {
     private static final String CURRENT_USER = "currentUser";
 
     private static final int HOW_MUCH_MESSAGES = 6;
-
-
-    private NotificationService notificationService = new NotificationServiceImpl();
 
     @Override
     public void sessionCreated(HttpSessionEvent sessionEvent) {
@@ -43,6 +41,7 @@ public class PufarSessionListener implements HttpSessionListener {
         sessionEvent.getSession().setAttribute(CommonConstant.HOW_MUCH_MESSAGES, HOW_MUCH_MESSAGES);
 
         //search top notifications
+        NotificationService notificationService = new NotificationServiceImpl();
         ArrayList<Notification> topNotifications = notificationService.searchTopNotificationsWithLimit(CommonConstant.HOW_MUCH_NOTIFICATIONS);
         sessionEvent.getSession().setAttribute(CommonConstant.CURRENT_NOTIFICATIONS, topNotifications);
 
