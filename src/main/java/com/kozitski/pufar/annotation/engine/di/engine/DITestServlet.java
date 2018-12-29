@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+// REDUNDANT pakage
 @WebServlet("/di")
 public class DITestServlet extends InjectionServlet {
 
