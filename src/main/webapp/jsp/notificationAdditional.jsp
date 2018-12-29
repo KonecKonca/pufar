@@ -30,8 +30,7 @@
                     <form action="/pufar" method="post">
                         <input type="hidden" name="command" value="SENT_MESSAGE_TO_NOTIFICATION_AUTHOR">
 
-                        <input type="text" class="form-control" placeholder="${locale.getValue("additionalNotificationSentMessage")} ${ownerUser.login}" name="inputMessage"/>
-                        <input type="hidden" value="${lookingNotification.userId}" name="ownerId"/>
+                        <input type="hidden" value="${lookingNotification.userId}" name="chosenUser"/>
                         <input type="submit" value="${locale.getValue("additionalNotificationSentMessage")} ${ownerUser.login}" class="btn btn-info">
                     </form>
                 </c:if>

@@ -120,16 +120,23 @@ public class UserDaoImpl implements UserDao {
                 throw new PufarDAOException("User with input login already exist");
             }
             else {
-                PreparedStatement userAddStatement = connection.prepareStatement(INSERT_NEW_USER_COMMON);
+                PreparedStatement userAddStatement = connection.prepareStatement(INSERT_NEW_USER_COMMON, Statement.RETURN_GENERATED_KEYS);
                 userAddStatement.setString(1, user.getLogin());
                 userAddStatement.setString(2, user.getPassword());
                 userAddStatement.setInt(3, user.getStatus().ordinal() + USER_ORDINAL_STATUS_INCREMENT);
 
                 userAddStatement.executeUpdate();
+
+                // search last Auto_increment value
+                ResultSet generatedKeys = userAddStatement.getGeneratedKeys();
+                generatedKeys.next();
+                long lastUserId =  generatedKeys.getLong(1);
+                user.setUserId(lastUserId);
+
                 connection.commit();
                 LOGGER.info("User correctly added");
 
-                    return user;
+                return user;
             }
         }
         catch (SQLException e) {

@@ -11,7 +11,7 @@ public interface LoginService {
 
     @AspectValid
     Optional<User> searchUserByLoginPassword(@StringValid(minLength = 4, maxLength = 16) String login,
-                                       @StringValid(minLength = 4, maxLength = 16) String password);
+                                       @StringValid(minLength = 4, maxLength = 60) String password);
 
 
 

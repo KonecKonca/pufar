@@ -2,13 +2,12 @@ package com.kozitski.pufar.command.impl.autorization;
 
 import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.user.User;
-import com.kozitski.pufar.entity.user.Users;
-import com.kozitski.pufar.exception.PufarServiceException;
 import com.kozitski.pufar.service.user.UserService;
-import com.kozitski.pufar.service.user.UserServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Optional;
 
 public class RegistrationCommand extends AbstractCommand {
     private static Logger LOGGER = LoggerFactory.getLogger(RegistrationCommand.class);
@@ -26,9 +25,15 @@ public class RegistrationCommand extends AbstractCommand {
         String currentPassword = request.getAttribute(PASSWORD).toString();
 
         try {
-            User currentUser = service.addUser(currentLogin, currentPassword);
-            router.setPagePath(PagePath.TEMPLATE_PAGE.getJspPath());
-            request.servletSessionPut(CommonConstant.CURRENT_USER, currentUser);
+            User user = service.addUser(currentLogin, currentPassword);
+
+            Optional<User> optionalUser = service.searchUserById(user.getUserId());
+            if(optionalUser.isPresent()){
+                User currentUser = optionalUser.get();
+
+                router.setPagePath(PagePath.TEMPLATE_PAGE.getJspPath());
+                request.servletSessionPut(CommonConstant.CURRENT_USER, currentUser);
+            }
         }
         catch (Exception e) {
             LOGGER.warn("user is not registered", e);
