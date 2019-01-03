@@ -1,6 +1,8 @@
 package com.kozitski.pufar.dao.notification;
 
 import com.kozitski.pufar.connection.PoolConnection;
+import com.kozitski.pufar.dao.PufarDaoConstant;
+import com.kozitski.pufar.dao.dialoge.DialogDaoImpl;
 import com.kozitski.pufar.entity.comment.NotificationComment;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.NotificationParameter;
@@ -9,6 +11,9 @@ import com.kozitski.pufar.exception.PufarDAOException;
 import com.kozitski.pufar.util.CommonConstant;
 import com.kozitski.pufar.util.mapper.comment.CommentMapper;
 import com.kozitski.pufar.util.mapper.notification.NotificationMapper;
+import org.apache.commons.dbutils.DbUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -20,6 +25,8 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 public class NotificationDaoImpl implements NotificationDao {
+    private static final Logger LOGGER = LoggerFactory.getLogger(NotificationDaoImpl.class);
+
     private static final String SEARCH_TOP_NOTIFICATIONS_SQL =
             "SELECT n.notification_id, n.message, un.name, n.price, u.user_id, n.date, n.content, AVG(r.mark) mark FROM notifications n " +
                 "LEFT JOIN units un ON n.unit_id=un.unit_id " +
@@ -113,17 +120,25 @@ public class NotificationDaoImpl implements NotificationDao {
     // mark
     @Override
     public double putMark(int mark, long senderId, long notificationId) throws PufarDAOException{
+
+        PreparedStatement checkStatement = null;
+        PreparedStatement updateStatement = null;
+        PreparedStatement insertStatement = null;
+        PreparedStatement findNewRateStatement = null;
+
+        ResultSet checkResultSet = null;
+        ResultSet findRateResultSet = null;
+
         try(Connection connection = PoolConnection.getInstance().getConnection()){
-            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
             connection.setAutoCommit(false);
 
-            PreparedStatement checkStatement = connection.prepareStatement(CHECK_IS_MARK_EXIST);
+            checkStatement = connection.prepareStatement(CHECK_IS_MARK_EXIST);
             checkStatement.setLong(1, senderId);
             checkStatement.setLong(2, notificationId);
-            ResultSet checkResultSet = checkStatement.executeQuery();
+            checkResultSet = checkStatement.executeQuery();
 
             if(checkResultSet.next()){
-                PreparedStatement updateStatement = connection.prepareStatement(UPDATE_MARK);
+                updateStatement = connection.prepareStatement(UPDATE_MARK);
                 updateStatement.setInt(1, mark);
                 updateStatement.setLong(2, senderId);
                 updateStatement.setLong(3, notificationId);
@@ -133,7 +148,7 @@ public class NotificationDaoImpl implements NotificationDao {
                 updateStatement.close();
             }
             else {
-                PreparedStatement insertStatement = connection.prepareStatement(INSERT_MARK);
+                insertStatement = connection.prepareStatement(INSERT_MARK);
                 insertStatement.setLong(1, notificationId);
                 insertStatement.setLong(2, senderId);
                 insertStatement.setInt(3, mark);
@@ -146,9 +161,9 @@ public class NotificationDaoImpl implements NotificationDao {
             checkResultSet.close();
             checkStatement.close();
 
-            PreparedStatement findNewRateStatement = connection.prepareStatement(SEARCH_RATE);
+            findNewRateStatement = connection.prepareStatement(SEARCH_RATE);
             findNewRateStatement.setLong(1, notificationId);
-            ResultSet findRateResultSet = findNewRateStatement.executeQuery();
+            findRateResultSet = findNewRateStatement.executeQuery();
 
             findRateResultSet.next();
             double rate = findRateResultSet.getDouble(RATE);
@@ -163,15 +178,29 @@ public class NotificationDaoImpl implements NotificationDao {
         catch (SQLException e) {
             throw new PufarDAOException("Mark wasn't added", e);
         }
+        finally {
+
+            try { DbUtils.close(checkResultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(findRateResultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+
+            try { DbUtils.close(checkStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(updateStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(insertStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(findNewRateStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+
+        }
+
     }
     // comments
     @Override
     public ArrayList<NotificationComment> searchCommentByNotificationId(long notificationId){
 
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try(Connection connection = PoolConnection.getInstance().getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_COMMENTS_BY_NOTIFICATION_ID);
+            preparedStatement = connection.prepareStatement(SEARCH_COMMENTS_BY_NOTIFICATION_ID);
             preparedStatement.setLong(1, notificationId);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
 
             resultSet.close();
             preparedStatement.close();
@@ -181,17 +210,22 @@ public class NotificationDaoImpl implements NotificationDao {
 
             return CommentMapper.mapComments(resultSet);
         }
-
         catch (SQLException e) {
             return new ArrayList<>();
         }
+        finally {
+            try { DbUtils.close(resultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+        }
+
     }
     @Override
     public boolean dropCommentById(long commentId) {
         boolean result;
 
+        PreparedStatement preparedStatement = null;
         try(Connection connection = PoolConnection.getInstance().getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_COMMENT_BY_COMMENT_ID);
+            preparedStatement = connection.prepareStatement(DELETE_COMMENT_BY_COMMENT_ID);
             preparedStatement.setLong(1, commentId);
             preparedStatement.executeUpdate();
 
@@ -202,6 +236,9 @@ public class NotificationDaoImpl implements NotificationDao {
         catch (SQLException e) {
             result = false;
         }
+        finally {
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+        }
 
         return result;
     }
@@ -209,8 +246,9 @@ public class NotificationDaoImpl implements NotificationDao {
     public long addComment(String comment, long senderId, long notificationId) throws PufarDAOException{
         long date = System.currentTimeMillis();
 
+        PreparedStatement preparedStatement = null;
         try(Connection connection = PoolConnection.getInstance().getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(ADD_COMMENT);
+            preparedStatement = connection.prepareStatement(ADD_COMMENT);
             preparedStatement.setLong(1, notificationId);
             preparedStatement.setLong(2, senderId);
             preparedStatement.setString(3, comment);
@@ -225,6 +263,9 @@ public class NotificationDaoImpl implements NotificationDao {
         catch (SQLException e) {
             throw new PufarDAOException("Comment wasn't added", e);
         }
+        finally {
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+        }
 
         return date;
     }
@@ -232,10 +273,12 @@ public class NotificationDaoImpl implements NotificationDao {
     @Override
     public ArrayList<Notification> searchTopNotificationsWithLimit(int limit){
 
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try(Connection connection = PoolConnection.getInstance().getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_TOP_NOTIFICATIONS_SQL);
+            preparedStatement = connection.prepareStatement(SEARCH_TOP_NOTIFICATIONS_SQL);
             preparedStatement.setLong(1, limit);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
 
             ArrayList<Notification> notifications = NotificationMapper.mapNotification(resultSet);
             for(Notification notification : notifications){
@@ -248,23 +291,28 @@ public class NotificationDaoImpl implements NotificationDao {
 
             return notifications;
         }
-
         catch (SQLException e) {
             return new ArrayList<>();
+        }
+        finally {
+            try { DbUtils.close(resultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
         }
 
     }
-    // todo: ask opinion about my decision
+
     @Override
     public ArrayList<Notification> searchByParameters(NotificationParameter parameters) {
 
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try(Connection connection = PoolConnection.getInstance().getConnection()){
             String parametersSql = generateSearchWithParametersSql(parameters);
 
-            PreparedStatement preparedStatement = connection.prepareStatement(parametersSql);
+            preparedStatement = connection.prepareStatement(parametersSql);
             fullFillPreparedStatement(preparedStatement, parameters);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
 
             ArrayList<Notification> notifications = NotificationMapper.mapNotification(resultSet);
             for(Notification notification : notifications){
@@ -277,9 +325,12 @@ public class NotificationDaoImpl implements NotificationDao {
 
             return notifications;
         }
-
         catch (SQLException e) {
             return new ArrayList<>();
+        }
+        finally {
+            try { DbUtils.close(resultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
         }
 
     }
@@ -315,7 +366,7 @@ public class NotificationDaoImpl implements NotificationDao {
             whereConditions.add(SEARCH_WITH_PARAMETERS_LOWER_RATE);
         }
 
-        if(whereConditions.size() != 0){
+        if(!whereConditions.isEmpty()){
             addSql.append(SEARCH_WITH_PARAMETERS_SQL_WHERE);
             for (int i = 0; i < whereConditions.size() - 1; i++) {
                 addSql.append(whereConditions.get(i));
@@ -368,24 +419,27 @@ public class NotificationDaoImpl implements NotificationDao {
     public boolean dropNotificationById(long notificationId) {
         boolean result;
 
+        PreparedStatement dropComments = null;
+        PreparedStatement dropRates = null;
+        PreparedStatement dropNotification = null;
+
         try(Connection connection = PoolConnection.getInstance().getConnection()){
-            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
             connection.setAutoCommit(false);
 
-            PreparedStatement dropComments = connection.prepareStatement(DELETE_RATE_BY_NOTIFICATION_ID);
+            dropComments = connection.prepareStatement(DELETE_RATE_BY_NOTIFICATION_ID);
             dropComments.setLong(1, notificationId);
             dropComments.executeUpdate();
 
             dropComments.close();
 
-            PreparedStatement dropRates = connection.prepareStatement(DELETE_COMMENT_BY_NOTIFICATION_ID);
+            dropRates = connection.prepareStatement(DELETE_COMMENT_BY_NOTIFICATION_ID);
             dropRates.setLong(1, notificationId);
             dropRates.executeUpdate();
 
             dropRates.close();
 
             // last, case foreign keys
-            PreparedStatement dropNotification = connection.prepareStatement(DELETE_NOTIFICATION_BY_NOTIFICATION_ID);
+            dropNotification = connection.prepareStatement(DELETE_NOTIFICATION_BY_NOTIFICATION_ID);
             dropNotification.setLong(1, notificationId);
             dropNotification.executeUpdate();
 
@@ -395,8 +449,13 @@ public class NotificationDaoImpl implements NotificationDao {
             result = true;
         }
         catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.warn("Notification wasn't deleted");
             result = false;
+        }
+        finally {
+            try { DbUtils.close(dropComments); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(dropRates); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(dropNotification); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
         }
 
         return result;
@@ -405,9 +464,10 @@ public class NotificationDaoImpl implements NotificationDao {
     public boolean changeNotificationMessage(long notificationId, String newMessage) {
         boolean result;
 
+        PreparedStatement preparedStatement = null;
         try(Connection connection = PoolConnection.getInstance().getConnection()){
 
-            PreparedStatement preparedStatement = connection.prepareStatement(CHANGE_NOTIFICATION_MESSAGE);
+            preparedStatement = connection.prepareStatement(CHANGE_NOTIFICATION_MESSAGE);
             preparedStatement.setString(1, newMessage);
             preparedStatement.setLong(2, notificationId);
             preparedStatement.executeUpdate();
@@ -419,17 +479,23 @@ public class NotificationDaoImpl implements NotificationDao {
         catch (SQLException e) {
             result = false;
         }
+        finally {
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+        }
 
         return result;
     }
     @Override
     public void addNotification(Notification notification) throws PufarDAOException {
 
+        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatementRate = null;
+        ResultSet generatedKeys = null;
+
         try(Connection connection = PoolConnection.getInstance().getConnection()){
             connection.setAutoCommit(false);
-            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
 
-            PreparedStatement preparedStatement = connection.prepareStatement(ADD_NOTIFICATION, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement = connection.prepareStatement(ADD_NOTIFICATION, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, notification.getMessage());
             preparedStatement.setInt(2, UnitType.getUnitDBPosition(notification.getUnit()));
             preparedStatement.setDouble(3, notification.getPrice());
@@ -445,7 +511,7 @@ public class NotificationDaoImpl implements NotificationDao {
             preparedStatement.executeUpdate();
 
             // search last Auto_increment value
-            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+            generatedKeys = preparedStatement.getGeneratedKeys();
             generatedKeys.next();
             long lastId =  generatedKeys.getLong(1);
 
@@ -453,7 +519,7 @@ public class NotificationDaoImpl implements NotificationDao {
             preparedStatement.close();
 
             // Insert default mark
-            PreparedStatement preparedStatementRate = connection.prepareStatement(ADD_NOTIFICATION_SET_DEFAULT_RATE);
+            preparedStatementRate = connection.prepareStatement(ADD_NOTIFICATION_SET_DEFAULT_RATE);
             preparedStatementRate.setLong(1,lastId);
             preparedStatementRate.setLong(2, CommonConstant.SYSTEM_USER_ID);
             preparedStatementRate.setInt(3, DEFAULT_MARK);
@@ -469,18 +535,26 @@ public class NotificationDaoImpl implements NotificationDao {
         catch (IOException e) {
             throw new PufarDAOException("Notification was'n added, case image wasn't convert to BLOB", e);
         }
+        finally {
+            try { DbUtils.close(generatedKeys); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(preparedStatementRate); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+        }
 
     }
     @Override
     public long searchNotificationsByUnitNumber(UnitType unitType){
         long result;
 
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
         try(Connection connection = PoolConnection.getInstance().getConnection()){
 
-            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_NOTIFICATION_BY_UNIT_NUMBER);
+            preparedStatement = connection.prepareStatement(SEARCH_NOTIFICATION_BY_UNIT_NUMBER);
             preparedStatement.setInt(1, UnitType.getUnitDBPosition(unitType));
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             resultSet.next();
             result = resultSet.getInt(SEARCH_NOTIFICATION_BY_UNIT_COUNT_VALUE);
 
@@ -491,6 +565,10 @@ public class NotificationDaoImpl implements NotificationDao {
         catch (SQLException e) {
             result = 0;
         }
+        finally {
+            try { DbUtils.close(resultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+        }
 
         return result;
     }
@@ -498,13 +576,16 @@ public class NotificationDaoImpl implements NotificationDao {
     public ArrayList<Notification> searchNotificationsByUnit(UnitType unitType, int limitStart, int limitStep){
         ArrayList<Notification> result;
 
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
         try(Connection connection = PoolConnection.getInstance().getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_NOTIFICATION_BY_UNIT);
+            preparedStatement = connection.prepareStatement(SEARCH_NOTIFICATION_BY_UNIT);
             preparedStatement.setInt(1, UnitType.getUnitDBPosition(unitType));
             preparedStatement.setInt(2, limitStart);
             preparedStatement.setInt(3, limitStep);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             result = NotificationMapper.mapNotification(resultSet);
 
             resultSet.close();
@@ -518,15 +599,22 @@ public class NotificationDaoImpl implements NotificationDao {
         catch (SQLException e) {
             result = new ArrayList<>();
         }
-
+        finally {
+            try { DbUtils.close(resultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+        }
         return result;
     }
     @Override
     public ArrayList<Notification> searchAllNotificationsByAuthorId(long authorIdw){
+
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
         try(Connection connection = PoolConnection.getInstance().getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_ALL_NOTIFICATIONS_BY_AUTHOR_ID, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement = connection.prepareStatement(SEARCH_ALL_NOTIFICATIONS_BY_AUTHOR_ID, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setLong(1, authorIdw);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
 
             ArrayList<Notification> notifications = NotificationMapper.mapNotification(resultSet);
 
@@ -538,6 +626,11 @@ public class NotificationDaoImpl implements NotificationDao {
         catch (SQLException e) {
             return new ArrayList<>();
         }
+        finally {
+            try { DbUtils.close(resultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+        }
+
     }
 
 

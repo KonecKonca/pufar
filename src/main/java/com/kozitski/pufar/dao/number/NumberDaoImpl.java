@@ -1,18 +1,24 @@
 package com.kozitski.pufar.dao.number;
 
 import com.kozitski.pufar.connection.PoolConnection;
+import com.kozitski.pufar.dao.PufarDaoConstant;
+import com.kozitski.pufar.dao.user.UserDaoImpl;
 import com.kozitski.pufar.entity.number.MobilPhoneNumber;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.exception.PufarDAOException;
 import com.kozitski.pufar.util.mapper.comment.CommentMapper;
 import com.kozitski.pufar.util.mapper.number.MobilNumberMapper;
 import com.kozitski.pufar.util.mapper.user.UserMapper;
+import org.apache.commons.dbutils.DbUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Optional;
 
 public class NumberDaoImpl implements NumberDao {
+    private static final Logger LOGGER = LoggerFactory.getLogger(NumberDaoImpl.class);
 
     private static final String SEARCH_NUMBER_BY_USER_ID =
             "SELECT n.number_id, n.country, n.operator, n.number FROM numbers n " +
@@ -32,13 +38,16 @@ public class NumberDaoImpl implements NumberDao {
         throw new UnsupportedOperationException();
     }
     @Override
-    public Optional<MobilPhoneNumber> searchById(long user_id) {
+    public Optional<MobilPhoneNumber> searchById(long userId) {
         Optional<MobilPhoneNumber> number;
 
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
         try(Connection connection = PoolConnection.getInstance().getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_NUMBER_BY_USER_ID);
-            preparedStatement.setLong(1, user_id);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement = connection.prepareStatement(SEARCH_NUMBER_BY_USER_ID);
+            preparedStatement.setLong(1, userId);
+            resultSet = preparedStatement.executeQuery();
 
             if(resultSet.next()){
                 MobilPhoneNumber findNumber = MobilNumberMapper.mapMobilPhoneNumber(resultSet);
@@ -49,9 +58,12 @@ public class NumberDaoImpl implements NumberDao {
             }
 
         }
-
         catch (SQLException | PufarDAOException e) {
             return Optional.empty();
+        }
+        finally {
+            try { DbUtils.close(resultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
         }
 
         return number;
@@ -60,8 +72,10 @@ public class NumberDaoImpl implements NumberDao {
     @Override
     public void updateMobilePhoneById(long userId, MobilPhoneNumber mobilPhoneNumber) throws PufarDAOException{
 
+        PreparedStatement preparedStatement = null;
+
         try(Connection connection = PoolConnection.getInstance().getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_NUMBER_BY_USER_ID);
+            preparedStatement = connection.prepareStatement(UPDATE_NUMBER_BY_USER_ID);
             preparedStatement.setString(1, mobilPhoneNumber.getCountry());
             preparedStatement.setString(2, mobilPhoneNumber.getOperator());
             preparedStatement.setString(3, mobilPhoneNumber.getNumber());
@@ -70,20 +84,25 @@ public class NumberDaoImpl implements NumberDao {
             preparedStatement.executeUpdate();
 
         }
-
         catch (SQLException e) {
             throw new PufarDAOException("Number wasn't updated", e);
+        }
+        finally {
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
         }
 
     }
     @Override
     public void insertMobilePhoneById(long userId, MobilPhoneNumber mobilPhoneNumber) throws PufarDAOException{
 
+        PreparedStatement insertNumberStatement = null;
+        PreparedStatement insertUserStatement = null;
+        ResultSet generatedKeys = null;
+
         try(Connection connection = PoolConnection.getInstance().getConnection()){
             connection.setAutoCommit(false);
-            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
 
-            PreparedStatement insertNumberStatement = connection.prepareStatement(INSERT_NUMBER_BY_USER_ID, Statement.RETURN_GENERATED_KEYS);
+            insertNumberStatement = connection.prepareStatement(INSERT_NUMBER_BY_USER_ID, Statement.RETURN_GENERATED_KEYS);
             insertNumberStatement.setString(1, mobilPhoneNumber.getCountry());
             insertNumberStatement.setString(2, mobilPhoneNumber.getOperator());
             insertNumberStatement.setString(3, mobilPhoneNumber.getNumber());
@@ -91,11 +110,11 @@ public class NumberDaoImpl implements NumberDao {
             insertNumberStatement.executeUpdate();
 
             // search last Auto_increment value
-            ResultSet generatedKeys = insertNumberStatement.getGeneratedKeys();
+            generatedKeys = insertNumberStatement.getGeneratedKeys();
             generatedKeys.next();
             long lastNumberId =  generatedKeys.getLong(1);
 
-            PreparedStatement insertUserStatement = connection.prepareStatement(UPDATE_NUMBER_BY_USER_ID_USER_PART);
+            insertUserStatement = connection.prepareStatement(UPDATE_NUMBER_BY_USER_ID_USER_PART);
             insertUserStatement.setLong(1, lastNumberId);
             insertUserStatement.setLong(2, userId);
 
@@ -103,10 +122,16 @@ public class NumberDaoImpl implements NumberDao {
 
             connection.commit();
         }
-
         catch (SQLException e) {
             throw new PufarDAOException("Number wasn't inserted", e);
         }
+        finally {
+            try { DbUtils.close(generatedKeys); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+
+            try { DbUtils.close(insertUserStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+            try { DbUtils.close(insertNumberStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+        }
+
     }
 
 

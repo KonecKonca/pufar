@@ -81,26 +81,32 @@ public class PoolConnection {
 
     }
 
+
+//    int counter = 1;
+
     public Connection getConnection() {
 //System.out.println("                free connections " + freeConnections.size());
 //System.out.println("                release connections " + releaseConnections.size());
 
         try {
             lock.lock();
-//
-//            Connection connection;
-//
-//            if(freeConnections.size() < MIN_POOL_CAPACITY && (freeConnections.size() + releaseConnections.size()) < MAX_POOL_CAPACITY){
-//                connection = new ProxyConnection(DriverManager.getConnection(CONNECTION_URL, properties));
-//                releaseConnections.offer(connection);
-//            }
-//            else {
-//                connection = freeConnections.take();
-//            }
 
-            return new ProxyConnection(DriverManager.getConnection(CONNECTION_URL, properties));
+            Connection connection;
+
+            if(freeConnections.size() < MIN_POOL_CAPACITY && (freeConnections.size() + releaseConnections.size()) < MAX_POOL_CAPACITY){
+                connection = new ProxyConnection(DriverManager.getConnection(CONNECTION_URL, properties));
+                releaseConnections.offer(connection);
+            }
+            else {
+                connection = freeConnections.take();
+            }
+
+//System.out.println("            in pool " + counter++);
+
+            return connection;
+//            return new ProxyConnection(DriverManager.getConnection(CONNECTION_URL, properties));
         }
-        catch (/*InterruptedException |*/ SQLException e) {
+        catch (InterruptedException | SQLException e) {
             throw new RuntimeException("Can not get connection", e);
         }
         finally {

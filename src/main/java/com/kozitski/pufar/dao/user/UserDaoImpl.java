@@ -1,12 +1,14 @@
 package com.kozitski.pufar.dao.user;
 
 import com.kozitski.pufar.connection.PoolConnection;
+import com.kozitski.pufar.dao.PufarDaoConstant;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserParameter;
 import com.kozitski.pufar.entity.user.UserStatus;
 import com.kozitski.pufar.entity.user.Users;
 import com.kozitski.pufar.exception.PufarDAOException;
 import com.kozitski.pufar.util.mapper.user.UserMapper;
+import org.apache.commons.dbutils.DbUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,10 +46,12 @@ public class UserDaoImpl implements UserDao {
     public Optional<User> searchById(long id) {
         Optional<User> user;
 
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try(Connection  connection = PoolConnection.getInstance().getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
+            preparedStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
             preparedStatement.setLong(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
 
             if(resultSet.next()){
                 User findUser = UserMapper.createUser(resultSet);
@@ -61,16 +65,22 @@ public class UserDaoImpl implements UserDao {
         catch (SQLException | PufarDAOException e) {
             return Optional.empty();
         }
+        finally {
+            try { DbUtils.close(resultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+        }
 
         return user;
     }
     @Override
     public Optional<User> searchUserByLogin(String login) {
 
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         try(Connection  connection = PoolConnection.getInstance().getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_USER_BY_LOGIN);
+            preparedStatement = connection.prepareStatement(SEARCH_USER_BY_LOGIN);
             preparedStatement.setString(1, login);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
 
             User user = null;
             if(resultSet.next()){
@@ -79,9 +89,12 @@ public class UserDaoImpl implements UserDao {
 
             return Optional.ofNullable(user);
         }
-
         catch (SQLException | PufarDAOException e) {
             return Optional.empty();
+        }
+        finally {
+            try { DbUtils.close(resultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
         }
 
     }
@@ -90,10 +103,13 @@ public class UserDaoImpl implements UserDao {
 
         ArrayList<User> result;
 
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
         try(Connection  connection = PoolConnection.getInstance().getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_USER_BY_STATUS);
+            preparedStatement = connection.prepareStatement(SEARCH_USER_BY_STATUS);
             preparedStatement.setString(1, status.name());
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
 
             result = UserMapper.createUsers(resultSet);
 
@@ -101,26 +117,35 @@ public class UserDaoImpl implements UserDao {
         catch (SQLException | PufarDAOException e) {
             return new  ArrayList<>();
         }
+        finally {
+            try { DbUtils.close(resultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+        }
 
         return result;
     }
     @Override
     public User addUser(User user) throws PufarDAOException {
 
+        PreparedStatement searchUserStatement = null;
+        PreparedStatement userAddStatement = null;
+
+        ResultSet searchUserResultSet = null;
+        ResultSet generatedKeys = null;
+
         try(Connection  connection = PoolConnection.getInstance().getConnection()){
-            // my be not so hard LEVEL
-            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+
             connection.setAutoCommit(false);
 
-            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_USER_BY_LOGIN);
-            preparedStatement.setString(1, user.getLogin());
-            ResultSet resultSet = preparedStatement.executeQuery();
+            searchUserStatement = connection.prepareStatement(SEARCH_USER_BY_LOGIN);
+            searchUserStatement.setString(1, user.getLogin());
+            searchUserResultSet = searchUserStatement.executeQuery();
 
-            if(resultSet.next()){
+            if(searchUserResultSet.next()){
                 throw new PufarDAOException("User with input login already exist");
             }
             else {
-                PreparedStatement userAddStatement = connection.prepareStatement(INSERT_NEW_USER_COMMON, Statement.RETURN_GENERATED_KEYS);
+                userAddStatement = connection.prepareStatement(INSERT_NEW_USER_COMMON, Statement.RETURN_GENERATED_KEYS);
                 userAddStatement.setString(1, user.getLogin());
                 userAddStatement.setString(2, user.getPassword());
                 userAddStatement.setInt(3, user.getStatus().ordinal() + USER_ORDINAL_STATUS_INCREMENT);
@@ -128,7 +153,7 @@ public class UserDaoImpl implements UserDao {
                 userAddStatement.executeUpdate();
 
                 // search last Auto_increment value
-                ResultSet generatedKeys = userAddStatement.getGeneratedKeys();
+                generatedKeys = userAddStatement.getGeneratedKeys();
                 generatedKeys.next();
                 long lastUserId =  generatedKeys.getLong(1);
                 user.setUserId(lastUserId);
@@ -142,24 +167,38 @@ public class UserDaoImpl implements UserDao {
         catch (SQLException e) {
             throw new PufarDAOException("User not added", e);
         }
+        finally {
+            try { DbUtils.close(searchUserResultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(generatedKeys); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+
+            try { DbUtils.close(searchUserStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+            try { DbUtils.close(userAddStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+
+        }
 
     }
     @Override
     public ArrayList<User> searchByParameters(UserParameter parameters) {
 
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
         try(Connection connection = PoolConnection.getInstance().getConnection()){
             String parametersSql = generateSearchWithParametersSql(parameters);
 
-            PreparedStatement preparedStatement = connection.prepareStatement(parametersSql);
+            preparedStatement = connection.prepareStatement(parametersSql);
             fullFillPreparedStatement(preparedStatement, parameters);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
 
             return UserMapper.createUsers(resultSet);
         }
-
         catch (SQLException | PufarDAOException e) {
             return new ArrayList<>();
+        }
+        finally {
+            try { DbUtils.close(resultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
         }
 
     }
@@ -178,7 +217,7 @@ public class UserDaoImpl implements UserDao {
             whereConditions.add(SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_STATUS);
         }
 
-        if(whereConditions.size() != 0){
+        if(!whereConditions.isEmpty()){
             addSql.append(SEARCH_USER_WITH_PARAMETERS_SQL_WHERE);
             for (int i = 0; i < whereConditions.size() - 1; i++) {
                 addSql.append(whereConditions.get(i));
@@ -209,20 +248,24 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean insertBanStatus(long userId, User currentUser, int banStatus) {
 
+        PreparedStatement searchUserStatement = null;
+        PreparedStatement banStatement = null;
+
+        ResultSet resultSet = null;
+
         try(Connection  connection = PoolConnection.getInstance().getConnection()){
-            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
             connection.setAutoCommit(false);
 
-            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
-            preparedStatement.setLong(1, userId);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            searchUserStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
+            searchUserStatement.setLong(1, userId);
+            resultSet = searchUserStatement.executeQuery();
 
             User user;
             if(resultSet.next()){
                  user = UserMapper.createUser(resultSet);
 
                 if(Users.checkAccessRight(currentUser, user)){
-                    PreparedStatement banStatement = connection.prepareStatement(BAN_USER_SQL);
+                    banStatement = connection.prepareStatement(BAN_USER_SQL);
                     banStatement.setInt(1, banStatus);
                     banStatement.setLong(2, userId);
                     banStatement.executeUpdate();
@@ -240,32 +283,45 @@ public class UserDaoImpl implements UserDao {
         catch (SQLException | PufarDAOException e) {
             return false;
         }
+        finally {
+            try { DbUtils.close(resultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+
+            try { DbUtils.close(searchUserStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+            try { DbUtils.close(banStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+
+        }
 
     }
     @Override
     public boolean changeUserLogin(long id, String newLogin, User currentUser) {
 
+        PreparedStatement searchUserStatement = null;
+        PreparedStatement searchByNewLogin = null;
+        PreparedStatement changeLoginStatement = null;
+
+        ResultSet searchUserResultSet = null;
+        ResultSet checkNewLoginResultSet = null;
+
         try(Connection  connection = PoolConnection.getInstance().getConnection()){
-            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
             connection.setAutoCommit(false);
 
-            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
-            preparedStatement.setLong(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            searchUserStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
+            searchUserStatement.setLong(1, id);
+            searchUserResultSet = searchUserStatement.executeQuery();
 
             User user;
-            if(resultSet.next()){
-                user = UserMapper.createUser(resultSet);
+            if(searchUserResultSet.next()){
+                user = UserMapper.createUser(searchUserResultSet);
 
                 if(Users.checkAccessRight(currentUser, user)){
 
-                    PreparedStatement searchByNewLogin = connection.prepareStatement(SEARCH_USER_BY_LOGIN);
+                    searchByNewLogin = connection.prepareStatement(SEARCH_USER_BY_LOGIN);
                     searchByNewLogin.setString(1, newLogin);
-                    ResultSet checkNewLoginResultSet = searchByNewLogin.executeQuery();
+                    checkNewLoginResultSet = searchByNewLogin.executeQuery();
 
                     if(!checkNewLoginResultSet.next()){
 
-                        PreparedStatement changeLoginStatement = connection.prepareStatement(CHANGE_USER_LOGIN_SQL);
+                        changeLoginStatement = connection.prepareStatement(CHANGE_USER_LOGIN_SQL);
                         changeLoginStatement.setString(1, newLogin);
                         changeLoginStatement.setLong(2, id);
                         changeLoginStatement.executeUpdate();
@@ -285,17 +341,30 @@ public class UserDaoImpl implements UserDao {
         catch (SQLException | PufarDAOException e) {
             return false;
         }
+        finally {
+            try { DbUtils.close(searchUserResultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(checkNewLoginResultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+
+            try { DbUtils.close(searchUserStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+            try { DbUtils.close(searchByNewLogin); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+            try { DbUtils.close(changeLoginStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+        }
 
     }
     @Override
     public boolean changeUserStatusByUserId(long id, UserStatus newStatus, User currentUser) {
+
+        PreparedStatement searchUserStatement = null;
+        PreparedStatement changeUserStatus = null;
+
+        ResultSet resultSet = null;
+
         try(Connection  connection = PoolConnection.getInstance().getConnection()){
-            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
             connection.setAutoCommit(false);
 
-            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
-            preparedStatement.setLong(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            searchUserStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
+            searchUserStatement.setLong(1, id);
+            resultSet = searchUserStatement.executeQuery();
 
             User user;
             if(resultSet.next()){
@@ -303,7 +372,7 @@ public class UserDaoImpl implements UserDao {
 
                 if(Users.checkAccessRight(currentUser, user)){
 
-                    PreparedStatement changeUserStatus = connection.prepareStatement(CHANGE_USER_STATUS_SQL);
+                    changeUserStatus = connection.prepareStatement(CHANGE_USER_STATUS_SQL);
                     int status = Users.statusPriority(newStatus);
                     changeUserStatus.setInt(1, status);
                     changeUserStatus.setLong(2, id);
@@ -323,22 +392,33 @@ public class UserDaoImpl implements UserDao {
         catch (SQLException | PufarDAOException e) {
             return false;
         }
+        finally {
+            try { DbUtils.close(resultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+
+            try { DbUtils.close(searchUserStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+            try { DbUtils.close(changeUserStatus); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+        }
+
     }
 
     @Override
     public void changePassword(long userId, String newPassword) throws PufarDAOException {
 
+        PreparedStatement preparedStatement = null;
+
         try(Connection connection = PoolConnection.getInstance().getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(CHANGE_PASSWORD);
+            preparedStatement = connection.prepareStatement(CHANGE_PASSWORD);
             preparedStatement.setString(1, newPassword);
             preparedStatement.setLong(2, userId);
 
             preparedStatement.executeUpdate();
 
         }
-
         catch (SQLException  e) {
             throw new PufarDAOException(e);
+        }
+        finally {
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
         }
 
     }
