@@ -1,0 +1,62 @@
+CREATE DATABASE  IF NOT EXISTS `pufar` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `pufar`;
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: pufar
+-- ------------------------------------------------------
+-- Server version	5.7.21-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `login` varchar(25) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `status` int(11) DEFAULT '0',
+  `ban_status` tinyint(1) DEFAULT '0',
+  `number_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `users_login_uindex` (`login`),
+  KEY `status` (`status`),
+  KEY `users_numbers_number_id_fk` (`number_id`),
+  CONSTRAINT `status` FOREIGN KEY (`status`) REFERENCES `statuses` (`status_id`),
+  CONSTRAINT `users_numbers_number_id_fk` FOREIGN KEY (`number_id`) REFERENCES `numbers` (`number_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'andrei','82 7C CB 0E EA 8A 70 6C 4C 34 A1 68 91 F8 4E 7B ',3,0,1),(2,'vasil','82 7C CB 0E EA 8A 70 6C 4C 34 A1 68 91 F8 4E 7B',1,0,NULL),(3,'petia','15 09 20 CC ED C3 4D 24 03 1C DD 37 11 E4 33 10',1,0,1),(4,'konecKonca','41 95 E4 03 44 44 CA FE 4F A9 A6 E1 3A 01 B2 52',2,0,NULL),(9,'23434','31 41 C8 39 8A 2D 02 F7 8C B4 B0 53 3B 13 83 49 ',1,0,NULL),(11,'andrei_ert','32 74 A6 9A 48 5D 45 5E DA C6 0A C6 67 5B 2E A9 ',1,0,NULL),(12,'юджин217','41 95 E4 03 44 44 CA FE 4F A9 A6 E1 3A 01 B2 52 ',1,0,NULL),(13,'южаюжа','41 95 E4 03 44 44 CA FE 4F A9 A6 E1 3A 01 B2 52 ',1,0,4),(14,'ergrупупупн','96 E7 92 18 96 5E B7 2C 92 A5 49 DD 5A 33 01 12 ',1,0,NULL),(15,'qwewe','EF E6 39 81 27 92 8F 1B 2E 9E F3 20 7F B8 26 63 ',1,0,NULL),(16,'йцуйцу','21 27 DA 04 4D 2F 11 43 F6 07 D1 05 EA EC 83 64 ',1,0,NULL),(17,'grgrgr','6C 8E 44 8F 6F A9 DE D8 EB 6A 81 34 D5 E6 3C 79 ',1,0,NULL),(18,'234346','E7 24 E5 AD 0D 0D F6 25 74 42 39 EF 1C 60 E5 E8 ',1,0,NULL),(19,'111111','96 E7 92 18 96 5E B7 2C 92 A5 49 DD 5A 33 01 12',3,0,NULL),(20,'petusha','5E B1 07 1D F7 5D 60 E3 E4 A6 47 95 2F 42 7A 93 ',1,1,NULL),(21,'andreix','82 7C CB 0E EA 8A 70 6C 4C 34 A1 68 91 F8 4E 7B ',1,0,NULL),(22,'andrei1','82 7C CB 0E EA 8A 70 6C 4C 34 A1 68 91 F8 4E 7B ',1,0,NULL),(23,'xxxxx','FB 0E 22 C7 9A C7 56 79 E9 88 1E 6B A1 83 B3 54 ',1,0,NULL),(24,'testtest','82 7C CB 0E EA 8A 70 6C 4C 34 A1 68 91 F8 4E 7B ',1,0,8),(25,'testtestt','82 7C CB 0E EA 8A 70 6C 4C 34 A1 68 91 F8 4E 7B ',1,0,NULL),(32,'andrei22','82 7C CB 0E EA 8A 70 6C 4C 34 A1 68 91 F8 4E 7B ',1,0,NULL),(33,'andrei33','82 7C CB 0E EA 8A 70 6C 4C 34 A1 68 91 F8 4E 7B ',1,0,NULL),(34,'andrei23','82 7C CB 0E EA 8A 70 6C 4C 34 A1 68 91 F8 4E 7B ',1,0,11),(35,'andrei3233','82 7C CB 0E EA 8A 70 6C 4C 34 A1 68 91 F8 4E 7B ',1,0,NULL),(36,'andrei15','82 7C CB 0E EA 8A 70 6C 4C 34 A1 68 91 F8 4E 7B ',1,0,NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-01-03 19:19:57

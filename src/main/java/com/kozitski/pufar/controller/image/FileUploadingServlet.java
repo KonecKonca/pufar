@@ -24,7 +24,7 @@ import java.io.IOException;
         , maxFileSize = 1024 * 1024 * 5
         , maxRequestSize = 1024 * 1024 * 5 * 5)
 public class FileUploadingServlet extends HttpServlet {
-    private static Logger LOGGER = LoggerFactory.getLogger(LogoutController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LogoutController.class);
     private static final String DATA_PATH = "/loadImages";
 
     @Override
