@@ -3,6 +3,7 @@ package com.kozitski.pufar.command.impl.notification.additional;
 import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.controller.LogoutController;
 import com.kozitski.pufar.entity.user.User;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.dialoge.DialogService;
 import com.kozitski.pufar.service.dialoge.DialogServiceImpl;
 import com.kozitski.pufar.service.user.UserService;

@@ -4,6 +4,7 @@ import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.NotificationParameter;
 import com.kozitski.pufar.entity.notification.UnitType;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.notification.NotificationService;
 import com.kozitski.pufar.service.notification.NotificationServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
@@ -13,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 
 public class SearchNotificationExecuteCommand extends AbstractCommand {
-    private static Logger LOGGER = LoggerFactory.getLogger(SearchNotificationExecuteCommand.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SearchNotificationExecuteCommand.class);
 
     private static final String NOTIFICATION_ID = "id";
     private static final String LOWER_PRICE = "adminLowerPrice";

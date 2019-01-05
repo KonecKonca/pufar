@@ -7,6 +7,7 @@ import com.kozitski.pufar.entity.message.UserMessage;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.Users;
 import com.kozitski.pufar.exception.PufarDAOException;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.AbstractService;
 import com.kozitski.pufar.service.InjectDao;
 import com.kozitski.pufar.util.CommonConstant;
@@ -44,7 +45,7 @@ public class DialogServiceImpl extends AbstractService implements DialogService 
         return searchAllMessagesBetween(userId1, userId2).size();
     }
     @Override
-    public void addMessage(long senderId, long receiverId, String message) {
+    public void addMessage(long senderId, long receiverId, String message) throws PufarValidationException {
         try {
             dialogDAO.addMessage(senderId, receiverId, message);
         }

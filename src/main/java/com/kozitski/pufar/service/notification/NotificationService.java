@@ -8,6 +8,7 @@ import com.kozitski.pufar.entity.notification.UnitType;
 import com.kozitski.pufar.entity.number.MobilPhoneNumber;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.exception.PufarServiceException;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.validation.annotation.AspectValid;
 import com.kozitski.pufar.validation.annotation.notification.NotificationValid;
 import com.kozitski.pufar.validation.annotation.primitive.integer.IntValid;
@@ -26,13 +27,13 @@ public interface NotificationService {
 
     boolean changeNotificationMessage(long notificationId, String newMessage, User currentUser);
     @AspectValid
-    void addNotification(@NotificationValid(minRate = 0, stringPattern = ".*") Notification notification) throws PufarServiceException;
+    void addNotification(@NotificationValid(minRate = 0, stringPattern = ".*") Notification notification) throws PufarServiceException, PufarValidationException;
     ArrayList<Notification> searchNotificationsWithChangingCursor(RequestValue requestValue, UnitType unitType, int stepValue);
 
     @AspectValid
-    long sentComment(@StringValid String comment, long senderId, long notificationId) throws PufarServiceException;
+    long sentComment(@StringValid String comment, long senderId, long notificationId) throws PufarServiceException, PufarValidationException;
     @AspectValid
-    void putMark(RequestValue requestValue, @IntValid(minValue = 1, maxValue = 5) int mark, long senderId, long notificationId);
+    void putMark(RequestValue requestValue, @IntValid(minValue = 1, maxValue = 5) int mark, long senderId, long notificationId) throws PufarValidationException;
     ArrayList<Notification> searchAllNotificationsByAuthorId(long authorIdw);
 
 

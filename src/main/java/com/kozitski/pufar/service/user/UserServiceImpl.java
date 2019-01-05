@@ -1,10 +1,7 @@
 package com.kozitski.pufar.service.user;
 
-import com.kozitski.pufar.command.InjectService;
 import com.kozitski.pufar.command.RequestValue;
-import com.kozitski.pufar.dao.number.NumberDaoImpl;
 import com.kozitski.pufar.dao.number.NumberDao;
-import com.kozitski.pufar.dao.user.UserDaoImpl;
 import com.kozitski.pufar.dao.user.UserDao;
 import com.kozitski.pufar.entity.number.MobilPhoneNumber;
 import com.kozitski.pufar.entity.user.User;
@@ -12,9 +9,9 @@ import com.kozitski.pufar.entity.user.UserParameter;
 import com.kozitski.pufar.entity.user.UserStatus;
 import com.kozitski.pufar.exception.PufarDAOException;
 import com.kozitski.pufar.exception.PufarServiceException;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.AbstractService;
 import com.kozitski.pufar.service.InjectDao;
-import com.kozitski.pufar.service.autorization.LoginService;
 import com.kozitski.pufar.util.CommonConstant;
 import com.kozitski.pufar.util.encoder.PasswordEncoder;
 import org.slf4j.Logger;
@@ -25,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class UserServiceImpl extends AbstractService implements UserService {
-    private static Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
     private static final int BAN_STATUS_TRUE = 1;
     private static final int BAN_STATUS_FALSE = 0;
 
@@ -34,7 +31,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
     @InjectDao
     private NumberDao numberDao;
 
-    public Optional<User> searchUserById(long id){
+    public Optional<User> searchUserById(long id)  {
         Optional<User> user = userDao.searchById(id);
 
         if(user.isPresent()){
@@ -50,7 +47,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
         return user;
     }
     @Override
-    public Optional<User> searchUserByLogin(String login) {
+    public Optional<User> searchUserByLogin(String login) throws PufarValidationException {
         // any validation
         return userDao.searchUserByLogin(login);
     }
@@ -61,7 +58,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
         return userDao.searchUsersByStatus(status);
     }
     @Override
-    public User addUser(String login, String password) throws PufarServiceException {
+    public User addUser(String login, String password) throws PufarServiceException, PufarValidationException {
         User user = new User();
 
         String utf8Login = new String(login.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
@@ -113,7 +110,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
     }
 
     @Override
-    public void changePassword(RequestValue requestValue, long userId, String oldPassword, String newPassword, String newPasswordConfirm) throws PufarServiceException {
+    public void changePassword(RequestValue requestValue, long userId, String oldPassword, String newPassword, String newPasswordConfirm) throws PufarServiceException, PufarValidationException {
         boolean resultMessage = true;
 
         String oldEncodedPassword = PasswordEncoder.encode(oldPassword);

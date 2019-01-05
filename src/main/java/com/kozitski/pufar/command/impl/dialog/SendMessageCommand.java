@@ -2,6 +2,7 @@ package com.kozitski.pufar.command.impl.dialog;
 
 import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.user.User;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.dialoge.DialogService;
 import com.kozitski.pufar.service.dialoge.DialogServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
@@ -11,14 +12,14 @@ import org.slf4j.LoggerFactory;
 import java.nio.charset.StandardCharsets;
 
 public class SendMessageCommand extends AbstractCommand {
-    private static Logger LOGGER = LoggerFactory.getLogger(SendMessageCommand.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SendMessageCommand.class);
     private static final String SENDING_MESSAGE = "sentValue";
 
     @InjectService
     private DialogService dialogService;
 
     @Override
-    public Router execute(RequestValue requestValue) {
+    public Router execute(RequestValue requestValue)  {
         Router router = new Router();
         router.setPagePath(PagePath.CHAT_PAGE.getJspPath());
 

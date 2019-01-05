@@ -4,6 +4,7 @@ import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserParameter;
 import com.kozitski.pufar.entity.user.UserStatus;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.user.UserService;
 import com.kozitski.pufar.service.user.UserServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
@@ -13,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 
 public class SearchUserCommand extends AbstractCommand {
-    private static Logger LOGGER = LoggerFactory.getLogger(SearchUserCommand.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SearchUserCommand.class);
 
     private static final String USER_ID = "adminSearchUserId";
     private static final String USER_LOGIN_START = "adminSearchUserLoginStart";

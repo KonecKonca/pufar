@@ -3,6 +3,7 @@ package com.kozitski.pufar.command.impl.notification;
 import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.UnitType;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.notification.NotificationService;
 import com.kozitski.pufar.service.notification.NotificationServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
@@ -17,7 +18,7 @@ public class ShowNotificationByUnitTypeCommand extends AbstractCommand {
     private NotificationService notificationService;
 
     @Override
-    public Router execute(RequestValue request) {
+    public Router execute(RequestValue request)  {
         Router router = new Router();
         router.setPagePath(PagePath.TEMPLATE_PAGE.getJspPath());
 

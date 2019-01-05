@@ -10,12 +10,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
 
-
 public class ValidatorRegister {
-    private static Logger LOGGER = LoggerFactory.getLogger(ValidatorRegister.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ValidatorRegister.class);
     private static final String VALIDATOR_CONFIG_PATH = "/WEB-INF/classes/validation/validator.properties";
 
-    public static ArrayList<Validator> initValidators() throws PufarValidationException {
+    private ValidatorRegister() { }
+
+    public static List<Validator> initValidators() throws PufarValidationException {
 
         String fullPath = (WebPathReturner.webPath + VALIDATOR_CONFIG_PATH);
         Properties properties = new Properties();

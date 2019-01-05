@@ -3,6 +3,7 @@ package com.kozitski.pufar.command.impl.notification.additional;
 import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.user.User;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.user.UserService;
 import com.kozitski.pufar.service.user.UserServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
@@ -21,7 +22,7 @@ public class ShowAdditionalNotificationCommand extends AbstractCommand {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Router execute(RequestValue request) {
+    public Router execute(RequestValue request)  {
         Router router = new Router();
         router.setPagePath(PagePath.NOTIFICATION_ADDITIONAL.getJspPath());
 

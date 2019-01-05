@@ -13,6 +13,7 @@ import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserStatus;
 import com.kozitski.pufar.exception.PufarDAOException;
 import com.kozitski.pufar.exception.PufarServiceException;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.AbstractService;
 import com.kozitski.pufar.service.InjectDao;
 import com.kozitski.pufar.util.CommonConstant;
@@ -79,7 +80,7 @@ public class NotificationServiceImpl extends AbstractService implements Notifica
         return result;
     }
     @Override
-    public void addNotification(Notification notification) throws PufarServiceException {
+    public void addNotification(Notification notification) throws PufarServiceException, PufarValidationException {
         try {
             notificationDao.addNotification(notification);
         }
@@ -117,7 +118,7 @@ public class NotificationServiceImpl extends AbstractService implements Notifica
         return result;
     }
     @Override
-    public long sentComment(@StringValid String comment, long senderId, long notificationId) throws PufarServiceException{
+    public long sentComment(@StringValid String comment, long senderId, long notificationId) throws PufarServiceException, PufarValidationException {
         try {
             return notificationDao.addComment(comment, senderId, notificationId);
         }
@@ -127,7 +128,7 @@ public class NotificationServiceImpl extends AbstractService implements Notifica
     }
     @Override
     @SuppressWarnings("unchecked")
-    public void putMark(RequestValue requestValue, int mark, long senderId, long notificationId){
+    public void putMark(RequestValue requestValue, int mark, long senderId, long notificationId) throws PufarValidationException {
         try {
             double newRate = notificationDao.putMark(mark, senderId, notificationId);
 

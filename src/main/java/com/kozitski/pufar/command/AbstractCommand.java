@@ -10,7 +10,7 @@ import java.lang.reflect.Field;
 import java.util.Properties;
 
 public abstract class AbstractCommand {
-    private static Logger LOGGER = LoggerFactory.getLogger(AbstractCommand.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractCommand.class);
     private static final String COMMAND_INJECTION_PROPERTY_PATH = "\\WEB-INF\\classes\\injection\\commandInjection.properties";
 
     public AbstractCommand() {

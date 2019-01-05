@@ -2,6 +2,7 @@ package com.kozitski.pufar.command.impl.admin.notification.choose;
 
 import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.user.User;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.notification.NotificationService;
 import com.kozitski.pufar.service.notification.NotificationServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
@@ -9,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DropNotificationCommand extends AbstractCommand {
-    private static Logger LOGGER = LoggerFactory.getLogger(DropNotificationCommand.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DropNotificationCommand.class);
     private static final String COMMENT_ID = "id";
 
     private static final String OK_INPUT_MESSAGE = "notification(+ binding comments, rates) was deleted ";

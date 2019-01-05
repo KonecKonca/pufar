@@ -1,6 +1,7 @@
 package com.kozitski.pufar.validation.validator;
 
 import com.kozitski.pufar.entity.comment.NotificationComment;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.validation.annotation.comment.CommentValid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,10 +9,10 @@ import org.slf4j.LoggerFactory;
 import java.lang.annotation.Annotation;
 
 public class CommentValidator implements Validator{
-    private static Logger LOGGER = LoggerFactory.getLogger(CommentValidator.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CommentValidator.class);
 
     @Override
-    public void validate(Annotation[] annotations, Object object) throws RuntimeException {
+    public void validate(Annotation[] annotations, Object object) throws PufarValidationException {
         for(Annotation annotation : annotations){
             if(annotation instanceof CommentValid && object instanceof NotificationComment){
                 commentValidation((CommentValid) annotation, (NotificationComment) object);
@@ -19,43 +20,32 @@ public class CommentValidator implements Validator{
         }
     }
 
-    private void commentValidation(CommentValid annotation, NotificationComment comment) {
+    private void commentValidation(CommentValid annotation, NotificationComment comment) throws PufarValidationException {
 
         if(comment == null || comment.getComment() == null || comment.getComment().isEmpty()){
-            LOGGER.error("NotificationComment can not be and contains NULL");
-            throw new RuntimeException("NotificationComment can not be and contains NULL");
+            LOGGER.warn("NotificationComment can not be and contains NULL");
+            throw new PufarValidationException("NotificationComment can not be and contains NULL");
         }
 
         int minMessageSize = annotation.minMessageSize();
         int maxMessageSize = annotation.maxMessageSize();
         int realMessageSize = comment.getComment().length();
         if(realMessageSize < minMessageSize || realMessageSize > maxMessageSize){
-            LOGGER.error("message is not in allowed range [" + minMessageSize +  ", " + maxMessageSize + "] (" + realMessageSize + ")");
+            LOGGER.warn("message is not in allowed range [" + minMessageSize +  ", " + maxMessageSize + "] (" + realMessageSize + ")");
         }
 
         String realMessage = comment.getComment();
-        if(realMessage.contains(annotation.xssPattern())){
-            LOGGER.error("message can be not XSS protected");
-            throw new RuntimeException("message can be not XSS protected");
+        if(realMessage.toLowerCase().contains(annotation.xssPattern())){
+            LOGGER.warn("message can be not XSS protected");
+            throw new PufarValidationException("message can be not XSS protected");
         }
 
         String pattern = annotation.stringPattern();
         if(!realMessage.matches(pattern)){
-            LOGGER.error("("  + realMessage + ") is not valid diu to regexp(" + pattern + ")");
-            throw new RuntimeException("("  + realMessage + ") is not valid diu to regexp(" + pattern + ")");
+            LOGGER.warn("("  + realMessage + ") is not valid diu to regexp(" + pattern + ")");
+            throw new PufarValidationException("("  + realMessage + ") is not valid diu to regexp(" + pattern + ")");
         }
 
-
-        // HERE must be senderlogin Validation
-//        long commentId = comment.getCommentId();
-//        long userId = comment.getSenderLogin();
-//        long maxId = annotation.maxId();
-//        long minId = 0;
-//
-//        if(commentId < 0 || userId < 0 || commentId > maxId || userId > maxId){
-//            LOGGER.error("id is not in allowed range [" + minId +  ", " + maxId + "] (" + commentId + ", "  + userId + ")");
-//            throw new RuntimeException("id is not in allowed range [" + minId +  ", " + maxId + "] (" + commentId + ", "  + userId + ")");
-//        }
 
     }
 

@@ -4,6 +4,8 @@ import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.UnitType;
 import com.kozitski.pufar.entity.user.User;
+import com.kozitski.pufar.exception.PufarServiceException;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.notification.NotificationService;
 import com.kozitski.pufar.service.notification.NotificationServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
@@ -20,7 +22,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 public class CreateNotificationCommand extends AbstractCommand {
-    private static Logger LOGGER = LoggerFactory.getLogger(CreateNotificationCommand.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CreateNotificationCommand.class);
 
     private static final String RADIO_BUTTON = "radios";
 
@@ -49,7 +51,7 @@ public class CreateNotificationCommand extends AbstractCommand {
         }
 
         String stringPrice = (String) request.getAttribute(NOTIFICATION_PRICE);
-        double price = DEFAULT_VALUE;
+        double price = -DEFAULT_VALUE;
         if(stringPrice != null && !stringPrice.isEmpty()){
             try {
                 price = Double.parseDouble(stringPrice);
@@ -91,7 +93,11 @@ public class CreateNotificationCommand extends AbstractCommand {
             notificationService.addNotification(notification);
             request.requestAttributePut(CommonConstant.INDEX_MESSAGE, ((PufarLanguage)request.getAttribute(CommonConstant.LOCALE)).getValue(RESULT_MESSAGE));
         }
-        catch (Exception e){
+        catch (PufarValidationException e){
+            LOGGER.warn("Were entered incorrect values", e);
+            router.setPagePath(PagePath.CREATE_NOTIFICATION.getJspPath());
+        }
+        catch (PufarServiceException e) {
             LOGGER.warn("Notification was not added", e);
             router.setPagePath(PagePath.CREATE_NOTIFICATION.getJspPath());
         }

@@ -2,6 +2,8 @@ package com.kozitski.pufar.command.impl.autorization;
 
 import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.user.User;
+import com.kozitski.pufar.exception.PufarServiceException;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.user.UserService;
 import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
@@ -10,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Optional;
 
 public class RegistrationCommand extends AbstractCommand {
-    private static Logger LOGGER = LoggerFactory.getLogger(RegistrationCommand.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RegistrationCommand.class);
     private static final String LOGIN = "login";
     private static final String PASSWORD = "password";
 
@@ -18,7 +20,7 @@ public class RegistrationCommand extends AbstractCommand {
     private UserService service;
 
     @Override
-    public Router execute(RequestValue request) {
+    public Router execute(RequestValue request){
         Router router = new Router();
 
         String currentLogin = request.getAttribute(LOGIN).toString();
@@ -35,8 +37,11 @@ public class RegistrationCommand extends AbstractCommand {
                 request.servletSessionPut(CommonConstant.CURRENT_USER, currentUser);
             }
         }
-        catch (Exception e) {
+        catch (PufarServiceException e) {
             LOGGER.warn("user is not registered", e);
+        }
+        catch (PufarValidationException e){
+            LOGGER.warn("incorrect input data", e);
         }
 
         return router;

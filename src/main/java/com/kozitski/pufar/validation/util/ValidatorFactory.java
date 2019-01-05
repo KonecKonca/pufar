@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 class ValidatorFactory {
-    private static Logger LOGGER = LoggerFactory.getLogger(ValidatorFactory.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ValidatorFactory.class);
+
+    private ValidatorFactory() { }
 
     static ArrayList<Validator> getActiveValidators(List<Object> names, List<Object> isActive){
 

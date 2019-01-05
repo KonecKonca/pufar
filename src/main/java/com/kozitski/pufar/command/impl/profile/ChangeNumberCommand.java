@@ -4,6 +4,7 @@ import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.number.MobilPhoneNumber;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.exception.PufarServiceException;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.number.NumberService;
 import com.kozitski.pufar.util.CommonConstant;
 
@@ -12,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 
 public class ChangeNumberCommand extends AbstractCommand {
-    private static Logger LOGGER = LoggerFactory.getLogger(ChangeNumberCommand.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ChangeNumberCommand.class);
 
     private static final String OPERATOR = "operator";
     private static final String MOBILE_NUMBER = "mobileNumber";
@@ -52,7 +53,7 @@ public class ChangeNumberCommand extends AbstractCommand {
                     userOwner.setNumber(mobilPhoneNumber);
 
                     LOGGER.info("Number was correctly processed");
-                } catch (PufarServiceException e) {
+                } catch (PufarServiceException | PufarValidationException e) {
                     LOGGER.warn("number wasn't performed", e);
                 }
 

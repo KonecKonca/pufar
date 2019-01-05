@@ -5,6 +5,7 @@ import com.kozitski.pufar.controller.LogoutController;
 import com.kozitski.pufar.entity.number.MobilPhoneNumber;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.exception.PufarServiceException;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.user.UserService;
 import com.kozitski.pufar.service.user.UserServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
@@ -14,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import java.nio.charset.StandardCharsets;
 
 public class ChangePasswordCommand extends AbstractCommand {
-    private static Logger LOGGER = LoggerFactory.getLogger(ChangePasswordCommand.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ChangePasswordCommand.class);
 
     private static final String OLD_PASSWORD = "oldPassword";
     private static final String NEW_PASSWORD = "newPassword";

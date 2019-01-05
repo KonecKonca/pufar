@@ -10,11 +10,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class PasswordEncoder {
-    private static Logger LOGGER = LoggerFactory.getLogger(PasswordEncoder.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PasswordEncoder.class);
     private static final String ENCODING_TYPE = "MD5";
     private static final String STRING_FORMAT_CONSTANT = "%02X ";
 
-    @AspectValid
+    private PasswordEncoder() {}
+
+    //    @AspectValid
     public static String encode(String password){
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -32,7 +34,7 @@ public class PasswordEncoder {
             LOGGER.error("Can not encode password");
         }
 
-        return stringBuilder.toString();
+        return stringBuilder.toString().trim();
     }
 
     public static boolean comparePasswordsWithEncoding(String pass1, String pass2){

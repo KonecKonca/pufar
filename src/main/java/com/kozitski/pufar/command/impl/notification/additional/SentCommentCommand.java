@@ -6,6 +6,7 @@ import com.kozitski.pufar.entity.comment.NotificationComment;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.exception.PufarServiceException;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.notification.NotificationService;
 import com.kozitski.pufar.service.notification.NotificationServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class SentCommentCommand extends AbstractCommand {
-    private static Logger LOGGER = LoggerFactory.getLogger(SentCommentCommand.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SentCommentCommand.class);
 
     private static final String COMMENT_VALUE = "commentValue";
     private static final String NOTIFICATION_ID = "notificationId";
@@ -62,6 +63,9 @@ public class SentCommentCommand extends AbstractCommand {
         }
         catch (PufarServiceException e) {
             LOGGER.warn("comment wasn't added");
+        }
+        catch (PufarValidationException e) {
+            LOGGER.warn("incorrect input data", e);
         }
 
         return router;

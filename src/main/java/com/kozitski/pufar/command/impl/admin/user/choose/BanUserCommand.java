@@ -3,6 +3,7 @@ package com.kozitski.pufar.command.impl.admin.user.choose;
 import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.exception.PufarLogicException;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.user.UserService;
 import com.kozitski.pufar.service.user.UserServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
@@ -10,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class BanUserCommand extends AbstractCommand {
-    private static Logger LOGGER = LoggerFactory.getLogger(BanUserCommand.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BanUserCommand.class);
     private static final String USER_ID = "id";
 
     private static final String OK_INPUT_MESSAGE = "user was banned ";
@@ -20,7 +21,7 @@ public class BanUserCommand extends AbstractCommand {
     private UserService userService;
 
     @Override
-    public Router execute(RequestValue request) {
+    public Router execute(RequestValue request)  {
         Router router = new Router();
         router.setPagePath(PagePath.ADMIN_CONTROL_PANEL.getJspPath());
 

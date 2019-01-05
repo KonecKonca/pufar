@@ -4,6 +4,7 @@ import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.command.Router;
 import com.kozitski.pufar.entity.message.UserMessage;
 import com.kozitski.pufar.entity.user.User;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.validation.annotation.AspectValid;
 import com.kozitski.pufar.validation.annotation.primitive.string.StringValid;
 
@@ -19,13 +20,12 @@ public interface DialogService {
 
     ArrayList<User> searchPopularUser(long forWhomUserId, int howMuch);
     @AspectValid
-    void addMessage(long senderId, long receiverId, @StringValid String message);
+    void addMessage(long senderId, long receiverId, @StringValid String message) throws PufarValidationException;
 
     // business logic methods
     void showDialogs(RequestValue requestValue);
     void showNextDialogs(RequestValue requestValue);
     void showPreviousDialogs(RequestValue requestValue);
     void chooseDialogWithUser(RequestValue requestValue);
-
 
 }
