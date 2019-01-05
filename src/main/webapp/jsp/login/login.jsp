@@ -37,16 +37,16 @@
         <table align="center">
             <tr>
                 <th align="right">${locale.getValue("loginLabel")}</th>
-                <td><input type="text" name="login" placeholder="${locale.getValue("loginLabel")}" class="form-control"
+                <td><input type="text" name="login" placeholder="${locale.getValue("loginLabel")}" class="form-control" required
                            pattern="[\w.@а-яА-яёЁ]{5,20}" title="${locale.getValue("commonLoginPattern")}"/></td>
             </tr>
             <tr>
                 <th align="right">${locale.getValue("loginPasswordLabel")}</th>
-                <td><input type="password" name="password" placeholder="${locale.getValue("loginPasswordLabel")}" class="form-control"
+                <td><input type="password" name="password" placeholder="${locale.getValue("loginPasswordLabel")}" class="form-control" required
                            pattern="[\w.@а-яА-яёЁ]{5,20}" title="${locale.getValue("commonLoginPattern")}"/></td>
             </tr>
             <tr>
-                <td colspan="2" align="right"><input type="submit" value="${locale.getValue("loginButton")}" class="btn btn-primary" pattern="[\w.@а-яА-яёЁ]{5,20}"/></td>
+                <td colspan="2" align="right"><input type="submit" value="${locale.getValue("loginButton")}" class="btn btn-primary"/></td>
             </tr>
         </table>
 

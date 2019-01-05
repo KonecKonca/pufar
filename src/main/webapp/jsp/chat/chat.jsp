@@ -60,7 +60,8 @@
                                 <form action="/pufar" accept-charset="utf-8" method="post" >
                                     <input type="hidden" value="SEND_MESSAGE" name="command">
 
-                                    <input type="text" class="form-control" placeholder="Enter Message"  name="sentValue" pattern="[\w.@а-яА-яёЁ]{1,555}" title="${locale.getValue("commonMessagePattern")}"/>
+                                    <input type="text" class="form-control" placeholder="Enter Message"  name="sentValue" required
+                                           pattern="[\w.@а-яА-яёЁ]{1,555}" title="${locale.getValue("commonMessagePattern")}"/>
                                     <input class="btn btn-info" type="submit" value="${locale.getValue("chatSentButton")}">
                                 </form>
 

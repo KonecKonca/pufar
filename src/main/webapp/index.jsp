@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/index/common/templatemo-style.css">
 
     <script type="text/javascript" src="js/index/modernizr.custom.86080.js"></script>
+    <script type="text/javascript" src="js/validationMessage.js"></script>
 
 </head>
 
@@ -63,18 +64,18 @@
                 <table align="center">
                     <tr>
                         <th align="right"><div class="indexLabel">${locale.getValue("indexRegisterLogin")}</div></th>
-                        <td><input type="text" name="login" placeholder="${locale.getValue("indexRegisterLogin")}" class="form-control"
+                        <td><input type="text" name="login" placeholder="${locale.getValue("indexRegisterLogin")}" class="form-control" required id="xxx"
                                    pattern="[\w.@а-яА-яёЁ]{5,20}" title="${locale.getValue("commonLoginPattern")}"/></td>
                     </tr>
                     <tr>
                         <th align="right"><div class="indexLabel">${locale.getValue("indexRegisterPassword")}</div></th>
                         <td>
-                            <input type="password" name="password" placeholder="${locale.getValue("indexRegisterPassword")}" class="form-control"
+                            <input type="password" name="password" placeholder="${locale.getValue("indexRegisterPassword")}" class="form-control" required
                                    pattern="[\w.@а-яА-яёЁ]{5,20}" title="${locale.getValue("commonLoginPattern")}"/>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="right"><input type="submit" value="${locale.getValue("indexRegisterButton")}" class="btn btn-outline-info" pattern="[\w.@а-яА-яёЁ]{5,20}"/></td>
+                        <td colspan="2" align="right"><input type="submit" value="${locale.getValue("indexRegisterButton")}" class="btn btn-outline-info"/></td>
                     </tr>
                 </table>
 

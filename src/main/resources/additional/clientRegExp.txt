@@ -1,0 +1,12 @@
+commonLongPatternRegExp=[\d]{1,25}
+commonDoublePatternRegExp=[\d.]{1,25}
+commonUnitPatternRegExp=(OTHER|other|AUTO|auto|HOME|home|CHILD|child|FOOD|food|WORK|work|BEAUTY|beauty|ELECTRONICS|electronics|)
+commonMessagePatternRegExp=[\w.@а-яА-яёЁ]{1,555}
+commonNotificationPatternRegExp=[\w.@а-яА-яёЁ]{1,1000}
+commonLoginPatternRegExp=[\w.@а-яА-яёЁ]{5,20}
+commonOperatorPatternRegExp=[\d]{2}
+commonNumberPatternRegExp=[\d]{7}
+commonChangePasswordPatternRegExp=[\w.@а-яА-яёЁ]{5,60}
+
+
+
