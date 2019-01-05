@@ -34,7 +34,9 @@ public interface UserService {
     boolean changeUserStatusByUserId(long id, String newStatus, User currentUser);
 
     @AspectValid
-    void changePassword(RequestValue requestValue, long userId, @StringValid String oldPassword,
-                        @StringValid String newPassword, @StringValid String newPasswordConfirm) throws PufarServiceException, PufarValidationException;
+    void changePassword(RequestValue requestValue, long userId,
+                        @StringValid(minLength = 5, maxLength = 60) String oldPassword,
+                        @StringValid(minLength = 5, maxLength = 60) String newPassword,
+                        @StringValid(minLength = 5, maxLength = 60) String newPasswordConfirm) throws PufarServiceException, PufarValidationException;
 
 }

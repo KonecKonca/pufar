@@ -2,22 +2,28 @@
 
 <suite thread-count="1" verbose="1" name="MainSuit" annotations="JDK" parallel="tests">
 
-    <test name="MainTest">
+    <test name="UtilTest">
         <classes>
-            <class name="com.kozitski.task3.interpreter.InterpreterTest"/>
+            <class name="com.kozitski.pufar.util.encoder.PasswordEncoderTest"/>
 
-            <class name="com.kozitski.task3.service.ExpressionConverterTest"/>
-            <class name="com.kozitski.task3.service.TextComponentCreatorTest"/>
-            <class name="com.kozitski.task3.service.TextOperationTest"/>
-
-            <class name="com.kozitski.task3.util.polishnotation.PolishNotationConverterTest"/>
-            <class name="com.kozitski.task3.util.reader.TextReaderTest"/>
         </classes>
     </test>
 
-    <test name="TimeTest">
+    <test name="ConnectionPool">
         <classes>
-            <class name="com.kozitski.task3.date.TimeTest"/>
+            <class name="com.kozitski.pufar.database.ConnectionPoolTest"/>
+
+        </classes>
+    </test>
+
+    <test name="ValidatorTest">
+        <classes>
+            <class name="com.kozitski.pufar.validation.validator.MessageValidator"/>
+            <class name="com.kozitski.pufar.validation.validator.CommentValidator"/>
+            <class name="com.kozitski.pufar.validation.validator.NotificationValidatorTest"/>
+            <class name="com.kozitski.pufar.validation.validator.NumberValidatorTest"/>
+            <class name="com.kozitski.pufar.validation.validator.UserValidatorTest"/>
+
         </classes>
     </test>
 

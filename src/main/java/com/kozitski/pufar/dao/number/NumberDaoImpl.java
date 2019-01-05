@@ -1,14 +1,10 @@
 package com.kozitski.pufar.dao.number;
 
-import com.kozitski.pufar.connection.PoolConnection;
+import com.kozitski.pufar.database.ConnectionPool;
 import com.kozitski.pufar.dao.PufarDaoConstant;
-import com.kozitski.pufar.dao.user.UserDaoImpl;
 import com.kozitski.pufar.entity.number.MobilPhoneNumber;
-import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.exception.PufarDAOException;
-import com.kozitski.pufar.util.mapper.comment.CommentMapper;
 import com.kozitski.pufar.util.mapper.number.MobilNumberMapper;
-import com.kozitski.pufar.util.mapper.user.UserMapper;
 import org.apache.commons.dbutils.DbUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +40,7 @@ public class NumberDaoImpl implements NumberDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(SEARCH_NUMBER_BY_USER_ID);
             preparedStatement.setLong(1, userId);
             resultSet = preparedStatement.executeQuery();
@@ -74,7 +70,7 @@ public class NumberDaoImpl implements NumberDao {
 
         PreparedStatement preparedStatement = null;
 
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(UPDATE_NUMBER_BY_USER_ID);
             preparedStatement.setString(1, mobilPhoneNumber.getCountry());
             preparedStatement.setString(2, mobilPhoneNumber.getOperator());
@@ -99,7 +95,7 @@ public class NumberDaoImpl implements NumberDao {
         PreparedStatement insertUserStatement = null;
         ResultSet generatedKeys = null;
 
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             connection.setAutoCommit(false);
 
             insertNumberStatement = connection.prepareStatement(INSERT_NUMBER_BY_USER_ID, Statement.RETURN_GENERATED_KEYS);

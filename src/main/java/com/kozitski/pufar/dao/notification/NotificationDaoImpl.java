@@ -1,8 +1,7 @@
 package com.kozitski.pufar.dao.notification;
 
-import com.kozitski.pufar.connection.PoolConnection;
+import com.kozitski.pufar.database.ConnectionPool;
 import com.kozitski.pufar.dao.PufarDaoConstant;
-import com.kozitski.pufar.dao.dialoge.DialogDaoImpl;
 import com.kozitski.pufar.entity.comment.NotificationComment;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.NotificationParameter;
@@ -20,7 +19,6 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -129,7 +127,7 @@ public class NotificationDaoImpl implements NotificationDao {
         ResultSet checkResultSet = null;
         ResultSet findRateResultSet = null;
 
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             connection.setAutoCommit(false);
 
             checkStatement = connection.prepareStatement(CHECK_IS_MARK_EXIST);
@@ -197,7 +195,7 @@ public class NotificationDaoImpl implements NotificationDao {
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(SEARCH_COMMENTS_BY_NOTIFICATION_ID);
             preparedStatement.setLong(1, notificationId);
             resultSet = preparedStatement.executeQuery();
@@ -224,7 +222,7 @@ public class NotificationDaoImpl implements NotificationDao {
         boolean result;
 
         PreparedStatement preparedStatement = null;
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(DELETE_COMMENT_BY_COMMENT_ID);
             preparedStatement.setLong(1, commentId);
             preparedStatement.executeUpdate();
@@ -247,7 +245,7 @@ public class NotificationDaoImpl implements NotificationDao {
         long date = System.currentTimeMillis();
 
         PreparedStatement preparedStatement = null;
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(ADD_COMMENT);
             preparedStatement.setLong(1, notificationId);
             preparedStatement.setLong(2, senderId);
@@ -275,7 +273,7 @@ public class NotificationDaoImpl implements NotificationDao {
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(SEARCH_TOP_NOTIFICATIONS_SQL);
             preparedStatement.setLong(1, limit);
             resultSet = preparedStatement.executeQuery();
@@ -306,7 +304,7 @@ public class NotificationDaoImpl implements NotificationDao {
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             String parametersSql = generateSearchWithParametersSql(parameters);
 
             preparedStatement = connection.prepareStatement(parametersSql);
@@ -423,7 +421,7 @@ public class NotificationDaoImpl implements NotificationDao {
         PreparedStatement dropRates = null;
         PreparedStatement dropNotification = null;
 
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             connection.setAutoCommit(false);
 
             dropComments = connection.prepareStatement(DELETE_RATE_BY_NOTIFICATION_ID);
@@ -465,7 +463,7 @@ public class NotificationDaoImpl implements NotificationDao {
         boolean result;
 
         PreparedStatement preparedStatement = null;
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
 
             preparedStatement = connection.prepareStatement(CHANGE_NOTIFICATION_MESSAGE);
             preparedStatement.setString(1, newMessage);
@@ -492,7 +490,7 @@ public class NotificationDaoImpl implements NotificationDao {
         PreparedStatement preparedStatementRate = null;
         ResultSet generatedKeys = null;
 
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             connection.setAutoCommit(false);
 
             preparedStatement = connection.prepareStatement(ADD_NOTIFICATION, Statement.RETURN_GENERATED_KEYS);
@@ -549,7 +547,7 @@ public class NotificationDaoImpl implements NotificationDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
 
             preparedStatement = connection.prepareStatement(SEARCH_NOTIFICATION_BY_UNIT_NUMBER);
             preparedStatement.setInt(1, UnitType.getUnitDBPosition(unitType));
@@ -579,7 +577,7 @@ public class NotificationDaoImpl implements NotificationDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(SEARCH_NOTIFICATION_BY_UNIT);
             preparedStatement.setInt(1, UnitType.getUnitDBPosition(unitType));
             preparedStatement.setInt(2, limitStart);
@@ -611,7 +609,7 @@ public class NotificationDaoImpl implements NotificationDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(SEARCH_ALL_NOTIFICATIONS_BY_AUTHOR_ID, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setLong(1, authorIdw);
             resultSet = preparedStatement.executeQuery();

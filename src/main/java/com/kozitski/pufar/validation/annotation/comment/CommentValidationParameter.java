@@ -8,6 +8,6 @@ class CommentValidationParameter {
     static final int MAX_MESSAGE_SIZE = 1000;
     static final String XSS_PATTERN = "<script>";
 
-    static final String STRING_FIELD_PATTERN = "[\\w.@]+";
+    static final String STRING_FIELD_PATTERN = "[\\s\\w.@а-яА-яёЁ]+";
 
 }

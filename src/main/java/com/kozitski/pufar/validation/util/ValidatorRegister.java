@@ -12,13 +12,14 @@ import java.util.*;
 
 public class ValidatorRegister {
     private static final Logger LOGGER = LoggerFactory.getLogger(ValidatorRegister.class);
-    private static final String VALIDATOR_CONFIG_PATH = "/WEB-INF/classes/validation/validator.properties";
+    private static final String VALIDATOR_CONFIG_WEB_PATH = "/WEB-INF/classes/validation/validator.properties";
 
-    private ValidatorRegister() { }
+    private static String fullPath = WebPathReturner.webPath + VALIDATOR_CONFIG_WEB_PATH;
+
+    private ValidatorRegister(){}
 
     public static List<Validator> initValidators() throws PufarValidationException {
 
-        String fullPath = (WebPathReturner.webPath + VALIDATOR_CONFIG_PATH);
         Properties properties = new Properties();
 
         try(FileInputStream fileInputStream = new FileInputStream(fullPath)) {
@@ -33,6 +34,10 @@ public class ValidatorRegister {
         ArrayList<Object> values = new ArrayList<>(properties.values());
 
         return new ArrayList<>(ValidatorFactory.getActiveValidators(keys, values));
+    }
+
+    public static void setFullPath(String fullPath) {
+        ValidatorRegister.fullPath = fullPath;
     }
 
 }

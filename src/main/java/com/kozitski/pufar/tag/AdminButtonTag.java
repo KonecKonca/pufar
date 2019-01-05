@@ -1,16 +1,12 @@
 package com.kozitski.pufar.tag;
 
-import com.kozitski.pufar.command.PagePath;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserStatus;
 import com.kozitski.pufar.util.CommonConstant;
-import com.kozitski.pufar.util.path.WebPathReturner;
 
-import javax.servlet.ServletException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
-import java.io.File;
 import java.io.IOException;
 
 @SuppressWarnings("serial")

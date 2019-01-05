@@ -29,7 +29,6 @@
                 <input type="hidden" name="command" value="CREATE_NOTIFICATION">
 
                     ${locale.getValue("createNotificationUnit")}:
-                    <%--<input type="text" class="form-control" placeholder="${locale.getValue("createNotificationCommonMessage")}" name="adminSearchUserId"/>--%>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" value="OTHER" name="radios" id="option1" checked>
                     <label class="form-check-label" for="option1">
@@ -80,11 +79,13 @@
                 </div>
 
                     ${locale.getValue("createNotificationMessage")}:
-                <input type="text" class="form-control" placeholder="${locale.getValue("createNotificationMessage")}" name="createNotificationMessage"/>
+                <input type="text" class="form-control" placeholder="${locale.getValue("createNotificationMessage")}" name="createNotificationMessage"
+                       pattern="[\w.@а-яА-яёЁ]{1,1000}" title="${locale.getValue("commonNotificationPattern")}" />
                     ${locale.getValue("createNotificationPrice")}:
-                <input type="text" class="form-control" placeholder="${locale.getValue("createNotificationPrice")}" name="createNotificationPrice"/>
+                <input type="text" class="form-control" placeholder="${locale.getValue("createNotificationPrice")}" name="createNotificationPrice"
+                       pattern="[\d.]{1,25}" title="${locale.getValue("commonDoublePattern")}"/>
 
-                <input class="btn btn-dark" type="submit" value="${locale.getValue("createNotificationButton")}" title="${locale.getValue("createNotificationButtonAltCreate")}">
+                <input class="btn btn-dark" type="submit" value="${locale.getValue("createNotificationButton")}" title="${locale.getValue("createNotificationButtonAltCreate")}"/>
             </form>
         </c:when>
         <c:otherwise>

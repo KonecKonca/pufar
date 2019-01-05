@@ -36,7 +36,9 @@ public class NotificationComment {
         return comment;
     }
     public void setComment(String comment) {
-        this.comment = comment;
+        if(comment != null){
+            this.comment = comment.trim();
+        }
     }
     public void setDate(Date date) {
         this.date = date;
@@ -46,9 +48,13 @@ public class NotificationComment {
     }
 
     public String getStringDate(){
-        return new SimpleDateFormat(CommonConstant.DATE_TIME_COMMON_PATTERN).format(date);
+        if(date != null){
+            return new SimpleDateFormat(CommonConstant.DATE_TIME_COMMON_PATTERN).format(date);
+        }
+        else {
+            return null;
+        }
     }
-
 
     @Override
     public boolean equals(Object o) {

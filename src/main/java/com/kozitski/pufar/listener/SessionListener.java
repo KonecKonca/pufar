@@ -9,7 +9,6 @@ import com.kozitski.pufar.service.notification.NotificationService;
 import com.kozitski.pufar.service.notification.NotificationServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
 import com.kozitski.pufar.util.language.PufarLanguage;
-import com.kozitski.pufar.util.path.WebPathReturner;
 
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 @WebListener
-public class PufarSessionListener implements HttpSessionListener {
+public class SessionListener implements HttpSessionListener {
     private static final String CURRENT_USER = "currentUser";
 
     private static final int HOW_MUCH_MESSAGES = 6;

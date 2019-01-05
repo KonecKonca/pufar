@@ -1,8 +1,6 @@
-package com.kozitski.pufar.connection;
+package com.kozitski.pufar.database;
 
 import com.kozitski.pufar.dao.notification.NotificationDaoImpl;
-import com.kozitski.pufar.service.dialoge.DialogService;
-import com.kozitski.pufar.service.dialoge.DialogServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

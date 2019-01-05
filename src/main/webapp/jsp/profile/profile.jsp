@@ -29,8 +29,10 @@
                     <input type="submit" value="${locale.getValue("profileMobilePhoneChange")}" class="btn btn-success">
 
                     ${locale.getValue("profileMobilePhonePrefix")}
-                    <input type="text" name="operator" placeholder="${locale.getValue("profileMobilPhoneLabel1")}" size="2" class="form-control-sm" maxlength="2" minlength="2"/>
-                    <input type="text" name="mobileNumber" placeholder="${locale.getValue("profileMobilPhoneLabel2")}" size="15" class="form-control-sm" maxlength="7" minlength="7"/><br>
+                    <input type="text" name="operator" placeholder="${locale.getValue("profileMobilPhoneLabel1")}" size="2" class="form-control-sm"
+                           pattern="[\d]{2}" title="${locale.getValue("commonOperatorPattern")}"/>
+                    <input type="text" name="mobileNumber" placeholder="${locale.getValue("profileMobilPhoneLabel2")}" size="15" class="form-control-sm"
+                           pattern="[\d]{7}" title="${locale.getValue("commonNumberPattern")}"/><br>
                 </form>
 
                 <h3><strong> ${locale.getValue("profileChangePasswordLabel")}: </h3>
@@ -38,13 +40,16 @@
                     <input type="hidden" name="command" value="CHANGE_PASSWORD">
 
                     ${locale.getValue("profileOldPassword")}
-                    <input type="password" name="oldPassword" placeholder="${locale.getValue("profileOldPassword")}" size="25" class="form-control-sm"/><br>
+                    <input type="password" name="oldPassword" placeholder="${locale.getValue("profileOldPassword")}" size="25" class="form-control-sm"
+                           pattern="[\w.@а-яА-яёЁ]{5,60}" title="${locale.getValue("commonChangePasswordPattern")}"/><br>
 
                     ${locale.getValue("profileNewPassword")}
-                    <input type="password" name="newPassword" placeholder="${locale.getValue("profileNewPassword")}" size="25" class="form-control-sm"/><br>
+                    <input type="password" name="newPassword" placeholder="${locale.getValue("commonChangePasswordPattern")}" size="25" class="form-control-sm"
+                           pattern="[\w.@а-яА-яёЁ]{5,60}"/><br>
 
                     ${locale.getValue("profileNewPasswordConfirm")}
-                    <input type="password" name="newPasswordConfirm" placeholder="${locale.getValue("profileNewPasswordConfirm")}" size="25" class="form-control-sm"/><br>
+                    <input type="password" name="newPasswordConfirm" placeholder="${locale.getValue("commonChangePasswordPattern")}" size="25" class="form-control-sm"
+                           pattern="[\w.@а-яА-яёЁ]{5,60}"/><br>
 
                     <c:choose>
                         <c:when test="${changePasswordMessage == true}">

@@ -27,25 +27,27 @@ public class CommentValidator implements Validator{
             throw new PufarValidationException("NotificationComment can not be and contains NULL");
         }
 
+        String trimComment = comment.getComment().trim();
+
         int minMessageSize = annotation.minMessageSize();
         int maxMessageSize = annotation.maxMessageSize();
-        int realMessageSize = comment.getComment().length();
+        int realMessageSize = trimComment.length();
         if(realMessageSize < minMessageSize || realMessageSize > maxMessageSize){
             LOGGER.warn("message is not in allowed range [" + minMessageSize +  ", " + maxMessageSize + "] (" + realMessageSize + ")");
+            throw new PufarValidationException("message is not in allowed range [" + minMessageSize +  ", " + maxMessageSize + "] (" + realMessageSize + ")");
         }
 
-        String realMessage = comment.getComment();
-        if(realMessage.toLowerCase().contains(annotation.xssPattern())){
+        String senderLogin = comment.getSenderLogin();
+        if(trimComment.toLowerCase().contains(annotation.xssPattern()) || senderLogin.toLowerCase().contains(annotation.xssPattern())){
             LOGGER.warn("message can be not XSS protected");
             throw new PufarValidationException("message can be not XSS protected");
         }
 
         String pattern = annotation.stringPattern();
-        if(!realMessage.matches(pattern)){
-            LOGGER.warn("("  + realMessage + ") is not valid diu to regexp(" + pattern + ")");
-            throw new PufarValidationException("("  + realMessage + ") is not valid diu to regexp(" + pattern + ")");
+        if(!trimComment.matches(pattern)){
+            LOGGER.warn("("  + trimComment + ") is not valid diu to regexp(" + pattern + ")");
+            throw new PufarValidationException("("  + trimComment + ") is not valid diu to regexp(" + pattern + ")");
         }
-
 
     }
 

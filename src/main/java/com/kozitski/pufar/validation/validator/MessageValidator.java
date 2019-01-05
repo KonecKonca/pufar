@@ -34,9 +34,11 @@ public class MessageValidator implements Validator{
             throw new PufarValidationException("Notification can not contains EMPTY Strings");
         }
 
+        String trimMessage = userMessage.getMessage().trim();
+
         int minMessageSize = annotation.minMessageSize();
         int maxMessageSize = annotation.maxMessageSize();
-        int realMessageSize = userMessage.getMessage().length();
+        int realMessageSize = trimMessage.length();
         if(realMessageSize < minMessageSize || realMessageSize > maxMessageSize){
             LOGGER.warn("message is not in allowed range [" + minMessageSize +  ", " + maxMessageSize + "] (" + realMessageSize + ")");
             throw new PufarValidationException("message is not in allowed range [" + minMessageSize +  ", " + maxMessageSize + "] (" + realMessageSize + ")");
@@ -55,11 +57,10 @@ public class MessageValidator implements Validator{
             throw new PufarValidationException("message is not in allowed range [" + minLoginSize +  ", " + maxLoginSize + "] (" + senderLoginSize + ")");
         }
 
-        String message = userMessage.getMessage();
         String senderLogin = userMessage.getSenderLogin();
         String receiverLogin = userMessage.getReceiverLogin();
         String xssPattern = annotation.xssPattern();
-        if(message.toLowerCase().contains(xssPattern) || senderLogin.toLowerCase().contains(xssPattern) || receiverLogin.toLowerCase().contains(xssPattern)){
+        if(trimMessage.toLowerCase().contains(xssPattern) || senderLogin.toLowerCase().contains(xssPattern) || receiverLogin.toLowerCase().contains(xssPattern)){
             LOGGER.warn("message can be not XSS protected");
             throw new PufarValidationException("message can be not XSS protected");
         }
@@ -73,9 +74,9 @@ public class MessageValidator implements Validator{
             LOGGER.warn("("  + receiverLogin + ") is not valid diu to regexp(" + pattern + ")");
             throw new PufarValidationException("("  + receiverLogin + ") is not valid diu to regexp(" + pattern + ")");
         }
-        if(!message.matches(pattern)){
-            LOGGER.warn("("  + message + ") is not valid diu to regexp(" + pattern + ")");
-            throw new PufarValidationException("("  + message + ") is not valid diu to regexp(" + pattern + ")");
+        if(!trimMessage.matches(pattern)){
+            LOGGER.warn("("  + trimMessage + ") is not valid diu to regexp(" + pattern + ")");
+            throw new PufarValidationException("("  + trimMessage + ") is not valid diu to regexp(" + pattern + ")");
         }
 
     }

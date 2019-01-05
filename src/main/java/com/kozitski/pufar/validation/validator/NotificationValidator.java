@@ -38,9 +38,11 @@ public class NotificationValidator implements Validator {
             throw new PufarValidationException("id can not be negative (" + realNotificationId + ")");
         }
 
+        String trimMessage = notification.getMessage().trim();
+
         int messageMinSize = annotation.minMessageSize();
         int messageMaxSize = annotation.maxMessageSize();
-        int realMessageSize = notification.getMessage().length();
+        int realMessageSize = trimMessage.length();
         if(realMessageSize < messageMinSize || realMessageSize > messageMaxSize){
             LOGGER.warn("message is not in allowed range [" + messageMinSize +  ", " + messageMaxSize + "] (" + realMessageSize + ")");
             throw new PufarValidationException("message is not in allowed range [" + messageMinSize +  ", " + messageMaxSize + "] (" + realMessageSize + ")");
@@ -68,16 +70,15 @@ public class NotificationValidator implements Validator {
             throw  new RuntimeException("Unit can not be NULL");
         }
 
-        String realMessage = notification.getMessage();
-        if(realMessage.toLowerCase().contains(annotation.xssPattern())){
+        if(trimMessage.toLowerCase().contains(annotation.xssPattern())){
             LOGGER.warn("message can be not XSS protected");
             throw new PufarValidationException("message can be not XSS protected");
         }
 
         String pattern = annotation.stringPattern();
-        if(!realMessage.matches(pattern)){
-            LOGGER.warn("("  + realMessage + ") is not valid diu to regexp(" + pattern + ")");
-            throw new PufarValidationException("("  + realMessage + ") is not valid diu to regexp(" + pattern + ")");
+        if(!trimMessage.matches(pattern)){
+            LOGGER.warn("("  + trimMessage + ") is not valid diu to regexp(" + pattern + ")");
+            throw new PufarValidationException("("  + trimMessage + ") is not valid diu to regexp(" + pattern + ")");
         }
 
     }

@@ -4,7 +4,6 @@ import com.kozitski.pufar.command.PagePath;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserStatus;
 import com.kozitski.pufar.util.CommonConstant;
-import com.kozitski.pufar.util.language.PufarLanguage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,11 +12,13 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 @WebFilter(urlPatterns = "*.jsp")
 public class CheckAccessFilter implements Filter {
-    private static Logger LOGGER = LoggerFactory.getLogger(CheckAccessFilter.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CheckAccessFilter.class);
 
     private static Set<String> adminPages = new HashSet<>(Arrays.asList(PagePath.ADMIN_CONTROL_PANEL.getJspPath(), PagePath.ADMIN_ERROR_PAGE.getJspPath(),
             PagePath.ADMIN_SEARCH_NOTIFICATION.getJspPath(), PagePath.ADMIN_SEARCH_USER.getJspPath()));

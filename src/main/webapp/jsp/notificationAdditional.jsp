@@ -40,7 +40,8 @@
                         <input type="hidden" name="command" value="SENT_COMMENT">
                         <input type="hidden" name="notificationId" value="${lookingNotification.notificationId}">
 
-                        <input type="text" class="form-control" placeholder="${locale.getValue("additionalNotificationSentCommentButton")}" name="commentValue"/>
+                        <input type="text" class="form-control" placeholder="${locale.getValue("additionalNotificationSentCommentButton")}" name="commentValue"
+                               pattern="[\w.@а-яА-яёЁ]{1,1000}" title="${locale.getValue("commonNotificationPattern")}"/>
                         <input type="submit" value="${locale.getValue("additionalNotificationSentCommentButton")}" class="btn btn-info">
                     </form>
                 </c:if>

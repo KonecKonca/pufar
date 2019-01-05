@@ -27,10 +27,14 @@ public class User {
         this.status = status;
     }
     public void setLogin(String login) {
-        this.login = login;
+        if(login != null){
+            this.login = login.trim();
+        }
     }
     public void setPassword(String password) {
-        this.password = password;
+        if(password != null){
+            this.password = password.trim();
+        }
     }
     public void setUserId(long userId) {
         this.userId = userId;

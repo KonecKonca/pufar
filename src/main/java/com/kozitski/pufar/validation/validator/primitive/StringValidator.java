@@ -27,6 +27,8 @@ public class StringValidator implements Validator {
             throw new PufarValidationException("String can not be null");
         }
 
+        string = string.trim();
+
         int minLength = annotation.minLength();
         int maxLength = annotation.maxLength();
         String forbiddenValue = annotation.forbiddenValue();

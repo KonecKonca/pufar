@@ -31,9 +31,12 @@ public class UserValidator implements Validator {
             throw new PufarValidationException("User can not contains EMPTY Strings");
         }
 
+        String trimLogin = user.getLogin().trim();
+        String trimPassword = user.getPassword().trim();
+
         int minLoginSize = annotation.minLoginSize();
         int maxLoginSize = annotation.maxLoginSize();
-        int realLoginSize = user.getLogin().length();
+        int realLoginSize = trimLogin.length();
         if(realLoginSize < minLoginSize || realLoginSize > maxLoginSize){
             LOGGER.warn("login is not in allowed range [" + minLoginSize +  ", " + maxLoginSize + "] (" + realLoginSize + ")");
             throw new PufarValidationException("login is not in allowed range [" + minLoginSize +  ", " + maxLoginSize + "] (" + realLoginSize + ")");
@@ -41,7 +44,7 @@ public class UserValidator implements Validator {
 
         int minPasswordSize = annotation.minPasswordSize();
         int maxPasswordSize = annotation.maxPasswordSize();
-        int realPasswordSize = user.getPassword().length();
+        int realPasswordSize = trimPassword.length();
         if(realPasswordSize < minPasswordSize || realPasswordSize > maxPasswordSize){
             LOGGER.warn("password is not in allowed range [" + minPasswordSize +  ", " + maxPasswordSize + "] (" + realPasswordSize + ")");
             throw new PufarValidationException("password is not in allowed range [" + minPasswordSize +  ", " + maxPasswordSize + "] (" + realPasswordSize + ")");
@@ -55,22 +58,20 @@ public class UserValidator implements Validator {
             throw new PufarValidationException("id is not in allowed range [" + minId +  ", " + maxId + "] (" + realId + ")");
         }
 
-        String realLogin = user.getLogin();
-        String realPassword = user.getPassword();
         String xssPattern = annotation.xssPattern();
-        if(realLogin.toLowerCase().contains(xssPattern) || realPassword.toLowerCase().contains(xssPattern)){
+        if(trimLogin.toLowerCase().contains(xssPattern) || trimPassword.toLowerCase().contains(xssPattern)){
             LOGGER.warn("message can be not XSS protected");
             throw new PufarValidationException("message can be not XSS protected");
         }
 
         String pattern = annotation.stringPattern();
-        if(!realLogin.matches(pattern)){
-            LOGGER.warn("("  + realLogin + ") is not valid diu to regexp(" + pattern + ")");
-            throw new PufarValidationException("("  + realLogin + ") is not valid diu to regexp(" + pattern + ")");
+        if(!trimLogin.matches(pattern)){
+            LOGGER.warn("("  + trimLogin + ") is not valid diu to regexp(" + pattern + ")");
+            throw new PufarValidationException("("  + trimLogin + ") is not valid diu to regexp(" + pattern + ")");
         }
-        if(!realPassword.matches(pattern)){
-            LOGGER.warn("("  + realPassword + ") is not valid diu to regexp(" + pattern + ")");
-            throw new PufarValidationException("("  + realPassword + ") is not valid diu to regexp(" + pattern + ")");
+        if(!trimPassword.matches(pattern)){
+            LOGGER.warn("("  + trimPassword + ") is not valid diu to regexp(" + pattern + ")");
+            throw new PufarValidationException("("  + trimPassword + ") is not valid diu to regexp(" + pattern + ")");
         }
 
     }

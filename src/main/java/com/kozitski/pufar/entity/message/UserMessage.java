@@ -34,7 +34,9 @@ public class UserMessage {
     }
 
     public void setMessage(String message) {
-        this.message = message;
+        if(message != null){
+            this.message = message.trim();
+        }
     }
     public void setSenderLogin(String senderLogin) {
         this.senderLogin = senderLogin;
@@ -47,7 +49,7 @@ public class UserMessage {
     }
 
     public String getStringDate(){
-        return new SimpleDateFormat(CommonConstant.DATE_TIME_COMMON_PATTERN).format(date);
+        return date == null ? null : new SimpleDateFormat(CommonConstant.DATE_TIME_COMMON_PATTERN).format(date);
     }
 
     @Override

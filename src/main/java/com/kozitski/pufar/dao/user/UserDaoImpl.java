@@ -1,6 +1,6 @@
 package com.kozitski.pufar.dao.user;
 
-import com.kozitski.pufar.connection.PoolConnection;
+import com.kozitski.pufar.database.ConnectionPool;
 import com.kozitski.pufar.dao.PufarDaoConstant;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserParameter;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class UserDaoImpl implements UserDao {
-    private static Logger LOGGER = LoggerFactory.getLogger(UserDaoImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserDaoImpl.class);
 
     private static final int USER_ORDINAL_STATUS_INCREMENT = 1;
 
@@ -48,7 +48,7 @@ public class UserDaoImpl implements UserDao {
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        try(Connection  connection = PoolConnection.getInstance().getConnection()){
+        try(Connection  connection = ConnectionPool.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
             preparedStatement.setLong(1, id);
             resultSet = preparedStatement.executeQuery();
@@ -77,7 +77,7 @@ public class UserDaoImpl implements UserDao {
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        try(Connection  connection = PoolConnection.getInstance().getConnection()){
+        try(Connection  connection = ConnectionPool.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(SEARCH_USER_BY_LOGIN);
             preparedStatement.setString(1, login);
             resultSet = preparedStatement.executeQuery();
@@ -106,7 +106,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
-        try(Connection  connection = PoolConnection.getInstance().getConnection()){
+        try(Connection  connection = ConnectionPool.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(SEARCH_USER_BY_STATUS);
             preparedStatement.setString(1, status.name());
             resultSet = preparedStatement.executeQuery();
@@ -133,7 +133,7 @@ public class UserDaoImpl implements UserDao {
         ResultSet searchUserResultSet = null;
         ResultSet generatedKeys = null;
 
-        try(Connection  connection = PoolConnection.getInstance().getConnection()){
+        try(Connection  connection = ConnectionPool.getInstance().getConnection()){
 
             connection.setAutoCommit(false);
 
@@ -183,7 +183,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             String parametersSql = generateSearchWithParametersSql(parameters);
 
             preparedStatement = connection.prepareStatement(parametersSql);
@@ -253,7 +253,7 @@ public class UserDaoImpl implements UserDao {
 
         ResultSet resultSet = null;
 
-        try(Connection  connection = PoolConnection.getInstance().getConnection()){
+        try(Connection  connection = ConnectionPool.getInstance().getConnection()){
             connection.setAutoCommit(false);
 
             searchUserStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
@@ -302,7 +302,7 @@ public class UserDaoImpl implements UserDao {
         ResultSet searchUserResultSet = null;
         ResultSet checkNewLoginResultSet = null;
 
-        try(Connection  connection = PoolConnection.getInstance().getConnection()){
+        try(Connection  connection = ConnectionPool.getInstance().getConnection()){
             connection.setAutoCommit(false);
 
             searchUserStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
@@ -359,7 +359,7 @@ public class UserDaoImpl implements UserDao {
 
         ResultSet resultSet = null;
 
-        try(Connection  connection = PoolConnection.getInstance().getConnection()){
+        try(Connection  connection = ConnectionPool.getInstance().getConnection()){
             connection.setAutoCommit(false);
 
             searchUserStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
@@ -406,7 +406,7 @@ public class UserDaoImpl implements UserDao {
 
         PreparedStatement preparedStatement = null;
 
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(CHANGE_PASSWORD);
             preparedStatement.setString(1, newPassword);
             preparedStatement.setLong(2, userId);

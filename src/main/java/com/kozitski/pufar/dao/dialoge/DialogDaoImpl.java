@@ -1,6 +1,6 @@
 package com.kozitski.pufar.dao.dialoge;
 
-import com.kozitski.pufar.connection.PoolConnection;
+import com.kozitski.pufar.database.ConnectionPool;
 import com.kozitski.pufar.dao.PufarDaoConstant;
 import com.kozitski.pufar.entity.message.UserMessage;
 import com.kozitski.pufar.entity.user.User;
@@ -56,7 +56,7 @@ public class DialogDaoImpl implements DialogDAO {
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
 
             preparedStatement = connection.prepareStatement(SEARCH_MESSAGE_FROM_TO_SQL);
             preparedStatement.setLong(1, fromUserId);
@@ -93,7 +93,7 @@ public class DialogDaoImpl implements DialogDAO {
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(SEARCH_MESSAGE_BETWEEN_SQL);
             preparedStatement.setLong(1, userId1);
             preparedStatement.setLong(2, userId2);
@@ -132,7 +132,7 @@ public class DialogDaoImpl implements DialogDAO {
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(SEARCH_MESSAGE_BETWEEN_WITH_LIMIT_SQL);
             preparedStatement.setLong(1, userId1);
             preparedStatement.setLong(2, userId2);
@@ -172,7 +172,7 @@ public class DialogDaoImpl implements DialogDAO {
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        try(Connection connection = PoolConnection.getInstance().getConnection()){
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
             preparedStatement = connection.prepareStatement(SEARCH_POPULAR_USER_SQL);
             preparedStatement.setLong(1, forWhomUserId);
             preparedStatement.setLong(2, forWhomUserId);
@@ -208,7 +208,7 @@ public class DialogDaoImpl implements DialogDAO {
     public void addMessage(long senderId, long receiverId, String message) throws PufarDAOException{
 
         PreparedStatement insertStatement = null;
-        try(Connection connection = PoolConnection.getInstance().getConnection()) {
+        try(Connection connection = ConnectionPool.getInstance().getConnection()) {
             insertStatement = connection.prepareStatement(ADD_MESSAGE);
 
             insertStatement.setLong(1, senderId);

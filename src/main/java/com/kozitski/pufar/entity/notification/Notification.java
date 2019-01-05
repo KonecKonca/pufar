@@ -10,6 +10,7 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Notification implements Imagenable {
     private long notificationId;
@@ -24,13 +25,14 @@ public class Notification implements Imagenable {
 
     public Notification() {
     }
-    public Notification(long notificationId, String message, UnitType unit, double price, long userId, Date date, BufferedImage image, ArrayList<NotificationComment> comments) {
+    public Notification(long notificationId, String message, UnitType unit, double price, long userId, Date date, BufferedImage image, List<NotificationComment> comments) {
         this.notificationId = notificationId;
         this.message = message;
         this.unit = unit;
         this.price = price;
         this.userId = userId;
         this.date = date;
+        this.image = image;
         this.comments = new ArrayList<>(comments);
     }
 
@@ -44,7 +46,9 @@ public class Notification implements Imagenable {
         return message;
     }
     public void setMessage(String message) {
-        this.message = message;
+        if(message != null){
+            this.message = message.trim();
+        }
     }
     public UnitType getUnit() {
         return unit;
@@ -95,7 +99,7 @@ public class Notification implements Imagenable {
     }
 
     public String getStringDate(){
-        return new SimpleDateFormat(CommonConstant.DATE_TIME_COMMON_PATTERN).format(date);
+        return date == null ? null : new SimpleDateFormat(CommonConstant.DATE_TIME_COMMON_PATTERN).format(date);
     }
 
     @Override
