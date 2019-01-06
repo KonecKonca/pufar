@@ -1,12 +1,63 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
-    <title>Title</title>
+    <title>Pufar</title>
 
     <c:set var="context" value="${pageContext.request.contextPath}" />
     <link href="${context}/css/profile/plofileStyle.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="${context}/js/login/jquery-3.2.1.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#newPassword1').change(function () {
+                var password1 = $('#newPassword1').val();
+                var password2 = $('#newPassword2').val();
+
+                $.ajax({
+                    type:'POST',
+                    data: {
+                        password1 : password1,
+                        password2 : password2
+                    },
+                    url:'AjaxController',
+
+                    success: function (result) {
+                        document.getElementById("isPasswordEquals1").textContent=result;
+                        document.getElementById("isPasswordEquals2").textContent=result;
+                    }
+
+                });
+
+            });
+        });
+        $(document).ready(function () {
+            $('#newPassword2').change(function () {
+                var password1 = $('#newPassword1').val();
+                var password2 = $('#newPassword2').val();
+
+                $.ajax({
+                    type:'POST',
+                    data: {
+                        password1 : password1,
+                        password2 : password2
+                    },
+                    url:'AjaxController',
+                    success: function (result) {
+                        document.getElementById("isPasswordEquals1").textContent=result;
+                        document.getElementById("isPasswordEquals2").textContent=result;
+                    }
+
+                });
+            });
+
+        });
+
+    </script>
+
 </head>
 <body>
 
@@ -44,20 +95,22 @@
                            pattern="[\w.@а-яА-яёЁ]{5,60}" title="${locale.getValue("commonChangePasswordPattern")}"/><br>
 
                     ${locale.getValue("profileNewPassword")}
-                    <input type="password" name="newPassword" placeholder="${locale.getValue("commonChangePasswordPattern")}" size="25" class="form-control-sm" required
-                           pattern="[\w.@а-яА-яёЁ]{5,60}"/><br>
+                    <input type="password" name="newPassword" placeholder="${locale.getValue("commonChangePasswordPattern")}" size="25" class="form-control-sm" required id="newPassword1"
+                           pattern="[\w.@а-яА-яёЁ]{5,60}"/>
+                    <span id="isPasswordEquals1"></span><br>
 
                     ${locale.getValue("profileNewPasswordConfirm")}
-                    <input type="password" name="newPasswordConfirm" placeholder="${locale.getValue("commonChangePasswordPattern")}" size="25" class="form-control-sm" required
-                           pattern="[\w.@а-яА-яёЁ]{5,60}"/><br>
+                    <input type="password" name="newPasswordConfirm" placeholder="${locale.getValue("commonChangePasswordPattern")}" size="25" class="form-control-sm" required id="newPassword2"
+                           pattern="[\w.@а-яА-яёЁ]{5,60}"/>
+                    <span id="isPasswordEquals2"></span><br>
 
                     <c:choose>
                         <c:when test="${changePasswordMessage == true}">
-                            ${locale.getValue("profilePasswordChanged")}<br>
+                            <div id="changedSuccess">${locale.getValue("profilePasswordChanged")}<br></div>
                         </c:when>
 
                         <c:otherwise>
-                            ${locale.getValue("profilePasswordNotChanged")}<br>
+                            <div id="changedNotSuccess">${locale.getValue("profilePasswordNotChanged")}<br></div>
                         </c:otherwise>
                     </c:choose>
                     <input type="submit" value="${locale.getValue("profileChangePasswordLabel")}" class="btn btn-success">
@@ -79,7 +132,6 @@
                     </h3>
 
                 </c:forEach>
-
 
             </div>
         </div>

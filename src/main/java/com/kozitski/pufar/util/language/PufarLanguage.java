@@ -45,8 +45,5 @@ public class PufarLanguage {
     }
 
 
-    public static void main(String[] args) {
-
-    }
 
 }

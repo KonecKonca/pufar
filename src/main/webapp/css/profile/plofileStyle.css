@@ -30,3 +30,7 @@ table{
 i{
     font-family: Monotype Corsiva;
 }
+
+.isPasswordEquals{
+    color: red;
+}
