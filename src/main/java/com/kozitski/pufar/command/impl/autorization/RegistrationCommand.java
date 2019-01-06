@@ -20,7 +20,7 @@ public class RegistrationCommand extends AbstractCommand {
     private UserService service;
 
     @Override
-    public Router execute(RequestValue request){
+    public Router execute(RequestValue request) {
         Router router = new Router();
 
         String currentLogin = request.getAttribute(LOGIN).toString();
@@ -30,17 +30,15 @@ public class RegistrationCommand extends AbstractCommand {
             User user = service.addUser(currentLogin, currentPassword);
 
             Optional<User> optionalUser = service.searchUserById(user.getUserId());
-            if(optionalUser.isPresent()){
+            if (optionalUser.isPresent()) {
                 User currentUser = optionalUser.get();
 
                 router.setPagePath(PagePath.TEMPLATE_PAGE.getJspPath());
                 request.servletSessionPut(CommonConstant.CURRENT_USER, currentUser);
             }
-        }
-        catch (PufarServiceException e) {
+        } catch (PufarServiceException e) {
             LOGGER.warn("user is not registered", e);
-        }
-        catch (PufarValidationException e){
+        } catch (PufarValidationException e) {
             LOGGER.warn("incorrect input data", e);
         }
 

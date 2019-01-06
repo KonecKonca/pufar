@@ -2,13 +2,10 @@ package com.kozitski.pufar.command.impl.profile;
 
 import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.notification.Notification;
-import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.notification.NotificationService;
-import com.kozitski.pufar.service.notification.NotificationServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DropMyselfNotificationCommand extends AbstractCommand {
     private static final String DROPPED_NOTIFICATION_ID = "notificationId";

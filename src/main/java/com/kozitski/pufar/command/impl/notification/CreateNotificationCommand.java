@@ -7,7 +7,6 @@ import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.exception.PufarServiceException;
 import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.notification.NotificationService;
-import com.kozitski.pufar.service.notification.NotificationServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
 import com.kozitski.pufar.util.language.PufarLanguage;
 import com.kozitski.pufar.util.path.WebPathReturner;
@@ -43,20 +42,18 @@ public class CreateNotificationCommand extends AbstractCommand {
         UnitType unitType = UnitType.valueOf(((String) request.getAttribute(RADIO_BUTTON)).toUpperCase());
 
         String message = (String) request.getAttribute(NOTIFICATION_MESSAGE);
-        if(message != null && !message.isEmpty()){
+        if (message != null && !message.isEmpty()) {
             message = new String(message.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-        }
-        else {
+        } else {
             message = String.valueOf(DEFAULT_VALUE);
         }
 
         String stringPrice = (String) request.getAttribute(NOTIFICATION_PRICE);
         double price = -DEFAULT_VALUE;
-        if(stringPrice != null && !stringPrice.isEmpty()){
+        if (stringPrice != null && !stringPrice.isEmpty()) {
             try {
                 price = Double.parseDouble(stringPrice);
-            }
-            catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 LOGGER.warn("was entered incorrect price", e);
             }
         }
@@ -66,15 +63,13 @@ public class CreateNotificationCommand extends AbstractCommand {
         BufferedImage image = null;
         try {
             image = ImageIO.read(new File((String) request.getAttribute(CommonConstant.CURRENT_NOTIFICATION_IMAGE_PATH)));
-        }
-        catch (IOException | NullPointerException e) {
+        } catch (IOException | NullPointerException e) {
             LOGGER.warn("Image was not founded", e);
 
             File file = new File(WebPathReturner.webPath + CommonConstant.DEFAULT_IMAGE_PATH);
             try {
                 image = ImageIO.read(file);
-            }
-            catch (IOException e1) {
+            } catch (IOException e1) {
                 LOGGER.warn("Notification image was not downloaded");
             }
         }
@@ -91,13 +86,11 @@ public class CreateNotificationCommand extends AbstractCommand {
             notification.setImage(image);
 
             notificationService.addNotification(notification);
-            request.requestAttributePut(CommonConstant.INDEX_MESSAGE, ((PufarLanguage)request.getAttribute(CommonConstant.LOCALE)).getValue(RESULT_MESSAGE));
-        }
-        catch (PufarValidationException e){
+            request.requestAttributePut(CommonConstant.INDEX_MESSAGE, ((PufarLanguage) request.getAttribute(CommonConstant.LOCALE)).getValue(RESULT_MESSAGE));
+        } catch (PufarValidationException e) {
             LOGGER.warn("Were entered incorrect values", e);
             router.setPagePath(PagePath.CREATE_NOTIFICATION.getJspPath());
-        }
-        catch (PufarServiceException e) {
+        } catch (PufarServiceException e) {
             LOGGER.warn("Notification was not added", e);
             router.setPagePath(PagePath.CREATE_NOTIFICATION.getJspPath());
         }

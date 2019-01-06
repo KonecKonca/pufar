@@ -6,7 +6,7 @@ import com.kozitski.pufar.entity.notification.UnitType;
 import com.kozitski.pufar.service.notification.NotificationService;
 import com.kozitski.pufar.util.CommonConstant;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ChangeNotificationCommand extends AbstractCommand {
     private static final String CHARACTER_IDENTIFIER = "nextCharacter";
@@ -15,18 +15,17 @@ public class ChangeNotificationCommand extends AbstractCommand {
     private NotificationService notificationService;
 
     @Override
-    public Router execute(RequestValue requestValue)  {
+    public Router execute(RequestValue requestValue) {
         Router router = new Router();
         router.setPagePath(PagePath.TEMPLATE_PAGE.getJspPath());
 
-        ArrayList<Notification> notifications;
+        List<Notification> notifications;
         UnitType unitType = (UnitType) requestValue.getAttribute(CommonConstant.NOTIFICATIONS_LAST_UNIT);
 
         boolean character = Boolean.parseBoolean((String) requestValue.getAttribute(CHARACTER_IDENTIFIER));
-        if(character){
+        if (character) {
             notifications = notificationService.searchNotificationsWithChangingCursor(requestValue, unitType, CommonConstant.HOW_MUCH_NOTIFICATIONS);
-        }
-        else{
+        } else {
             notifications = notificationService.searchNotificationsWithChangingCursor(requestValue, unitType, -CommonConstant.HOW_MUCH_NOTIFICATIONS);
         }
         requestValue.servletSessionPut(CommonConstant.CURRENT_NOTIFICATIONS, notifications);

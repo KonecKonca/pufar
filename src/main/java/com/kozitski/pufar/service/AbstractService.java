@@ -10,7 +10,7 @@ import java.lang.reflect.Field;
 import java.util.Properties;
 
 public abstract class AbstractService {
-    private static Logger LOGGER = LoggerFactory.getLogger(AbstractService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractService.class);
     private static final String SERVICE_INJECTION_PROPERTY_PATH = "\\WEB-INF\\classes\\injection\\serviceInjection.properties";
 
     public AbstractService() {

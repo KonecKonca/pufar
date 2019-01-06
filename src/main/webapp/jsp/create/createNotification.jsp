@@ -80,7 +80,7 @@
 
                     ${locale.getValue("createNotificationMessage")}:
                 <input type="text" class="form-control" placeholder="${locale.getValue("createNotificationMessage")}" name="createNotificationMessage" required
-                       pattern="[\w.@а-яА-яёЁ]{1,1000}" title="${locale.getValue("commonNotificationPattern")}" />
+                       pattern=".{1,1000}" title="${locale.getValue("commonNotificationPattern")}" />
                     ${locale.getValue("createNotificationPrice")}:
                 <input type="text" class="form-control" placeholder="${locale.getValue("createNotificationPrice")}" name="createNotificationPrice" required
                        pattern="[\d.]{1,25}" title="${locale.getValue("commonDoublePattern")}"/>

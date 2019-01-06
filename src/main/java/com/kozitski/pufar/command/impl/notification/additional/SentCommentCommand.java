@@ -1,14 +1,12 @@
 package com.kozitski.pufar.command.impl.notification.additional;
 
 import com.kozitski.pufar.command.*;
-import com.kozitski.pufar.controller.LogoutController;
 import com.kozitski.pufar.entity.comment.NotificationComment;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.exception.PufarServiceException;
 import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.notification.NotificationService;
-import com.kozitski.pufar.service.notification.NotificationServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +30,7 @@ public class SentCommentCommand extends AbstractCommand {
         Router router = new Router();
         router.setPagePath(PagePath.NOTIFICATION_ADDITIONAL.getJspPath());
 
-        String comment =  new String(((String) request.getAttribute(COMMENT_VALUE)).getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+        String comment = new String(((String) request.getAttribute(COMMENT_VALUE)).getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
 
         String notificationIdString = (String) request.getAttribute(NOTIFICATION_ID);
         long notificationId = Long.parseLong(notificationIdString);
@@ -46,12 +44,12 @@ public class SentCommentCommand extends AbstractCommand {
 
             Notification handledNotification = null;
             ArrayList<Notification> notifications = (ArrayList<Notification>) request.getAttribute(CommonConstant.CURRENT_NOTIFICATIONS);
-            for(Notification notification : notifications){
-                if(notification.getNotificationId() == notificationId){
+            for (Notification notification : notifications) {
+                if (notification.getNotificationId() == notificationId) {
                     handledNotification = notification;
                 }
             }
-            if(handledNotification != null){
+            if (handledNotification != null) {
                 NotificationComment notificationComment = new NotificationComment();
                 notificationComment.setSenderLogin(currentUser.getLogin());
                 notificationComment.setDate(new Date(date));
@@ -60,11 +58,9 @@ public class SentCommentCommand extends AbstractCommand {
                 handledNotification.insertNewComment(notificationComment);
             }
 
-        }
-        catch (PufarServiceException e) {
+        } catch (PufarServiceException e) {
             LOGGER.warn("comment wasn't added");
-        }
-        catch (PufarValidationException e) {
+        } catch (PufarValidationException e) {
             LOGGER.warn("incorrect input data", e);
         }
 

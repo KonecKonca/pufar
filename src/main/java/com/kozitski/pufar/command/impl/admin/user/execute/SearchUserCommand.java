@@ -4,14 +4,12 @@ import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserParameter;
 import com.kozitski.pufar.entity.user.UserStatus;
-import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.user.UserService;
-import com.kozitski.pufar.service.user.UserServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class SearchUserCommand extends AbstractCommand {
     private static final Logger LOGGER = LoggerFactory.getLogger(SearchUserCommand.class);
@@ -35,32 +33,30 @@ public class SearchUserCommand extends AbstractCommand {
         try {
 
             String stringId = (String) request.getAttribute(USER_ID);
-            if(stringId != null && !stringId.isEmpty()){
+            if (stringId != null && !stringId.isEmpty()) {
                 long id = Long.parseLong(stringId);
                 parameters.setUserId(id);
             }
             String stringLoginStart = (String) request.getAttribute(USER_LOGIN_START);
-            if(stringLoginStart != null && !stringLoginStart.isEmpty()){
+            if (stringLoginStart != null && !stringLoginStart.isEmpty()) {
                 parameters.setLoginStart(stringLoginStart);
             }
             String stringStatus = (String) request.getAttribute(USER_STATUS);
-            if(stringStatus != null && !stringStatus.isEmpty()){
+            if (stringStatus != null && !stringStatus.isEmpty()) {
                 parameters.setStatus(UserStatus.valueOf(stringStatus.toUpperCase()));
             }
 
             request.requestAttributePut(CommonConstant.ADMIN_INPUT_MESSAGE, OK_INPUT_MESSAGE);
 
-            ArrayList<User> users = userService.searchUsersByParameters(parameters);
+            List<User> users = userService.searchUsersByParameters(parameters);
             request.requestAttributePut(CommonConstant.ADMIN_INPUT_RESULT, users);
 
-        }
-        catch (IllegalArgumentException | ClassCastException e){
+        } catch (IllegalArgumentException | ClassCastException e) {
             LOGGER.warn(BAD_INPUT_MESSAGE, e);
             request.requestAttributePut(CommonConstant.ADMIN_INPUT_MESSAGE, BAD_INPUT_MESSAGE);
         }
 
         return router;
     }
-
 
 }

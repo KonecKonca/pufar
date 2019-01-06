@@ -167,7 +167,7 @@ public class DialogDaoImpl implements DialogDAO {
         return messages;
     }
     @Override
-    public ArrayList<User> searchPopularUser(long forWhomUserId, int howMuch) {
+    public List<User> searchPopularUser(long forWhomUserId, int howMuch) {
         ArrayList<User> users;
 
         PreparedStatement preparedStatement = null;

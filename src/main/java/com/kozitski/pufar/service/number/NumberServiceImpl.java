@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class NumberServiceImpl extends AbstractService implements NumberService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(NumberServiceImpl.class);
 
     @InjectDao
     private NumberDao numberDao;

@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class CommandFactory {
-    private static Logger LOGGER = LoggerFactory.getLogger(CommandFactory.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CommandFactory.class);
 
     public static AbstractCommand chooseCommand(String commandName){
         AbstractCommand command = CommandType.INDEX.getCommand();

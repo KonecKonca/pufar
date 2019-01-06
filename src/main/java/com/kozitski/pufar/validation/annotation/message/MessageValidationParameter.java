@@ -9,7 +9,8 @@ class MessageValidationParameter {
     static final int MAX_LOGIN_SIZE = 25;
 
 
-    static final String STRING_FIELD_PATTERN = "[\\w.@\\sа-яА-яёЁ]+";
+    static final String STRING_FIELD_PATTERN = ".+";
     static final String XSS_PATTERN = "<script>";
 
+    private MessageValidationParameter() { }
 }

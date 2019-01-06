@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class UserDaoImpl implements UserDao {
@@ -99,7 +100,7 @@ public class UserDaoImpl implements UserDao {
 
     }
     @Override
-    public ArrayList<User> searchUsersByStatus(UserStatus status) {
+    public List<User> searchUsersByStatus(UserStatus status) {
 
         ArrayList<User> result;
 
@@ -178,7 +179,7 @@ public class UserDaoImpl implements UserDao {
 
     }
     @Override
-    public ArrayList<User> searchByParameters(UserParameter parameters) {
+    public List<User> searchByParameters(UserParameter parameters) {
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;

@@ -18,7 +18,7 @@ import java.util.Objects;
 
 @WebServlet("/imageShow/*")
 public class ImageShowController extends HttpServlet {
-    private static Logger LOGGER = LoggerFactory.getLogger(ImageShowController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ImageShowController.class);
     private static final int SUBSTRING_SLASH = 1;
 
     @Override

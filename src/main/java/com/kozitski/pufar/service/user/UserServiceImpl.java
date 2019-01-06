@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class UserServiceImpl extends AbstractService implements UserService {
@@ -31,14 +31,14 @@ public class UserServiceImpl extends AbstractService implements UserService {
     @InjectDao
     private NumberDao numberDao;
 
-    public Optional<User> searchUserById(long id)  {
+    public Optional<User> searchUserById(long id) {
         Optional<User> user = userDao.searchById(id);
 
-        if(user.isPresent()){
+        if (user.isPresent()) {
             User findUser = user.get();
             Optional<MobilPhoneNumber> mobilPhoneNumber = numberDao.searchById(findUser.getUserId());
 
-            if(mobilPhoneNumber.isPresent()){
+            if (mobilPhoneNumber.isPresent()) {
                 MobilPhoneNumber findNumber = mobilPhoneNumber.get();
                 findUser.setNumber(findNumber);
             }
@@ -46,17 +46,20 @@ public class UserServiceImpl extends AbstractService implements UserService {
 
         return user;
     }
+
     @Override
     public Optional<User> searchUserByLogin(String login) throws PufarValidationException {
         // any validation
         return userDao.searchUserByLogin(login);
     }
+
     @Override
-    public ArrayList<User> searchUsersByStatus(UserStatus status) {
+    public List<User> searchUsersByStatus(UserStatus status) {
 
         // any validation
         return userDao.searchUsersByStatus(status);
     }
+
     @Override
     public User addUser(String login, String password) throws PufarServiceException, PufarValidationException {
         User user = new User();
@@ -71,14 +74,14 @@ public class UserServiceImpl extends AbstractService implements UserService {
         try {
             userDao.addUser(user);
             return user;
-        }
-        catch (PufarDAOException e) {
+        } catch (PufarDAOException e) {
             throw new PufarServiceException("Registration is failed", e);
         }
 
     }
+
     @Override
-    public ArrayList<User> searchUsersByParameters(UserParameter parameter) {
+    public List<User> searchUsersByParameters(UserParameter parameter) {
         return userDao.searchByParameters(parameter);
     }
 
@@ -86,23 +89,25 @@ public class UserServiceImpl extends AbstractService implements UserService {
     public boolean banUserById(long id, User currentUser) {
         return userDao.insertBanStatus(id, currentUser, BAN_STATUS_TRUE);
     }
+
     @Override
     public boolean unBanUserById(long id, User currentUser) {
         return userDao.insertBanStatus(id, currentUser, BAN_STATUS_FALSE);
     }
+
     @Override
     public boolean changeUserLogin(long id, String newLogin, User currentUser) {
         return userDao.changeUserLogin(id, newLogin, currentUser);
     }
+
     @Override
-    public boolean changeUserStatusByUserId(long id, String newStatus, User currentUser){
+    public boolean changeUserStatusByUserId(long id, String newStatus, User currentUser) {
         boolean result = false;
 
         try {
             UserStatus userStatus = UserStatus.valueOf(newStatus.toUpperCase());
             result = userDao.changeUserStatusByUserId(id, userStatus, currentUser);
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             LOGGER.warn("Was entered incorrect user status", e);
         }
 
@@ -117,25 +122,22 @@ public class UserServiceImpl extends AbstractService implements UserService {
         String encodeNewPassword = PasswordEncoder.encode(newPassword);
 
         Optional<User> optionalUser = userDao.searchById(userId);
-        if(optionalUser.isPresent()){
+        if (optionalUser.isPresent()) {
             User user = optionalUser.get();
 
-            if(oldEncodedPassword.trim().equals(user.getPassword().trim()) && newPassword.equals(newPasswordConfirm)
-                    && !oldEncodedPassword.equals(encodeNewPassword)){
+            if (oldEncodedPassword.trim().equals(user.getPassword().trim()) && newPassword.equals(newPasswordConfirm)
+                    && !oldEncodedPassword.equals(encodeNewPassword)) {
 
                 try {
                     userDao.changePassword(userId, encodeNewPassword);
-                }
-                catch (PufarDAOException e) {
+                } catch (PufarDAOException e) {
                     requestValue.requestAttributePut(CommonConstant.CHANGE_PASSWORD_MESSAGE, false);
                     throw new PufarServiceException(e);
                 }
-            }
-            else{
+            } else {
                 resultMessage = false;
             }
-        }
-        else{
+        } else {
             resultMessage = false;
         }
 

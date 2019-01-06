@@ -1,6 +1,5 @@
 package com.kozitski.pufar.command;
 
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +12,7 @@ public class RequestValue {
 
     public RequestValue() {
     }
+
     public RequestValue(Map<String, Object> servletContext, Map<String, Object> servletSession,
                         Map<String, Object> requestAttribute, Map<String, String> requestParameter) {
         this.servletContext = servletContext;
@@ -25,14 +25,17 @@ public class RequestValue {
         servletContext.remove(key);
         return servletContext.put(key, value);
     }
+
     public Object servletSessionPut(String key, Object value) {
         servletSession.remove(key);
         return servletSession.put(key, value);
     }
+
     public Object requestAttributePut(String key, Object value) {
         requestAttribute.remove(key);
         return requestAttribute.put(key, value);
     }
+
     public Object requestParameterPut(String key, String value) {
         requestParameter.remove(key);
         return requestParameter.put(key, value);
@@ -41,40 +44,46 @@ public class RequestValue {
     public Object servletContextGet(String key) {
         return servletContext.get(key);
     }
+
     public Object servletSessionGet(String key) {
         return servletSession.get(key);
     }
+
     public Object requestAttributeGet(String key) {
         return requestAttribute.get(key);
     }
+
     public String requestParameterGet(String key) {
         return requestParameter.get(key);
     }
 
 
-    public Map<String, Object> getServletContextMap(){
+    public Map<String, Object> getServletContextMap() {
         return new HashMap<>(servletContext);
     }
-    public Map<String, Object> getServletSessionMap(){
+
+    public Map<String, Object> getServletSessionMap() {
         return new HashMap<>(servletSession);
     }
-    public Map<String, Object> getRequestAttributeMap(){
+
+    public Map<String, Object> getRequestAttributeMap() {
         return new HashMap<>(requestAttribute);
     }
-    public Map<String, Object> getRequestParameterMap(){
+
+    public Map<String, Object> getRequestParameterMap() {
         return new HashMap<>(requestParameter);
     }
 
-    public Object getAttribute(String key){
+    public Object getAttribute(String key) {
         Object result = servletContext.get(key);
 
-        if(result == null){
+        if (result == null) {
             result = servletSession.get(key);
         }
-        if(result == null){
+        if (result == null) {
             result = requestAttribute.get(key);
         }
-        if(result == null){
+        if (result == null) {
             result = requestParameter.get(key);
         }
 

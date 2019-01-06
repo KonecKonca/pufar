@@ -21,7 +21,7 @@
                pattern="[\d]{1,25}"/>
         ${locale.getValue("adminSearchUserLoginStart")}:
         <input type="text" class="form-control" placeholder="${locale.getValue("adminSearchUserLoginStart")}" name="adminSearchUserLoginStart"
-               pattern="[\w.@а-яА-яёЁ]{2,20}"/>
+               pattern=".{2,20}"/>
         ${locale.getValue("adminSearchUserStatus")}:
         <input type="text" class="form-control" placeholder="${locale.getValue("adminSearchUserStatus")}" name="adminSearchUserStatus"
                pattern="(ADMIN|admin|SUPER_ADMIN|super_admin|SIMPLE_USER|simple_user)"/>

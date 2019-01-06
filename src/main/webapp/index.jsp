@@ -60,13 +60,13 @@
                     <tr>
                         <th align="right"><div class="indexLabel">${locale.getValue("indexRegisterLogin")}</div></th>
                         <td><input type="text" name="login" placeholder="${locale.getValue("indexRegisterLogin")}" class="form-control" required
-                                   pattern="[\w.@а-яА-яёЁ]{5,20}" title="${locale.getValue("commonLoginPattern")}"/></td>
+                                   pattern=".{5,20}" title="${locale.getValue("commonLoginPattern")}"/></td>
                     </tr>
                     <tr>
                         <th align="right"><div class="indexLabel">${locale.getValue("indexRegisterPassword")}</div></th>
                         <td>
                             <input type="password" name="password" placeholder="${locale.getValue("indexRegisterPassword")}" class="form-control" required
-                                   pattern="[\w.@а-яА-яёЁ]{5,20}" title="${locale.getValue("commonLoginPattern")}"/>
+                                   pattern=".{5,20}" title="${locale.getValue("commonLoginPattern")}"/>
                         </td>
                     </tr>
                     <tr>

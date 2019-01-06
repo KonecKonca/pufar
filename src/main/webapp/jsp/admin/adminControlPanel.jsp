@@ -73,7 +73,7 @@
                             <input type="text" name="id" placeholder="${locale.getValue("commonId")}" size="5" class="form-control-sm" required
                                    pattern="[\d]{1,25}" title="${locale.getValue("commonLongPattern")}"/>
                             <input type="text" name="message" placeholder="${locale.getValue("adminChangeNewMessageField")}" size="8" class="form-control-sm" required
-                                   pattern="[\w.@а-яА-яёЁ]{2,1000}" title="${locale.getValue("commonNotificationPattern")}"/><br>
+                                   pattern=".{2,1000}" title="${locale.getValue("commonNotificationPattern")}"/><br>
                             <input class="btn btn-warning" type="submit" value="${locale.getValue("adminChangeNotificationButton")}">
                         </form>
                     </th>

@@ -2,9 +2,7 @@ package com.kozitski.pufar.command.impl.admin.notification.choose;
 
 import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.user.User;
-import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.notification.NotificationService;
-import com.kozitski.pufar.service.notification.NotificationServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,14 +26,12 @@ public class DropNotificationCommand extends AbstractCommand {
             long id = Long.parseLong(request.getAttribute(COMMENT_ID).toString());
             User currentUser = (User) request.getAttribute(CommonConstant.CURRENT_USER);
 
-            if(notificationService.dropNotificationById(id, currentUser)){
+            if (notificationService.dropNotificationById(id, currentUser)) {
                 request.requestAttributePut(CommonConstant.ADMIN_INPUT_MESSAGE, OK_INPUT_MESSAGE);
-            }
-            else {
+            } else {
                 request.requestAttributePut(CommonConstant.ADMIN_INPUT_MESSAGE, BAD_INPUT_MESSAGE);
             }
-        }
-        catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             LOGGER.warn(BAD_INPUT_MESSAGE, e);
             request.requestAttributePut(CommonConstant.ADMIN_INPUT_MESSAGE, BAD_INPUT_MESSAGE);
         }

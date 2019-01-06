@@ -7,7 +7,6 @@ import com.kozitski.pufar.command.Router;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserStatus;
 import com.kozitski.pufar.service.error.ErrorHandleService;
-import com.kozitski.pufar.service.error.ErrorHandleServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
 
 public class ErrorCommand extends AbstractCommand {

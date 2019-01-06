@@ -3,12 +3,10 @@ package com.kozitski.pufar.command.impl.notification.additional;
 import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.user.User;
-import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.user.UserService;
-import com.kozitski.pufar.service.user.UserServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class ShowAdditionalNotificationCommand extends AbstractCommand {
@@ -22,25 +20,25 @@ public class ShowAdditionalNotificationCommand extends AbstractCommand {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Router execute(RequestValue request)  {
+    public Router execute(RequestValue request) {
         Router router = new Router();
         router.setPagePath(PagePath.NOTIFICATION_ADDITIONAL.getJspPath());
 
         long notificationId = Long.parseLong((String) request.getAttribute(GOT_NOTIFICATION));
 
         Notification notification = null;
-        for(Notification notif : (ArrayList<Notification>) request.getAttribute(CommonConstant.CURRENT_NOTIFICATIONS)){
-            if(notif.getNotificationId() == notificationId){
+        for (Notification notif : (List<Notification>) request.getAttribute(CommonConstant.CURRENT_NOTIFICATIONS)) {
+            if (notif.getNotificationId() == notificationId) {
                 notification = notif;
             }
         }
         request.servletSessionPut(LOOKING_NOTIFICATION, notification);
 
-        if(notification != null){
+        if (notification != null) {
             long userOwnerId = notification.getUserId();
             Optional<User> user = userService.searchUserById(userOwnerId);
             User userOwner;
-            if(user.isPresent()){
+            if (user.isPresent()) {
                 userOwner = user.get();
                 request.servletSessionPut(OWNER_USER, userOwner);
             }

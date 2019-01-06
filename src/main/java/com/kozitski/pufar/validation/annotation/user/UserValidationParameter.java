@@ -10,7 +10,8 @@ class UserValidationParameter {
     static final int MIN_PASSWORD_SIZE = 5;
     static final int MAX_PASSWORD_SIZE = 30;
 
-    static final String STRING_FIELD_PATTERN = "[\\w.@а-яА-яёЁ]+";
+    static final String STRING_FIELD_PATTERN = ".+";
     static final String XSS_PATTERN = "<script>";
 
+    private UserValidationParameter() { }
 }

@@ -4,8 +4,6 @@ import com.kozitski.pufar.command.AbstractCommand;
 import com.kozitski.pufar.command.PagePath;
 import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.command.Router;
-import com.kozitski.pufar.util.CommonConstant;
-import com.kozitski.pufar.util.language.PufarLanguage;
 
 public class SearchNotificationCommand extends AbstractCommand {
 

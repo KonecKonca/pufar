@@ -5,26 +5,28 @@ import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.entity.user.UserParameter;
 import com.kozitski.pufar.entity.user.UserStatus;
 import com.kozitski.pufar.exception.PufarDAOException;
-import com.kozitski.pufar.validation.annotation.AspectValid;
-import com.kozitski.pufar.validation.annotation.primitive.integer.IntValid;
-import com.kozitski.pufar.validation.annotation.primitive.string.StringValid;
-import com.kozitski.pufar.validation.annotation.user.UserValid;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-public interface UserDao extends PufarDao<User, UserParameter>{
+public interface UserDao extends PufarDao<User, UserParameter> {
 
     @Override
     Optional<User> searchById(long id);
+
     Optional<User> searchUserByLogin(String login);
-    ArrayList<User> searchUsersByStatus(UserStatus status);
+
+    List<User> searchUsersByStatus(UserStatus status);
+
     User addUser(User user) throws PufarDAOException;
+
     @Override
-    ArrayList<User> searchByParameters(UserParameter parameter);
+    List<User> searchByParameters(UserParameter parameter);
 
     boolean insertBanStatus(long userId, User currentUser, int banStatus);
+
     boolean changeUserLogin(long id, String newLogin, User currentUser);
+
     boolean changeUserStatusByUserId(long id, UserStatus newStatus, User currentUser);
 
     void changePassword(long userId, String newPassword) throws PufarDAOException;

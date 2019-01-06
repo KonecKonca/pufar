@@ -8,4 +8,6 @@ class NumberDefaultValidationParameter {
 
     static final String XSS_PATTERN = "<script>";
 
+    private NumberDefaultValidationParameter() { }
+
 }

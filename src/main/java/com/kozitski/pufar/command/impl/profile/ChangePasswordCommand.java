@@ -1,13 +1,8 @@
 package com.kozitski.pufar.command.impl.profile;
 
 import com.kozitski.pufar.command.*;
-import com.kozitski.pufar.controller.LogoutController;
-import com.kozitski.pufar.entity.number.MobilPhoneNumber;
 import com.kozitski.pufar.entity.user.User;
-import com.kozitski.pufar.exception.PufarServiceException;
-import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.user.UserService;
-import com.kozitski.pufar.service.user.UserServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,8 +37,7 @@ public class ChangePasswordCommand extends AbstractCommand {
 
         try {
             userService.changePassword(requestValue, currentUserId, oldPasswordUtf8, newPasswordUtf8, newPasswordConfirmUtf8);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             requestValue.requestAttributePut(CommonConstant.CHANGE_PASSWORD_MESSAGE, false);
             LOGGER.warn("Password wasn't changed");
         }

@@ -92,16 +92,16 @@
 
                     ${locale.getValue("profileOldPassword")}
                     <input type="password" name="oldPassword" placeholder="${locale.getValue("profileOldPassword")}" size="25" class="form-control-sm" required
-                           pattern="[\w.@а-яА-яёЁ]{5,60}" title="${locale.getValue("commonChangePasswordPattern")}"/><br>
+                           pattern=".{5,60}" title="${locale.getValue("commonChangePasswordPattern")}"/><br>
 
                     ${locale.getValue("profileNewPassword")}
                     <input type="password" name="newPassword" placeholder="${locale.getValue("commonChangePasswordPattern")}" size="25" class="form-control-sm" required id="newPassword1"
-                           pattern="[\w.@а-яА-яёЁ]{5,60}"/>
+                           pattern=".{5,60}"/>
                     <span id="isPasswordEquals1"></span><br>
 
                     ${locale.getValue("profileNewPasswordConfirm")}
                     <input type="password" name="newPasswordConfirm" placeholder="${locale.getValue("commonChangePasswordPattern")}" size="25" class="form-control-sm" required id="newPassword2"
-                           pattern="[\w.@а-яА-яёЁ]{5,60}"/>
+                           pattern=".{5,60}"/>
                     <span id="isPasswordEquals2"></span><br>
 
                     <c:choose>

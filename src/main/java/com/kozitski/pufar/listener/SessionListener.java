@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @WebListener
 public class SessionListener implements HttpSessionListener {
@@ -39,7 +40,7 @@ public class SessionListener implements HttpSessionListener {
 
         //search top notifications
         NotificationService notificationService = new NotificationServiceImpl();
-        ArrayList<Notification> topNotifications = notificationService.searchTopNotificationsWithLimit(CommonConstant.HOW_MUCH_NOTIFICATIONS);
+        List<Notification> topNotifications = notificationService.searchTopNotificationsWithLimit(CommonConstant.HOW_MUCH_NOTIFICATIONS);
         sessionEvent.getSession().setAttribute(CommonConstant.CURRENT_NOTIFICATIONS, topNotifications);
 
         // define all units

@@ -1,22 +1,17 @@
 package com.kozitski.pufar.command.impl.notification.additional;
 
 import com.kozitski.pufar.command.*;
-import com.kozitski.pufar.controller.LogoutController;
 import com.kozitski.pufar.entity.user.User;
-import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.dialoge.DialogService;
-import com.kozitski.pufar.service.dialoge.DialogServiceImpl;
 import com.kozitski.pufar.service.user.UserService;
-import com.kozitski.pufar.service.user.UserServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 public class SentMessageToAuthorCommand extends AbstractCommand {
-
     private static final String OWNER = "chosenUser";
 
     @InjectService
@@ -33,20 +28,18 @@ public class SentMessageToAuthorCommand extends AbstractCommand {
         long currentOpponentId = Long.parseLong(stringCurrentOpponentId);
 
         Optional<User> optionalUser = userService.searchUserById(currentOpponentId);
-        if(optionalUser.isPresent()){
+        if (optionalUser.isPresent()) {
             List topUsers = (List) requestValue.getAttribute(CommonConstant.TOP_USERS);
-            if(topUsers != null){
+            if (topUsers != null) {
                 topUsers.add(0, optionalUser.get());
-            }
-            else {
+            } else {
                 dialogService.showDialogs(requestValue);
 
                 List topUsersElse = (List) requestValue.getAttribute(CommonConstant.TOP_USERS);
-                if(topUsersElse != null){
+                if (topUsersElse != null) {
                     topUsersElse.add(0, optionalUser.get());
                     requestValue.servletSessionPut(CommonConstant.TOP_USERS, topUsersElse);
-                }
-                else {
+                } else {
                     requestValue.servletSessionPut(CommonConstant.TOP_USERS, new ArrayList<>(Collections.singletonList(optionalUser.get())));
                 }
             }

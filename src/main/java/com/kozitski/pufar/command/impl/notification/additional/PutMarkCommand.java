@@ -1,12 +1,9 @@
 package com.kozitski.pufar.command.impl.notification.additional;
 
 import com.kozitski.pufar.command.*;
-import com.kozitski.pufar.controller.LogoutController;
-import com.kozitski.pufar.entity.notification.UnitType;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.notification.NotificationService;
-import com.kozitski.pufar.service.notification.NotificationServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +23,7 @@ public class PutMarkCommand extends AbstractCommand {
         router.setPagePath(PagePath.NOTIFICATION_ADDITIONAL.getJspPath());
 
         String markString = (String) requestValue.getAttribute(MARK);
-        if(markString != null){
+        if (markString != null) {
             int mark = Integer.parseInt(markString);
 
             String notificationIdString = (String) requestValue.getAttribute(NOTIFICATION_ID);
@@ -37,8 +34,7 @@ public class PutMarkCommand extends AbstractCommand {
 
             try {
                 notificationService.putMark(requestValue, mark, senderId, notificationId);
-            }
-            catch (PufarValidationException e) {
+            } catch (PufarValidationException e) {
                 LOGGER.warn("incorrect input data", e);
             }
         }

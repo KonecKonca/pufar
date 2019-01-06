@@ -61,7 +61,7 @@
                                     <input type="hidden" value="SEND_MESSAGE" name="command">
 
                                     <input type="text" class="form-control" placeholder="Enter Message"  name="sentValue" required
-                                           pattern="[\w.@а-яА-яёЁ]{1,555}" title="${locale.getValue("commonMessagePattern")}"/>
+                                           pattern=".{1,555}" title="${locale.getValue("commonMessagePattern")}"/>
                                     <input class="btn btn-info" type="submit" value="${locale.getValue("chatSentButton")}">
                                 </form>
 

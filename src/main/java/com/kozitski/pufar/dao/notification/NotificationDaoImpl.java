@@ -19,6 +19,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -191,7 +192,7 @@ public class NotificationDaoImpl implements NotificationDao {
     }
     // comments
     @Override
-    public ArrayList<NotificationComment> searchCommentByNotificationId(long notificationId){
+    public List<NotificationComment> searchCommentByNotificationId(long notificationId){
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -263,7 +264,7 @@ public class NotificationDaoImpl implements NotificationDao {
     }
 
     @Override
-    public ArrayList<Notification> searchTopNotificationsWithLimit(int limit){
+    public List<Notification> searchTopNotificationsWithLimit(int limit){
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -274,7 +275,7 @@ public class NotificationDaoImpl implements NotificationDao {
 
             ArrayList<Notification> notifications = NotificationMapper.mapNotification(resultSet);
             for(Notification notification : notifications){
-                ArrayList<NotificationComment> notificationComments = searchCommentByNotificationId(notification.getNotificationId());
+                List<NotificationComment> notificationComments = searchCommentByNotificationId(notification.getNotificationId());
                 notification.setComments(notificationComments);
             }
 
@@ -294,7 +295,7 @@ public class NotificationDaoImpl implements NotificationDao {
     }
 
     @Override
-    public ArrayList<Notification> searchByParameters(NotificationParameter parameters) {
+    public List<Notification> searchByParameters(NotificationParameter parameters) {
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -308,7 +309,7 @@ public class NotificationDaoImpl implements NotificationDao {
 
             ArrayList<Notification> notifications = NotificationMapper.mapNotification(resultSet);
             for(Notification notification : notifications){
-                ArrayList<NotificationComment> notificationComments = searchCommentByNotificationId(notification.getNotificationId());
+                List<NotificationComment> notificationComments = searchCommentByNotificationId(notification.getNotificationId());
                 notification.setComments(notificationComments);
             }
 
@@ -565,8 +566,8 @@ public class NotificationDaoImpl implements NotificationDao {
         return result;
     }
     @Override
-    public ArrayList<Notification> searchNotificationsByUnit(UnitType unitType, int limitStart, int limitStep){
-        ArrayList<Notification> result;
+    public List<Notification> searchNotificationsByUnit(UnitType unitType, int limitStart, int limitStep){
+        List<Notification> result;
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -598,7 +599,7 @@ public class NotificationDaoImpl implements NotificationDao {
         return result;
     }
     @Override
-    public ArrayList<Notification> searchAllNotificationsByAuthorId(long authorIdw){
+    public List<Notification> searchAllNotificationsByAuthorId(long authorIdw){
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
