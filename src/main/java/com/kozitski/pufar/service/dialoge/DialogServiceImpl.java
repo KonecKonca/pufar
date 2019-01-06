@@ -86,7 +86,8 @@ public class DialogServiceImpl extends AbstractService implements DialogService 
             requestValue.servletSessionPut(CommonConstant.TOP_USERS, users);
             requestValue.servletSessionPut(CommonConstant.LAST_MESSAGES, lastMessagesWithTopUser);
         } else {
-            List<User> users = Users.createUserArrayList(searchPopularUser(currentUserId, CommonConstant.HOW_MUCH_USERS_CHAT_PAGE));
+            List<User> popularUsersList = searchPopularUser(currentUserId, CommonConstant.HOW_MUCH_USERS_CHAT_PAGE);
+            List<User> users = Users.createUserArrayList(popularUsersList);
 
             List<UserMessage> lastMessagesWithTopUser;
             User currentOpponent = (User) requestValue.getAttribute(CommonConstant.CURRENT_OPPONENT);

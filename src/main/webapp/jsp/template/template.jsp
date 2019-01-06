@@ -17,15 +17,9 @@
     <link href="${context}/css/template/templateStyle.css" rel="stylesheet" />
     <script src="${context}/js/template/jsTemplate.js" type="text/javascript"></script>
 
-
-    <%--importnat for footer--%>
     <script src="${context}/js/footer/jquery-3.2.1.min.js"></script>
 
 </head>
-
-
-<%--SOURCE WITH EXAMPLE--%>
-<%--https://bootsnipp.com/siframe/index.php/snippets/featured/bootstrap-v4-side-toggle-and-fixed-top-menu-responsive--%>
 
 <body>
     <div class="myEdit">

@@ -48,9 +48,6 @@
 
             <br><br><br><br><br><br>
 
-            </p>
-
-
             <nav>
                 <ul>
                     <li><a href="#">${locale.getValue("userErrorMainButton")}</a></li>

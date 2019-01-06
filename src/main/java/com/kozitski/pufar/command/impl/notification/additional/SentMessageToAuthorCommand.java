@@ -2,50 +2,41 @@ package com.kozitski.pufar.command.impl.notification.additional;
 
 import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.user.User;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.dialoge.DialogService;
-import com.kozitski.pufar.service.user.UserService;
 import com.kozitski.pufar.util.CommonConstant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.nio.charset.StandardCharsets;
 
 public class SentMessageToAuthorCommand extends AbstractCommand {
-    private static final String OWNER = "chosenUser";
+    private static final Logger LOGGER = LoggerFactory.getLogger(SentMessageToAuthorCommand.class);
 
-    @InjectService
-    private UserService userService;
+    private static final String OWNER = "chosenUser";
+    private static final String MESSAGE_VALUE = "messageValue";
+
     @InjectService
     private DialogService dialogService;
 
     @Override
     public Router execute(RequestValue requestValue) {
         Router router = new Router();
-        router.setPagePath(PagePath.CHAT_PAGE.getJspPath());
+        router.setPagePath(PagePath.TEMPLATE_PAGE.getJspPath());
 
         String stringCurrentOpponentId = (String) requestValue.getAttribute(OWNER);
         long currentOpponentId = Long.parseLong(stringCurrentOpponentId);
 
-        Optional<User> optionalUser = userService.searchUserById(currentOpponentId);
-        if (optionalUser.isPresent()) {
-            List topUsers = (List) requestValue.getAttribute(CommonConstant.TOP_USERS);
-            if (topUsers != null) {
-                topUsers.add(0, optionalUser.get());
-            } else {
-                dialogService.showDialogs(requestValue);
+        User currentUser = (User) requestValue.getAttribute(CommonConstant.CURRENT_USER);
+        long currentUserId = currentUser.getUserId();
 
-                List topUsersElse = (List) requestValue.getAttribute(CommonConstant.TOP_USERS);
-                if (topUsersElse != null) {
-                    topUsersElse.add(0, optionalUser.get());
-                    requestValue.servletSessionPut(CommonConstant.TOP_USERS, topUsersElse);
-                } else {
-                    requestValue.servletSessionPut(CommonConstant.TOP_USERS, new ArrayList<>(Collections.singletonList(optionalUser.get())));
-                }
-            }
+        String messageValue = (String) requestValue.getAttribute(MESSAGE_VALUE);
+        String utf8Message = new String(messageValue.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
 
-
-            dialogService.chooseDialogWithUser(requestValue);
+        try {
+            dialogService.addMessage(currentUserId, currentOpponentId, utf8Message);
+        } catch (PufarValidationException e) {
+            LOGGER.warn("message was not sended", e);
         }
 
         return router;

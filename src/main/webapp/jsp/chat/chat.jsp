@@ -23,114 +23,124 @@
 
 <body style="font-family:Verdana">
 <div class="myEdit">
-    <div class="container">
-        <div class="row " style="padding-top:40px;">
-            <br /><br />
-            <div class="col-md-8">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        ${locale.getValue("chatTable")} <strong>${currentOpponent.login}</strong>
 
-                    </div>
-                    <div class="panel-body">
-                        <ul class="media-list">
-
-                            <c:forEach var="message" items="${lastMessages}">
-
-                                <li class="media">
-                                    <div class="media-body">
-                                        <div class="media">
-                                            <div class="pull-left">
-                                                <img class="media-object img-circle " src="${context}/image/chat/user.png" />
-                                            </div>
-                                            <div class="media-body" >
-                                                    ${message.message}
-                                                <br />
-                                                <small class="text-muted">${message.senderLogin} | ${message.getStringDate()}</small>
-                                                <hr />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </c:forEach>
-
-                            <div class="panel-footer">
-
-
-                                <form action="/pufar" accept-charset="utf-8" method="post" >
-                                    <input type="hidden" value="SEND_MESSAGE" name="command">
-
-                                    <input type="text" class="form-control" placeholder="Enter Message"  name="sentValue" required
-                                           pattern=".{1,555}" title="${locale.getValue("commonMessagePattern")}"/>
-                                    <input class="btn btn-info" type="submit" value="${locale.getValue("chatSentButton")}">
-                                </form>
-
-                                <div>
-                                    <div style="float: left;">
-                                        <form action="/pufar" method="post">
-                                            <input type="hidden" value="MESSAGE_PREVIOUS" name="command">
-                                            <input type="submit" name="button1" value="<<" class="btn btn-outline-info">
-                                        </form>
-                                    </div>
-                                    <div style="float: right;">
-                                        <form action="/pufar" method="post">
-                                            <input type="hidden" value="MESSAGE_NEXT" name="command">
-                                            <input type="submit" name="button1" value=">>" class="btn btn-outline-info">
-                                        </form>
-                                    </div>
-                                </div>
+    <c:choose>
+        <c:when test="${lastMessages != null && lastMessages.size() != 0}">
+            <div class="container">
+                <div class="row " style="padding-top:40px;">
+                    <br /><br />
+                    <div class="col-md-8">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                    ${locale.getValue("chatTable")} <strong>${currentOpponent.login}</strong>
 
                             </div>
+                            <div class="panel-body">
+                                <ul class="media-list">
 
+                                    <c:forEach var="message" items="${lastMessages}">
 
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        ${locale.getValue("chatUserTable")}
-                    </div>
-                    <div class="panel-body">
-                        <ul class="media-list">
-
-                            <c:forEach var="user" items="${topUsers}">
-
-                                <li class="media">
-                                    <div class="media-body">
-                                        <div class="media">
-
-                                            <div class="pull-left">
-                                                <img class="media-object img-circle" style="max-height:40px;" src="${context}/image/chat/user.png" />
+                                        <li class="media">
+                                            <div class="media-body">
+                                                <div class="media">
+                                                    <div class="pull-left">
+                                                        <img class="media-object img-circle " src="${context}/image/chat/user.png" />
+                                                    </div>
+                                                    <div class="media-body" >
+                                                            ${message.message}
+                                                        <br />
+                                                        <small class="text-muted">${message.senderLogin} | ${message.getStringDate()}</small>
+                                                        <hr />
+                                                    </div>
+                                                </div>
                                             </div>
+                                        </li>
+                                    </c:forEach>
 
-                                            <div class="media-body" >
-                                                <form action="pufar" method="post">
-                                                    <input type="hidden" value="CHANGE_OPPONENT" name="command">
-                                                    <input type="hidden" value="${user.userId}" name="chosenUser">
+                                    <div class="panel-footer">
 
-                                                    <input type="submit" value="${user.login} [${user.status}]" class="btn btn-outline-info">
+
+                                        <form action="/pufar" accept-charset="utf-8" method="post" >
+                                            <input type="hidden" value="SEND_MESSAGE" name="command">
+
+                                            <input type="text" class="form-control" placeholder="Enter Message"  name="sentValue" required
+                                                   pattern=".{1,555}" title="${locale.getValue("commonMessagePattern")}"/>
+                                            <input class="btn btn-info" type="submit" value="${locale.getValue("chatSentButton")}">
+                                        </form>
+
+                                        <div>
+                                            <div style="float: left;">
+                                                <form action="/pufar" method="post">
+                                                    <input type="hidden" value="MESSAGE_PREVIOUS" name="command">
+                                                    <input type="submit" name="button1" value="<<" class="btn btn-outline-info">
                                                 </form>
-
                                             </div>
-
+                                            <div style="float: right;">
+                                                <form action="/pufar" method="post">
+                                                    <input type="hidden" value="MESSAGE_NEXT" name="command">
+                                                    <input type="submit" name="button1" value=">>" class="btn btn-outline-info">
+                                                </form>
+                                            </div>
                                         </div>
 
                                     </div>
-                                </li>
 
-                            </c:forEach>
 
-                        </ul>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                    ${locale.getValue("chatUserTable")}
+                            </div>
+                            <div class="panel-body">
+                                <ul class="media-list">
+
+                                    <c:forEach var="user" items="${topUsers}">
+
+                                        <li class="media">
+                                            <div class="media-body">
+                                                <div class="media">
+
+                                                    <div class="pull-left">
+                                                        <img class="media-object img-circle" style="max-height:40px;" src="${context}/image/chat/user.png" />
+                                                    </div>
+
+                                                    <div class="media-body" >
+                                                        <form action="pufar" method="post">
+                                                            <input type="hidden" value="CHANGE_OPPONENT" name="command">
+                                                            <input type="hidden" value="${user.userId}" name="chosenUser">
+
+                                                            <input type="submit" value="${user.login} [${user.status}]" class="btn btn-outline-info">
+                                                        </form>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+
+                                    </c:forEach>
+
+                                </ul>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-
             </div>
-        </div>
-    </div>
+        </c:when>
+
+        <c:otherwise>
+            <img src="${context}/image/chat/noMessages.png">
+        </c:otherwise>
+    </c:choose>
+
 </div>
 
 <div>

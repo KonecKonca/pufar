@@ -8,10 +8,9 @@ public class Users {
     public static User createDefaultUser(){
         return new User( -666, "", "****", null, false, null);
     }
-    public static ArrayList<User> createUserArrayList(List<User> list){
+    public static List<User> createUserArrayList(List<User> list){
 
-        ArrayList<User> users = new ArrayList<User>(list){
-
+        return new ArrayList<User>(list){
             @Override
             public User get(int index) {
                 if(index == 0 && size() == 0){
@@ -24,7 +23,6 @@ public class Users {
 
         };
 
-        return users;
     }
     public static int statusPriority(UserStatus userStatus){
         int result;

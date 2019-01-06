@@ -31,6 +31,11 @@ i{
     font-family: Monotype Corsiva;
 }
 
-.isPasswordEquals{
+#isPasswordEquals1{
     color: red;
+    font-size: 22px;
+}
+#isPasswordEquals2{
+    color: red;
+    font-size: 22px;
 }

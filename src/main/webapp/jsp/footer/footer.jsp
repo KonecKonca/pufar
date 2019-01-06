@@ -7,13 +7,11 @@
 
     <title>${locale.getValue("commonTitle")}</title>
 
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <c:set var="context" value="${pageContext.request.contextPath}" />
 
-    <%--<!-- CSS -->--%>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
@@ -34,7 +32,6 @@
 
 <body>
 
-<!-- Footer -->
 <footer>
     <div class="footer-top">
         <div class="container">
@@ -61,15 +58,14 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <%--<p><a class="scroll-link" href="#top-content">Top</a></p>--%>
                             <p><a class="scroll-link" href="#section-1">${locale.getValue("footerAdditionalLink")}</a></p>
 
-                            <form action="/locale" method="post" id="loginForm">
+                            <form action="/locale" method="post">
                                 <input type="hidden" value="CHANGE_LOCALE_RU" name="localeType">
 
                                 <input type="submit" value="ru" class="btn btn-outline-success"/>
                             </form>
-                            <form action="/locale" method="post" id="loginForm">
+                            <form action="/locale" method="post">
                                 <input type="hidden" value="CHANGE_LOCALE_EN" name="localeType">
 
                                 <input type="submit" value="en" class="btn btn-outline-success"/>

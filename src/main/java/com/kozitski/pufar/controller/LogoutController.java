@@ -16,7 +16,7 @@ import java.io.IOException;
 
 @WebServlet("/invalidate")
 public class LogoutController extends HttpServlet {
-    private static Logger LOGGER = LoggerFactory.getLogger(LogoutController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LogoutController.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
