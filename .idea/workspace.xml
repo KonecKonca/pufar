@@ -7,6 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f82204e-1c30-4e1d-affd-81a9b93a0df4" name="Default Changelist" comment="Epam finaTask refactoring 1.4 (AJAX complete)">
+      <change afterPath="$PROJECT_DIR$/log/applicationLog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -59,6 +61,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="3" />
+          <entry key="gitignore" value="1" />
           <entry key="java" value="8" />
           <entry key="js" value="9" />
           <entry key="jsp" value="2" />
@@ -71,11 +74,13 @@
           <entry key="JAVA" value="8" />
           <entry key="JSP" value="2" />
           <entry key="JavaScript" value="9" />
+          <entry key="PLAIN_TEXT" value="1" />
           <entry key="Properties" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="gitignore" value="8" />
           <entry key="java" value="209" />
           <entry key="js" value="23" />
           <entry key="jsp" value="229" />
@@ -88,7 +93,7 @@
           <entry key="JAVA" value="209" />
           <entry key="JSP" value="229" />
           <entry key="JavaScript" value="23" />
-          <entry key="PLAIN_TEXT" value="11" />
+          <entry key="PLAIN_TEXT" value="19" />
           <entry key="Properties" value="2" />
         </counts>
       </usages-collector>
@@ -126,6 +131,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/profile/profile.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/validationMessage.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -213,7 +219,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546794412461" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546794979947" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -399,19 +405,19 @@
       <option name="project" value="LOCAL" />
       <updated>1546794106459</updated>
     </task>
-    <task id="LOCAL-00003" summary="adminPanel some to end with pictures">
-      <created>1545440201472</created>
+    <task id="LOCAL-00003" summary="Epam finaTask refactoring 1.4 (AJAX complete)">
+      <created>1546794410947</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1545440201472</updated>
+      <updated>1546794410947</updated>
     </task>
-    <task id="LOCAL-00004" summary="before notifications more details">
-      <created>1545502962367</created>
+    <task id="LOCAL-00004" summary="Epam finaTask refactoring 1.4 (AJAX complete)">
+      <created>1546794430674</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1545502962367</updated>
+      <updated>1546794430674</updated>
     </task>
     <task id="LOCAL-00005" summary="notifications more details some sketches">
       <created>1545518721407</created>
@@ -602,7 +608,7 @@
       <option name="project" value="LOCAL" />
       <updated>1544225343682</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -638,7 +644,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5765000" />
+    <option name="totallyTimeSpent" value="6339000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -660,11 +666,11 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.14935064" />
       <window_info anchor="bottom" id="Application Servers" order="7" weight="0.1612554" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.271645" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5021322" side_tool="true" weight="0.26298702" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="9" sideWeight="0.5026652" side_tool="true" visible="true" weight="0.8203463" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.31493506" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.32900432" />
       <window_info anchor="bottom" id="Database Changes" order="12" weight="0.6482684" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="13" sideWeight="0.4978678" visible="true" weight="0.8008658" />
+      <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.49733475" visible="true" weight="0.8203463" />
       <window_info anchor="bottom" id="Database Console" order="14" weight="0.3225108" />
       <window_info anchor="bottom" id="Statistic" order="15" weight="0.6699134" />
       <window_info anchor="bottom" id="SonarLint" order="16" weight="0.32900432" />
@@ -958,6 +964,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
         </state>
       </provider>
     </entry>
