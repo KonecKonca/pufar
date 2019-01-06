@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/index/common/templatemo-style.css">
 
     <script type="text/javascript" src="js/index/modernizr.custom.86080.js"></script>
-    <script type="text/javascript" src="js/validationMessage.js"></script>
+
 
 </head>
 
@@ -43,11 +43,6 @@
             <form action="/jsp/login/login.jsp" method="get" class="subscribe-form">
                 <div class="row form-section">
 
-                    <%--nice input field--%>
-                    <%--<div class="col-md-7 col-sm-7 col-xs-7">--%>
-                        <%--<input name="email" type="text" class="form-control" id="contact_email" placeholder="Your Email..." required/>--%>
-                    <%--</div>--%>
-
                     <div class="col-md-5 col-sm-5 col-xs-5">
                         <button type="submit" value="Login" class="tm-btn-subscribe">${locale.getValue("indexLoginButton")}</button>
                     </div>
@@ -64,7 +59,7 @@
                 <table align="center">
                     <tr>
                         <th align="right"><div class="indexLabel">${locale.getValue("indexRegisterLogin")}</div></th>
-                        <td><input type="text" name="login" placeholder="${locale.getValue("indexRegisterLogin")}" class="form-control" required id="xxx"
+                        <td><input type="text" name="login" placeholder="${locale.getValue("indexRegisterLogin")}" class="form-control" required
                                    pattern="[\w.@а-яА-яёЁ]{5,20}" title="${locale.getValue("commonLoginPattern")}"/></td>
                     </tr>
                     <tr>

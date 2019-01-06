@@ -1,3 +1,7 @@
-xxx.oninvalid = function (event) {
-    event.target.setCustomValidity('XXXXX');
-};
+$(document).ready(function () {
+
+    customErrorMessage.oninvalid = function (event) {
+        event.target.setCustomValidity('XXXXX');
+    };
+
+});
