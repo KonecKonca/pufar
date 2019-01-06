@@ -18,8 +18,6 @@ import java.util.Arrays;
 
 @WebListener
 public class SessionListener implements HttpSessionListener {
-    private static final String CURRENT_USER = "currentUser";
-
     private static final int HOW_MUCH_MESSAGES = 6;
 
     @Override
@@ -30,7 +28,7 @@ public class SessionListener implements HttpSessionListener {
 
         // define default user
         User defaultUser = Users.createDefaultUser();
-        sessionEvent.getSession().setAttribute(CURRENT_USER, defaultUser);
+        sessionEvent.getSession().setAttribute(CommonConstant.CURRENT_USER, defaultUser);
 
         // define default locale
         PufarLanguage pufarLanguage = new PufarLanguage();
@@ -49,6 +47,5 @@ public class SessionListener implements HttpSessionListener {
         sessionEvent.getSession().setAttribute(CommonConstant.UNIT_LIST, units);
 
     }
-
 
 }

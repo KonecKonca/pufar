@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 
 public class NotificationServiceImpl extends AbstractService implements NotificationService {
-    private static Logger LOGGER = LoggerFactory.getLogger(NotificationServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(NotificationServiceImpl.class);
 
     @InjectDao
     private NotificationDao notificationDao;

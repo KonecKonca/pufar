@@ -2,14 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="pyf" uri="pufarTag" %>
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
 <head>
 
     <title>${locale.getValue("commonTitle")}</title>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 
     <c:set var="context" value="${pageContext.request.contextPath}" />
 
@@ -54,11 +55,6 @@
                 <div class="collapse navbar-collapse" id="navbarText">
 
                     <ul class="navbar-nav animate side-nav">
-                        <%--<li class="nav-item">--%>
-                            <%--<a class="nav-link" href="#">${locale.getValue("templateDialogButton")}--%>
-                                <%--<span class="sr-only">(current)</span>--%>
-                            <%--</a>--%>
-                        <%--</li>--%>
 
                         <li class="nav-item">
                             <a class="sideLink"  href="${context}/jsp/login/login.jsp">${locale.getValue("templateLoginLink")}</a>
@@ -120,9 +116,6 @@
                         </li>
 
 
-
-                            <%--<jsp:forward page="${context}"></jsp:forward>--%>
-
                     </ul>
 
                     <ul class="navbar-nav ml-md-auto d-md-flex">
@@ -177,12 +170,14 @@
 
                         <li class="nav-item">
 
-                            <form action="/invalidate" method="post">
-                                <input type="hidden" name="command" value="LOGOUT">
+                            <c:if test="${currentUser.status!=null}">
+                                <form action="/invalidate" method="post">
+                                    <input type="hidden" name="command" value="LOGOUT">
 
-                                <input type="submit" value="${locale.getValue("templateLogout")}" class="btn btn-outline-info">
+                                    <input type="submit" value="${locale.getValue("templateLogout")}" class="btn btn-outline-info">
 
-                            </form>
+                                </form>
+                            </c:if>
 
                         </li>
 

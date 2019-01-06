@@ -37,5 +37,5 @@ public class CommonConstant {
     // profile
     public static final String CHANGE_PASSWORD_MESSAGE = "changePasswordMessage";
 
-
+    private CommonConstant() { }
 }

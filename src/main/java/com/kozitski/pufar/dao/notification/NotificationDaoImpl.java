@@ -200,12 +200,6 @@ public class NotificationDaoImpl implements NotificationDao {
             preparedStatement.setLong(1, notificationId);
             resultSet = preparedStatement.executeQuery();
 
-            resultSet.close();
-            preparedStatement.close();
-
-            resultSet.close();
-            preparedStatement.close();
-
             return CommentMapper.mapComments(resultSet);
         }
         catch (SQLException e) {
