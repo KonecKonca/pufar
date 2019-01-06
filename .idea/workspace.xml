@@ -6,10 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f82204e-1c30-4e1d-affd-81a9b93a0df4" name="Default Changelist" comment="Epam finaTask refactoring 1.3 (AJAX complete)">
+    <list default="true" id="1f82204e-1c30-4e1d-affd-81a9b93a0df4" name="Default Changelist" comment="Epam finaTask refactoring 1.4 (AJAX complete)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/validationMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/validationMessage.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="SHOW_DIALOG" value="false" />
@@ -82,7 +80,7 @@
           <entry key="js" value="23" />
           <entry key="jsp" value="229" />
           <entry key="properties" value="2" />
-          <entry key="txt" value="10" />
+          <entry key="txt" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -90,7 +88,7 @@
           <entry key="JAVA" value="209" />
           <entry key="JSP" value="229" />
           <entry key="JavaScript" value="23" />
-          <entry key="PLAIN_TEXT" value="10" />
+          <entry key="PLAIN_TEXT" value="11" />
           <entry key="Properties" value="2" />
         </counts>
       </usages-collector>
@@ -108,6 +106,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="e36024832f1e02e31ea90ae222e272b96d64435b" />
+      </map>
+    </option>
     <option name="WARN_ABOUT_DETACHED_HEAD" value="false" />
     <option name="RESET_MODE" value="HARD" />
   </component>
@@ -210,7 +213,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546793952982" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546794318562" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -389,12 +392,12 @@
       <option name="project" value="LOCAL" />
       <updated>1546793567944</updated>
     </task>
-    <task id="LOCAL-00002" summary="adminPanel some to end with pictures">
-      <created>1545427322031</created>
+    <task id="LOCAL-00002" summary="Epam finaTask refactoring 1.4 (AJAX complete)">
+      <created>1546794106459</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1545427322032</updated>
+      <updated>1546794106459</updated>
     </task>
     <task id="LOCAL-00003" summary="adminPanel some to end with pictures">
       <created>1545440201472</created>
@@ -599,7 +602,7 @@
       <option name="project" value="LOCAL" />
       <updated>1544225343682</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -635,12 +638,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5449000" />
+    <option name="totallyTimeSpent" value="5765000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18656716" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18656716" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -661,7 +664,7 @@
       <window_info anchor="bottom" id="Messages" order="10" weight="0.31493506" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.32900432" />
       <window_info anchor="bottom" id="Database Changes" order="12" weight="0.6482684" />
-      <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.4978678" weight="0.31493506" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="13" sideWeight="0.4978678" visible="true" weight="0.8008658" />
       <window_info anchor="bottom" id="Database Console" order="14" weight="0.3225108" />
       <window_info anchor="bottom" id="Statistic" order="15" weight="0.6699134" />
       <window_info anchor="bottom" id="SonarLint" order="16" weight="0.32900432" />
@@ -762,7 +765,8 @@
     <MESSAGE value="Epam finaTask refactoring 1.2 (client validation)" />
     <MESSAGE value="Epam finaTask refactoring 1.2 (client validation before AJAX)" />
     <MESSAGE value="Epam finaTask refactoring 1.3 (AJAX complete)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Epam finaTask refactoring 1.3 (AJAX complete)" />
+    <MESSAGE value="Epam finaTask refactoring 1.4 (AJAX complete)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Epam finaTask refactoring 1.4 (AJAX complete)" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/command/impl/profile/ChangePasswordCommand.java">
