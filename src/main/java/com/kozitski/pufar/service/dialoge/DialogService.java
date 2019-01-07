@@ -32,4 +32,6 @@ public interface DialogService {
 
     void chooseDialogWithUser(RequestValue requestValue);
 
+    void updateTopUsersCash(RequestValue requestValue);
+
 }

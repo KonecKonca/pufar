@@ -4,7 +4,6 @@ import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.dao.dialoge.DialogDAO;
 import com.kozitski.pufar.entity.message.UserMessage;
 import com.kozitski.pufar.entity.user.User;
-import com.kozitski.pufar.entity.user.Users;
 import com.kozitski.pufar.exception.PufarDAOException;
 import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.AbstractService;
@@ -57,41 +56,41 @@ public class DialogServiceImpl extends AbstractService implements DialogService 
 
     @Override
     public void showDialogs(RequestValue requestValue) {
-
         User currentUser = ((User) (requestValue.getAttribute(CommonConstant.CURRENT_USER)));
         long currentUserId = currentUser.getUserId();
 
         int msgStartNumber;
         int howMuchMessages = (int) requestValue.getAttribute(CommonConstant.HOW_MUCH_MESSAGES);
 
-            List<User> popularUsersList = searchPopularUser(currentUserId, CommonConstant.HOW_MUCH_USERS_CHAT_PAGE);
-            List<User> users = Users.createUserArrayList(popularUsersList);
+        List<User> popularUsersList = searchPopularUser(currentUserId, CommonConstant.HOW_MUCH_USERS_CHAT_PAGE);
 
-            List<UserMessage> lastMessagesWithTopUser;
-            User currentOpponent = (User) requestValue.getAttribute(CommonConstant.CURRENT_OPPONENT);
-            msgStartNumber = 0;
-            if(currentOpponent != null){
-                msgStartNumber = numberOfMessagesBetween(currentUserId, currentOpponent.getUserId());
+        List<UserMessage> lastMessagesWithTopUser = null;
+        User currentOpponent = (User) requestValue.getAttribute(CommonConstant.CURRENT_OPPONENT);
+        msgStartNumber = 0;
+
+        if (currentOpponent != null) {
+            msgStartNumber = numberOfMessagesBetween(currentUserId, currentOpponent.getUserId());
+        } else if (!popularUsersList.isEmpty()) {
+            msgStartNumber = numberOfMessagesBetween(currentUserId, popularUsersList.get(0).getUserId());
+            currentOpponent = popularUsersList.get(0);
+            lastMessagesWithTopUser = searchMessagesBetweenWithLimit(currentUserId, currentOpponent.getUserId(), 0, howMuchMessages);
+
+        }
+
+        if (currentOpponent != null) {
+            requestValue.servletSessionPut(CommonConstant.LAST_MESSAGE, msgStartNumber);
+
+            if (msgStartNumber - howMuchMessages < 0) {
+                lastMessagesWithTopUser = searchMessagesBetweenWithLimit(currentUserId, currentOpponent.getUserId(), 0, howMuchMessages);
+            } else {
+                lastMessagesWithTopUser = searchMessagesBetweenWithLimit(currentUserId, currentOpponent.getUserId(), msgStartNumber - howMuchMessages, howMuchMessages);
             }
-            else if (popularUsersList!= null && !popularUsersList.isEmpty()){
-                msgStartNumber = numberOfMessagesBetween(currentUserId, popularUsersList.get(0).getUserId());
-                currentOpponent = popularUsersList.get(0);
-            }
+        }
 
-            if(currentOpponent != null){
-                requestValue.servletSessionPut(CommonConstant.LAST_MESSAGE, msgStartNumber);
 
-                if (msgStartNumber - howMuchMessages < 0) {
-                    lastMessagesWithTopUser = searchMessagesBetweenWithLimit(currentUserId, currentOpponent.getUserId(), 0, howMuchMessages);
-                } else {
-                    lastMessagesWithTopUser = searchMessagesBetweenWithLimit(currentUserId, currentOpponent.getUserId(), msgStartNumber - howMuchMessages, howMuchMessages);
-                }
-
-                requestValue.servletSessionPut(CommonConstant.CURRENT_OPPONENT, currentOpponent);
-                requestValue.servletSessionPut(CommonConstant.TOP_USERS, users);
-                requestValue.servletSessionPut(CommonConstant.LAST_MESSAGES, lastMessagesWithTopUser);
-            }
-
+        requestValue.servletSessionPut(CommonConstant.CURRENT_OPPONENT, currentOpponent);
+        requestValue.servletSessionPut(CommonConstant.TOP_USERS, popularUsersList);
+        requestValue.servletSessionPut(CommonConstant.LAST_MESSAGES, lastMessagesWithTopUser);
     }
 
     @Override
@@ -177,5 +176,14 @@ public class DialogServiceImpl extends AbstractService implements DialogService 
         showDialogs(requestValue);
 
     }
+
+    @Override
+    public void updateTopUsersCash(RequestValue requestValue) {
+        User currentUser = (User) requestValue.getAttribute(CommonConstant.CURRENT_USER);
+        List<User> popularUsersList = searchPopularUser(currentUser.getUserId(), CommonConstant.HOW_MUCH_USERS_CHAT_PAGE);
+
+        requestValue.servletSessionPut(CommonConstant.TOP_USERS, popularUsersList);
+    }
+
 
 }

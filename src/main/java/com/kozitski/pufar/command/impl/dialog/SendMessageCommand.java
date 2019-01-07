@@ -2,6 +2,7 @@ package com.kozitski.pufar.command.impl.dialog;
 
 import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.entity.user.User;
+import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.dialoge.DialogService;
 import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
@@ -20,6 +21,7 @@ public class SendMessageCommand extends AbstractCommand {
     public Router execute(RequestValue requestValue) {
         Router router = new Router();
         router.setPagePath(PagePath.CHAT_PAGE.getJspPath());
+        router.setRouteType(Router.RouteType.REDIRECT);
 
         String sentMessage = requestValue.getAttribute(SENDING_MESSAGE).toString();
 
@@ -28,10 +30,10 @@ public class SendMessageCommand extends AbstractCommand {
 
         try {
             dialogService.addMessage(currentUser.getUserId(), currentOpponent.getUserId(), new String(sentMessage.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8));
-        } catch (Exception e) {
+            dialogService.showDialogs(requestValue);
+        } catch (PufarValidationException e) {
             LOGGER.warn("Input message incorrect diu to validation parameters", e);
         }
-        dialogService.showDialogs(requestValue);
 
         return router;
     }

@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Users {
 
+    private Users() { }
+
     public static User createDefaultUser(){
         return new User( -666, "", "****", null, false, null);
     }

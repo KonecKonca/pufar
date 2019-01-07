@@ -58,11 +58,17 @@ public class ProxyConnection implements Connection, AutoCloseable{
 
     @Override
     public void close(){
+        try {
+            connection.setAutoCommit(true);
+        }
+        catch (SQLException e) {
+            LOGGER.error("Connection is not returned tu AUTO-commit state", e);
+            throw new RuntimeException("database is not closed", e);
+        }
         ConnectionPool.getInstance().releaseConnection(this);
     }
     void realClose(){
         try {
-            connection.setAutoCommit(true);
             connection.close();
         }
         catch (SQLException e) {

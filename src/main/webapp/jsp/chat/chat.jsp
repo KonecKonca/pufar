@@ -111,7 +111,7 @@
                                                     </div>
 
                                                     <div class="media-body" >
-                                                        <form action="pufar" method="post">
+                                                        <form action="/pufar" method="post">
                                                             <input type="hidden" value="CHANGE_OPPONENT" name="command">
                                                             <input type="hidden" value="${user.userId}" name="chosenUser">
 
@@ -132,6 +132,8 @@
                         </div>
 
                     </div>
+
+
                 </div>
             </div>
         </c:when>

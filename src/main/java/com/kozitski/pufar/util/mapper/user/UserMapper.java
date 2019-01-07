@@ -46,6 +46,7 @@ public class UserMapper {
             while (resultSet.next()){
 
                 long userId = resultSet.getLong(USER_ID);
+
                 String login = resultSet.getString(USER_LOGIN);
                 String password = resultSet.getString(USER_PASSWORD);
                 UserStatus status = defineUserStatus(resultSet.getString(USER_STATUS));

@@ -12,7 +12,9 @@ public class ChangeOpponent extends AbstractCommand {
     public Router execute(RequestValue requestValue) {
         Router router = new Router();
         router.setPagePath(PagePath.CHAT_PAGE.getJspPath());
+        router.setRouteType(Router.RouteType.REDIRECT);
 
+        dialogService.updateTopUsersCash(requestValue);
         dialogService.chooseDialogWithUser(requestValue);
 
         return router;
