@@ -17,6 +17,58 @@ import java.util.List;
 
 public class DialogDaoImpl implements DialogDAO {
     private static final Logger LOGGER = LoggerFactory.getLogger(DialogDaoImpl.class);
+    private static final String SEARCH_POPULAR_USERS_SQL =
+            "SELECT user_id, login, password, status, ban_status isBanned, MAX(dialog_number) max_number " +
+                "FROM( " +
+                    "SELECT u.user_id, u.login, u.password, u.status, u.ban_status, MAX(d.dialog_id) dialog_number FROM users u " +
+                        "INNER JOIN dialoges d ON u.user_id = d.user_receiver_id " +
+                            "WHERE u.user_id IN( " +
+
+                                "SELECT u.user_id FROM users u " +
+                                    "WHERE u.user_id IN( " +
+
+                                        "SELECT d1.user_receiver_id FROM users u1 " +
+                                            "INNER JOIN dialoges d1 ON u1.user_id = d1.user_sender_id " +
+                                                "WHERE d1.user_sender_id=? " +
+
+                                        "UNION " +
+
+                                        "SELECT d2.user_sender_id FROM users u2 " +
+                                            "INNER JOIN dialoges d2 ON u2.user_id = d2.user_receiver_id " +
+                                                "WHERE d2.user_receiver_id=?" +
+                                    ") " +
+                                 ") " +
+                                "AND d.user_sender_id=? " +
+                            "GROUP BY u.user_id " +
+
+                            "UNION " +
+
+                            "SELECT u.user_id, u.login, u.password, u.status, u.ban_status, MAX(d.dialog_id) FROM users u " +
+                                "INNER JOIN dialoges d ON u.user_id = d.user_sender_id " +
+                                    "WHERE u.user_id IN( " +
+
+                                        "SELECT u.user_id FROM users u " +
+                                            "WHERE u.user_id IN( " +
+
+                                                "SELECT d1.user_receiver_id FROM users u1 " +
+                                                    "INNER JOIN dialoges d1 ON u1.user_id = d1.user_sender_id " +
+                                                        "WHERE d1.user_sender_id=? " +
+
+                                                "UNION " +
+
+                                                "SELECT d2.user_sender_id FROM users u2 " +
+                                                    "INNER JOIN dialoges d2 ON u2.user_id = d2.user_receiver_id " +
+                                                        "WHERE d2.user_receiver_id=? " +
+
+                                            ") " +
+                                        ") " +
+                                        "AND d.user_receiver_id=? " +
+                            "GROUP BY u.user_id " +
+                ") t "+
+
+            "GROUP BY user_id " +
+            "ORDER BY max_number DESC " +
+            "LIMIT ?";
 
     private static final String SEARCH_MESSAGE_FROM_TO_SQL =
             "SELECT u1.login sender_login, u2.login receiver_login, message, date FROM dialoges d LEFT JOIN users u1 ON d.user_sender_id = u1.user_id " +
@@ -42,12 +94,6 @@ public class DialogDaoImpl implements DialogDAO {
 
             "ORDER BY date ASC " +
             "LIMIT ?, ?";
-    private static final String SEARCH_POPULAR_USER_SQL =
-            "(SELECT u.user_id, u.login, u.password, u.status, u.ban_status isBanned FROM users u " +
-                "INNER JOIN dialoges d1 ON u.user_id = d1.user_receiver_id WHERE d1.user_sender_id = ? GROUP BY u.login ORDER BY d1.date) " +
-                    "UNION " +
-            "(SELECT u2.user_id, u2.login, u2.password, u2.status, u2.ban_status isBanned FROM users u2 " +
-                "INNER JOIN dialoges d2 ON u2.user_id = d2.user_sender_id WHERE d2.user_receiver_id = ? GROUP BY u2.login ORDER BY d2.date) LIMIT ?";
     private static final String ADD_MESSAGE_SQL = "INSERT INTO dialoges values(null, ?, ?, ?, ?)";
 
     @Override
@@ -173,10 +219,16 @@ public class DialogDaoImpl implements DialogDAO {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try(Connection connection = ConnectionPool.getInstance().getConnection()){
-            preparedStatement = connection.prepareStatement(SEARCH_POPULAR_USER_SQL);
+            preparedStatement = connection.prepareStatement(SEARCH_POPULAR_USERS_SQL);
+
             preparedStatement.setLong(1, forWhomUserId);
             preparedStatement.setLong(2, forWhomUserId);
-            preparedStatement.setInt(3, howMuch);
+            preparedStatement.setLong(3, forWhomUserId);
+            preparedStatement.setLong(4, forWhomUserId);
+            preparedStatement.setLong(5, forWhomUserId);
+            preparedStatement.setLong(6, forWhomUserId);
+
+            preparedStatement.setInt(7, howMuch);
             resultSet = preparedStatement.executeQuery();
 
             users = UserMapper.createUsers(resultSet);

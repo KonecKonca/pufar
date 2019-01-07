@@ -7,18 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f82204e-1c30-4e1d-affd-81a9b93a0df4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/additional/view.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/command/impl/notification/additional/SentMessageToAuthorCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/command/impl/notification/additional/SentMessageToAuthorCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/dialoge/DialogDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/dialoge/DialogDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/notification/NotificationDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/notification/NotificationDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/database/ConnectionPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/database/ConnectionPool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/service/dialoge/DialogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/service/dialoge/DialogServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/util/mapper/user/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/util/mapper/user/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/additional/sql.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/additional/sql.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/chat/chat.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/chat/chat.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/error/errorPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/error/errorPage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/error/userErrorPage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/error/userErrorPage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/user/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/user/UserDaoImpl.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,7 +66,7 @@
           <entry key="css" value="5" />
           <entry key="dialoges" value="12" />
           <entry key="gitignore" value="2" />
-          <entry key="java" value="238" />
+          <entry key="java" value="239" />
           <entry key="jpg" value="1" />
           <entry key="js" value="10" />
           <entry key="jsp" value="38" />
@@ -92,7 +83,7 @@
           <entry key="CSS" value="5" />
           <entry key="Database Element" value="31" />
           <entry key="Image" value="1" />
-          <entry key="JAVA" value="238" />
+          <entry key="JAVA" value="239" />
           <entry key="JSP" value="38" />
           <entry key="JavaScript" value="10" />
           <entry key="PLAIN_TEXT" value="6" />
@@ -105,21 +96,21 @@
           <entry key="cell" value="33" />
           <entry key="css" value="17" />
           <entry key="gitignore" value="18" />
-          <entry key="java" value="1021" />
+          <entry key="java" value="1742" />
           <entry key="js" value="23" />
           <entry key="jsp" value="363" />
           <entry key="properties" value="2" />
           <entry key="sql" value="217" />
-          <entry key="txt" value="331" />
+          <entry key="txt" value="388" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="17" />
-          <entry key="JAVA" value="1021" />
+          <entry key="JAVA" value="1742" />
           <entry key="JSP" value="363" />
           <entry key="JavaScript" value="23" />
-          <entry key="PLAIN_TEXT" value="349" />
+          <entry key="PLAIN_TEXT" value="406" />
           <entry key="Properties" value="2" />
           <entry key="SQL" value="217" />
           <entry key="Scratch" value="33" />
@@ -135,69 +126,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/additional/sql.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="48" column="21" selection-start-line="48" selection-start-column="21" selection-end-line="48" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/dialoge/DialogDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="227" lean-forward="true" selection-start-line="227" selection-end-line="227" />
-              <folding>
-                <element signature="e#0#244#1" />
-                <element signature="e#0#244#0" />
-                <element signature="e#0#513#1" />
-                <element signature="e#251#495#0" />
-                <element signature="e#0#244#0" />
-                <element signature="e#0#524#1" />
-                <element signature="e#251#495#0" />
-                <element signature="method#searchAllMessagesFromTo#0;class#DialogDaoImpl#0" />
-                <element signature="method#searchAllMessagesBetween#0;class#DialogDaoImpl#0" />
-                <element signature="method#searchMessagesBetweenWithLimit#0;class#DialogDaoImpl#0" />
-                <element signature="method#searchPopularUser#0;class#DialogDaoImpl#0" />
-                <element signature="method#addMessage#0;class#DialogDaoImpl#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="das://f9719e1e-6a5f-4e10-87d0-e20ddc42f8c1/schema/pufar/table/users">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="das://f9719e1e-6a5f-4e10-87d0-e20ddc42f8c1/schema/pufar/table/dialoges">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true">
-                <filter text="dialog_id=408" />
-                <filter text="dialog_id=193" />
-                <filter text="dialog_id=194" />
-                <filter text="dialog_id=135" />
-                <filter text="dialog_id=252" />
-                <filter text="dialog_id=246" />
-                <filter text="dialog_id=406" />
-                <filter text="dialog_id=345" />
-                <filter text="user_sender_id=55 &amp;&amp; user_receiver_id=1" />
-                <filter text="user_sender_id=1 &amp;&amp; user_receiver_id=55" />
-              </filtering>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -215,7 +144,13 @@
       <find>SENT_MESSAGE_TO_NOTIFICATION_AUTHOR</find>
       <find>соо</find>
       <find>.close();</find>
+      <find>=1</find>
+      <find>=?</find>
+      <find>?</find>
     </findStrings>
+    <replaceStrings>
+      <replace>=?</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -240,7 +175,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/entity/notification/Notification.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/number/NumberDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/number/NumberDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/user/UserDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/user/UserDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/PufarDaoConstant.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/controller/image/ImageShowController.java" />
@@ -279,8 +213,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/database/ConnectionPool.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/service/dialoge/DialogServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/util/mapper/user/UserMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/dialoge/DialogDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/additional/sql.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/user/UserDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/dialoge/DialogDaoImpl.java" />
       </list>
     </option>
   </component>
@@ -359,57 +294,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="comkozitskipufar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="finalTask" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pufar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="comkozitskipufar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="finalTask" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pufar" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="comkozitskipufar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="finalTask" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pufar" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-              <item name="dialoge" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="comkozitskipufar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="finalTask" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pufar" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="comkozitskipufar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="finalTask" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="comkozitskipufar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="finalTask" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="additional" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -420,7 +304,7 @@
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546880692032" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546882065500" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
   </component>
@@ -632,7 +516,7 @@
       <workItem from="1546527225363" duration="5321000" />
       <workItem from="1546536202656" duration="1735000" />
       <workItem from="1546611907699" duration="15539000" />
-      <workItem from="1546851956051" duration="22683000" />
+      <workItem from="1546851956051" duration="24140000" />
     </task>
     <task id="LOCAL-00001" summary="Epam finaTask refactoring 1.3 (AJAX complete)">
       <created>1546793567944</created>
@@ -697,12 +581,12 @@
       <option name="project" value="LOCAL" />
       <updated>1546814335151</updated>
     </task>
-    <task id="LOCAL-00010" summary="start profile page">
-      <created>1545743076793</created>
+    <task id="LOCAL-00010" summary="Epam finaTask refactoring 2.1 (before search last users)">
+      <created>1546880774647</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1545743076793</updated>
+      <updated>1546880774647</updated>
     </task>
     <task id="LOCAL-00011" summary="start profile page">
       <created>1545743846179</created>
@@ -851,7 +735,7 @@
       <option name="project" value="LOCAL" />
       <updated>1544225343682</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -887,7 +771,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43636000" />
+    <option name="totallyTimeSpent" value="45093000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -900,9 +784,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1705757" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1977612" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -912,7 +795,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32575756" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49626866" visible="true" weight="0.07683983" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49626866" weight="0.0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.1525974" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -923,7 +806,7 @@
       <window_info anchor="bottom" id="Messages" order="10" weight="0.096320346" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.32900432" />
       <window_info anchor="bottom" id="Database Changes" order="12" weight="0.6482684" />
-      <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.49733475" weight="0.16883117" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="13" sideWeight="0.49733475" visible="true" weight="0.16883117" />
       <window_info anchor="bottom" id="Database Console" order="14" weight="0.29761904" />
       <window_info anchor="bottom" id="Statistic" order="15" weight="0.6699134" />
       <window_info anchor="bottom" id="SonarLint" order="16" weight="0.32900432" />
@@ -932,8 +815,8 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Maven Projects" order="5" weight="0.11567164" />
-      <window_info anchor="right" id="Database" order="6" visible="true" weight="0.15884861" />
+      <window_info anchor="right" id="Maven Projects" order="5" visible="true" weight="0.11567164" />
+      <window_info anchor="right" id="Database" order="6" weight="0.15884861" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Coverage" order="9" side_tool="true" />
@@ -972,7 +855,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="start work with admin functional" />
     <MESSAGE value="my tag" />
     <MESSAGE value="admin search notifications" />
     <MESSAGE value="admin search users" />
@@ -997,7 +879,8 @@
     <MESSAGE value="Epam finaTask refactoring 1.6 (before revert new UTF8 String)" />
     <MESSAGE value="Epam finaTask refactoring 2.0 (after changing signatures)" />
     <MESSAGE value="Epam finaTask refactoring 2.1 (start change message from additional panel)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Epam finaTask refactoring 2.1 (start change message from additional panel)" />
+    <MESSAGE value="Epam finaTask refactoring 2.1 (before search last users)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Epam finaTask refactoring 2.1 (before search last users)" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/command/impl/notification/additional/PutMarkCommand.java">
@@ -1359,26 +1242,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/user/UserDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="32" column="46" lean-forward="true" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
-          <folding>
-            <element signature="method#searchById#0;class#UserDaoImpl#0" />
-            <element signature="method#searchUserByLogin#0;class#UserDaoImpl#0" />
-            <element signature="method#searchUsersByStatus#0;class#UserDaoImpl#0" />
-            <element signature="method#addUser#0;class#UserDaoImpl#0" />
-            <element signature="method#searchByParameters#0;class#UserDaoImpl#0" />
-            <element signature="method#generateSearchWithParametersSql#0;class#UserDaoImpl#0" />
-            <element signature="method#fullFillPreparedStatement#0;class#UserDaoImpl#0" />
-            <element signature="method#insertBanStatus#0;class#UserDaoImpl#0" />
-            <element signature="method#changeUserLogin#0;class#UserDaoImpl#0" />
-            <element signature="method#changeUserStatusByUserId#0;class#UserDaoImpl#0" />
-            <element signature="method#changePassword#0;class#UserDaoImpl#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/util/mapper/user/UserMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1415,41 +1278,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/additional/database.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/additional/sql.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="48" column="21" selection-start-line="48" selection-start-column="21" selection-end-line="48" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/dialoge/DialogDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="227" lean-forward="true" selection-start-line="227" selection-end-line="227" />
-          <folding>
-            <element signature="e#0#244#1" />
-            <element signature="e#0#244#0" />
-            <element signature="e#0#513#1" />
-            <element signature="e#251#495#0" />
-            <element signature="e#0#244#0" />
-            <element signature="e#0#524#1" />
-            <element signature="e#251#495#0" />
-            <element signature="method#searchAllMessagesFromTo#0;class#DialogDaoImpl#0" />
-            <element signature="method#searchAllMessagesBetween#0;class#DialogDaoImpl#0" />
-            <element signature="method#searchMessagesBetweenWithLimit#0;class#DialogDaoImpl#0" />
-            <element signature="method#searchPopularUser#0;class#DialogDaoImpl#0" />
-            <element signature="method#addMessage#0;class#DialogDaoImpl#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://f9719e1e-6a5f-4e10-87d0-e20ddc42f8c1/schema/pufar/table/users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://f9719e1e-6a5f-4e10-87d0-e20ddc42f8c1/schema/pufar/table/dialoges">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1465,6 +1293,70 @@
             <filter text="user_sender_id=55 &amp;&amp; user_receiver_id=1" />
             <filter text="user_sender_id=1 &amp;&amp; user_receiver_id=55" />
           </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/additional/sql.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="723">
+          <caret line="59" column="149" selection-start-line="59" selection-start-column="149" selection-end-line="59" selection-end-column="149" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/user/UserDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="102" column="61" selection-start-line="102" selection-start-column="61" selection-end-line="102" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#152#1" />
+            <element signature="e#0#153#1" />
+            <element signature="e#0#152#1" />
+            <element signature="e#0#48#1" />
+            <element signature="e#0#45#1" />
+            <element signature="e#0#40#1" />
+            <element signature="e#0#41#1" />
+            <element signature="e#0#43#1" />
+            <element signature="method#searchById#0;class#UserDaoImpl#0" />
+            <element signature="method#searchUserByLogin#0;class#UserDaoImpl#0" />
+            <element signature="method#searchUsersByStatus#0;class#UserDaoImpl#0" />
+            <element signature="method#addUser#0;class#UserDaoImpl#0" />
+            <element signature="method#searchByParameters#0;class#UserDaoImpl#0" />
+            <element signature="method#generateSearchWithParametersSql#0;class#UserDaoImpl#0" />
+            <element signature="method#fullFillPreparedStatement#0;class#UserDaoImpl#0" />
+            <element signature="method#insertBanStatus#0;class#UserDaoImpl#0" />
+            <element signature="method#changeUserLogin#0;class#UserDaoImpl#0" />
+            <element signature="method#changeUserStatusByUserId#0;class#UserDaoImpl#0" />
+            <element signature="method#changePassword#0;class#UserDaoImpl#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://f9719e1e-6a5f-4e10-87d0-e20ddc42f8c1/schema/pufar/table/users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kozitski/pufar/dao/dialoge/DialogDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="58" column="49" lean-forward="true" selection-start-line="58" selection-start-column="49" selection-end-line="58" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#244#1" />
+            <element signature="e#0#244#0" />
+            <element signature="e#0#513#1" />
+            <element signature="e#251#495#0" />
+            <element signature="e#0#244#0" />
+            <element signature="e#0#524#1" />
+            <element signature="e#251#495#0" />
+            <element signature="e#0#45#1" />
+            <element signature="method#searchAllMessagesFromTo#0;class#DialogDaoImpl#0" />
+            <element signature="method#searchAllMessagesBetween#0;class#DialogDaoImpl#0" />
+            <element signature="method#searchMessagesBetweenWithLimit#0;class#DialogDaoImpl#0" />
+            <element signature="method#searchPopularUser#0;class#DialogDaoImpl#0" />
+            <element signature="method#addMessage#0;class#DialogDaoImpl#0" />
+          </folding>
         </state>
       </provider>
     </entry>

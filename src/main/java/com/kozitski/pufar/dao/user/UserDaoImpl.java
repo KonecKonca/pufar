@@ -102,7 +102,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> searchUsersByStatus(UserStatus status) {
 
-        ArrayList<User> result;
+        List<User> result;
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
