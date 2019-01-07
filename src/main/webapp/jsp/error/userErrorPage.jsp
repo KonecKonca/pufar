@@ -34,17 +34,11 @@
 
             </p>
 
-            <p class="error">
-                ${locale.getValue("userErrorMessage")}</p>
-            <form action="" method="post" class="search">
-                <input type="search" name="" placeholder="поиск" class="input" />
-                <input type="submit" name="" value="" class="submit" />
-            </form>
+            <p class="error">${locale.getValue("userErrorMessage")}</p>
+
             <nav>
                 <ul>
-                    <li><a href="#">${locale.getValue("userErrorMainButton")}</a></li>
-                    <li><a href="#">${locale.getValue("userErrorInfoButton")}</a></li>
-                    <li><a href="#">${locale.getValue("userErrorContactButton")}</a></li>
+                    <li><a href="${context}/jsp/template/template.jsp">${locale.getValue("userErrorMainButton")}</a></li>
                 </ul>
             </nav>
 

@@ -144,7 +144,6 @@ public class NotificationDaoImpl implements NotificationDao {
 
                 updateStatement.executeUpdate();
 
-                updateStatement.close();
             }
             else {
                 insertStatement = connection.prepareStatement(INSERT_MARK);
@@ -154,11 +153,8 @@ public class NotificationDaoImpl implements NotificationDao {
 
                 insertStatement.executeUpdate();
 
-                insertStatement.close();
             }
 
-            checkResultSet.close();
-            checkStatement.close();
 
             findNewRateStatement = connection.prepareStatement(SEARCH_RATE);
             findNewRateStatement.setLong(1, notificationId);
@@ -166,9 +162,6 @@ public class NotificationDaoImpl implements NotificationDao {
 
             findRateResultSet.next();
             double rate = findRateResultSet.getDouble(RATE);
-
-            findRateResultSet.close();
-            findNewRateStatement.close();
 
             connection.commit();
 
@@ -222,7 +215,6 @@ public class NotificationDaoImpl implements NotificationDao {
             preparedStatement.setLong(1, commentId);
             preparedStatement.executeUpdate();
 
-            preparedStatement.close();
 
             result = true;
         }
@@ -250,8 +242,6 @@ public class NotificationDaoImpl implements NotificationDao {
 
             preparedStatement.executeUpdate();
 
-            preparedStatement.close();
-
         }
         catch (SQLException e) {
             throw new PufarDAOException("Comment wasn't added", e);
@@ -278,9 +268,6 @@ public class NotificationDaoImpl implements NotificationDao {
                 List<NotificationComment> notificationComments = searchCommentByNotificationId(notification.getNotificationId());
                 notification.setComments(notificationComments);
             }
-
-            resultSet.close();
-            preparedStatement.close();
 
             return notifications;
         }
@@ -312,9 +299,6 @@ public class NotificationDaoImpl implements NotificationDao {
                 List<NotificationComment> notificationComments = searchCommentByNotificationId(notification.getNotificationId());
                 notification.setComments(notificationComments);
             }
-
-            resultSet.close();
-            preparedStatement.close();
 
             return notifications;
         }
@@ -423,20 +407,14 @@ public class NotificationDaoImpl implements NotificationDao {
             dropComments.setLong(1, notificationId);
             dropComments.executeUpdate();
 
-            dropComments.close();
-
             dropRates = connection.prepareStatement(DELETE_COMMENT_BY_NOTIFICATION_ID);
             dropRates.setLong(1, notificationId);
             dropRates.executeUpdate();
-
-            dropRates.close();
 
             // last, case foreign keys
             dropNotification = connection.prepareStatement(DELETE_NOTIFICATION_BY_NOTIFICATION_ID);
             dropNotification.setLong(1, notificationId);
             dropNotification.executeUpdate();
-
-            dropNotification.close();
 
             connection.commit();
             result = true;
@@ -464,8 +442,6 @@ public class NotificationDaoImpl implements NotificationDao {
             preparedStatement.setString(1, newMessage);
             preparedStatement.setLong(2, notificationId);
             preparedStatement.executeUpdate();
-
-            preparedStatement.close();
 
             result = true;
         }
@@ -508,17 +484,12 @@ public class NotificationDaoImpl implements NotificationDao {
             generatedKeys.next();
             long lastId =  generatedKeys.getLong(1);
 
-            generatedKeys.close();
-            preparedStatement.close();
-
             // Insert default mark
             preparedStatementRate = connection.prepareStatement(ADD_NOTIFICATION_SET_DEFAULT_RATE);
             preparedStatementRate.setLong(1,lastId);
             preparedStatementRate.setLong(2, CommonConstant.SYSTEM_USER_ID);
             preparedStatementRate.setInt(3, DEFAULT_MARK);
             preparedStatementRate.executeUpdate();
-
-            preparedStatementRate.close();
 
             connection.commit();
         }
@@ -551,9 +522,6 @@ public class NotificationDaoImpl implements NotificationDao {
             resultSet.next();
             result = resultSet.getInt(SEARCH_NOTIFICATION_BY_UNIT_COUNT_VALUE);
 
-            resultSet.close();
-            preparedStatement.close();
-
         }
         catch (SQLException e) {
             result = 0;
@@ -581,9 +549,6 @@ public class NotificationDaoImpl implements NotificationDao {
             resultSet = preparedStatement.executeQuery();
             result = NotificationMapper.mapNotification(resultSet);
 
-            resultSet.close();
-            preparedStatement.close();
-
             for(Notification notification : result){
                 notification.setComments(searchCommentByNotificationId(notification.getNotificationId()));
             }
@@ -609,12 +574,7 @@ public class NotificationDaoImpl implements NotificationDao {
             preparedStatement.setLong(1, authorIdw);
             resultSet = preparedStatement.executeQuery();
 
-            ArrayList<Notification> notifications = NotificationMapper.mapNotification(resultSet);
-
-            resultSet.close();
-            preparedStatement.close();
-
-            return notifications;
+            return NotificationMapper.mapNotification(resultSet);
         }
         catch (SQLException e) {
             return new ArrayList<>();

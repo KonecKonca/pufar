@@ -22,7 +22,7 @@ public class SentMessageToAuthorCommand extends AbstractCommand {
     @Override
     public Router execute(RequestValue requestValue) {
         Router router = new Router();
-        router.setPagePath(PagePath.TEMPLATE_PAGE.getJspPath());
+        router.setPagePath(PagePath.CHAT_PAGE.getJspPath());
 
         String stringCurrentOpponentId = (String) requestValue.getAttribute(OWNER);
         long currentOpponentId = Long.parseLong(stringCurrentOpponentId);
@@ -36,10 +36,13 @@ public class SentMessageToAuthorCommand extends AbstractCommand {
         try {
             dialogService.addMessage(currentUserId, currentOpponentId, utf8Message);
         } catch (PufarValidationException e) {
-            LOGGER.warn("message was not sended", e);
+            router.setPagePath(PagePath.NOTIFICATION_ADDITIONAL.getJspPath());
+            LOGGER.warn("message was not send", e);
         }
+        dialogService.showDialogs(requestValue);
 
         return router;
     }
+
 
 }

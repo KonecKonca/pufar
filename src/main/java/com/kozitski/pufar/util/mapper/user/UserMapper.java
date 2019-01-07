@@ -7,6 +7,7 @@ import com.kozitski.pufar.exception.PufarDAOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class UserMapper {
@@ -15,6 +16,8 @@ public class UserMapper {
     private static final String USER_PASSWORD = "password";
     private static final String USER_STATUS = "status";
     private static final String BAN = "isBanned";
+
+    private UserMapper() { }
 
     public static User createUser(ResultSet resultSet) throws PufarDAOException {
 
@@ -35,7 +38,7 @@ public class UserMapper {
 
 
     }
-    public static ArrayList<User> createUsers(ResultSet resultSet) throws PufarDAOException {
+    public static List<User> createUsers(ResultSet resultSet) throws PufarDAOException {
 
         try {
             ArrayList<User> result = new ArrayList<>();

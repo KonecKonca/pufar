@@ -91,7 +91,6 @@ public class ConnectionPool {
     }
 
     public Connection getConnection() {
-
         try {
             Connection connection = freeConnections.take();
             releaseConnections.offer(connection);

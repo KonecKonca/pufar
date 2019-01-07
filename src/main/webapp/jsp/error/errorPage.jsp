@@ -41,18 +41,11 @@
                 <c:out value="${traceElement}"/>
             </c:forEach>
 
-            <form action="" method="post" class="search">
-                <input type="search" name="" placeholder="поиск" class="input" />
-                <input type="submit" name="" value="" class="submit" />
-            </form>
-
             <br><br><br><br><br><br>
 
             <nav>
                 <ul>
-                    <li><a href="#">${locale.getValue("userErrorMainButton")}</a></li>
-                    <li><a href="#">${locale.getValue("userErrorInfoButton")}</a></li>
-                    <li><a href="#">${locale.getValue("userErrorContactButton")}</a></li>
+                    <li><a href="${context}/jsp/template/template.jsp">${locale.getValue("userErrorMainButton")}</a></li>
                 </ul>
             </nav>
 

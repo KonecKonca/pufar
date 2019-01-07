@@ -48,7 +48,7 @@ public class DialogDaoImpl implements DialogDAO {
                     "UNION " +
             "(SELECT u2.user_id, u2.login, u2.password, u2.status, u2.ban_status isBanned FROM users u2 " +
                 "INNER JOIN dialoges d2 ON u2.user_id = d2.user_sender_id WHERE d2.user_receiver_id = ? GROUP BY u2.login ORDER BY d2.date) LIMIT ?";
-    private static final String ADD_MESSAGE = "INSERT INTO dialoges values(null, ?, ?, ?, ?)";
+    private static final String ADD_MESSAGE_SQL = "INSERT INTO dialoges values(null, ?, ?, ?, ?)";
 
     @Override
     public List<UserMessage> searchAllMessagesFromTo(long fromUserId, long toUserId) {
@@ -168,7 +168,7 @@ public class DialogDaoImpl implements DialogDAO {
     }
     @Override
     public List<User> searchPopularUser(long forWhomUserId, int howMuch) {
-        ArrayList<User> users;
+        List<User> users;
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -187,18 +187,8 @@ public class DialogDaoImpl implements DialogDAO {
             return new ArrayList<>();
         }
         finally {
-            try {
-                DbUtils.close(resultSet);
-            }
-            catch (SQLException e) {
-                LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG);
-            }
-            try {
-                DbUtils.close(preparedStatement);
-            }
-            catch (SQLException e) {
-                LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG);
-            }
+            try { DbUtils.close(resultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+            try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
         }
 
         return users;
@@ -209,7 +199,7 @@ public class DialogDaoImpl implements DialogDAO {
 
         PreparedStatement insertStatement = null;
         try(Connection connection = ConnectionPool.getInstance().getConnection()) {
-            insertStatement = connection.prepareStatement(ADD_MESSAGE);
+            insertStatement = connection.prepareStatement(ADD_MESSAGE_SQL);
 
             insertStatement.setLong(1, senderId);
             insertStatement.setLong(2, receiverId);

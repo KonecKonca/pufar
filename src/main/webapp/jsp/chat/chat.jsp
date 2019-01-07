@@ -25,7 +25,7 @@
 <div class="myEdit">
 
     <c:choose>
-        <c:when test="${lastMessages != null && lastMessages.size() != 0}">
+        <c:when test="${lastMessages != null && lastMessages.size() > 0}">
             <div class="container">
                 <div class="row " style="padding-top:40px;">
                     <br /><br />
