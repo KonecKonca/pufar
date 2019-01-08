@@ -1,6 +1,6 @@
 package com.kozitski.pufar.controller;
 
-import com.kozitski.pufar.command.AbstractCommand;
+import com.kozitski.pufar.command.request.AbstractCommand;
 import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.command.Router;
 import com.kozitski.pufar.command.impl.error.ErrorCommand;
@@ -30,7 +30,7 @@ public class ErrorController extends HttpServlet {
         AbstractCommand command = new ErrorCommand();
         RequestValue requestValue = RequestValueTransformer.transformFrom(request);
 
-        Router router = null;
+        Router router;
 
         router = command.execute(requestValue);
 

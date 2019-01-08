@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class LoadImageNameGenerator {
-    private static Logger LOGGER = LoggerFactory.getLogger(LoadImageNameGenerator.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoadImageNameGenerator.class);
 
     private static  ReentrantLock lock = new ReentrantLock();
     private static final String FILE_NAME_PREFIX = "loadImage";

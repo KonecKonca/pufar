@@ -7,6 +7,8 @@ import java.util.*;
 
 public class RequestValueTransformer {
 
+    private RequestValueTransformer() { }
+
     public static RequestValue transformFrom(HttpServletRequest request){
 
         HashMap<String, Object> servletContext = new HashMap<>();

@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `pufar` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `pufar`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: pufar
@@ -30,7 +28,7 @@ CREATE TABLE `numbers` (
   `operator` varchar(2) DEFAULT NULL,
   `number` varchar(7) DEFAULT NULL,
   PRIMARY KEY (`number_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +37,7 @@ CREATE TABLE `numbers` (
 
 LOCK TABLES `numbers` WRITE;
 /*!40000 ALTER TABLE `numbers` DISABLE KEYS */;
-INSERT INTO `numbers` VALUES (1,'+375','25','9550317'),(4,'+375','23','3334555'),(8,'+375','11','1111222'),(9,'+375','23','2223335'),(10,'+375','34','3334444'),(11,'+375','','2322222');
+INSERT INTO `numbers` VALUES (1,'+375','23','2323332'),(4,'+375','23','3334555'),(8,'+375','11','1111222'),(9,'+375','23','2223335'),(10,'+375','34','3334444'),(11,'+375','','2322222'),(12,'+375','11','1111111'),(13,'+375','00','0000000'),(14,'+375','23','3434344');
 /*!40000 ALTER TABLE `numbers` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-03 19:19:58
+-- Dump completed on 2019-01-08 13:53:26

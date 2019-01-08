@@ -1,24 +1,25 @@
-package com.kozitski.pufar.controller;
+package com.kozitski.pufar.command.impl.autorization;
 
 import com.kozitski.pufar.command.PagePath;
+import com.kozitski.pufar.command.Router;
+import com.kozitski.pufar.command.response.ResourceCommand;
 import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 
-@WebServlet("/invalidate")
-public class LogoutController extends HttpServlet {
-    private static final Logger LOGGER = LoggerFactory.getLogger(LogoutController.class);
+public class LogoutCommand implements ResourceCommand {
+    private static final Logger LOGGER = LoggerFactory.getLogger(LogoutCommand.class);
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public Router execute(HttpServletRequest request, HttpServletResponse response) {
+        Router router = new Router();
+        router.setRouteType(Router.RouteType.REDIRECT);
+        router.setPagePath(PagePath.LOGIN_PAGE.getJspPath());
+
 
         HttpSession session = request.getSession(false);
         if (session != null) {
@@ -28,7 +29,8 @@ public class LogoutController extends HttpServlet {
 
         request.getSession().setAttribute(CommonConstant.CURRENT_PAGE, PagePath.LOGIN_PAGE.getJspPath());
 
-        response.sendRedirect(PagePath.LOGIN_PAGE.getJspPath());
+        return router;
     }
+
 
 }

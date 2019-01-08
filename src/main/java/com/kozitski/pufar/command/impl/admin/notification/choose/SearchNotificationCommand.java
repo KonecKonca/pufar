@@ -1,6 +1,6 @@
 package com.kozitski.pufar.command.impl.admin.notification.choose;
 
-import com.kozitski.pufar.command.AbstractCommand;
+import com.kozitski.pufar.command.request.AbstractCommand;
 import com.kozitski.pufar.command.PagePath;
 import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.command.Router;

@@ -1,7 +1,6 @@
 package com.kozitski.pufar.controller.image;
 
 import com.kozitski.pufar.command.PagePath;
-import com.kozitski.pufar.controller.LogoutController;
 import com.kozitski.pufar.util.CommonConstant;
 import com.kozitski.pufar.util.LoadImageNameGenerator;
 import com.kozitski.pufar.util.path.WebPathReturner;
@@ -24,7 +23,7 @@ import java.io.IOException;
         , maxFileSize = 1024 * 1024 * 5
         , maxRequestSize = 1024 * 1024 * 5 * 5)
 public class FileUploadingServlet extends HttpServlet {
-    private static final Logger LOGGER = LoggerFactory.getLogger(LogoutController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileUploadingServlet.class);
     private static final String DATA_PATH = "/loadImages";
 
     @Override

@@ -1,6 +1,7 @@
 package com.kozitski.pufar.command.impl.profile;
 
 import com.kozitski.pufar.command.*;
+import com.kozitski.pufar.command.request.AbstractCommand;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.service.user.UserService;
 import com.kozitski.pufar.util.CommonConstant;

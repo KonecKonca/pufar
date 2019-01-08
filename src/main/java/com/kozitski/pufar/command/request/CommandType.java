@@ -1,4 +1,4 @@
-package com.kozitski.pufar.command;
+package com.kozitski.pufar.command.request;
 
 import com.kozitski.pufar.command.impl.*;
 import com.kozitski.pufar.command.impl.admin.AdminControlPanelCommand;

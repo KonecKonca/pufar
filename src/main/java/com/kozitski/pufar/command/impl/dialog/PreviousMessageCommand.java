@@ -1,6 +1,7 @@
 package com.kozitski.pufar.command.impl.dialog;
 
 import com.kozitski.pufar.command.*;
+import com.kozitski.pufar.command.request.AbstractCommand;
 import com.kozitski.pufar.service.dialoge.DialogService;
 
 public class PreviousMessageCommand extends AbstractCommand {

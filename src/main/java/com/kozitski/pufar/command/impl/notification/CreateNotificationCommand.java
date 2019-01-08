@@ -1,6 +1,7 @@
 package com.kozitski.pufar.command.impl.notification;
 
 import com.kozitski.pufar.command.*;
+import com.kozitski.pufar.command.request.AbstractCommand;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.UnitType;
 import com.kozitski.pufar.entity.user.User;

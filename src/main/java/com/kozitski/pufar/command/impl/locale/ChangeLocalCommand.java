@@ -1,9 +1,8 @@
 package com.kozitski.pufar.command.impl.locale;
 
-import com.kozitski.pufar.command.AbstractCommand;
+import com.kozitski.pufar.command.request.AbstractCommand;
 import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.command.Router;
-import com.kozitski.pufar.controller.LogoutController;
 import com.kozitski.pufar.util.CommonConstant;
 import com.kozitski.pufar.util.language.PufarLanguage;
 import com.kozitski.pufar.util.language.PufarLanguageType;
@@ -11,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ChangeLocalCommand extends AbstractCommand {
-    private static final Logger LOGGER = LoggerFactory.getLogger(LogoutController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ChangeLocalCommand.class);
 
     private static final String LOCALE_TYPE = "localeType";
     private static final String LOCALE_EN = "CHANGE_LOCALE_EN";

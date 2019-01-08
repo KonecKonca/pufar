@@ -1,6 +1,6 @@
 package com.kozitski.pufar.command.impl.error;
 
-import com.kozitski.pufar.command.AbstractCommand;
+import com.kozitski.pufar.command.request.AbstractCommand;
 import com.kozitski.pufar.command.InjectService;
 import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.command.Router;

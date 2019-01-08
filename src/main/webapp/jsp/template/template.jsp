@@ -165,8 +165,8 @@
                         <li class="nav-item">
 
                             <c:if test="${currentUser.status!=null}">
-                                <form action="/invalidate" method="post">
-                                    <input type="hidden" name="command" value="LOGOUT">
+                                <form action="/pufar" method="post">
+                                    <input type="hidden" name="commandResponse" value="LOGOUT">
 
                                     <input type="submit" value="${locale.getValue("templateLogout")}" class="btn btn-outline-info">
 

@@ -1,6 +1,12 @@
 package com.kozitski.pufar.controller;
 
-import com.kozitski.pufar.command.*;
+import com.kozitski.pufar.command.PagePath;
+import com.kozitski.pufar.command.RequestValue;
+import com.kozitski.pufar.command.Router;
+import com.kozitski.pufar.command.request.AbstractCommand;
+import com.kozitski.pufar.command.request.CommandFactory;
+import com.kozitski.pufar.command.response.CommandFactoryWithResponse;
+import com.kozitski.pufar.command.response.ResourceCommand;
 import com.kozitski.pufar.service.number.NumberServiceImpl;
 import com.kozitski.pufar.util.CommonConstant;
 import com.kozitski.pufar.util.servlet.RequestValueTransformer;
@@ -19,6 +25,7 @@ public class PufarCommonController extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(NumberServiceImpl.class);
 
     private static final String COMMAND_NAME = "command";
+    private static final String COMMAND_NAME_WITH_RESPONSE = "commandResponse";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,13 +34,18 @@ public class PufarCommonController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Router router;
 
-        AbstractCommand command = CommandFactory.chooseCommand(request.getParameter(COMMAND_NAME));
-        RequestValue requestValue = RequestValueTransformer.transformFrom(request);
+        ResourceCommand commandWithResponse = CommandFactoryWithResponse.chooseCommand(request.getParameter(COMMAND_NAME_WITH_RESPONSE));
+        if (commandWithResponse != null) {
+            router = commandWithResponse.execute(request, response);
+        } else {
+            AbstractCommand command = CommandFactory.chooseCommand(request.getParameter(COMMAND_NAME));
+            RequestValue requestValue = RequestValueTransformer.transformFrom(request);
 
-        Router router = command.execute(requestValue);
-
-        RequestValueTransformer.transformTo(request, requestValue);
+            router = command.execute(requestValue);
+            RequestValueTransformer.transformTo(request, requestValue);
+        }
 
         request.getSession().setAttribute(CommonConstant.CURRENT_PAGE, router.getPagePath());
 

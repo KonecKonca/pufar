@@ -1,6 +1,7 @@
 package com.kozitski.pufar.command.impl.autorization;
 
 import com.kozitski.pufar.command.*;
+import com.kozitski.pufar.command.request.AbstractCommand;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.autorization.LoginService;
