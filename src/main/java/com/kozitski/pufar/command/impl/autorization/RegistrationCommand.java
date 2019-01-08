@@ -22,6 +22,7 @@ public class RegistrationCommand extends AbstractCommand {
     @Override
     public Router execute(RequestValue request) {
         Router router = new Router();
+        router.setRouteType(Router.RouteType.REDIRECT);
 
         String currentLogin = request.getAttribute(LOGIN).toString();
         String currentPassword = request.getAttribute(PASSWORD).toString();

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 @WebServlet("/AjaxController")
 public class AjaxController extends HttpServlet {
@@ -30,7 +29,7 @@ public class AjaxController extends HttpServlet {
         PufarLanguage pufarLanguage = (PufarLanguage) request.getSession().getAttribute(CommonConstant.LOCALE);
         String message;
 
-        if (password1 != null && password2 != null && !password1.isEmpty() && !password2.isEmpty() && password1.equals(password2)){
+        if (password1 != null && password2 != null && !password1.isEmpty() && !password2.isEmpty() && password1.equals(password2)) {
             message = pufarLanguage.getValue(EQUALS_IDENTIFIER);
         } else {
             message = pufarLanguage.getValue(NOT_EQUALS_IDENTIFIER);

@@ -46,14 +46,14 @@ public class SearchUserCommand extends AbstractCommand {
                 parameters.setStatus(UserStatus.valueOf(stringStatus.toUpperCase()));
             }
 
-            request.requestAttributePut(CommonConstant.ADMIN_INPUT_MESSAGE, OK_INPUT_MESSAGE);
+            request.servletSessionPut(CommonConstant.ADMIN_INPUT_MESSAGE, OK_INPUT_MESSAGE);
 
             List<User> users = userService.searchUsersByParameters(parameters);
-            request.requestAttributePut(CommonConstant.ADMIN_INPUT_RESULT, users);
+            request.servletSessionPut(CommonConstant.ADMIN_INPUT_RESULT, users);
 
         } catch (IllegalArgumentException | ClassCastException e) {
             LOGGER.warn(BAD_INPUT_MESSAGE, e);
-            request.requestAttributePut(CommonConstant.ADMIN_INPUT_MESSAGE, BAD_INPUT_MESSAGE);
+            request.servletSessionPut(CommonConstant.ADMIN_INPUT_MESSAGE, BAD_INPUT_MESSAGE);
         }
 
         return router;

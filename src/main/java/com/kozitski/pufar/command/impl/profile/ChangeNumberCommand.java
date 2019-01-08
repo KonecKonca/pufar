@@ -26,6 +26,7 @@ public class ChangeNumberCommand extends AbstractCommand {
     @Override
     public Router execute(RequestValue requestValue) {
         Router router = new Router();
+        router.setRouteType(Router.RouteType.REDIRECT);
         router.setPagePath(PagePath.PROFILE_PAGE.getJspPath());
 
         boolean isNumberExist = true;

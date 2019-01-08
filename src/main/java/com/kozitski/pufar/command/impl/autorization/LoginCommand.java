@@ -24,6 +24,7 @@ public class LoginCommand extends AbstractCommand {
 
         Router router = new Router();
         router.setPagePath(PagePath.TEMPLATE_PAGE.getJspPath());
+        router.setRouteType(Router.RouteType.REDIRECT);
 
         String login = request.getAttribute(LOGIN).toString();
         String password = request.getAttribute(PASSWORD).toString();

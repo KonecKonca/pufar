@@ -22,6 +22,7 @@ public class ChangePasswordCommand extends AbstractCommand {
     @Override
     public Router execute(RequestValue requestValue) {
         Router router = new Router();
+        router.setRouteType(Router.RouteType.REDIRECT);
         router.setPagePath(PagePath.PROFILE_PAGE.getJspPath());
 
         User currentUser = (User) requestValue.getAttribute(CommonConstant.CURRENT_USER);

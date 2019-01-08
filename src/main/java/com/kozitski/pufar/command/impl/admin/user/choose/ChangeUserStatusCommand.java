@@ -21,6 +21,7 @@ public class ChangeUserStatusCommand extends AbstractCommand {
     @Override
     public Router execute(RequestValue request) {
         Router router = new Router();
+        router.setRouteType(Router.RouteType.REDIRECT);
         router.setPagePath(PagePath.ADMIN_CONTROL_PANEL.getJspPath());
 
         try {
@@ -29,13 +30,13 @@ public class ChangeUserStatusCommand extends AbstractCommand {
             String status = request.getAttribute(LOGIN).toString();
 
             if (userService.changeUserStatusByUserId(id, status, currentUser)) {
-                request.requestAttributePut(CommonConstant.ADMIN_INPUT_MESSAGE, OK_INPUT_MESSAGE);
+                request.servletSessionPut(CommonConstant.ADMIN_INPUT_MESSAGE, OK_INPUT_MESSAGE);
             } else {
-                request.requestAttributePut(CommonConstant.ADMIN_INPUT_MESSAGE, BAD_INPUT_MESSAGE);
+                request.servletSessionPut(CommonConstant.ADMIN_INPUT_MESSAGE, BAD_INPUT_MESSAGE);
             }
         } catch (NumberFormatException e) {
             LOGGER.warn(BAD_INPUT_MESSAGE, e);
-            request.requestAttributePut(CommonConstant.ADMIN_INPUT_MESSAGE, BAD_INPUT_MESSAGE);
+            request.servletSessionPut(CommonConstant.ADMIN_INPUT_MESSAGE, BAD_INPUT_MESSAGE);
         }
 
         return router;

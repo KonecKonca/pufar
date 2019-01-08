@@ -1,6 +1,5 @@
 package com.kozitski.pufar.util.mapper.notification;
 
-import com.kozitski.pufar.command.impl.autorization.LoginCommand;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.UnitType;
 import com.kozitski.pufar.util.CommonConstant;
@@ -16,13 +15,14 @@ import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class NotificationMapper  {
-    private static Logger LOGGER = LoggerFactory.getLogger(NotificationMapper.class);
+public class NotificationMapper {
+    private static final Logger LOGGER = LoggerFactory.getLogger(NotificationMapper.class);
 
+    private NotificationMapper() { }
 
     private static final String NOTIFICATION_ID = "n.notification_id";
     private static final String NOTIFICATION_MESSAGE = "n.message";
@@ -33,10 +33,10 @@ public class NotificationMapper  {
     private static final String NOTIFICATION_MARK = "mark";
     private static final String NOTIFICATION_CONTENT = "n.content";
 
-    public static ArrayList<Notification> mapNotification(ResultSet resultSet) throws SQLException {
+    public static List<Notification> mapNotification(ResultSet resultSet) throws SQLException {
         ArrayList<Notification> result = new ArrayList<>();
 
-        while (resultSet.next()){
+        while (resultSet.next()) {
             Notification notification = new Notification();
 
             notification.setNotificationId(resultSet.getLong(NOTIFICATION_ID));
@@ -54,16 +54,14 @@ public class NotificationMapper  {
 
                 BufferedImage image = ImageIO.read(inputStream);
                 notification.setImage(image);
-            }
-            catch (IOException | SQLException | NullPointerException e) {
+            } catch (IOException | SQLException | NullPointerException e) {
                 LOGGER.info("Notification image was downloaded how default", e);
 
                 File file = new File(WebPathReturner.webPath + CommonConstant.DEFAULT_IMAGE_PATH);
                 try {
                     BufferedImage image = ImageIO.read(file);
                     notification.setImage(image);
-                }
-                catch (IOException e1) {
+                } catch (IOException e1) {
                     LOGGER.warn("Notification image was not downloaded", e);
                 }
             }

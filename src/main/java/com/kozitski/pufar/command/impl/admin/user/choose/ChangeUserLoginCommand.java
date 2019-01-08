@@ -23,6 +23,7 @@ public class ChangeUserLoginCommand extends AbstractCommand {
     @Override
     public Router execute(RequestValue request) {
         Router router = new Router();
+        router.setRouteType(Router.RouteType.REDIRECT);
         router.setPagePath(PagePath.ADMIN_CONTROL_PANEL.getJspPath());
 
         try {
@@ -33,13 +34,13 @@ public class ChangeUserLoginCommand extends AbstractCommand {
             String newUtf8Login = new String(login.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
 
             if (userService.changeUserLogin(id, newUtf8Login, currentUser)) {
-                request.requestAttributePut(CommonConstant.ADMIN_INPUT_MESSAGE, OK_INPUT_MESSAGE);
+                request.servletSessionPut(CommonConstant.ADMIN_INPUT_MESSAGE, OK_INPUT_MESSAGE);
             } else {
-                request.requestAttributePut(CommonConstant.ADMIN_INPUT_MESSAGE, BAD_INPUT_MESSAGE);
+                request.servletSessionPut(CommonConstant.ADMIN_INPUT_MESSAGE, BAD_INPUT_MESSAGE);
             }
         } catch (NumberFormatException e) {
             LOGGER.warn(BAD_INPUT_MESSAGE, e);
-            request.requestAttributePut(CommonConstant.ADMIN_INPUT_MESSAGE, BAD_INPUT_MESSAGE);
+            request.servletSessionPut(CommonConstant.ADMIN_INPUT_MESSAGE, BAD_INPUT_MESSAGE);
         }
 
         return router;

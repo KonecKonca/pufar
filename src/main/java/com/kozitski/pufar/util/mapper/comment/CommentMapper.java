@@ -7,6 +7,7 @@ import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class CommentMapper {
     private static final String COMMENT_ID = "c.comment_id";
@@ -14,11 +15,13 @@ public class CommentMapper {
     private static final String COMMENT_MESSAGE = "c.comment";
     private static final String COMMENT_DATE = "c.date";
 
-    public static ArrayList<NotificationComment> mapComments(ResultSet resultSet) throws SQLDataException {
+    private CommentMapper() { }
+
+    public static List<NotificationComment> mapComments(ResultSet resultSet) throws SQLDataException {
         ArrayList<NotificationComment> result = new ArrayList<>();
 
         try {
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 NotificationComment comment = new NotificationComment();
 
                 comment.setCommentId(resultSet.getLong(COMMENT_ID));
@@ -29,8 +32,7 @@ public class CommentMapper {
 
                 result.add(comment);
             }
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             throw new SQLDataException("Comments were not founded", e);
         }
 

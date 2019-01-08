@@ -17,6 +17,7 @@ public class DropMyselfNotificationCommand extends AbstractCommand {
     @SuppressWarnings("unchecked")
     public Router execute(RequestValue request) {
         Router router = new Router();
+        router.setRouteType(Router.RouteType.REDIRECT);
         router.setPagePath(PagePath.PROFILE_PAGE.getJspPath());
 
         String stringNotificationId = (String) request.getAttribute(DROPPED_NOTIFICATION_ID);

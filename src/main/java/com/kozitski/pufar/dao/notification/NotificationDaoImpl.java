@@ -263,7 +263,7 @@ public class NotificationDaoImpl implements NotificationDao {
             preparedStatement.setLong(1, limit);
             resultSet = preparedStatement.executeQuery();
 
-            ArrayList<Notification> notifications = NotificationMapper.mapNotification(resultSet);
+            List<Notification> notifications = NotificationMapper.mapNotification(resultSet);
             for(Notification notification : notifications){
                 List<NotificationComment> notificationComments = searchCommentByNotificationId(notification.getNotificationId());
                 notification.setComments(notificationComments);
@@ -294,7 +294,7 @@ public class NotificationDaoImpl implements NotificationDao {
 
             resultSet = preparedStatement.executeQuery();
 
-            ArrayList<Notification> notifications = NotificationMapper.mapNotification(resultSet);
+            List<Notification> notifications = NotificationMapper.mapNotification(resultSet);
             for(Notification notification : notifications){
                 List<NotificationComment> notificationComments = searchCommentByNotificationId(notification.getNotificationId());
                 notification.setComments(notificationComments);

@@ -20,6 +20,7 @@ public class PutMarkCommand extends AbstractCommand {
     @Override
     public Router execute(RequestValue requestValue) {
         Router router = new Router();
+        router.setRouteType(Router.RouteType.REDIRECT);
         router.setPagePath(PagePath.NOTIFICATION_ADDITIONAL.getJspPath());
 
         String markString = (String) requestValue.getAttribute(MARK);

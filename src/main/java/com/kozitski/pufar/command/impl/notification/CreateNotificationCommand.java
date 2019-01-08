@@ -37,6 +37,7 @@ public class CreateNotificationCommand extends AbstractCommand {
     @Override
     public Router execute(RequestValue request) {
         Router router = new Router();
+        router.setRouteType(Router.RouteType.REDIRECT);
         router.setPagePath(PagePath.INDEX_PAGE.getJspPath());
 
         UnitType unitType = UnitType.valueOf(((String) request.getAttribute(RADIO_BUTTON)).toUpperCase());
@@ -86,7 +87,7 @@ public class CreateNotificationCommand extends AbstractCommand {
             notification.setImage(image);
 
             notificationService.addNotification(notification);
-            request.requestAttributePut(CommonConstant.INDEX_MESSAGE, ((PufarLanguage) request.getAttribute(CommonConstant.LOCALE)).getValue(RESULT_MESSAGE));
+            request.servletSessionPut(CommonConstant.INDEX_MESSAGE, ((PufarLanguage) request.getAttribute(CommonConstant.LOCALE)).getValue(RESULT_MESSAGE));
         } catch (PufarValidationException e) {
             LOGGER.warn("Were entered incorrect values", e);
             router.setPagePath(PagePath.CREATE_NOTIFICATION.getJspPath());

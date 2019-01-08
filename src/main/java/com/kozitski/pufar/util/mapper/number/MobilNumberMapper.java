@@ -1,8 +1,6 @@
 package com.kozitski.pufar.util.mapper.number;
 
 import com.kozitski.pufar.entity.number.MobilPhoneNumber;
-import com.kozitski.pufar.entity.user.User;
-import com.kozitski.pufar.entity.user.UserStatus;
 import com.kozitski.pufar.exception.PufarDAOException;
 
 import java.sql.ResultSet;
@@ -14,7 +12,9 @@ public class MobilNumberMapper {
     private static final String NUMBER_OPERATOR = "n.operator";
     private static final String NUMBER_VALUE = "n.number";
 
-    public static MobilPhoneNumber mapMobilPhoneNumber(ResultSet resultSet) throws PufarDAOException{
+    private MobilNumberMapper() { }
+
+    public static MobilPhoneNumber mapMobilPhoneNumber(ResultSet resultSet) throws PufarDAOException {
         try {
             MobilPhoneNumber phoneNumber = new MobilPhoneNumber();
 
@@ -31,8 +31,7 @@ public class MobilNumberMapper {
             phoneNumber.setNumber(value);
 
             return phoneNumber;
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             throw new PufarDAOException("MobilPhone is not created", e);
         }
 

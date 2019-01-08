@@ -52,7 +52,7 @@ public class FileUploadingServlet extends HttpServlet {
                     request.getSession().setAttribute(CommonConstant.CURRENT_NOTIFICATION_IMAGE_PATH, fullName);
                 }
 
-                this.getServletContext().getRequestDispatcher(PagePath.CREATE_NOTIFICATION.getJspPath()).forward(request, response);
+                response.sendRedirect(PagePath.CREATE_NOTIFICATION.getJspPath());
             }
         }
 

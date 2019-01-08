@@ -23,7 +23,7 @@
                         password1 : password1,
                         password2 : password2
                     },
-                    url:'AjaxController',
+                    url:'/AjaxController',
 
                     success: function (result) {
                         document.getElementById("isPasswordEquals1").textContent=result;

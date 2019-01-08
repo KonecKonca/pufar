@@ -82,14 +82,14 @@ public class SearchNotificationExecuteCommand extends AbstractCommand {
                 parameters.setHigherRate(higherRate);
             }
 
-            request.requestAttributePut(CommonConstant.ADMIN_INPUT_MESSAGE, OK_INPUT_MESSAGE);
+            request.servletSessionPut(CommonConstant.ADMIN_INPUT_MESSAGE, OK_INPUT_MESSAGE);
 
             List<Notification> notifications = notificationService.searchNotificationByParameters(parameters);
-            request.requestAttributePut(CommonConstant.ADMIN_INPUT_RESULT, notifications);
+            request.servletSessionPut(CommonConstant.ADMIN_INPUT_RESULT, notifications);
 
         } catch (IllegalArgumentException | ClassCastException e) {
             LOGGER.warn(BAD_INPUT_MESSAGE, e);
-            request.requestAttributePut(CommonConstant.ADMIN_INPUT_MESSAGE, BAD_INPUT_MESSAGE);
+            request.servletSessionPut(CommonConstant.ADMIN_INPUT_MESSAGE, BAD_INPUT_MESSAGE);
         }
 
         return router;

@@ -28,6 +28,7 @@ public class SentCommentCommand extends AbstractCommand {
     @SuppressWarnings("unchecked")
     public Router execute(RequestValue request) {
         Router router = new Router();
+        router.setRouteType(Router.RouteType.REDIRECT);
         router.setPagePath(PagePath.NOTIFICATION_ADDITIONAL.getJspPath());
 
         String comment = new String(((String) request.getAttribute(COMMENT_VALUE)).getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
