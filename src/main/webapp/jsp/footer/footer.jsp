@@ -60,12 +60,14 @@
                         <div class="col-md-6">
                             <p><a class="scroll-link" href="#section-1">${locale.getValue("footerAdditionalLink")}</a></p>
 
-                            <form action="/locale" method="post">
+                            <form action="/pufar" method="post">
+                                <input type="hidden" value="CHANGE_LOCALE" name="command">
                                 <input type="hidden" value="CHANGE_LOCALE_RU" name="localeType">
 
                                 <input type="submit" value="ru" class="btn btn-outline-success"/>
                             </form>
-                            <form action="/locale" method="post">
+                            <form action="/pufar" method="post">
+                                <input type="hidden" value="CHANGE_LOCALE" name="command">
                                 <input type="hidden" value="CHANGE_LOCALE_EN" name="localeType">
 
                                 <input type="submit" value="en" class="btn btn-outline-success"/>

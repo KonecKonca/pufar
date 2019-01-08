@@ -1,8 +1,9 @@
 package com.kozitski.pufar.controller;
 
-import com.kozitski.pufar.command.*;
+import com.kozitski.pufar.command.AbstractCommand;
+import com.kozitski.pufar.command.RequestValue;
+import com.kozitski.pufar.command.Router;
 import com.kozitski.pufar.command.impl.error.ErrorCommand;
-import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.util.servlet.RequestValueTransformer;
 
 import javax.servlet.ServletException;
@@ -19,6 +20,7 @@ public class ErrorController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         errorHandle(request, response);
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         errorHandle(request, response);
@@ -34,10 +36,9 @@ public class ErrorController extends HttpServlet {
 
         RequestValueTransformer.transformTo(request, requestValue);
 
-        if(router.isForward()){
+        if (router.isForward()) {
             request.getRequestDispatcher(router.getPagePath()).forward(request, response);
-        }
-        else {
+        } else {
             response.sendRedirect(router.getPagePath());
         }
 

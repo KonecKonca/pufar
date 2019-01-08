@@ -13,6 +13,7 @@ import com.kozitski.pufar.command.impl.autorization.LoginCommand;
 import com.kozitski.pufar.command.impl.autorization.RegistrationCommand;
 import com.kozitski.pufar.command.impl.dialog.*;
 import com.kozitski.pufar.command.impl.error.ErrorCommand;
+import com.kozitski.pufar.command.impl.locale.ChangeLocalCommand;
 import com.kozitski.pufar.command.impl.notification.*;
 import com.kozitski.pufar.command.impl.notification.additional.PutMarkCommand;
 import com.kozitski.pufar.command.impl.notification.additional.SentCommentCommand;
@@ -48,6 +49,9 @@ public enum CommandType {
     DROP_MYSELF_NOTIFICATION(new DropMyselfNotificationCommand()),
     CHANGE_MOBILE_PHONE(new ChangeNumberCommand()),
     CHANGE_PASSWORD(new ChangePasswordCommand()),
+
+    // locale
+    CHANGE_LOCALE(new ChangeLocalCommand()),
 
     // admin commands
         // define inputPage

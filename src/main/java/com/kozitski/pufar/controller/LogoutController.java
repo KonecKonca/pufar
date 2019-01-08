@@ -1,7 +1,6 @@
 package com.kozitski.pufar.controller;
 
 import com.kozitski.pufar.command.PagePath;
-import com.kozitski.pufar.command.impl.autorization.RegistrationCommand;
 import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +21,7 @@ public class LogoutController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
-        if(session != null){
+        if (session != null) {
             session.invalidate();
             LOGGER.info("Session was invalidated");
         }
