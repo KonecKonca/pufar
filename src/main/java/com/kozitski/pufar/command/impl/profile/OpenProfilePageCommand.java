@@ -9,11 +9,22 @@ import com.kozitski.pufar.util.CommonConstant;
 
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class OpenProfilePageCommand.
+ */
 public class OpenProfilePageCommand extends AbstractCommand {
 
+    /** The notification service. */
     @InjectService
     private NotificationService notificationService;
 
+    /**
+     * Execute.
+     *
+     * @param request the request
+     * @return the router
+     */
     @Override
     public Router execute(RequestValue request) {
         Router router = new Router();

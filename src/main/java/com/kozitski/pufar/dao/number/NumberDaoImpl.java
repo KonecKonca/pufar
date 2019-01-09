@@ -13,27 +13,51 @@ import java.sql.*;
 import java.util.List;
 import java.util.Optional;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NumberDaoImpl.
+ */
 public class NumberDaoImpl implements NumberDao {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(NumberDaoImpl.class);
 
+    /** The Constant SEARCH_NUMBER_BY_USER_ID. */
     private static final String SEARCH_NUMBER_BY_USER_ID =
             "SELECT n.number_id, n.country, n.operator, n.number FROM numbers n " +
                     "INNER JOIN users u ON u.number_id=n.number_id " +
                     "WHERE u.user_id=?";
 
+    /** The Constant UPDATE_NUMBER_BY_USER_ID. */
     private static final String UPDATE_NUMBER_BY_USER_ID =
             "UPDATE numbers n " +
                     "LEFT JOIN users u ON n.number_id=u.number_id " +
                     "SET country=?, operator=?, number=?" +
                     "WHERE user_id=?";
+    
+    /** The Constant INSERT_NUMBER_BY_USER_ID. */
     private static final String INSERT_NUMBER_BY_USER_ID = "INSERT INTO numbers values(null, ?, ?, ?)";
+    
+    /** The Constant UPDATE_NUMBER_BY_USER_ID_USER_PART. */
     private static final String UPDATE_NUMBER_BY_USER_ID_USER_PART = "UPDATE users SET number_id=? WHERE user_id=?";
 
+    /**
+     * Search by parameters.
+     *
+     * @param parameters the parameters
+     * @return the list
+     */
     @Override
     public List<MobilPhoneNumber> searchByParameters(Object parameters) {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * Search by id.
+     *
+     * @param userId the user id
+     * @return the optional
+     */
     @Override
     public Optional<MobilPhoneNumber> searchById(long userId) {
         Optional<MobilPhoneNumber> number;
@@ -71,6 +95,13 @@ public class NumberDaoImpl implements NumberDao {
         return number;
     }
 
+    /**
+     * Update mobile phone by id.
+     *
+     * @param userId the user id
+     * @param mobilPhoneNumber the mobil phone number
+     * @throws PufarDAOException the pufar DAO exception
+     */
     @Override
     public void updateMobilePhoneById(long userId, MobilPhoneNumber mobilPhoneNumber) throws PufarDAOException {
 
@@ -97,6 +128,13 @@ public class NumberDaoImpl implements NumberDao {
 
     }
 
+    /**
+     * Insert mobile phone by id.
+     *
+     * @param userId the user id
+     * @param mobilPhoneNumber the mobil phone number
+     * @throws PufarDAOException the pufar DAO exception
+     */
     @Override
     public void insertMobilePhoneById(long userId, MobilPhoneNumber mobilPhoneNumber) throws PufarDAOException {
 

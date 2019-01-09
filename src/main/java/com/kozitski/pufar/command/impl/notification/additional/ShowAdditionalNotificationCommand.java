@@ -10,15 +10,31 @@ import com.kozitski.pufar.util.CommonConstant;
 import java.util.List;
 import java.util.Optional;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ShowAdditionalNotificationCommand.
+ */
 public class ShowAdditionalNotificationCommand extends AbstractCommand {
+    
+    /** The Constant GOT_NOTIFICATION. */
     private static final String GOT_NOTIFICATION = "notification";
 
+    /** The Constant OWNER_USER. */
     private static final String OWNER_USER = "ownerUser";
+    
+    /** The Constant LOOKING_NOTIFICATION. */
     private static final String LOOKING_NOTIFICATION = "lookingNotification";
 
+    /** The user service. */
     @InjectService
     private UserService userService;
 
+    /**
+     * Execute.
+     *
+     * @param request the request
+     * @return the router
+     */
     @Override
     @SuppressWarnings("unchecked")
     public Router execute(RequestValue request) {

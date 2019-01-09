@@ -9,14 +9,31 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AdminButtonTag.
+ */
 @SuppressWarnings("serial")
 public class AdminButtonTag extends TagSupport {
+    
+    /** The value. */
     private String value;
 
+    /**
+     * Sets the value.
+     *
+     * @param value the new value
+     */
     public void setValue(String value) {
         this.value = value;
     }
 
+    /**
+     * Do start tag.
+     *
+     * @return the int
+     * @throws JspException the jsp exception
+     */
     @Override
     public int doStartTag() throws JspException {
 
@@ -37,11 +54,22 @@ public class AdminButtonTag extends TagSupport {
         return SKIP_BODY;
     }
 
+    /**
+     * Do end tag.
+     *
+     * @return the int
+     * @throws JspException the jsp exception
+     */
     @Override
     public int doEndTag() throws JspException {
         return EVAL_PAGE;
     }
 
+    /**
+     * Check access.
+     *
+     * @return true, if successful
+     */
     private boolean checkAccess(){
         boolean access = false;
 

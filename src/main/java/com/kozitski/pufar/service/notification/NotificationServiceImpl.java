@@ -22,27 +22,59 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NotificationServiceImpl.
+ */
 public class NotificationServiceImpl extends AbstractService implements NotificationService {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(NotificationServiceImpl.class);
 
+    /** The notification dao. */
     @InjectDao
     private NotificationDao notificationDao;
 
+    /**
+     * Search top notifications with limit.
+     *
+     * @param limit the limit
+     * @return the list
+     */
     @Override
     public List<Notification> searchTopNotificationsWithLimit(int limit) {
         return notificationDao.searchTopNotificationsWithLimit(limit);
     }
 
+    /**
+     * Search notification by parameters.
+     *
+     * @param parameters the parameters
+     * @return the list
+     */
     @Override
     public List<Notification> searchNotificationByParameters(NotificationParameter parameters) {
         return notificationDao.searchByParameters(parameters);
     }
 
+    /**
+     * Search comment by notification id.
+     *
+     * @param notificationId the notification id
+     * @return the list
+     */
     @Override
     public List<NotificationComment> searchCommentByNotificationId(long notificationId) {
         return notificationDao.searchCommentByNotificationId(notificationId);
     }
 
+    /**
+     * Drop comment by id.
+     *
+     * @param commentId the comment id
+     * @param currentUser the current user
+     * @return true, if successful
+     */
     @Override
     public boolean dropCommentById(long commentId, User currentUser) {
         boolean result = false;
@@ -54,6 +86,13 @@ public class NotificationServiceImpl extends AbstractService implements Notifica
         return result;
     }
 
+    /**
+     * Drop notification by id.
+     *
+     * @param notificationId the notification id
+     * @param currentUser the current user
+     * @return true, if successful
+     */
     @Override
     public boolean dropNotificationById(long notificationId, User currentUser) {
         boolean result = false;
@@ -65,11 +104,25 @@ public class NotificationServiceImpl extends AbstractService implements Notifica
         return result;
     }
 
+    /**
+     * Drop myself notification by id.
+     *
+     * @param notificationId the notification id
+     * @return true, if successful
+     */
     @Override
     public boolean dropMyselfNotificationById(long notificationId) {
         return notificationDao.dropNotificationById(notificationId);
     }
 
+    /**
+     * Change notification message.
+     *
+     * @param notificationId the notification id
+     * @param newMessage the new message
+     * @param currentUser the current user
+     * @return true, if successful
+     */
     @Override
     public boolean changeNotificationMessage(long notificationId, String newMessage, User currentUser) {
         boolean result = false;
@@ -81,6 +134,13 @@ public class NotificationServiceImpl extends AbstractService implements Notifica
         return result;
     }
 
+    /**
+     * Adds the notification.
+     *
+     * @param notification the notification
+     * @throws PufarServiceException the pufar service exception
+     * @throws PufarValidationException the pufar validation exception
+     */
     @Override
     public void addNotification(Notification notification) throws PufarServiceException, PufarValidationException {
         try {
@@ -90,6 +150,14 @@ public class NotificationServiceImpl extends AbstractService implements Notifica
         }
     }
 
+    /**
+     * Search notifications with changing cursor.
+     *
+     * @param requestValue the request value
+     * @param unitType the unit type
+     * @param stepValue the step value
+     * @return the list
+     */
     @Override
     public List<Notification> searchNotificationsWithChangingCursor(RequestValue requestValue, UnitType unitType, int stepValue) {
         List<Notification> result;
@@ -119,6 +187,16 @@ public class NotificationServiceImpl extends AbstractService implements Notifica
         return result;
     }
 
+    /**
+     * Sent comment.
+     *
+     * @param comment the comment
+     * @param senderId the sender id
+     * @param notificationId the notification id
+     * @return the long
+     * @throws PufarServiceException the pufar service exception
+     * @throws PufarValidationException the pufar validation exception
+     */
     @Override
     public long sentComment(@StringValid String comment, long senderId, long notificationId) throws PufarServiceException, PufarValidationException {
         try {
@@ -128,6 +206,15 @@ public class NotificationServiceImpl extends AbstractService implements Notifica
         }
     }
 
+    /**
+     * Put mark.
+     *
+     * @param requestValue the request value
+     * @param mark the mark
+     * @param senderId the sender id
+     * @param notificationId the notification id
+     * @throws PufarValidationException the pufar validation exception
+     */
     @Override
     @SuppressWarnings("unchecked")
     public void putMark(RequestValue requestValue, int mark, long senderId, long notificationId) throws PufarValidationException {
@@ -151,6 +238,12 @@ public class NotificationServiceImpl extends AbstractService implements Notifica
         }
     }
 
+    /**
+     * Search all notifications by author id.
+     *
+     * @param authorIdw the author idw
+     * @return the list
+     */
     @Override
     public List<Notification> searchAllNotificationsByAuthorId(long authorIdw) {
         return notificationDao.searchAllNotificationsByAuthorId(authorIdw);

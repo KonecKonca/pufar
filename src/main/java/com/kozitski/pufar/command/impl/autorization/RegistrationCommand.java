@@ -12,14 +12,31 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RegistrationCommand.
+ */
 public class RegistrationCommand extends AbstractCommand {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(RegistrationCommand.class);
+    
+    /** The Constant LOGIN. */
     private static final String LOGIN = "login";
+    
+    /** The Constant PASSWORD. */
     private static final String PASSWORD = "password";
 
+    /** The service. */
     @InjectService
     private UserService service;
 
+    /**
+     * Execute.
+     *
+     * @param request the request
+     * @return the router
+     */
     @Override
     public Router execute(RequestValue request) {
         Router router = new Router();

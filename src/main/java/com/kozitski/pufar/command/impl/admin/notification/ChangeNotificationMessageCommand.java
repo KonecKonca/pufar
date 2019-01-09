@@ -10,18 +10,38 @@ import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ChangeNotificationMessageCommand.
+ */
 public class ChangeNotificationMessageCommand extends AbstractCommand {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(ChangeNotificationMessageCommand.class);
+    
+    /** The Constant NOTIFICATION_ID. */
     private static final String NOTIFICATION_ID = "id";
+    
+    /** The Constant COMMENT_MESSAGE. */
     private static final String COMMENT_MESSAGE = "message";
 
+    /** The Constant OK_INPUT_MESSAGE. */
     private static final String OK_INPUT_MESSAGE = "message was successfully changed";
+    
+    /** The Constant BAD_INPUT_MESSAGE. */
     private static final String BAD_INPUT_MESSAGE = "was entered incorrect notification id";
 
 
+    /** The notification service. */
     @InjectService
     private NotificationService notificationService;
 
+    /**
+     * Execute.
+     *
+     * @param request the request
+     * @return the router
+     */
     @Override
     public Router execute(RequestValue request) {
         Router router = new Router();

@@ -11,15 +11,31 @@ import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SentMessageToAuthorCommand.
+ */
 public class SentMessageToAuthorCommand extends AbstractCommand {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(SentMessageToAuthorCommand.class);
 
+    /** The Constant OWNER. */
     private static final String OWNER = "chosenUser";
+    
+    /** The Constant MESSAGE_VALUE. */
     private static final String MESSAGE_VALUE = "messageValue";
 
+    /** The dialog service. */
     @InjectService
     private DialogService dialogService;
 
+    /**
+     * Execute.
+     *
+     * @param requestValue the request value
+     * @return the router
+     */
     @Override
     public Router execute(RequestValue requestValue) {
         Router router = new Router();

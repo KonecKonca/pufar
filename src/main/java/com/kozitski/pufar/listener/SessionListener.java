@@ -17,10 +17,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The listener interface for receiving session events.
+ * The class that is interested in processing a session
+ * event implements this interface, and the object created
+ * with that class is registered with a component using the
+ * component's <code>addSessionListener<code> method. When
+ * the session event occurs, that object's appropriate
+ * method is invoked.
+ *
+ * @see SessionEvent
+ */
 @WebListener
 public class SessionListener implements HttpSessionListener {
+    
+    /** The Constant HOW_MUCH_MESSAGES. */
     private static final int HOW_MUCH_MESSAGES = 6;
 
+    /**
+     * Invoked when session is created.
+     *
+     * @param sessionEvent the session event
+     */
     @Override
     public void sessionCreated(HttpSessionEvent sessionEvent) {
 

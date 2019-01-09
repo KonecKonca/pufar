@@ -8,12 +8,25 @@ import com.kozitski.pufar.util.CommonConstant;
 
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DropMyselfNotificationCommand.
+ */
 public class DropMyselfNotificationCommand extends AbstractCommand {
+    
+    /** The Constant DROPPED_NOTIFICATION_ID. */
     private static final String DROPPED_NOTIFICATION_ID = "notificationId";
 
+    /** The notification service. */
     @InjectService
     private NotificationService notificationService;
 
+    /**
+     * Execute.
+     *
+     * @param request the request
+     * @return the router
+     */
     @Override
     @SuppressWarnings("unchecked")
     public Router execute(RequestValue request) {

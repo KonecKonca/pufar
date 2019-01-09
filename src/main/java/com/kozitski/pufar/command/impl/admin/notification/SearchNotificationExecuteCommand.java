@@ -12,26 +12,55 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SearchNotificationExecuteCommand.
+ */
 public class SearchNotificationExecuteCommand extends AbstractCommand {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(SearchNotificationExecuteCommand.class);
 
+    /** The Constant NOTIFICATION_ID. */
     private static final String NOTIFICATION_ID = "id";
+    
+    /** The Constant LOWER_PRICE. */
     private static final String LOWER_PRICE = "adminLowerPrice";
+    
+    /** The Constant HIGHER_PRICE. */
     private static final String HIGHER_PRICE = "adminHigherPrice";
 
+    /** The Constant PASSED_TIME. */
     private static final String PASSED_TIME = "adminPassedTime";
+    
+    /** The Constant SENDER_ID. */
     private static final String SENDER_ID = "adminSenderId";
+    
+    /** The Constant UNIT. */
     private static final String UNIT = "adminNotificationUnit";
 
+    /** The Constant LOWER_RATE. */
     private static final String LOWER_RATE = "adminLowerRate";
+    
+    /** The Constant HIGHER_RATE. */
     private static final String HIGHER_RATE = "adminBiggerRate";
 
+    /** The Constant OK_INPUT_MESSAGE. */
     private static final String OK_INPUT_MESSAGE = "were founded next notifications: ";
+    
+    /** The Constant BAD_INPUT_MESSAGE. */
     private static final String BAD_INPUT_MESSAGE = "Were entered incorrect notifications searching attributes";
 
+    /** The notification service. */
     @InjectService
     private NotificationService notificationService;
 
+    /**
+     * Execute.
+     *
+     * @param request the request
+     * @return the router
+     */
     @Override
     public Router execute(RequestValue request) {
         Router router = new Router();

@@ -6,18 +6,40 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LoadImageNameGenerator.
+ */
 public class LoadImageNameGenerator {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(LoadImageNameGenerator.class);
 
+    /** The lock. */
     private static  ReentrantLock lock = new ReentrantLock();
+    
+    /** The Constant FILE_NAME_PREFIX. */
     private static final String FILE_NAME_PREFIX = "loadImage";
+    
+    /** The Constant FILE_NAME_POSTFIX. */
     private static final String FILE_NAME_POSTFIX = ".jpg";
 
+    /** The Constant TOTAL_CAPACITY. */
     private static final int TOTAL_CAPACITY = 100;
+    
+    /** The name counter. */
     private static AtomicInteger nameCounter = new AtomicInteger(0);
 
+    /**
+     * Instantiates a new load image name generator.
+     */
     private LoadImageNameGenerator() {}
 
+    /**
+     * Generate name.
+     *
+     * @return the string
+     */
     public static String generateName(){
 
         try {
@@ -33,6 +55,12 @@ public class LoadImageNameGenerator {
         }
 
     }
+    
+    /**
+     * Gets the last name.
+     *
+     * @return the last name
+     */
     public static String getLastName(){
 
         try {

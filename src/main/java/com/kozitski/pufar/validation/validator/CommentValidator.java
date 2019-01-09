@@ -8,9 +8,22 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.annotation.Annotation;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CommentValidator.
+ */
 public class CommentValidator implements Validator{
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(CommentValidator.class);
 
+    /**
+     * Validate.
+     *
+     * @param annotations the annotations
+     * @param object the object
+     * @throws PufarValidationException the pufar validation exception
+     */
     @Override
     public void validate(Annotation[] annotations, Object object) throws PufarValidationException {
         for(Annotation annotation : annotations){
@@ -20,6 +33,13 @@ public class CommentValidator implements Validator{
         }
     }
 
+    /**
+     * Comment validation.
+     *
+     * @param annotation the annotation
+     * @param comment the comment
+     * @throws PufarValidationException the pufar validation exception
+     */
     private void commentValidation(CommentValid annotation, NotificationComment comment) throws PufarValidationException {
 
         if(comment == null || comment.getComment() == null || comment.getComment().isEmpty()){
@@ -51,6 +71,11 @@ public class CommentValidator implements Validator{
 
     }
 
+    /**
+     * To string.
+     *
+     * @return the string
+     */
     @Override
     public String toString() {
         return getValidatorName();

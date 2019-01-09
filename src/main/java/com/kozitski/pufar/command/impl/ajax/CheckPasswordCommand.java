@@ -11,13 +11,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CheckPasswordCommand.
+ */
 public class CheckPasswordCommand implements ResponseCommand {
+    
+    /** The Constant PASSWORD1. */
     private static final String PASSWORD1 = "password1";
+    
+    /** The Constant PASSWORD2. */
     private static final String PASSWORD2 = "password2";
 
+    /** The Constant EQUALS_IDENTIFIER. */
     private static final String EQUALS_IDENTIFIER = "profilePasswordAreEquals";
+    
+    /** The Constant NOT_EQUALS_IDENTIFIER. */
     private static final String NOT_EQUALS_IDENTIFIER = "profilePasswordAreNotEquals";
 
+    /**
+     * Execute.
+     *
+     * @param request the request
+     * @param response the response
+     * @return the router
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws ServletException the servlet exception
+     */
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Router router = new Router();

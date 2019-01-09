@@ -9,13 +9,28 @@ import com.kozitski.pufar.util.CommonConstant;
 
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ShowNotificationByUnitTypeCommand.
+ */
 public class ShowNotificationByUnitTypeCommand extends AbstractCommand {
+    
+    /** The Constant UNIT_TYPE. */
     private static final String UNIT_TYPE = "unitType";
+    
+    /** The Constant CHANGE_CURSOR_VALUE. */
     private static final int CHANGE_CURSOR_VALUE = 0;
 
+    /** The notification service. */
     @InjectService
     private NotificationService notificationService;
 
+    /**
+     * Execute.
+     *
+     * @param request the request
+     * @return the router
+     */
     @Override
     public Router execute(RequestValue request) {
         Router router = new Router();

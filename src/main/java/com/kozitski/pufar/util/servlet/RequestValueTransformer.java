@@ -5,10 +5,23 @@ import com.kozitski.pufar.command.RequestValue;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RequestValueTransformer.
+ */
 public class RequestValueTransformer {
 
+    /**
+     * Instantiates a new request value transformer.
+     */
     private RequestValueTransformer() { }
 
+    /**
+     * Transform from.
+     *
+     * @param request the request
+     * @return the request value
+     */
     public static RequestValue transformFrom(HttpServletRequest request){
 
         HashMap<String, Object> servletContext = new HashMap<>();
@@ -42,6 +55,13 @@ public class RequestValueTransformer {
 
         return new RequestValue(servletContext, servletSession, requestAttribute, requestParameter);
     }
+    
+    /**
+     * Transform to.
+     *
+     * @param request the request
+     * @param requestValue the request value
+     */
     public static void transformTo(HttpServletRequest request, RequestValue requestValue){
 
         // context

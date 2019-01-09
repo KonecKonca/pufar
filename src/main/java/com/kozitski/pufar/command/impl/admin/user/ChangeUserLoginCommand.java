@@ -10,17 +10,37 @@ import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ChangeUserLoginCommand.
+ */
 public class ChangeUserLoginCommand extends AbstractCommand {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(ChangeUserLoginCommand.class);
+    
+    /** The Constant USER_ID. */
     private static final String USER_ID = "id";
+    
+    /** The Constant LOGIN. */
     private static final String LOGIN = "login";
 
+    /** The Constant OK_INPUT_MESSAGE. */
     private static final String OK_INPUT_MESSAGE = "user's login was changed";
+    
+    /** The Constant BAD_INPUT_MESSAGE. */
     private static final String BAD_INPUT_MESSAGE = "was entered incorrect user ID or new login exactly exist";
 
+    /** The user service. */
     @InjectService
     private UserService userService;
 
+    /**
+     * Execute.
+     *
+     * @param request the request
+     * @return the router
+     */
     @Override
     public Router execute(RequestValue request) {
         Router router = new Router();

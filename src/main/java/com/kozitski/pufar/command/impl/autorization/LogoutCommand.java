@@ -11,9 +11,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LogoutCommand.
+ */
 public class LogoutCommand implements ResponseCommand {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(LogoutCommand.class);
 
+    /**
+     * Execute.
+     *
+     * @param request the request
+     * @param response the response
+     * @return the router
+     */
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) {
         Router router = new Router();

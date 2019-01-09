@@ -12,13 +12,28 @@ import com.kozitski.pufar.util.encoder.PasswordEncoder;
 
 import java.util.Optional;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LoginServiceImpl.
+ */
 public class LoginServiceImpl extends AbstractService implements LoginService {
 
+    /** The user dao. */
     @InjectDao
     private UserDao userDao;
+    
+    /** The number dao. */
     @InjectDao
     private NumberDao numberDao;
 
+    /**
+     * Search user by login password.
+     *
+     * @param login the login
+     * @param password the password
+     * @return the optional
+     * @throws PufarValidationException the pufar validation exception
+     */
     @Override
     public Optional<User> searchUserByLoginPassword(String login, String password) throws PufarValidationException {
         Optional<User> result = Optional.empty();

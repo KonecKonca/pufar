@@ -3,11 +3,26 @@ package com.kozitski.pufar.command.response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CommandFactoryWithResponse.
+ */
 public class CommandFactoryWithResponse {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(CommandFactoryWithResponse.class);
 
+    /**
+     * Instantiates a new command factory with response.
+     */
     private CommandFactoryWithResponse() { }
 
+    /**
+     * Choose command.
+     *
+     * @param commandName the command name
+     * @return the response command
+     */
     public static ResponseCommand chooseCommand(String commandName){
         ResponseCommand command = null;
 

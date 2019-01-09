@@ -14,10 +14,22 @@ import java.lang.annotation.Annotation;
 import java.util.List;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ValidationAspect.
+ */
 @Aspect
 public class ValidationAspect {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(ValidationAspect.class);
 
+    /**
+     * Validate string.
+     *
+     * @param joinPoint the join point
+     * @throws PufarValidationException the pufar validation exception
+     */
     @Before("@annotation(com.kozitski.pufar.validation.annotation.AspectValid)")
     public void validateString(JoinPoint joinPoint) throws PufarValidationException {
 
@@ -29,6 +41,12 @@ public class ValidationAspect {
     }
 
 
+    /**
+     * Validate.
+     *
+     * @param joinPoint the join point
+     * @throws PufarValidationException the pufar validation exception
+     */
     private void validate(JoinPoint joinPoint) throws PufarValidationException {
 
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();

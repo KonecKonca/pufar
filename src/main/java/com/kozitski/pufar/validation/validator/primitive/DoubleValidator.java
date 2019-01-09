@@ -8,9 +8,22 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.annotation.Annotation;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DoubleValidator.
+ */
 public class DoubleValidator implements Validator {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(DoubleValidator.class);
 
+    /**
+     * Validate.
+     *
+     * @param annotations the annotations
+     * @param object the object
+     * @throws PufarValidationException the pufar validation exception
+     */
     @Override
     public void validate(Annotation[] annotations, Object object) throws PufarValidationException {
         for(Annotation annotation : annotations){
@@ -20,6 +33,13 @@ public class DoubleValidator implements Validator {
         }
     }
 
+    /**
+     * Double validation.
+     *
+     * @param annotation the annotation
+     * @param value the value
+     * @throws PufarValidationException the pufar validation exception
+     */
     private void doubleValidation(DoubleValid annotation, double value) throws PufarValidationException{
 
         double minValue = annotation.minValue();
@@ -31,6 +51,11 @@ public class DoubleValidator implements Validator {
 
     }
 
+    /**
+     * To string.
+     *
+     * @return the string
+     */
     @Override
     public String toString() {
         return getValidatorName();

@@ -16,10 +16,27 @@ import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LoadImageCommand.
+ */
 public class LoadImageCommand implements ResponseCommand {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(LoadImageCommand.class);
+    
+    /** The Constant DATA_PATH. */
     private static final String DATA_PATH = "/loadImages";
 
+    /**
+     * Execute.
+     *
+     * @param request the request
+     * @param response the response
+     * @return the router
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws ServletException the servlet exception
+     */
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Router router = new Router();

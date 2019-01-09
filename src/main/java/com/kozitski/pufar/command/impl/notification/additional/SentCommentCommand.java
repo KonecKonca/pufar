@@ -16,15 +16,31 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SentCommentCommand.
+ */
 public class SentCommentCommand extends AbstractCommand {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(SentCommentCommand.class);
 
+    /** The Constant COMMENT_VALUE. */
     private static final String COMMENT_VALUE = "commentValue";
+    
+    /** The Constant NOTIFICATION_ID. */
     private static final String NOTIFICATION_ID = "notificationId";
 
+    /** The notification service. */
     @InjectService
     private NotificationService notificationService;
 
+    /**
+     * Execute.
+     *
+     * @param request the request
+     * @return the router
+     */
     @Override
     @SuppressWarnings("unchecked")
     public Router execute(RequestValue request) {

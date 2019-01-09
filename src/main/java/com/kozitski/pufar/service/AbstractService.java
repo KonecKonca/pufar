@@ -9,14 +9,28 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Properties;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AbstractService.
+ */
 public abstract class AbstractService {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractService.class);
+    
+    /** The Constant SERVICE_INJECTION_PROPERTY_PATH. */
     private static final String SERVICE_INJECTION_PROPERTY_PATH = "\\WEB-INF\\classes\\injection\\serviceInjection.properties";
 
+    /**
+     * Instantiates a new abstract service.
+     */
     public AbstractService() {
         init();
     }
 
+    /**
+     * Inits the.
+     */
     private void init() {
 
         Properties properties = new Properties();

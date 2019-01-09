@@ -23,9 +23,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NotificationDaoImpl.
+ */
 public class NotificationDaoImpl implements NotificationDao {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(NotificationDaoImpl.class);
 
+    /** The Constant SEARCH_TOP_NOTIFICATIONS_SQL. */
     private static final String SEARCH_TOP_NOTIFICATIONS_SQL =
             "SELECT n.notification_id, n.message, un.name, n.price, u.user_id, n.date, n.content, AVG(r.mark) mark FROM notifications n " +
                 "LEFT JOIN units un ON n.unit_id=un.unit_id " +
@@ -35,28 +42,51 @@ public class NotificationDaoImpl implements NotificationDao {
             "ORDER BY n.date DESC " +
             "LIMIT ?";
 
+    /** The Constant SEARCH_WITH_PARAMETERS_SQL_START. */
     // for search with parameters
     private static final String SEARCH_WITH_PARAMETERS_SQL_START =
             "SELECT n.notification_id, n.message, un.name, n.price, u.user_id, n.content, n.date, AVG(r.mark) mark FROM notifications n " +
                 "INNER JOIN units un ON n.unit_id=un.unit_id " +
                 "INNER JOIN users u ON n.user_id=u.user_id " +
                 "LEFT JOIN rates r ON n.notification_id=r.notification_id ";
+    
+    /** The Constant SEARCH_WITH_PARAMETERS_SQL_WHERE. */
     private static final String SEARCH_WITH_PARAMETERS_SQL_WHERE = "WHERE ";
 
+    /** The Constant SEARCH_WITH_PARAMETERS_SQL_ID. */
     private static final String SEARCH_WITH_PARAMETERS_SQL_ID = "n.notification_id=?";
+    
+    /** The Constant SEARCH_WITH_PARAMETERS_SQL_SENDER_ID. */
     private static final String SEARCH_WITH_PARAMETERS_SQL_SENDER_ID = "u.user_id=?";
+    
+    /** The Constant SEARCH_WITH_PARAMETERS_SQL_PASSED_TIME. */
     private static final String SEARCH_WITH_PARAMETERS_SQL_PASSED_TIME = "n.date>=?";
+    
+    /** The Constant SEARCH_WITH_PARAMETERS_UNIT. */
     private static final String SEARCH_WITH_PARAMETERS_UNIT = "un.name=?";
 
+    /** The Constant SEARCH_WITH_PARAMETERS_SQL_HIGHER_PRICE. */
     private static final String SEARCH_WITH_PARAMETERS_SQL_HIGHER_PRICE = "n.price<=?";
+    
+    /** The Constant SEARCH_WITH_PARAMETERS_SQL_LOWER_PRICE. */
     private static final String SEARCH_WITH_PARAMETERS_SQL_LOWER_PRICE = "n.price>=?";
+    
+    /** The Constant SEARCH_WITH_PARAMETERS_HIGHER_RATE. */
     private static final String SEARCH_WITH_PARAMETERS_HIGHER_RATE = "mark<=?";
+    
+    /** The Constant SEARCH_WITH_PARAMETERS_LOWER_RATE. */
     private static final String SEARCH_WITH_PARAMETERS_LOWER_RATE = "mark>=?";
 
+    /** The Constant SEARCH_WITH_PARAMETERS_SQL_END. */
     private static final String SEARCH_WITH_PARAMETERS_SQL_END = "GROUP BY r.notification_id";
+    
+    /** The Constant SEARCH_WITH_PARAMETERS_SQL_LIMIT. */
     private static final String SEARCH_WITH_PARAMETERS_SQL_LIMIT = "LIMIT 200";
+    
+    /** The Constant AND. */
     private static final String AND = " AND ";
 
+    /** The Constant SEARCH_COMMENTS_BY_NOTIFICATION_ID. */
     private static final String SEARCH_COMMENTS_BY_NOTIFICATION_ID =
             "SELECT c.comment_id, u.login, c.comment, c.date FROM comments c " +
                 "LEFT JOIN notifications n ON c.notification_id=n.notification_id " +
@@ -65,21 +95,40 @@ public class NotificationDaoImpl implements NotificationDao {
             "ORDER BY c.date DESC " +
             "LIMIT 100";
 
+    /** The Constant DELETE_COMMENT_BY_COMMENT_ID. */
     private static final String DELETE_COMMENT_BY_COMMENT_ID = "DELETE FROM comments WHERE comment_id=?";
+    
+    /** The Constant DELETE_NOTIFICATION_BY_NOTIFICATION_ID. */
     private static final String DELETE_NOTIFICATION_BY_NOTIFICATION_ID = "DELETE FROM notifications WHERE notification_id=?";
+    
+    /** The Constant DELETE_RATE_BY_NOTIFICATION_ID. */
     private static final String DELETE_RATE_BY_NOTIFICATION_ID = "DELETE FROM rates WHERE notification_id=?";
+    
+    /** The Constant DELETE_COMMENT_BY_NOTIFICATION_ID. */
     private static final String DELETE_COMMENT_BY_NOTIFICATION_ID = "DELETE FROM comments WHERE notification_id=?";
+    
+    /** The Constant CHANGE_NOTIFICATION_MESSAGE. */
     private static final String CHANGE_NOTIFICATION_MESSAGE = "UPDATE notifications SET message=? WHERE notification_id=?";
 
+    /** The Constant ADD_NOTIFICATION. */
     private static final String ADD_NOTIFICATION = "INSERT INTO notifications VALUES(null, ?, ?, ?, ?, ?, ?)";
+    
+    /** The Constant ADD_NOTIFICATION_SET_DEFAULT_RATE. */
     private static final String ADD_NOTIFICATION_SET_DEFAULT_RATE = "INSERT INTO rates VALUES(?, ?, ?)";
+    
+    /** The Constant DEFAULT_MARK. */
     private static final int DEFAULT_MARK = 5;
 
+    /** The Constant SEARCH_NOTIFICATION_BY_UNIT_NUMBER. */
     private static final String SEARCH_NOTIFICATION_BY_UNIT_NUMBER =
             "SELECT COUNT(n.notification_id) numberNotifications FROM notifications n " +
                     "LEFT JOIN units u ON n.unit_id=u.unit_id " +
                 "WHERE u.unit_id=?";
+    
+    /** The Constant SEARCH_NOTIFICATION_BY_UNIT_COUNT_VALUE. */
     private static final String SEARCH_NOTIFICATION_BY_UNIT_COUNT_VALUE = "numberNotifications";
+    
+    /** The Constant SEARCH_NOTIFICATION_BY_UNIT. */
     private static final String SEARCH_NOTIFICATION_BY_UNIT =
             "SELECT n.notification_id, n.message, un.name, n.price, u.user_id, n.date, n.content, AVG(r.mark) mark FROM notifications n " +
                     "LEFT JOIN units un ON n.unit_id=un.unit_id " +
@@ -90,17 +139,28 @@ public class NotificationDaoImpl implements NotificationDao {
                 "ORDER BY n.date DESC " +
                 "LIMIT ?, ?";
 
+    /** The Constant ADD_COMMENT. */
     private static final String ADD_COMMENT = "INSERT INTO comments VALUES(null, ?, ?, ?, ?)";
 
+    /** The Constant CHECK_IS_MARK_EXIST. */
     private static final String CHECK_IS_MARK_EXIST = "SELECT mark FROM rates WHERE user_id=? AND notification_id=?";
+    
+    /** The Constant INSERT_MARK. */
     private static final String INSERT_MARK = "INSERT INTO rates VALUES(?, ?, ?)";
+    
+    /** The Constant UPDATE_MARK. */
     private static final String UPDATE_MARK = "UPDATE rates SET mark=? WHERE user_id=? AND notification_id=?";
+    
+    /** The Constant SEARCH_RATE. */
     private static final String SEARCH_RATE =
             "SELECT AVG(mark) rate FROM rates " +
                 "WHERE notification_id=? " +
                 "GROUP BY notification_id";
+    
+    /** The Constant RATE. */
     private static final String RATE = "rate";
 
+    /** The Constant SEARCH_ALL_NOTIFICATIONS_BY_AUTHOR_ID. */
     private static final String SEARCH_ALL_NOTIFICATIONS_BY_AUTHOR_ID =
             "SELECT n.notification_id, n.message, un.name, n.price, u.user_id, n.date, n.content, AVG(r.mark) mark FROM notifications n " +
                     "LEFT JOIN units un ON n.unit_id=un.unit_id " +
@@ -111,11 +171,26 @@ public class NotificationDaoImpl implements NotificationDao {
                     "ORDER BY n.date DESC " +
                     "LIMIT 50";
 
+    /**
+     * Search by id.
+     *
+     * @param id the id
+     * @return the optional
+     */
     @Override
     public Optional<Notification> searchById(long id) {
         return Optional.empty();
     }
 
+    /**
+     * Put mark.
+     *
+     * @param mark the mark
+     * @param senderId the sender id
+     * @param notificationId the notification id
+     * @return the double
+     * @throws PufarDAOException the pufar DAO exception
+     */
     // mark
     @Override
     public double putMark(int mark, long senderId, long notificationId) throws PufarDAOException{
@@ -186,6 +261,13 @@ public class NotificationDaoImpl implements NotificationDao {
         }
 
     }
+    
+    /**
+     * Search comment by notification id.
+     *
+     * @param notificationId the notification id
+     * @return the list
+     */
     // comments
     @Override
     public List<NotificationComment> searchCommentByNotificationId(long notificationId){
@@ -208,6 +290,13 @@ public class NotificationDaoImpl implements NotificationDao {
         }
 
     }
+    
+    /**
+     * Drop comment by id.
+     *
+     * @param commentId the comment id
+     * @return true, if successful
+     */
     @Override
     public boolean dropCommentById(long commentId) {
         boolean result;
@@ -230,6 +319,16 @@ public class NotificationDaoImpl implements NotificationDao {
 
         return result;
     }
+    
+    /**
+     * Adds the comment.
+     *
+     * @param comment the comment
+     * @param senderId the sender id
+     * @param notificationId the notification id
+     * @return the long
+     * @throws PufarDAOException the pufar DAO exception
+     */
     @Override
     public long addComment(String comment, long senderId, long notificationId) throws PufarDAOException{
         long date = System.currentTimeMillis();
@@ -256,6 +355,12 @@ public class NotificationDaoImpl implements NotificationDao {
         return date;
     }
 
+    /**
+     * Search top notifications with limit.
+     *
+     * @param limit the limit
+     * @return the list
+     */
     @Override
     public List<Notification> searchTopNotificationsWithLimit(int limit){
 
@@ -284,6 +389,12 @@ public class NotificationDaoImpl implements NotificationDao {
 
     }
 
+    /**
+     * Search by parameters.
+     *
+     * @param parameters the parameters
+     * @return the list
+     */
     @Override
     public List<Notification> searchByParameters(NotificationParameter parameters) {
 
@@ -314,6 +425,13 @@ public class NotificationDaoImpl implements NotificationDao {
         }
 
     }
+    
+    /**
+     * Generate search with parameters sql.
+     *
+     * @param parameters the parameters
+     * @return the string
+     */
     // here methods get contract on each other (their use same order of argument)
     private String generateSearchWithParametersSql(NotificationParameter parameters){
         StringBuilder addSql = new StringBuilder();
@@ -364,6 +482,14 @@ public class NotificationDaoImpl implements NotificationDao {
 
         return addSql.toString();
     }
+    
+    /**
+     * Full fill prepared statement.
+     *
+     * @param preparedStatement the prepared statement
+     * @param parameters the parameters
+     * @throws SQLException the SQL exception
+     */
     private void fullFillPreparedStatement(PreparedStatement preparedStatement, NotificationParameter parameters) throws SQLException {
         int counter = 1;
 
@@ -395,6 +521,12 @@ public class NotificationDaoImpl implements NotificationDao {
 
     }
 
+    /**
+     * Drop notification by id.
+     *
+     * @param notificationId the notification id
+     * @return true, if successful
+     */
     @Override
     public boolean dropNotificationById(long notificationId) {
         boolean result;
@@ -439,6 +571,14 @@ public class NotificationDaoImpl implements NotificationDao {
 
         return result;
     }
+    
+    /**
+     * Change notification message.
+     *
+     * @param notificationId the notification id
+     * @param newMessage the new message
+     * @return true, if successful
+     */
     @Override
     public boolean changeNotificationMessage(long notificationId, String newMessage) {
         boolean result;
@@ -462,6 +602,13 @@ public class NotificationDaoImpl implements NotificationDao {
 
         return result;
     }
+    
+    /**
+     * Adds the notification.
+     *
+     * @param notification the notification
+     * @throws PufarDAOException the pufar DAO exception
+     */
     @Override
     public void addNotification(Notification notification) throws PufarDAOException {
 
@@ -519,6 +666,13 @@ public class NotificationDaoImpl implements NotificationDao {
         }
 
     }
+    
+    /**
+     * Search notifications by unit number.
+     *
+     * @param unitType the unit type
+     * @return the long
+     */
     @Override
     public long searchNotificationsByUnitNumber(UnitType unitType){
         long result;
@@ -546,6 +700,15 @@ public class NotificationDaoImpl implements NotificationDao {
 
         return result;
     }
+    
+    /**
+     * Search notifications by unit.
+     *
+     * @param unitType the unit type
+     * @param limitStart the limit start
+     * @param limitStep the limit step
+     * @return the list
+     */
     @Override
     public List<Notification> searchNotificationsByUnit(UnitType unitType, int limitStart, int limitStep){
         List<Notification> result;
@@ -576,6 +739,13 @@ public class NotificationDaoImpl implements NotificationDao {
         }
         return result;
     }
+    
+    /**
+     * Search all notifications by author id.
+     *
+     * @param authorIdw the author idw
+     * @return the list
+     */
     @Override
     public List<Notification> searchAllNotificationsByAuthorId(long authorIdw){
 

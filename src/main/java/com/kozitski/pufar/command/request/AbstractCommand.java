@@ -12,13 +12,28 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Properties;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AbstractCommand.
+ */
 public abstract class AbstractCommand {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractCommand.class);
+    
+    /** The Constant COMMAND_INJECTION_PROPERTY_PATH. */
     private static final String COMMAND_INJECTION_PROPERTY_PATH = "\\WEB-INF\\classes\\injection\\commandInjection.properties";
 
+    /**
+     * Instantiates a new abstract command.
+     */
     public AbstractCommand() {
         init();
     }
+    
+    /**
+     * Inits the.
+     */
     private void init(){
 
         Properties properties = new Properties();
@@ -50,6 +65,12 @@ public abstract class AbstractCommand {
 
     }
 
+    /**
+     * Execute.
+     *
+     * @param request the request
+     * @return the router
+     */
     public abstract Router execute(RequestValue request);
 
 }

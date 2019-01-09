@@ -10,16 +10,34 @@ import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ChangePasswordCommand.
+ */
 public class ChangePasswordCommand extends AbstractCommand {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(ChangePasswordCommand.class);
 
+    /** The Constant OLD_PASSWORD. */
     private static final String OLD_PASSWORD = "oldPassword";
+    
+    /** The Constant NEW_PASSWORD. */
     private static final String NEW_PASSWORD = "newPassword";
+    
+    /** The Constant NEW_PASSWORD_CONFIRM. */
     private static final String NEW_PASSWORD_CONFIRM = "newPasswordConfirm";
 
+    /** The user service. */
     @InjectService
     private UserService userService;
 
+    /**
+     * Execute.
+     *
+     * @param requestValue the request value
+     * @return the router
+     */
     @Override
     public Router execute(RequestValue requestValue) {
         Router router = new Router();

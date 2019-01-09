@@ -8,9 +8,22 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.annotation.Annotation;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NotificationValidator.
+ */
 public class NotificationValidator implements Validator {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(NotificationValidator.class);
 
+    /**
+     * Validate.
+     *
+     * @param annotations the annotations
+     * @param object the object
+     * @throws PufarValidationException the pufar validation exception
+     */
     @Override
     public void validate(Annotation[] annotations, Object object) throws PufarValidationException {
         for(Annotation annotation : annotations){
@@ -19,6 +32,14 @@ public class NotificationValidator implements Validator {
             }
         }
     }
+    
+    /**
+     * Notification validation.
+     *
+     * @param annotation the annotation
+     * @param notification the notification
+     * @throws PufarValidationException the pufar validation exception
+     */
     private void notificationValidation(NotificationValid annotation, Notification notification) throws PufarValidationException {
 
         if(notification == null || notification.getMessage() == null || notification.getMessage().isEmpty()){
@@ -83,6 +104,11 @@ public class NotificationValidator implements Validator {
 
     }
 
+    /**
+     * To string.
+     *
+     * @return the string
+     */
     @Override
     public String toString() {
         return getValidatorName();

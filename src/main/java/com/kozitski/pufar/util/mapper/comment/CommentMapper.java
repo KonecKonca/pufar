@@ -9,14 +9,36 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CommentMapper.
+ */
 public class CommentMapper {
+    
+    /** The Constant COMMENT_ID. */
     private static final String COMMENT_ID = "c.comment_id";
+    
+    /** The Constant USER_LOGIN. */
     private static final String USER_LOGIN = "u.login";
+    
+    /** The Constant COMMENT_MESSAGE. */
     private static final String COMMENT_MESSAGE = "c.comment";
+    
+    /** The Constant COMMENT_DATE. */
     private static final String COMMENT_DATE = "c.date";
 
+    /**
+     * Instantiates a new comment mapper.
+     */
     private CommentMapper() { }
 
+    /**
+     * Map comments.
+     *
+     * @param resultSet the result set
+     * @return the list
+     * @throws SQLDataException the SQL data exception
+     */
     public static List<NotificationComment> mapComments(ResultSet resultSet) throws SQLDataException {
         ArrayList<NotificationComment> result = new ArrayList<>();
 

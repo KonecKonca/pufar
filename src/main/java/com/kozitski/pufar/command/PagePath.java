@@ -15,7 +15,6 @@ public enum PagePath {
     NOTIFICATION_ADDITIONAL("/jsp/notificationAdditional.jsp"),
     PROFILE_PAGE("/jsp/profile/profile.jsp"),
 
-    // admin
     ADMIN_CONTROL_PANEL("/jsp/admin/adminControlPanel.jsp"),
     ADMIN_SEARCH_NOTIFICATION("/jsp/admin/search/notificationSearch.jsp"),
     ADMIN_SEARCH_USER("/jsp/admin/search/userSearch.jsp");

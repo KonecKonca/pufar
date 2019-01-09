@@ -22,18 +22,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PufarCommonController.
+ */
 @WebServlet("/pufar/*")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024
         , maxFileSize = 1024 * 1024 * 5
         , maxRequestSize = 1024 * 1024 * 5 * 5)
 public class PufarCommonController extends HttpServlet {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(NumberServiceImpl.class);
 
+    /** The Constant COMMAND_NAME. */
     private static final String COMMAND_NAME = "command";
+    
+    /** The Constant COMMAND_NAME_WITH_RESPONSE. */
     private static final String COMMAND_NAME_WITH_RESPONSE = "commandResponse";
+    
+    /** The Constant SUBSTRING_SLASH. */
     private static final int SUBSTRING_SLASH = 1;
+    
+    /** The Constant SLASH_LITERAL. */
     private static final char SLASH_LITERAL = '/';
 
+    /**
+     * Do get.
+     *
+     * @param request the request
+     * @param response the response
+     * @throws ServletException the servlet exception
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
@@ -47,11 +68,27 @@ public class PufarCommonController extends HttpServlet {
         else { response.sendRedirect(PagePath.INDEX_PAGE.getJspPath()); }
     }
 
+    /**
+     * Do post.
+     *
+     * @param request the request
+     * @param response the response
+     * @throws ServletException the servlet exception
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         performQuery(request, response);
     }
 
+    /**
+     * Perform query.
+     *
+     * @param request the request
+     * @param response the response
+     * @throws ServletException the servlet exception
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     private void performQuery(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Router router;
 

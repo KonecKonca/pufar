@@ -10,15 +10,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserMapper.
+ */
 public class UserMapper {
+    
+    /** The Constant USER_ID. */
     private static final String USER_ID = "user_id";
+    
+    /** The Constant USER_LOGIN. */
     private static final String USER_LOGIN = "login";
+    
+    /** The Constant USER_PASSWORD. */
     private static final String USER_PASSWORD = "password";
+    
+    /** The Constant USER_STATUS. */
     private static final String USER_STATUS = "status";
+    
+    /** The Constant BAN. */
     private static final String BAN = "isBanned";
 
+    /**
+     * Instantiates a new user mapper.
+     */
     private UserMapper() { }
 
+    /**
+     * Creates the user.
+     *
+     * @param resultSet the result set
+     * @return the user
+     * @throws PufarDAOException the pufar DAO exception
+     */
     public static User createUser(ResultSet resultSet) throws PufarDAOException {
 
         try {
@@ -38,6 +62,14 @@ public class UserMapper {
 
 
     }
+    
+    /**
+     * Creates the users.
+     *
+     * @param resultSet the result set
+     * @return the list
+     * @throws PufarDAOException the pufar DAO exception
+     */
     public static List<User> createUsers(ResultSet resultSet) throws PufarDAOException {
 
         try {
@@ -63,6 +95,12 @@ public class UserMapper {
 
     }
 
+    /**
+     * Define user status.
+     *
+     * @param status the status
+     * @return the user status
+     */
     private static UserStatus defineUserStatus(String status){
 
         switch (status.toUpperCase()){

@@ -12,14 +12,31 @@ import org.slf4j.LoggerFactory;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LoginCommand.
+ */
 public class LoginCommand extends AbstractCommand {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginCommand.class);
+    
+    /** The Constant LOGIN. */
     private static final String LOGIN = "login";
+    
+    /** The Constant PASSWORD. */
     private static final String PASSWORD = "password";
 
+    /** The login service. */
     @InjectService
     private LoginService loginService;
 
+    /**
+     * Execute.
+     *
+     * @param request the request
+     * @return the router
+     */
     @Override
     public Router execute(RequestValue request) {
 

@@ -5,22 +5,55 @@ import com.kozitski.pufar.entity.notification.UnitType;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NotificationsCursor.
+ */
 public class NotificationsCursor {
+    
+    /** The Constant MIN_CURSOR_VALUE. */
     private static final int MIN_CURSOR_VALUE = 0;
+    
+    /** The max cursor value. */
     private int maxCursorValue = 1_000;
 
+    /** The cursors. */
     private ArrayList<Integer> cursors = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0));
+    
+    /** The step. */
     private int step = 6;
 
+    /**
+     * Instantiates a new notifications cursor.
+     */
     public NotificationsCursor() {
     }
+    
+    /**
+     * Instantiates a new notifications cursor.
+     *
+     * @param step the step
+     */
     public NotificationsCursor(int step) {
         this.step = step;
     }
+    
+    /**
+     * Sets the max cursor value.
+     *
+     * @param maxCursorValue the new max cursor value
+     */
     public void setMaxCursorValue(int maxCursorValue) {
         this.maxCursorValue = maxCursorValue;
     }
 
+    /**
+     * Sets the cursor.
+     *
+     * @param unitType the unit type
+     * @param isIncrement the is increment
+     * @return the int
+     */
     public int setCursor(UnitType unitType, boolean isIncrement){
         int result;
 
@@ -55,6 +88,14 @@ public class NotificationsCursor {
 
         return result;
     }
+    
+    /**
+     * Make step.
+     *
+     * @param position the position
+     * @param isIncrement the is increment
+     * @return the int
+     */
     private int makeStep(int position, boolean isIncrement){
         int result;
 

@@ -9,12 +9,25 @@ import com.kozitski.pufar.util.CommonConstant;
 
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ChangeNotificationCommand.
+ */
 public class ChangeNotificationCommand extends AbstractCommand {
+    
+    /** The Constant CHARACTER_IDENTIFIER. */
     private static final String CHARACTER_IDENTIFIER = "nextCharacter";
 
+    /** The notification service. */
     @InjectService
     private NotificationService notificationService;
 
+    /**
+     * Execute.
+     *
+     * @param requestValue the request value
+     * @return the router
+     */
     @Override
     public Router execute(RequestValue requestValue) {
         Router router = new Router();

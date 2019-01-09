@@ -8,9 +8,22 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.annotation.Annotation;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NumberValidator.
+ */
 public class NumberValidator implements Validator {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(NumberValidator.class);
 
+    /**
+     * Validate.
+     *
+     * @param annotations the annotations
+     * @param object the object
+     * @throws PufarValidationException the pufar validation exception
+     */
     @Override
     public void validate(Annotation[] annotations, Object object) throws PufarValidationException {
         for(Annotation annotation : annotations){
@@ -19,6 +32,14 @@ public class NumberValidator implements Validator {
             }
         }
     }
+    
+    /**
+     * User validation.
+     *
+     * @param annotation the annotation
+     * @param phoneNumber the phone number
+     * @throws PufarValidationException the pufar validation exception
+     */
     private void userValidation(NumberValid annotation, MobilPhoneNumber phoneNumber) throws PufarValidationException {
 
         String country = phoneNumber.getCountry();
@@ -61,6 +82,11 @@ public class NumberValidator implements Validator {
 
     }
 
+    /**
+     * To string.
+     *
+     * @return the string
+     */
     @Override
     public String toString() {
         return getValidatorName();

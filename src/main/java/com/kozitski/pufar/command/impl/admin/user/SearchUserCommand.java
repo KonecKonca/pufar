@@ -12,19 +12,40 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SearchUserCommand.
+ */
 public class SearchUserCommand extends AbstractCommand {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(SearchUserCommand.class);
 
+    /** The Constant USER_ID. */
     private static final String USER_ID = "adminSearchUserId";
+    
+    /** The Constant USER_LOGIN_START. */
     private static final String USER_LOGIN_START = "adminSearchUserLoginStart";
+    
+    /** The Constant USER_STATUS. */
     private static final String USER_STATUS = "adminSearchUserStatus";
 
+    /** The Constant OK_INPUT_MESSAGE. */
     private static final String OK_INPUT_MESSAGE = "were founded next users: ";
+    
+    /** The Constant BAD_INPUT_MESSAGE. */
     private static final String BAD_INPUT_MESSAGE = "Were entered incorrect user searching attributes";
 
+    /** The user service. */
     @InjectService
     private UserService userService;
 
+    /**
+     * Execute.
+     *
+     * @param request the request
+     * @return the router
+     */
     @Override
     public Router execute(RequestValue request) {
         Router router = new Router();

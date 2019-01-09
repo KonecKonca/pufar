@@ -16,15 +16,26 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CheckAccessFilter.
+ */
 @WebFilter(urlPatterns = "*.jsp")
 public class CheckAccessFilter implements Filter {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(CheckAccessFilter.class);
 
+    /** The admin pages. */
     private static Set<String> adminPages = new HashSet<>(Arrays.asList(PagePath.ADMIN_CONTROL_PANEL.getJspPath(), PagePath.ADMIN_ERROR_PAGE.getJspPath(),
             PagePath.ADMIN_SEARCH_NOTIFICATION.getJspPath(), PagePath.ADMIN_SEARCH_USER.getJspPath()));
+    
+    /** The not login pages. */
     private static Set<String> notLoginPages = new HashSet<>(Arrays.asList(PagePath.PUFAR_INDEX.getJspPath(), PagePath.PUFAR_CONTROLLER.getJspPath(),
             PagePath.INDEX_PAGE.getJspPath(), PagePath.LOGIN_PAGE.getJspPath(), PagePath.TEMPLATE_PAGE.getJspPath(),
             PagePath.NOTIFICATION_ADDITIONAL.getJspPath()));
+    
+    /** The all exist pages. */
     private static Set<String> allExistPages;
     static {
         PagePath[] paths = PagePath.values();
@@ -34,6 +45,15 @@ public class CheckAccessFilter implements Filter {
         }
     }
 
+    /**
+     * Do filter.
+     *
+     * @param req the req
+     * @param resp the resp
+     * @param filterChain the filter chain
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws ServletException the servlet exception
+     */
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
@@ -59,9 +79,19 @@ public class CheckAccessFilter implements Filter {
 
     }
 
+    /**
+     * Inits the.
+     *
+     * @param filterConfig the filter config
+     * @throws ServletException the servlet exception
+     */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
     }
+    
+    /**
+     * Destroy.
+     */
     @Override
     public void destroy() {
     }

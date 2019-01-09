@@ -21,16 +21,35 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserServiceImpl.
+ */
 public class UserServiceImpl extends AbstractService implements UserService {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+    
+    /** The Constant BAN_STATUS_TRUE. */
     private static final int BAN_STATUS_TRUE = 1;
+    
+    /** The Constant BAN_STATUS_FALSE. */
     private static final int BAN_STATUS_FALSE = 0;
 
+    /** The user dao. */
     @InjectDao
     private UserDao userDao;
+    
+    /** The number dao. */
     @InjectDao
     private NumberDao numberDao;
 
+    /**
+     * Search user by id.
+     *
+     * @param id the id
+     * @return the optional
+     */
     public Optional<User> searchUserById(long id) {
         Optional<User> user = userDao.searchById(id);
 
@@ -47,12 +66,25 @@ public class UserServiceImpl extends AbstractService implements UserService {
         return user;
     }
 
+    /**
+     * Search user by login.
+     *
+     * @param login the login
+     * @return the optional
+     * @throws PufarValidationException the pufar validation exception
+     */
     @Override
     public Optional<User> searchUserByLogin(String login) throws PufarValidationException {
         // any validation
         return userDao.searchUserByLogin(login);
     }
 
+    /**
+     * Search users by status.
+     *
+     * @param status the status
+     * @return the list
+     */
     @Override
     public List<User> searchUsersByStatus(UserStatus status) {
 
@@ -60,6 +92,15 @@ public class UserServiceImpl extends AbstractService implements UserService {
         return userDao.searchUsersByStatus(status);
     }
 
+    /**
+     * Adds the user.
+     *
+     * @param login the login
+     * @param password the password
+     * @return the user
+     * @throws PufarServiceException the pufar service exception
+     * @throws PufarValidationException the pufar validation exception
+     */
     @Override
     public User addUser(String login, String password) throws PufarServiceException, PufarValidationException {
         User user = new User();
@@ -80,26 +121,62 @@ public class UserServiceImpl extends AbstractService implements UserService {
 
     }
 
+    /**
+     * Search users by parameters.
+     *
+     * @param parameter the parameter
+     * @return the list
+     */
     @Override
     public List<User> searchUsersByParameters(UserParameter parameter) {
         return userDao.searchByParameters(parameter);
     }
 
+    /**
+     * Ban user by id.
+     *
+     * @param id the id
+     * @param currentUser the current user
+     * @return true, if successful
+     */
     @Override
     public boolean banUserById(long id, User currentUser) {
         return userDao.insertBanStatus(id, currentUser, BAN_STATUS_TRUE);
     }
 
+    /**
+     * Un ban user by id.
+     *
+     * @param id the id
+     * @param currentUser the current user
+     * @return true, if successful
+     */
     @Override
     public boolean unBanUserById(long id, User currentUser) {
         return userDao.insertBanStatus(id, currentUser, BAN_STATUS_FALSE);
     }
 
+    /**
+     * Change user login.
+     *
+     * @param id the id
+     * @param newLogin the new login
+     * @param currentUser the current user
+     * @return true, if successful
+     */
     @Override
     public boolean changeUserLogin(long id, String newLogin, User currentUser) {
         return userDao.changeUserLogin(id, newLogin, currentUser);
     }
 
+    /**
+     * Change user status by user id.
+     *
+     * @param id the id
+     * @param newStatus the new status
+     * @param currentUser the current user
+     * @return true, if successful
+     */
     @Override
     public boolean changeUserStatusByUserId(long id, String newStatus, User currentUser) {
         boolean result = false;
@@ -114,6 +191,17 @@ public class UserServiceImpl extends AbstractService implements UserService {
         return result;
     }
 
+    /**
+     * Change password.
+     *
+     * @param requestValue the request value
+     * @param userId the user id
+     * @param oldPassword the old password
+     * @param newPassword the new password
+     * @param newPasswordConfirm the new password confirm
+     * @throws PufarServiceException the pufar service exception
+     * @throws PufarValidationException the pufar validation exception
+     */
     @Override
     public void changePassword(RequestValue requestValue, long userId, String oldPassword, String newPassword, String newPasswordConfirm) throws PufarServiceException, PufarValidationException {
         boolean resultMessage = true;

@@ -9,15 +9,31 @@ import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PutMarkCommand.
+ */
 public class PutMarkCommand extends AbstractCommand {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(PutMarkCommand.class);
 
+    /** The Constant NOTIFICATION_ID. */
     private static final String NOTIFICATION_ID = "notificationId";
+    
+    /** The Constant MARK. */
     private static final String MARK = "radios";
 
+    /** The notification service. */
     @InjectService
     private NotificationService notificationService;
 
+    /**
+     * Execute.
+     *
+     * @param requestValue the request value
+     * @return the router
+     */
     @Override
     public Router execute(RequestValue requestValue) {
         Router router = new Router();

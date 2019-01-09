@@ -19,20 +19,51 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NotificationMapper.
+ */
 public class NotificationMapper {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(NotificationMapper.class);
 
+    /**
+     * Instantiates a new notification mapper.
+     */
     private NotificationMapper() { }
 
+    /** The Constant NOTIFICATION_ID. */
     private static final String NOTIFICATION_ID = "n.notification_id";
+    
+    /** The Constant NOTIFICATION_MESSAGE. */
     private static final String NOTIFICATION_MESSAGE = "n.message";
+    
+    /** The Constant NOTIFICATION_UNIT. */
     private static final String NOTIFICATION_UNIT = "un.name";
+    
+    /** The Constant NOTIFICATION_PRICE. */
     private static final String NOTIFICATION_PRICE = "n.price";
+    
+    /** The Constant NOTIFICATION_SENDER_ID. */
     private static final String NOTIFICATION_SENDER_ID = "u.user_id";
+    
+    /** The Constant NOTIFICATION_DATE. */
     private static final String NOTIFICATION_DATE = "n.date";
+    
+    /** The Constant NOTIFICATION_MARK. */
     private static final String NOTIFICATION_MARK = "mark";
+    
+    /** The Constant NOTIFICATION_CONTENT. */
     private static final String NOTIFICATION_CONTENT = "n.content";
 
+    /**
+     * Map notification.
+     *
+     * @param resultSet the result set
+     * @return the list
+     * @throws SQLException the SQL exception
+     */
     public static List<Notification> mapNotification(ResultSet resultSet) throws SQLException {
         ArrayList<Notification> result = new ArrayList<>();
 

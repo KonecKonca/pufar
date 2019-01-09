@@ -13,21 +13,44 @@ import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.locks.ReentrantLock;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ConnectionPool.
+ */
 public class ConnectionPool {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionPool.class);
+    
+    /** The Constant CONNECTION_URL. */
     private static final String CONNECTION_URL = "jdbc:mysql://localhost:3306/pufar?serverTimezone=UTC&useSSL=false";
+    
+    /** The Constant PROPERTY_PATH. */
     private static final String PROPERTY_PATH = "/WEB-INF/classes/pool/connectionPool.properties";
 
+    /** The full path. */
     private static String fullPath = (WebPathReturner.webPath + PROPERTY_PATH);
 
+    /** The Constant INITIAL_CAPACITY. */
     private static final int INITIAL_CAPACITY = 15;
 
+    /** The free connections. */
     private ArrayBlockingQueue<Connection> freeConnections = new ArrayBlockingQueue<>(INITIAL_CAPACITY);
+    
+    /** The release connections. */
     private ArrayBlockingQueue<Connection> releaseConnections = new ArrayBlockingQueue<>(INITIAL_CAPACITY);
 
+    /** The lock. */
     private static ReentrantLock lock = new ReentrantLock();
+    
+    /** The connection pool. */
     private static ConnectionPool connectionPool;
 
+    /**
+     * Gets the single instance of ConnectionPool.
+     *
+     * @return single instance of ConnectionPool
+     */
     public static ConnectionPool getInstance(){
 
         if(connectionPool == null){
@@ -48,6 +71,11 @@ public class ConnectionPool {
         return connectionPool;
     }
 
+    /**
+     * Instantiates a new connection pool.
+     *
+     * @throws SQLException the SQL exception
+     */
     private ConnectionPool() throws SQLException {
 
         try {
@@ -66,6 +94,10 @@ public class ConnectionPool {
         }
 
     }
+    
+    /**
+     * Inits the.
+     */
     private void init() {
 
         Properties properties = new Properties();
@@ -90,6 +122,11 @@ public class ConnectionPool {
 
     }
 
+    /**
+     * Gets the connection.
+     *
+     * @return the connection
+     */
     public Connection getConnection() {
         try {
             Connection connection = freeConnections.take();
@@ -102,6 +139,12 @@ public class ConnectionPool {
         }
 
     }
+    
+    /**
+     * Release connection.
+     *
+     * @param connection the connection
+     */
     void releaseConnection(Connection connection) {
 
         releaseConnections.remove(connection);
@@ -109,19 +152,45 @@ public class ConnectionPool {
 
     }
 
+    /**
+     * Sets the full path.
+     *
+     * @param fullPath the new full path
+     */
     public static void setFullPath(String fullPath) {
         ConnectionPool.fullPath = fullPath;
     }
+    
+    /**
+     * Trace poll capacity.
+     *
+     * @return the string
+     */
     public String tracePollCapacity(){
         return "freeConnections: " + freeConnections.size() + " releaseConnections: " + releaseConnections.size();
     }
+    
+    /**
+     * Gets the free connections size.
+     *
+     * @return the free connections size
+     */
     public int getFreeConnectionsSize(){
         return freeConnections.size();
     }
+    
+    /**
+     * Gets the release connections size.
+     *
+     * @return the release connections size
+     */
     public int getReleaseConnectionsSize(){
         return releaseConnections.size();
     }
 
+    /**
+     * Destroy.
+     */
     public void destroy(){
 
         for (int i = 0; i < freeConnections.size(); i++) {

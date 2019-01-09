@@ -13,17 +13,35 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ChangeNumberCommand.
+ */
 public class ChangeNumberCommand extends AbstractCommand {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(ChangeNumberCommand.class);
 
+    /** The Constant OPERATOR. */
     private static final String OPERATOR = "operator";
+    
+    /** The Constant MOBILE_NUMBER. */
     private static final String MOBILE_NUMBER = "mobileNumber";
+    
+    /** The Constant IS_NUMBER_EXIST. */
     private static final String IS_NUMBER_EXIST = "isNumberExist";
 
+    /** The number service. */
     @InjectService
     private NumberService numberService;
 
 
+    /**
+     * Execute.
+     *
+     * @param requestValue the request value
+     * @return the router
+     */
     @Override
     public Router execute(RequestValue requestValue) {
         Router router = new Router();

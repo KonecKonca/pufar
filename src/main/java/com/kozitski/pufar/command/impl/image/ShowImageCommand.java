@@ -16,9 +16,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ShowImageCommand.
+ */
 public class ShowImageCommand implements ResponseCommand {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(ShowImageCommand.class);
 
+    /**
+     * Execute.
+     *
+     * @param request the request
+     * @param response the response
+     * @return the router
+     */
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response){
         Router router = new Router();

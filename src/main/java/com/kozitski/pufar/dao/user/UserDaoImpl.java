@@ -17,32 +17,70 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserDaoImpl.
+ */
 public class UserDaoImpl implements UserDao {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(UserDaoImpl.class);
 
+    /** The Constant USER_ORDINAL_STATUS_INCREMENT. */
     private static final int USER_ORDINAL_STATUS_INCREMENT = 1;
 
+    /** The Constant SEARCH_USER_BY_ID. */
     private static final String SEARCH_USER_BY_ID = "SELECT u.user_id, u.login, u.password, s.value status, ban_status isBanned FROM users u LEFT JOIN statuses s ON u.status = s.status_id WHERE user_id = ?";
+    
+    /** The Constant SEARCH_USER_BY_LOGIN. */
     private static final String SEARCH_USER_BY_LOGIN = "SELECT u.user_id , u.login, u.password, s.value status, ban_status isBanned FROM users u LEFT JOIN statuses s ON u.status = s.status_id WHERE u.login = ?";
+    
+    /** The Constant SEARCH_USER_BY_STATUS. */
     private static final String SEARCH_USER_BY_STATUS = "SELECT u.user_id, u.login, u.password, s.value status, ban_status isBanned FROM users u LEFT JOIN statuses s ON u.status = s.status_id WHERE s.value = ?";
+    
+    /** The Constant INSERT_NEW_USER_COMMON. */
     private static final String INSERT_NEW_USER_COMMON = "INSERT INTO users values(null, ?, ?, ?, 0, null)";
 
+    /** The Constant SEARCH_USER_WITH_PARAMETERS_SQL_START. */
     // search with parameters
     private static final String SEARCH_USER_WITH_PARAMETERS_SQL_START = "SELECT u.user_id, u.login, u.password, s.value status, ban_status isBanned FROM users u LEFT JOIN statuses s ON u.status = s.status_id ";
+    
+    /** The Constant SEARCH_USER_WITH_PARAMETERS_SQL_WHERE. */
     private static final String SEARCH_USER_WITH_PARAMETERS_SQL_WHERE = "WHERE ";
+    
+    /** The Constant AND. */
     private static final String AND = " AND ";
+    
+    /** The Constant SEARCH_USER_WITH_PARAMETERS_SQL_LIMIT. */
     private static final String SEARCH_USER_WITH_PARAMETERS_SQL_LIMIT = "LIMIT 200";
 
+    /** The Constant SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_ID. */
     private static final String SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_ID = "u.user_id=?";
+    
+    /** The Constant SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_LOGIN. */
     private static final String SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_LOGIN = "u.login LIKE ?";
+    
+    /** The Constant SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_STATUS. */
     private static final String SEARCH_USER_WITH_PARAMETERS_SQL_WHERE_STATUS = "s.value=?";
 
+    /** The Constant BAN_USER_SQL. */
     private static final String BAN_USER_SQL = "UPDATE users SET ban_status=? WHERE user_id=?";
+    
+    /** The Constant CHANGE_USER_LOGIN_SQL. */
     private static final String CHANGE_USER_LOGIN_SQL = "UPDATE users SET login=? WHERE user_id=?";
+    
+    /** The Constant CHANGE_USER_STATUS_SQL. */
     private static final String CHANGE_USER_STATUS_SQL = "UPDATE users SET status=? WHERE user_id=?";
 
+    /** The Constant CHANGE_PASSWORD. */
     private static final String CHANGE_PASSWORD = "UPDATE users SET password=? WHERE user_id=?";
 
+    /**
+     * Search by id.
+     *
+     * @param id the id
+     * @return the optional
+     */
     @Override
     public Optional<User> searchById(long id) {
         Optional<User> user;
@@ -73,6 +111,13 @@ public class UserDaoImpl implements UserDao {
 
         return user;
     }
+    
+    /**
+     * Search user by login.
+     *
+     * @param login the login
+     * @return the optional
+     */
     @Override
     public Optional<User> searchUserByLogin(String login) {
 
@@ -99,6 +144,13 @@ public class UserDaoImpl implements UserDao {
         }
 
     }
+    
+    /**
+     * Search users by status.
+     *
+     * @param status the status
+     * @return the list
+     */
     @Override
     public List<User> searchUsersByStatus(UserStatus status) {
 
@@ -125,6 +177,14 @@ public class UserDaoImpl implements UserDao {
 
         return result;
     }
+    
+    /**
+     * Adds the user.
+     *
+     * @param user the user
+     * @return the user
+     * @throws PufarDAOException the pufar DAO exception
+     */
     @Override
     public User addUser(User user) throws PufarDAOException {
 
@@ -181,6 +241,13 @@ public class UserDaoImpl implements UserDao {
         }
 
     }
+    
+    /**
+     * Search by parameters.
+     *
+     * @param parameters the parameters
+     * @return the list
+     */
     @Override
     public List<User> searchByParameters(UserParameter parameters) {
 
@@ -206,6 +273,13 @@ public class UserDaoImpl implements UserDao {
         }
 
     }
+    
+    /**
+     * Generate search with parameters sql.
+     *
+     * @param parameters the parameters
+     * @return the string
+     */
     private String generateSearchWithParametersSql(UserParameter parameters){
         StringBuilder addSql = new StringBuilder();
         addSql.append(SEARCH_USER_WITH_PARAMETERS_SQL_START);
@@ -235,6 +309,14 @@ public class UserDaoImpl implements UserDao {
 
         return addSql.toString();
     }
+    
+    /**
+     * Full fill prepared statement.
+     *
+     * @param preparedStatement the prepared statement
+     * @param parameters the parameters
+     * @throws SQLException the SQL exception
+     */
     private void fullFillPreparedStatement(PreparedStatement preparedStatement, UserParameter parameters) throws SQLException {
         int counter = 1;
 
@@ -249,6 +331,14 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    /**
+     * Insert ban status.
+     *
+     * @param userId the user id
+     * @param currentUser the current user
+     * @param banStatus the ban status
+     * @return true, if successful
+     */
     @Override
     public boolean insertBanStatus(long userId, User currentUser, int banStatus) {
 
@@ -300,6 +390,15 @@ public class UserDaoImpl implements UserDao {
         }
 
     }
+    
+    /**
+     * Change user login.
+     *
+     * @param id the id
+     * @param newLogin the new login
+     * @param currentUser the current user
+     * @return true, if successful
+     */
     @Override
     public boolean changeUserLogin(long id, String newLogin, User currentUser) {
 
@@ -364,6 +463,15 @@ public class UserDaoImpl implements UserDao {
         }
 
     }
+    
+    /**
+     * Change user status by user id.
+     *
+     * @param id the id
+     * @param newStatus the new status
+     * @param currentUser the current user
+     * @return true, if successful
+     */
     @Override
     public boolean changeUserStatusByUserId(long id, UserStatus newStatus, User currentUser) {
 
@@ -419,6 +527,13 @@ public class UserDaoImpl implements UserDao {
 
     }
 
+    /**
+     * Change password.
+     *
+     * @param userId the user id
+     * @param newPassword the new password
+     * @throws PufarDAOException the pufar DAO exception
+     */
     @Override
     public void changePassword(long userId, String newPassword) throws PufarDAOException {
 

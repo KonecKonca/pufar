@@ -15,8 +15,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DialogDaoImpl.
+ */
 public class DialogDaoImpl implements DialogDAO {
+    
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(DialogDaoImpl.class);
+    
+    /** The Constant SEARCH_POPULAR_USERS_SQL. */
     private static final String SEARCH_POPULAR_USERS_SQL =
             "SELECT user_id, login, password, status, ban_status isBanned, MAX(dialog_number) max_number " +
                 "FROM( " +
@@ -70,9 +78,12 @@ public class DialogDaoImpl implements DialogDAO {
             "ORDER BY max_number DESC " +
             "LIMIT ?";
 
+    /** The Constant SEARCH_MESSAGE_FROM_TO_SQL. */
     private static final String SEARCH_MESSAGE_FROM_TO_SQL =
             "SELECT u1.login sender_login, u2.login receiver_login, message, date FROM dialoges d LEFT JOIN users u1 ON d.user_sender_id = u1.user_id " +
                 "LEFT JOIN users u2 ON d.user_receiver_id = u2.user_id WHERE d.user_sender_id = ? AND d.user_receiver_id = ?";
+    
+    /** The Constant SEARCH_MESSAGE_BETWEEN_SQL. */
     private static final String SEARCH_MESSAGE_BETWEEN_SQL =
             "SELECT u1.login sender_login, u2.login receiver_login, message, date FROM dialoges d " +
                 "LEFT JOIN users u1 ON d.user_sender_id = u1.user_id " +
@@ -83,6 +94,8 @@ public class DialogDaoImpl implements DialogDAO {
                 "LEFT JOIN users u4 ON d.user_receiver_id = u4.user_id WHERE d.user_sender_id = ? AND d.user_receiver_id = ? " +
 
             "ORDER BY date ASC";
+    
+    /** The Constant SEARCH_MESSAGE_BETWEEN_WITH_LIMIT_SQL. */
     private static final String SEARCH_MESSAGE_BETWEEN_WITH_LIMIT_SQL =
             "SELECT u1.login sender_login, u2.login receiver_login, message, date FROM dialoges d " +
                 "LEFT JOIN users u1 ON d.user_sender_id = u1.user_id " +
@@ -94,8 +107,17 @@ public class DialogDaoImpl implements DialogDAO {
 
             "ORDER BY date ASC " +
             "LIMIT ?, ?";
+    
+    /** The Constant ADD_MESSAGE_SQL. */
     private static final String ADD_MESSAGE_SQL = "INSERT INTO dialoges values(null, ?, ?, ?, ?)";
 
+    /**
+     * Search all messages from to.
+     *
+     * @param fromUserId the from user id
+     * @param toUserId the to user id
+     * @return the list
+     */
     @Override
     public List<UserMessage> searchAllMessagesFromTo(long fromUserId, long toUserId) {
         List<UserMessage> messages;
@@ -133,6 +155,14 @@ public class DialogDaoImpl implements DialogDAO {
 
         return messages;
     }
+    
+    /**
+     * Search all messages between.
+     *
+     * @param userId1 the user id 1
+     * @param userId2 the user id 2
+     * @return the list
+     */
     @Override
     public List<UserMessage> searchAllMessagesBetween(long userId1, long userId2) {
         List<UserMessage> messages;
@@ -171,6 +201,16 @@ public class DialogDaoImpl implements DialogDAO {
 
         return messages;
     }
+    
+    /**
+     * Search messages between with limit.
+     *
+     * @param userId1 the user id 1
+     * @param userId2 the user id 2
+     * @param since the since
+     * @param howMuch the how much
+     * @return the list
+     */
     @Override
     public List<UserMessage> searchMessagesBetweenWithLimit(long userId1, long userId2, int since, int howMuch) {
 
@@ -212,6 +252,14 @@ public class DialogDaoImpl implements DialogDAO {
 
         return messages;
     }
+    
+    /**
+     * Search popular user.
+     *
+     * @param forWhomUserId the for whom user id
+     * @param howMuch the how much
+     * @return the list
+     */
     @Override
     public List<User> searchPopularUser(long forWhomUserId, int howMuch) {
         List<User> users;
@@ -246,6 +294,14 @@ public class DialogDaoImpl implements DialogDAO {
         return users;
     }
 
+    /**
+     * Adds the message.
+     *
+     * @param senderId the sender id
+     * @param receiverId the receiver id
+     * @param message the message
+     * @throws PufarDAOException the pufar DAO exception
+     */
     @Override
     public void addMessage(long senderId, long receiverId, String message) throws PufarDAOException{
 
