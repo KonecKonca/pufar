@@ -3,7 +3,7 @@ package com.kozitski.pufar.command;
 public class Router {
 
     public enum RouteType{
-        FORWARD, REDIRECT
+        FORWARD, REDIRECT, RESPONSE_WRITE
     }
 
     private String pagePath;
@@ -32,5 +32,6 @@ public class Router {
     public boolean isForward(){
         return routeType.equals(RouteType.FORWARD);
     }
+    public boolean isRedirect(){ return routeType.equals(RouteType.REDIRECT); }
 
 }

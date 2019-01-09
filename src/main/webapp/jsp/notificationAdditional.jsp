@@ -17,7 +17,7 @@
             <div class="card-body">
                 <h4>${locale.getValue("additionalNotificationPrice")}: <strong>${lookingNotification.price}</strong></h4>
 
-                <img src="/imageShow/${lookingNotification.notificationId}" >
+                <img src="/pufar/${lookingNotification.notificationId}" >
 
                 <h6><strong>${locale.getValue("additionalNotificationDescription")}: </strong>${lookingNotification.message}</h6>
                 <h6><strong>${locale.getValue("additionalNotificationDate")}: </strong>${lookingNotification.getStringDate()}</h6>

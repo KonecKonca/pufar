@@ -1,6 +1,8 @@
-package com.kozitski.pufar.controller.image;
+package com.kozitski.pufar.command.impl.image;
 
 import com.kozitski.pufar.command.PagePath;
+import com.kozitski.pufar.command.Router;
+import com.kozitski.pufar.command.response.ResponseCommand;
 import com.kozitski.pufar.util.CommonConstant;
 import com.kozitski.pufar.util.LoadImageNameGenerator;
 import com.kozitski.pufar.util.path.WebPathReturner;
@@ -8,29 +10,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 
-
-@WebServlet(urlPatterns = {"/upload/*"})
-@MultipartConfig(fileSizeThreshold = 1024 * 1024
-        , maxFileSize = 1024 * 1024 * 5
-        , maxRequestSize = 1024 * 1024 * 5 * 5)
-public class FileUploadingServlet extends HttpServlet {
-    private static final Logger LOGGER = LoggerFactory.getLogger(FileUploadingServlet.class);
+public class LoadImageCommand implements ResponseCommand {
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoadImageCommand.class);
     private static final String DATA_PATH = "/loadImages";
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public Router execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        Router router = new Router();
+        router.setPagePath(PagePath.CREATE_NOTIFICATION.getJspPath());
 
-        // path from tomcat
         String uploadFilePath = WebPathReturner.webPath + DATA_PATH;
 
         File fileSaveDir = new File(uploadFilePath);
@@ -47,14 +41,16 @@ public class FileUploadingServlet extends HttpServlet {
             if (part.getSubmittedFileName() != null) {
                 part.write(fullName);
 
-                if(part.getSize() != 0){
+                if (part.getSize() != 0) {
                     request.getSession().setAttribute(CommonConstant.CURRENT_NOTIFICATION_IMAGE_PATH, fullName);
                 }
 
-                response.sendRedirect(PagePath.CREATE_NOTIFICATION.getJspPath());
+                router.setRouteType(Router.RouteType.REDIRECT);
             }
         }
 
+        return router;
     }
+
 
 }

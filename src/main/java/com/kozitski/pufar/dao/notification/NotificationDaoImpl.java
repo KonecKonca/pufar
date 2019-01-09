@@ -128,7 +128,9 @@ public class NotificationDaoImpl implements NotificationDao {
         ResultSet checkResultSet = null;
         ResultSet findRateResultSet = null;
 
-        try(Connection connection = ConnectionPool.getInstance().getConnection()){
+        Connection connection = null;
+        try{
+            connection = ConnectionPool.getInstance().getConnection();
             connection.setAutoCommit(false);
 
             checkStatement = connection.prepareStatement(CHECK_IS_MARK_EXIST);
@@ -168,10 +170,10 @@ public class NotificationDaoImpl implements NotificationDao {
             return rate;
         }
         catch (SQLException e) {
+            try { connection.rollback(); } catch (SQLException e1) { LOGGER.error(PufarDaoConstant.ROLLBACK_LOG); }
             throw new PufarDAOException("Mark wasn't added", e);
         }
         finally {
-
             try { DbUtils.close(checkResultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
             try { DbUtils.close(findRateResultSet); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
 
@@ -180,6 +182,7 @@ public class NotificationDaoImpl implements NotificationDao {
             try { DbUtils.close(insertStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
             try { DbUtils.close(findNewRateStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
 
+            try { DbUtils.close(connection); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_CONNECTION_LOG); }
         }
 
     }
@@ -400,7 +403,9 @@ public class NotificationDaoImpl implements NotificationDao {
         PreparedStatement dropRates = null;
         PreparedStatement dropNotification = null;
 
-        try(Connection connection = ConnectionPool.getInstance().getConnection()){
+        Connection connection = null;
+        try{
+            connection = ConnectionPool.getInstance().getConnection();
             connection.setAutoCommit(false);
 
             dropComments = connection.prepareStatement(DELETE_RATE_BY_NOTIFICATION_ID);
@@ -420,6 +425,7 @@ public class NotificationDaoImpl implements NotificationDao {
             result = true;
         }
         catch (SQLException e) {
+            try { connection.rollback(); } catch (SQLException e1) { LOGGER.error(PufarDaoConstant.ROLLBACK_LOG); }
             LOGGER.warn("Notification wasn't deleted");
             result = false;
         }
@@ -427,6 +433,8 @@ public class NotificationDaoImpl implements NotificationDao {
             try { DbUtils.close(dropComments); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
             try { DbUtils.close(dropRates); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
             try { DbUtils.close(dropNotification); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+
+            try { DbUtils.close(connection); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_CONNECTION_LOG); }
         }
 
         return result;
@@ -461,7 +469,9 @@ public class NotificationDaoImpl implements NotificationDao {
         PreparedStatement preparedStatementRate = null;
         ResultSet generatedKeys = null;
 
-        try(Connection connection = ConnectionPool.getInstance().getConnection()){
+        Connection connection = null;
+        try{
+            connection = ConnectionPool.getInstance().getConnection();
             connection.setAutoCommit(false);
 
             preparedStatement = connection.prepareStatement(ADD_NOTIFICATION, Statement.RETURN_GENERATED_KEYS);
@@ -494,6 +504,7 @@ public class NotificationDaoImpl implements NotificationDao {
             connection.commit();
         }
         catch (SQLException e) {
+            try { connection.rollback(); } catch (SQLException e1) { LOGGER.error(PufarDaoConstant.ROLLBACK_LOG); }
             throw new PufarDAOException("Notification was'n added", e);
         }
         catch (IOException e) {
@@ -503,6 +514,8 @@ public class NotificationDaoImpl implements NotificationDao {
             try { DbUtils.close(generatedKeys); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
             try { DbUtils.close(preparedStatementRate); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
             try { DbUtils.close(preparedStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
+
+            try { DbUtils.close(connection); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_CONNECTION_LOG); }
         }
 
     }

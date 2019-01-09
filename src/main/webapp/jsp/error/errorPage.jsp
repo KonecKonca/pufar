@@ -30,16 +30,33 @@
 
             <p class="error">
 
-            <strong>Request from:</strong> ${pageContext.errorData.requestURI} <br>
-            <strong>ServletName ot type:</strong>  ${pageContext.errorData.servletName}<br>
-            <strong>StatusCode:</strong>  ${pageContext.errorData.statusCode}<br>
-            <strong>Exception:</strong> ${pageContext.exception} <br>
-            <strong>Message:</strong>  ${pageContext.exception.message}<br>
+            <c:choose>
+                <c:when test="${currentUser != null && (currentUser.status.toString() == 'ADMIN' || currentUser.status.toString() == 'SUPER_ADMIN')}">
+                <strong>Request from:</strong> ${pageContext.errorData.requestURI} <br>
+                <strong>ServletName ot type:</strong>  ${pageContext.errorData.servletName}<br>
+                <strong>StatusCode:</strong>  ${pageContext.errorData.statusCode}<br>
+                <strong>Exception:</strong> ${pageContext.exception} <br>
+                <strong>Message:</strong>  ${pageContext.exception.message}<br>
 
-            <strong>Case:</strong>
-            <c:forEach var="traceElement" items="${pageContext.errorData.throwable.stackTrace}">
-                <c:out value="${traceElement}"/>
-            </c:forEach>
+                <strong>Case:</strong>
+                <c:forEach var="traceElement" items="${pageContext.errorData.throwable.stackTrace}">
+                    <c:out value="${traceElement}"/>
+                </c:forEach>
+                </c:when>
+
+                <c:otherwise>
+                    <p>
+                        <span class="go3d">4</span>
+                        <span class="go3d">0</span>
+                        <span class="go3d">4</span>
+                        <span class="go3d">!</span>
+
+                    </p>
+
+                    <p class="error">${locale.getValue("userErrorMessage")}</p>
+                </c:otherwise>
+
+            </c:choose>
 
             <br><br><br><br><br><br>
 

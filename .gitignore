@@ -4,7 +4,5 @@ log.*
 *.ear
 *.class
 .idea/
-.idea/*
-.idea*
 target/
 *.iml

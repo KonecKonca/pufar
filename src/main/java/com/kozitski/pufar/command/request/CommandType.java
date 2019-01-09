@@ -1,20 +1,22 @@
 package com.kozitski.pufar.command.request;
 
-import com.kozitski.pufar.command.impl.*;
+import com.kozitski.pufar.command.impl.IndexCommand;
 import com.kozitski.pufar.command.impl.admin.AdminControlPanelCommand;
 import com.kozitski.pufar.command.impl.admin.notification.choose.ChangeNotificationMessageCommand;
-import com.kozitski.pufar.command.impl.admin.notification.choose.SearchNotificationCommand;
 import com.kozitski.pufar.command.impl.admin.notification.choose.DropCommentCommand;
 import com.kozitski.pufar.command.impl.admin.notification.choose.DropNotificationCommand;
+import com.kozitski.pufar.command.impl.admin.notification.choose.SearchNotificationCommand;
 import com.kozitski.pufar.command.impl.admin.notification.execute.SearchNotificationExecuteCommand;
 import com.kozitski.pufar.command.impl.admin.user.choose.*;
 import com.kozitski.pufar.command.impl.admin.user.execute.SearchUserCommand;
 import com.kozitski.pufar.command.impl.autorization.LoginCommand;
 import com.kozitski.pufar.command.impl.autorization.RegistrationCommand;
 import com.kozitski.pufar.command.impl.dialog.*;
-import com.kozitski.pufar.command.impl.error.ErrorCommand;
 import com.kozitski.pufar.command.impl.locale.ChangeLocalCommand;
-import com.kozitski.pufar.command.impl.notification.*;
+import com.kozitski.pufar.command.impl.notification.ChangeNotificationCommand;
+import com.kozitski.pufar.command.impl.notification.ChooseCreateNotificationCommand;
+import com.kozitski.pufar.command.impl.notification.CreateNotificationCommand;
+import com.kozitski.pufar.command.impl.notification.ShowNotificationByUnitTypeCommand;
 import com.kozitski.pufar.command.impl.notification.additional.PutMarkCommand;
 import com.kozitski.pufar.command.impl.notification.additional.SentCommentCommand;
 import com.kozitski.pufar.command.impl.notification.additional.SentMessageToAuthorCommand;
@@ -29,7 +31,6 @@ public enum CommandType {
     INDEX(new IndexCommand()),
     GET_CONTACT(new GetContactCommand()),
     LOGIN(new LoginCommand()),
-    ERROR(new ErrorCommand()),
     REGISTRATION(new RegistrationCommand()),
     MESSAGE_NEXT(new NextMessageCommand()),
     MESSAGE_PREVIOUS(new PreviousMessageCommand()),
@@ -54,7 +55,7 @@ public enum CommandType {
     CHANGE_LOCALE(new ChangeLocalCommand()),
 
     // admin commands
-        // define inputPage
+    // define inputPage
     BAN_USER(new BanUserCommand()),
     UNBAN_USER(new UnBanUserCommand()),
     CHANGE_USER_LOGIN(new ChangeUserLoginCommand()),
@@ -65,7 +66,7 @@ public enum CommandType {
     CHOOSE_USER(new ChooseUserCommand()),
     CHOOSE_NOTIFICATION(new SearchNotificationCommand()),
     CONTROL_PANEL(new AdminControlPanelCommand()),
-        // execute search
+    // execute search
     CHOSE_USER_EXECUTE(new SearchUserCommand()),
     CHOSE_NOTIFICATION_EXECUTE(new SearchNotificationExecuteCommand());
 
@@ -74,6 +75,7 @@ public enum CommandType {
     CommandType(AbstractCommand command) {
         this.command = command;
     }
+
     public AbstractCommand getCommand() {
         return command;
     }

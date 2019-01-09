@@ -134,8 +134,9 @@ public class UserDaoImpl implements UserDao {
         ResultSet searchUserResultSet = null;
         ResultSet generatedKeys = null;
 
-        try(Connection  connection = ConnectionPool.getInstance().getConnection()){
-
+        Connection connection = null;
+        try{
+            connection = ConnectionPool.getInstance().getConnection();
             connection.setAutoCommit(false);
 
             searchUserStatement = connection.prepareStatement(SEARCH_USER_BY_LOGIN);
@@ -166,6 +167,7 @@ public class UserDaoImpl implements UserDao {
             }
         }
         catch (SQLException e) {
+            try { connection.rollback(); } catch (SQLException e1) { LOGGER.error(PufarDaoConstant.ROLLBACK_LOG); }
             throw new PufarDAOException("User not added", e);
         }
         finally {
@@ -175,6 +177,7 @@ public class UserDaoImpl implements UserDao {
             try { DbUtils.close(searchUserStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
             try { DbUtils.close(userAddStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
 
+            try { DbUtils.close(connection); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_CONNECTION_LOG); }
         }
 
     }
@@ -254,7 +257,9 @@ public class UserDaoImpl implements UserDao {
 
         ResultSet resultSet = null;
 
-        try(Connection  connection = ConnectionPool.getInstance().getConnection()){
+        Connection connection = null;
+        try{
+            connection = ConnectionPool.getInstance().getConnection();
             connection.setAutoCommit(false);
 
             searchUserStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
@@ -282,6 +287,7 @@ public class UserDaoImpl implements UserDao {
             return false;
         }
         catch (SQLException | PufarDAOException e) {
+            try { connection.rollback(); } catch (SQLException e1) { LOGGER.error(PufarDaoConstant.ROLLBACK_LOG); }
             return false;
         }
         finally {
@@ -290,6 +296,7 @@ public class UserDaoImpl implements UserDao {
             try { DbUtils.close(searchUserStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
             try { DbUtils.close(banStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
 
+            try { DbUtils.close(connection); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_CONNECTION_LOG); }
         }
 
     }
@@ -303,7 +310,9 @@ public class UserDaoImpl implements UserDao {
         ResultSet searchUserResultSet = null;
         ResultSet checkNewLoginResultSet = null;
 
-        try(Connection  connection = ConnectionPool.getInstance().getConnection()){
+        Connection connection = null;
+        try{
+            connection = ConnectionPool.getInstance().getConnection();
             connection.setAutoCommit(false);
 
             searchUserStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
@@ -340,6 +349,7 @@ public class UserDaoImpl implements UserDao {
             return false;
         }
         catch (SQLException | PufarDAOException e) {
+            try { connection.rollback(); } catch (SQLException e1) { LOGGER.error(PufarDaoConstant.ROLLBACK_LOG); }
             return false;
         }
         finally {
@@ -349,6 +359,8 @@ public class UserDaoImpl implements UserDao {
             try { DbUtils.close(searchUserStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
             try { DbUtils.close(searchByNewLogin); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
             try { DbUtils.close(changeLoginStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+
+            try { DbUtils.close(connection); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_CONNECTION_LOG); }
         }
 
     }
@@ -360,7 +372,9 @@ public class UserDaoImpl implements UserDao {
 
         ResultSet resultSet = null;
 
-        try(Connection  connection = ConnectionPool.getInstance().getConnection()){
+        Connection connection = null;
+        try{
+            connection = ConnectionPool.getInstance().getConnection();
             connection.setAutoCommit(false);
 
             searchUserStatement = connection.prepareStatement(SEARCH_USER_BY_ID);
@@ -391,6 +405,7 @@ public class UserDaoImpl implements UserDao {
             return false;
         }
         catch (SQLException | PufarDAOException e) {
+            try { connection.rollback(); } catch (SQLException e1) { LOGGER.error(PufarDaoConstant.ROLLBACK_LOG); }
             return false;
         }
         finally {
@@ -398,6 +413,8 @@ public class UserDaoImpl implements UserDao {
 
             try { DbUtils.close(searchUserStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
             try { DbUtils.close(changeUserStatus); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+            try { DbUtils.close(connection); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_CONNECTION_LOG); }
+
         }
 
     }

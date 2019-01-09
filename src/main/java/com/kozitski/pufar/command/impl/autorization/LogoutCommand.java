@@ -2,7 +2,7 @@ package com.kozitski.pufar.command.impl.autorization;
 
 import com.kozitski.pufar.command.PagePath;
 import com.kozitski.pufar.command.Router;
-import com.kozitski.pufar.command.response.ResourceCommand;
+import com.kozitski.pufar.command.response.ResponseCommand;
 import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LogoutCommand implements ResourceCommand {
+public class LogoutCommand implements ResponseCommand {
     private static final Logger LOGGER = LoggerFactory.getLogger(LogoutCommand.class);
 
     @Override

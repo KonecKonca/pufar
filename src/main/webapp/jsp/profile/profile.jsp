@@ -21,9 +21,10 @@
                     type:'POST',
                     data: {
                         password1 : password1,
-                        password2 : password2
+                        password2 : password2,
+                        commandResponse : 'CHECK_PASSWORDS'
                     },
-                    url:'/AjaxController',
+                    url:'/pufar',
 
                     success: function (result) {
                         document.getElementById("isPasswordEquals1").textContent=result;
@@ -43,9 +44,10 @@
                     type:'POST',
                     data: {
                         password1 : password1,
-                        password2 : password2
+                        password2 : password2,
+                        commandResponse : 'CHECK_PASSWORDS'
                     },
-                    url:'/AjaxController',
+                    url:'/pufar',
                     success: function (result) {
                         document.getElementById("isPasswordEquals1").textContent=result;
                         document.getElementById("isPasswordEquals2").textContent=result;

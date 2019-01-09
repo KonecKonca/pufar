@@ -1,5 +1,7 @@
-package com.kozitski.pufar.controller.image;
+package com.kozitski.pufar.command.impl.image;
 
+import com.kozitski.pufar.command.Router;
+import com.kozitski.pufar.command.response.ResponseCommand;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
@@ -7,8 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
@@ -16,24 +16,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-@WebServlet("/imageShow/*")
-public class ImageShowController extends HttpServlet {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ImageShowController.class);
-    private static final int SUBSTRING_SLASH = 1;
+public class ShowImageCommand implements ResponseCommand {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ShowImageCommand.class);
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public Router execute(HttpServletRequest request, HttpServletResponse response){
+        Router router = new Router();
+        router.setRouteType(Router.RouteType.RESPONSE_WRITE);
 
-        String path = request.getPathInfo();
-        path = path.substring(SUBSTRING_SLASH);
+        String receivedString = (String) request.getAttribute(CommonConstant.RECEIVED_STRING);
 
-        long notificationId =  Long.parseLong(path);
+        long notificationId = Long.parseLong(receivedString);
         @SuppressWarnings("unchecked")
         ArrayList<Notification> notifications = (ArrayList<Notification>) request.getSession().getAttribute(CommonConstant.CURRENT_NOTIFICATIONS);
 
         Notification currentNotification = null;
-        for(Notification notification : notifications){
-            if(notification.getNotificationId() == notificationId){
+        for (Notification notification : notifications) {
+            if (notification.getNotificationId() == notificationId) {
                 currentNotification = notification;
             }
         }
@@ -43,11 +42,12 @@ public class ImageShowController extends HttpServlet {
             response.setContentType("image/png");
             ImageIO.write(image, "png", response.getOutputStream());
 
-        }
-        catch (IOException | NullPointerException e) {
+        } catch (IOException | NullPointerException e) {
             LOGGER.warn("Notification image wasn't show");
         }
 
+        return router;
     }
+
 
 }

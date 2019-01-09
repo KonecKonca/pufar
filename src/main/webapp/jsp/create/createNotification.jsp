@@ -16,7 +16,8 @@
 
     <h2>${locale.getValue("createNotificationCommonMessage")}</h2>
 
-    <form action="/upload" enctype="multipart/form-data" method="POST">
+    <form action="/pufar" enctype="multipart/form-data" method="POST">
+        <input type="hidden" value="LOAD_IMAGE" name="commandResponse">
 
         <h3>${locale.getValue("createNotificationImage")}</h3>
         <input type="file" name="${locale.getValue("createNotificationImage")}">

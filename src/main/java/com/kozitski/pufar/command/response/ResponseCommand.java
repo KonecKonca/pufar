@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public interface ResourceCommand {
+public interface ResponseCommand {
 
     Router execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
 

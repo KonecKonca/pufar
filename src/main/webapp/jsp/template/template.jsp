@@ -197,7 +197,7 @@
                                 <h5 class="card-title">${notification.unit}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">${locale.getValue("additionalNotificationPrice")}: ${notification.price}</h6>
 
-                                <img src="/imageShow/${notification.notificationId}" >
+                                <img src="/pufar/${notification.notificationId}">
 
                                 <p class="card-text">${notification.message}</p>
                                 <p class="card-text">${notification.getStringDate()}</p>

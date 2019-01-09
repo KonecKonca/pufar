@@ -8,8 +8,8 @@ public class CommandFactoryWithResponse {
 
     private CommandFactoryWithResponse() { }
 
-    public static ResourceCommand chooseCommand(String commandName){
-        ResourceCommand command = null;
+    public static ResponseCommand chooseCommand(String commandName){
+        ResponseCommand command = null;
 
         if(commandName == null || commandName.isEmpty()){
             return command;

@@ -104,7 +104,9 @@ public class NumberDaoImpl implements NumberDao {
         PreparedStatement insertUserStatement = null;
         ResultSet generatedKeys = null;
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection()) {
+        Connection connection = null;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
             connection.setAutoCommit(false);
 
             insertNumberStatement = connection.prepareStatement(INSERT_NUMBER_BY_USER_ID, Statement.RETURN_GENERATED_KEYS);
@@ -127,24 +129,15 @@ public class NumberDaoImpl implements NumberDao {
 
             connection.commit();
         } catch (SQLException e) {
+            try { connection.rollback(); } catch (SQLException e1) { LOGGER.error(PufarDaoConstant.ROLLBACK_LOG); }
             throw new PufarDAOException("Number wasn't inserted", e);
         } finally {
-            try {
-                DbUtils.close(generatedKeys);
-            } catch (SQLException e) {
-                LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG);
-            }
+            try { DbUtils.close(generatedKeys); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_RESULTSET_ERROR_LOG); }
 
-            try {
-                DbUtils.close(insertUserStatement);
-            } catch (SQLException e) {
-                LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG);
-            }
-            try {
-                DbUtils.close(insertNumberStatement);
-            } catch (SQLException e) {
-                LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG);
-            }
+            try { DbUtils.close(insertUserStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+            try { DbUtils.close(insertNumberStatement); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
+
+            try { DbUtils.close(connection); } catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_CONNECTION_LOG); }
         }
 
     }

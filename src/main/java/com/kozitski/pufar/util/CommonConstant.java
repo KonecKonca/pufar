@@ -4,6 +4,7 @@ public class CommonConstant {
 
     public static final String DATE_TIME_COMMON_PATTERN = "d.MM.yyyy HH:mm:ss";
     public static final String CURRENT_PAGE = "currentPage";
+    public static final String RECEIVED_STRING = "receivedString";
 
     // servlet attributes
     public static final String DEFAULT_IMAGE_PATH = "/image/notificationDefault.png";
