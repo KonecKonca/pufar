@@ -1,4 +1,4 @@
-package com.kozitski.pufar.command.impl.admin.notification.choose;
+package com.kozitski.pufar.command.impl.admin.notification;
 
 import com.kozitski.pufar.command.request.AbstractCommand;
 import com.kozitski.pufar.command.PagePath;

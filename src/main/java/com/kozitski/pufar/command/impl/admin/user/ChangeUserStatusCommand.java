@@ -1,4 +1,4 @@
-package com.kozitski.pufar.command.impl.admin.user.choose;
+package com.kozitski.pufar.command.impl.admin.user;
 
 import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.command.request.AbstractCommand;
@@ -8,12 +8,13 @@ import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class UnBanUserCommand extends AbstractCommand {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UnBanUserCommand.class);
+public class ChangeUserStatusCommand extends AbstractCommand {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ChangeUserStatusCommand.class);
     private static final String USER_ID = "id";
+    private static final String LOGIN = "status";
 
-    private static final String OK_INPUT_MESSAGE = "user was UnBanned ";
-    private static final String BAD_INPUT_MESSAGE = "was entered incorrect user ID to UNBAN user";
+    private static final String OK_INPUT_MESSAGE = "user's login was changed";
+    private static final String BAD_INPUT_MESSAGE = "was entered incorrect user ID or new login exactly exist";
 
     @InjectService
     private UserService userService;
@@ -27,8 +28,9 @@ public class UnBanUserCommand extends AbstractCommand {
         try {
             long id = Long.parseLong(request.getAttribute(USER_ID).toString());
             User currentUser = (User) request.getAttribute(CommonConstant.CURRENT_USER);
+            String status = request.getAttribute(LOGIN).toString();
 
-            if (userService.unBanUserById(id, currentUser)) {
+            if (userService.changeUserStatusByUserId(id, status, currentUser)) {
                 request.servletSessionPut(CommonConstant.ADMIN_INPUT_MESSAGE, OK_INPUT_MESSAGE);
             } else {
                 request.servletSessionPut(CommonConstant.ADMIN_INPUT_MESSAGE, BAD_INPUT_MESSAGE);
@@ -40,5 +42,6 @@ public class UnBanUserCommand extends AbstractCommand {
 
         return router;
     }
+
 
 }

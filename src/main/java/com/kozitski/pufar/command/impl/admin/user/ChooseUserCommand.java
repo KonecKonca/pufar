@@ -1,4 +1,4 @@
-package com.kozitski.pufar.command.impl.admin.user.choose;
+package com.kozitski.pufar.command.impl.admin.user;
 
 import com.kozitski.pufar.command.request.AbstractCommand;
 import com.kozitski.pufar.command.PagePath;

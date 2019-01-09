@@ -1,4 +1,4 @@
-package com.kozitski.pufar.command.impl.admin.user.execute;
+package com.kozitski.pufar.command.impl.admin.user;
 
 import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.command.request.AbstractCommand;
