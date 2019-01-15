@@ -82,9 +82,9 @@
                     <input type="submit" value="${locale.getValue("profileMobilePhoneChange")}" class="btn btn-success">
 
                     ${locale.getValue("profileMobilePhonePrefix")}
-                    <input type="text" name="operator" placeholder="${locale.getValue("profileMobilPhoneLabel1")}" size="2" class="form-control-sm" required
+                    <input type="text" name="operator" placeholder="${locale.getValue("profileMobilPhoneLabel1")}" size="2" maxlength="2" class="form-control-sm" required
                            pattern="[\d]{2}" title="${locale.getValue("commonOperatorPattern")}"/>
-                    <input type="text" name="mobileNumber" placeholder="${locale.getValue("profileMobilPhoneLabel2")}" size="15" class="form-control-sm" required
+                    <input type="text" name="mobileNumber" placeholder="${locale.getValue("profileMobilPhoneLabel2")}" size="15" maxlength="7" class="form-control-sm" required
                            pattern="[\d]{7}" title="${locale.getValue("commonNumberPattern")}"/><br>
                 </form>
 

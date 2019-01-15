@@ -304,7 +304,6 @@ public class DialogDaoImpl implements DialogDao {
      */
     @Override
     public void addMessage(long senderId, long receiverId, String message) throws PufarDAOException{
-
         PreparedStatement insertStatement = null;
         try(Connection connection = ConnectionPool.getInstance().getConnection()) {
             insertStatement = connection.prepareStatement(ADD_MESSAGE_SQL);
@@ -322,12 +321,8 @@ public class DialogDaoImpl implements DialogDao {
             throw new PufarDAOException(e);
         }
         finally {
-            try {
-                DbUtils.close(insertStatement);
-            }
-            catch (SQLException e) {
-                LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG);
-            }
+            try { DbUtils.close(insertStatement); }
+            catch (SQLException e) { LOGGER.error(PufarDaoConstant.CLOSE_STATEMENT_ERROR_LOG); }
         }
 
     }

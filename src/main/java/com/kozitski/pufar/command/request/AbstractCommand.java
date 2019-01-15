@@ -52,7 +52,7 @@ public abstract class AbstractCommand {
             if(annotation != null){
 
                 String injectedType = field.getType().getSimpleName();
-                String injectedRealType = null;
+                String injectedRealType;
 
                 Object propertyElem = properties.get(injectedType);
 

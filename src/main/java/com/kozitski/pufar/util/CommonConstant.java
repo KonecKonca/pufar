@@ -43,7 +43,7 @@ public class CommonConstant {
     public static final String INDEX_MESSAGE = "indexMessage";
     
     /** The Constant SYSTEM_USER_ID. */
-    public static final long SYSTEM_USER_ID = 19;
+    public static final long SYSTEM_USER_ID = 1;
 
     /** The Constant ACCESS_RIGHT_MESSAGE. */
     public static final String ACCESS_RIGHT_MESSAGE = "accessRight";

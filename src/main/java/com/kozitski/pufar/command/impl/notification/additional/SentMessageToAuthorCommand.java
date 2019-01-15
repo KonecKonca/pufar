@@ -65,5 +65,4 @@ public class SentMessageToAuthorCommand extends AbstractCommand {
     }
 
 
-
 }
