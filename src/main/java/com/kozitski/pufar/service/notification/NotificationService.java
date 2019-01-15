@@ -15,7 +15,6 @@ import com.kozitski.pufar.validation.annotation.primitive.string.StringValid;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface NotificationService.
  */

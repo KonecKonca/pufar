@@ -5,7 +5,6 @@ import com.kozitski.pufar.util.CommonConstant;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class NotificationComment.
  */

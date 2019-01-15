@@ -8,9 +8,9 @@ import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ChangeUserStatusCommand.
+ * Command to change user status
  */
 public class ChangeUserStatusCommand extends AbstractCommand {
     

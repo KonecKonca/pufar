@@ -1,6 +1,5 @@
 package com.kozitski.pufar.validation.annotation.primitive.string;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class StringDefaultValidationParameter.
  */

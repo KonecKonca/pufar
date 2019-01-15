@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CheckPasswordCommand.
+ * Command to asynchronously compare entered passwords.
+ * This command developed with plans in future to
+ * not only compare passwords and check passwords on
+ * conformity with rules same as only english symbols etc
  */
 public class CheckPasswordCommand implements ResponseCommand {
     

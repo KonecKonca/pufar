@@ -22,9 +22,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PufarCommonController.
+ * Controller of applications which choose necessary
+ * command and execute it
  */
 @WebServlet("/pufar/*")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024
@@ -108,14 +109,14 @@ public class PufarCommonController extends HttpServlet {
             RequestValueTransformer.transformTo(request, requestValue);
         }
 
-        request.getSession().setAttribute(CommonConstant.CURRENT_PAGE, router.getPagePath());
-
         if (router.isForward()) {
             LOGGER.info("FORWARD on " + router.getPagePath());
+            request.getSession().setAttribute(CommonConstant.CURRENT_PAGE, router.getPagePath());
             request.getRequestDispatcher(router.getPagePath()).forward(request, response);
         }
         else if (router.isRedirect()){
             LOGGER.info("REDIRECT on " + router.getPagePath());
+            request.getSession().setAttribute(CommonConstant.CURRENT_PAGE, router.getPagePath());
             response.sendRedirect(router.getPagePath());
         }
 

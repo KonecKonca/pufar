@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ProxyConnection.
  */

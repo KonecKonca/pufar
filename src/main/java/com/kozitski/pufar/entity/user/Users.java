@@ -3,9 +3,9 @@ package com.kozitski.pufar.entity.user;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Users.
+ * Static service methods for user beans
  */
 public class Users {
 

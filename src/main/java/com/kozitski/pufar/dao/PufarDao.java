@@ -3,7 +3,6 @@ package com.kozitski.pufar.dao;
 import java.util.List;
 import java.util.Optional;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface PufarDao.
  *

@@ -13,9 +13,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ChangeNumberCommand.
+ * Command for changing number
  */
 public class ChangeNumberCommand extends AbstractCommand {
     

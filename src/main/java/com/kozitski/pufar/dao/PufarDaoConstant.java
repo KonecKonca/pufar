@@ -1,6 +1,5 @@
 package com.kozitski.pufar.dao;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PufarDaoConstant.
  */

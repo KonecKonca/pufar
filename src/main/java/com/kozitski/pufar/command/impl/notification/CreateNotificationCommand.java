@@ -21,9 +21,9 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CreateNotificationCommand.
+ * Command for creating notification
  */
 public class CreateNotificationCommand extends AbstractCommand {
     

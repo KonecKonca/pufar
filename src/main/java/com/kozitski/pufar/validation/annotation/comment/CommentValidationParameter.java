@@ -1,6 +1,5 @@
 package com.kozitski.pufar.validation.annotation.comment;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CommentValidationParameter.
  */

@@ -5,9 +5,10 @@ import com.kozitski.pufar.command.RequestValue;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RequestValueTransformer.
+ * Transform HttpServletRequest into RequestValue
+ * and in reverse order.
  */
 public class RequestValueTransformer {
 

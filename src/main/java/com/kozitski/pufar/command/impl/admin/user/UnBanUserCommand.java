@@ -8,9 +8,9 @@ import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UnBanUserCommand.
+ * Command to unban user
  */
 public class UnBanUserCommand extends AbstractCommand {
     

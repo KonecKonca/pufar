@@ -9,9 +9,9 @@ import com.kozitski.pufar.util.CommonConstant;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ChangeNotificationCommand.
+ * Command for changing notification
  */
 public class ChangeNotificationCommand extends AbstractCommand {
     

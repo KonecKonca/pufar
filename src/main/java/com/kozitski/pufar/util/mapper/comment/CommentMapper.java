@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CommentMapper.
+ * Map ResultSet into NotificationComment
  */
 public class CommentMapper {
     

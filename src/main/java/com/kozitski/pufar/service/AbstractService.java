@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Properties;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AbstractService.
+ * Super class for all services.
  */
 public abstract class AbstractService {
     
@@ -29,7 +29,8 @@ public abstract class AbstractService {
     }
 
     /**
-     * Inits the.
+     * Inits the makes dependency injection
+     * for all necessary fields
      */
     private void init() {
 

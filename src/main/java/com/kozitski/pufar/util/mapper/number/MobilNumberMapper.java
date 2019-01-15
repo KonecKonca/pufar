@@ -6,9 +6,9 @@ import com.kozitski.pufar.exception.PufarDAOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MobilNumberMapper.
+ * Maps ResultSet into MobilPhoneNumber.
  */
 public class MobilNumberMapper {
     

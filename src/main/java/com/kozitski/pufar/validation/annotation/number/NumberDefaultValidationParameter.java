@@ -1,6 +1,5 @@
 package com.kozitski.pufar.validation.annotation.number;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class NumberDefaultValidationParameter.
  */

@@ -4,9 +4,9 @@ import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.command.request.AbstractCommand;
 import com.kozitski.pufar.service.dialoge.DialogService;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ChangeOpponent.
+ * Command for changing chat opponent
  */
 public class ChangeOpponent extends AbstractCommand {
 

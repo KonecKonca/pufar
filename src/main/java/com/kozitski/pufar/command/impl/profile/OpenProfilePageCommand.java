@@ -9,9 +9,9 @@ import com.kozitski.pufar.util.CommonConstant;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class OpenProfilePageCommand.
+ * Command for changing actual page on profile page
  */
 public class OpenProfilePageCommand extends AbstractCommand {
 

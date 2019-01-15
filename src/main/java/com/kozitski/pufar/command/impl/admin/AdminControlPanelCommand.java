@@ -5,9 +5,9 @@ import com.kozitski.pufar.command.PagePath;
 import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.command.Router;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AdminControlPanelCommand.
+ * Command to change actual page on admin control page
  */
 public class AdminControlPanelCommand extends AbstractCommand {
 

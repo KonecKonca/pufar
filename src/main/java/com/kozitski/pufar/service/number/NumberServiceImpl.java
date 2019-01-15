@@ -7,10 +7,7 @@ import com.kozitski.pufar.exception.PufarServiceException;
 import com.kozitski.pufar.exception.PufarValidationException;
 import com.kozitski.pufar.service.AbstractService;
 import com.kozitski.pufar.service.InjectDao;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class NumberServiceImpl.
  */

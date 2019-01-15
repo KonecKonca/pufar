@@ -6,9 +6,10 @@ import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.command.Router;
 import com.kozitski.pufar.util.CommonConstant;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ChooseCreateNotificationCommand.
+ * Command for changing actual page on page
+ * for creating notification
  */
 public class ChooseCreateNotificationCommand extends AbstractCommand {
 

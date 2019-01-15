@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserMessage.
  */

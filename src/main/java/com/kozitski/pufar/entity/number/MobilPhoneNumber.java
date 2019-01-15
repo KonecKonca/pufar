@@ -1,6 +1,5 @@
 package com.kozitski.pufar.entity.number;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MobilPhoneNumber.
  */

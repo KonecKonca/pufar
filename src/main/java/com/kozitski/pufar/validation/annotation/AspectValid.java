@@ -6,7 +6,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * The Interface AspectValid.
+ * The Annotation AspectValid.
+ * Developed for marking methods, arguments
+ * of witch marked with annotations from com.kozitski.pufar.validation package.
+ * Without this annotations arguments of method
+ * will not processed by AnnotationValidation engine
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

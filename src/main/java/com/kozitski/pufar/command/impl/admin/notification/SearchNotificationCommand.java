@@ -5,9 +5,9 @@ import com.kozitski.pufar.command.PagePath;
 import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.command.Router;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SearchNotificationCommand.
+ * Command to change set actual page on searching notification page
  */
 public class SearchNotificationCommand extends AbstractCommand {
 

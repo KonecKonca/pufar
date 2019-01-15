@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The listener interface for receiving session events.
  * The class that is interested in processing a session
@@ -27,7 +26,6 @@ import java.util.List;
  * the session event occurs, that object's appropriate
  * method is invoked.
  *
- * @see SessionEvent
  */
 @WebListener
 public class SessionListener implements HttpSessionListener {

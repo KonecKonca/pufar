@@ -19,9 +19,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class NotificationMapper.
+ * Maps ResultSet into NotificationComment.
  */
 public class NotificationMapper {
     

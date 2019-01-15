@@ -5,10 +5,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface MessageValid.
- */
+ * The Annotation MessageValid can marks
+ * arguments with type com.kozitski.pufar.message.UserMessage.class for
+ * validation its. On compilation phase AnnotationValidation
+ * engine inlines validation checks.
+ * */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MessageValid {

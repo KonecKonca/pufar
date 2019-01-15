@@ -7,9 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface ResponseCommand.
+ *  Super type for all commands which receive
+ *  request and response
  */
 public interface ResponseCommand {
 

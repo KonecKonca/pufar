@@ -5,9 +5,9 @@ import com.kozitski.pufar.command.PagePath;
 import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.command.Router;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class IndexCommand.
+ * Command for changing actual page on index page
  */
 public class IndexCommand extends AbstractCommand {
 

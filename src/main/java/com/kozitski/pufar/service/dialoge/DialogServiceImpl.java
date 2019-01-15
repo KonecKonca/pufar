@@ -1,7 +1,7 @@
 package com.kozitski.pufar.service.dialoge;
 
 import com.kozitski.pufar.command.RequestValue;
-import com.kozitski.pufar.dao.dialoge.DialogDAO;
+import com.kozitski.pufar.dao.dialoge.DialogDao;
 import com.kozitski.pufar.entity.message.UserMessage;
 import com.kozitski.pufar.entity.user.User;
 import com.kozitski.pufar.exception.PufarDAOException;
@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class DialogServiceImpl.
  */
@@ -25,7 +24,7 @@ public class DialogServiceImpl extends AbstractService implements DialogService 
 
     /** The dialog DAO. */
     @InjectDao
-    private DialogDAO dialogDAO;
+    private DialogDao dialogDAO;
 
     /**
      * Search all messages from to.

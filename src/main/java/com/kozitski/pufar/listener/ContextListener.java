@@ -7,7 +7,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The listener interface for receiving context events.
  * The class that is interested in processing a context
@@ -17,7 +17,6 @@ import javax.servlet.annotation.WebListener;
  * the context event occurs, that object's appropriate
  * method is invoked.
  *
- * @see ContextEvent
  */
 @WebListener
 public class ContextListener implements ServletContextListener {

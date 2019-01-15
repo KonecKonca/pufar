@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class LogoutCommand.
+ * Command for invalidating session
  */
 public class LogoutCommand implements ResponseCommand {
     

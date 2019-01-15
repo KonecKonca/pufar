@@ -2,9 +2,10 @@ package com.kozitski.pufar.entity;
 
 import java.awt.image.BufferedImage;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface Imagenable.
+ * This interface must implement all entity classes
+ * which have BufferedImage
  */
 public interface Imagenable {
 

@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class LoginCommand.
+ * Command for login
  */
 public class LoginCommand extends AbstractCommand {
     

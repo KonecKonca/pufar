@@ -1,6 +1,5 @@
 package com.kozitski.pufar.validation.annotation.primitive.doouble;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class DoubleDefaultValidationParameter.
  */

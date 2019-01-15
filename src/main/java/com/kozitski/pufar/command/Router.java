@@ -1,8 +1,9 @@
 package com.kozitski.pufar.command;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Router.
+ * Entity for returning by command information
+ * about redirect type and new page path
  */
 public class Router {
 

@@ -1,6 +1,5 @@
 package com.kozitski.pufar.util.mapper.user;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ConstantUserStatus.
  */

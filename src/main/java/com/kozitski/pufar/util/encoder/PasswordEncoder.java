@@ -6,9 +6,9 @@ import org.slf4j.LoggerFactory;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PasswordEncoder.
+ * Developed for encoding passwords.
  */
 public class PasswordEncoder {
     

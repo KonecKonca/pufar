@@ -17,11 +17,9 @@ import com.kozitski.pufar.util.encoder.PasswordEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserServiceImpl.
  */
@@ -105,11 +103,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
     public User addUser(String login, String password) throws PufarServiceException, PufarValidationException {
         User user = new User();
 
-        String utf8Login = new String(login.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-        String utf8Password = new String(password.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-
-        user.setLogin(utf8Login);
-        user.setPassword(PasswordEncoder.encode(utf8Password));
+        user.setLogin(login);
+        user.setPassword(PasswordEncoder.encode(password));
         user.setStatus(UserStatus.SIMPLE_USER);
 
         try {

@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SearchNotificationExecuteCommand.
+ * Command to change search notification
  */
 public class SearchNotificationExecuteCommand extends AbstractCommand {
     

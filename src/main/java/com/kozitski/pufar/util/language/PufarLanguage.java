@@ -3,9 +3,9 @@ package com.kozitski.pufar.util.language;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PufarLanguage.
+ * Custom Wrapper under ResourceBundle.
  */
 public class PufarLanguage {
     

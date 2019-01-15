@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class DialogMapper.
+ * Maps ResultSet into UserMessage.
  */
 public class DialogMapper {
 

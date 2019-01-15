@@ -15,11 +15,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class DialogDaoImpl.
+ * Implementation of DialogDao on MySQL
  */
-public class DialogDaoImpl implements DialogDAO {
+public class DialogDaoImpl implements DialogDao {
     
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(DialogDaoImpl.class);

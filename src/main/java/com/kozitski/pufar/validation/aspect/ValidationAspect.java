@@ -14,9 +14,10 @@ import java.lang.annotation.Annotation;
 import java.util.List;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ValidationAspect.
+ * Define pointCut from methods which marked
+ * by AspectValid.class and start inlining validating advices
  */
 @Aspect
 public class ValidationAspect {

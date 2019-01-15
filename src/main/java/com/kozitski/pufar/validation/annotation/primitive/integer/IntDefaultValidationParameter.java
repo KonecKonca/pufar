@@ -3,7 +3,6 @@
  */
 package com.kozitski.pufar.validation.annotation.primitive.integer;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class IntDefaultValidationParameter.
  */

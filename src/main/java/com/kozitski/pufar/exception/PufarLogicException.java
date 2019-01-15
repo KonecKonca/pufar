@@ -1,6 +1,5 @@
 package com.kozitski.pufar.exception;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PufarLogicException.
  */

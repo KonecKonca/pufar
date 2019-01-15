@@ -4,9 +4,9 @@ import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.command.request.AbstractCommand;
 import com.kozitski.pufar.service.dialoge.DialogService;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class NextMessageCommand.
+ * Command for going to next messages
  */
 public class NextMessageCommand extends AbstractCommand {
 

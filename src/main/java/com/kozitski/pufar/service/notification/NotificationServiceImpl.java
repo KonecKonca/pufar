@@ -2,7 +2,6 @@ package com.kozitski.pufar.service.notification;
 
 import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.dao.notification.NotificationDao;
-import com.kozitski.pufar.dao.notification.NotificationDaoImpl;
 import com.kozitski.pufar.entity.comment.NotificationComment;
 import com.kozitski.pufar.entity.notification.Notification;
 import com.kozitski.pufar.entity.notification.NotificationParameter;
@@ -23,7 +22,6 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class NotificationServiceImpl.
  */

@@ -1,8 +1,9 @@
 package com.kozitski.pufar.entity.notification;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class NotificationParameter.
+ * Developed for searching notifications according
+ * with some rules
  */
 public class NotificationParameter {
     

@@ -8,9 +8,10 @@ import com.kozitski.pufar.util.CommonConstant;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class DropMyselfNotificationCommand.
+ * Command for deleting notification
  */
 public class DropMyselfNotificationCommand extends AbstractCommand {
     

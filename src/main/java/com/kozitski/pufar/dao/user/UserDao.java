@@ -9,7 +9,6 @@ import com.kozitski.pufar.exception.PufarDAOException;
 import java.util.List;
 import java.util.Optional;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface UserDao.
  */

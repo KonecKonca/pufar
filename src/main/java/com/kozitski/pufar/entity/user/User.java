@@ -4,7 +4,6 @@ import com.kozitski.pufar.entity.number.MobilPhoneNumber;
 
 import java.util.Objects;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class User.
  */

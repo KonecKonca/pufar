@@ -6,9 +6,9 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class LoadImageNameGenerator.
+ * Save loaded image in temporal directory
  */
 public class LoadImageNameGenerator {
     

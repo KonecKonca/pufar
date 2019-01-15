@@ -9,9 +9,9 @@ import com.kozitski.pufar.util.CommonConstant;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ShowNotificationByUnitTypeCommand.
+ * Command for showing notifications by their unitType
  */
 public class ShowNotificationByUnitTypeCommand extends AbstractCommand {
     

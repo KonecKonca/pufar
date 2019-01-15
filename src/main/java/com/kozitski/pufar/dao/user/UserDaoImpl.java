@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserDaoImpl.
+ * Implementation of UserDao on MySQL
  */
 public class UserDaoImpl implements UserDao {
     

@@ -8,9 +8,9 @@ import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class BanUserCommand.
+ * Command to ban user
  */
 public class BanUserCommand extends AbstractCommand {
     

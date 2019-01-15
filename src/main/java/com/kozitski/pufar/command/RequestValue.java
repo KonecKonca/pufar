@@ -1,11 +1,11 @@
 package com.kozitski.pufar.command;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RequestValue.
+ * The Class RequestValue is wrapper under HttpServletRequest
  */
 public class RequestValue {
 

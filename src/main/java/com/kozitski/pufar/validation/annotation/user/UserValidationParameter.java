@@ -1,6 +1,5 @@
 package com.kozitski.pufar.validation.annotation.user;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserValidationParameter.
  */

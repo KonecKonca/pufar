@@ -5,9 +5,9 @@ import com.kozitski.pufar.command.PagePath;
 import com.kozitski.pufar.command.RequestValue;
 import com.kozitski.pufar.command.Router;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ChooseUserCommand.
+ * Command to change actual page on user search page
  */
 public class ChooseUserCommand extends AbstractCommand {
 

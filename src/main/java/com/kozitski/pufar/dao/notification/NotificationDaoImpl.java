@@ -23,9 +23,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class NotificationDaoImpl.
+ * Implementation of NotificationDao on MySQL
  */
 public class NotificationDaoImpl implements NotificationDao {
     
@@ -768,6 +768,5 @@ public class NotificationDaoImpl implements NotificationDao {
         }
 
     }
-
 
 }

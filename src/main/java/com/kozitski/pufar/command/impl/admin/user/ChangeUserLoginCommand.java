@@ -10,9 +10,9 @@ import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ChangeUserLoginCommand.
+ * Command to change user login
  */
 public class ChangeUserLoginCommand extends AbstractCommand {
     

@@ -5,9 +5,10 @@ import com.kozitski.pufar.entity.notification.UnitType;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-// TODO: Auto-generated Javadoc
-/**
+/*
  * The Class NotificationsCursor.
+ * Developed for tracking of notifications
+ * order during flipping its
  */
 public class NotificationsCursor {
     

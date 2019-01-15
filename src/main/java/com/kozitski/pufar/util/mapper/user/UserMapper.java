@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserMapper.
+ * Maps ResultSet into User.
  */
 public class UserMapper {
     

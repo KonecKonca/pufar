@@ -6,7 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * The Interface InjectDao.
+ * The annotation for marking dao with
+ * needs in dependency injection
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

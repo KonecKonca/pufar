@@ -1,8 +1,9 @@
 package com.kozitski.pufar.entity.user;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserParameter.
+ * Developed for searching user according
+ * with come rules
  */
 public class UserParameter {
     

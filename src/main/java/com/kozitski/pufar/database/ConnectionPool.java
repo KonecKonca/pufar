@@ -13,9 +13,9 @@ import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.locks.ReentrantLock;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ConnectionPool.
+ * Custom realization of ConnectionPool
+ * for Pufar application
  */
 public class ConnectionPool {
     
@@ -157,7 +157,7 @@ public class ConnectionPool {
      *
      * @param fullPath the new full path
      */
-    public static void setFullPath(String fullPath) {
+    static void setFullPath(String fullPath) {
         ConnectionPool.fullPath = fullPath;
     }
     
@@ -175,7 +175,7 @@ public class ConnectionPool {
      *
      * @return the free connections size
      */
-    public int getFreeConnectionsSize(){
+    int getFreeConnectionsSize(){
         return freeConnections.size();
     }
     
@@ -184,7 +184,8 @@ public class ConnectionPool {
      *
      * @return the release connections size
      */
-    public int getReleaseConnectionsSize(){
+
+    int getReleaseConnectionsSize(){
         return releaseConnections.size();
     }
 

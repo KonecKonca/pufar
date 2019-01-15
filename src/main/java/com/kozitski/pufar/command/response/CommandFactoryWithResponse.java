@@ -3,9 +3,9 @@ package com.kozitski.pufar.command.response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CommandFactoryWithResponse.
+ * A factory for creating Command objects, which
+ * receive request and response
  */
 public class CommandFactoryWithResponse {
     

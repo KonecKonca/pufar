@@ -11,9 +11,9 @@ import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SendMessageCommand.
+ * Command for sending message
  */
 public class SendMessageCommand extends AbstractCommand {
     

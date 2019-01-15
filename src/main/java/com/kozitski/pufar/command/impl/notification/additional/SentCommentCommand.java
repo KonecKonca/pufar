@@ -16,9 +16,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SentCommentCommand.
+ * Command for sending comment
  */
 public class SentCommentCommand extends AbstractCommand {
     

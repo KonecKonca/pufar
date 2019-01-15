@@ -4,9 +4,9 @@ import com.kozitski.pufar.command.*;
 import com.kozitski.pufar.command.request.AbstractCommand;
 import com.kozitski.pufar.service.dialoge.DialogService;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class GetContactCommand.
+ * Command for loading chat page
  */
 public class GetContactCommand extends AbstractCommand {
 

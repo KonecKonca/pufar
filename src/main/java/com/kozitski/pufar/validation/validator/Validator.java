@@ -4,7 +4,6 @@ import com.kozitski.pufar.exception.PufarValidationException;
 
 import java.lang.annotation.Annotation;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface Validator.
  */

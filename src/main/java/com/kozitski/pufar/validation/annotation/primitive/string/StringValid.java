@@ -5,9 +5,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface StringValid.
+ * The Annotation StringValid can marks
+ * arguments with type java.langString.class for
+ * validation its. On compilation phase AnnotationValidation
+ * engine inlines validation checks.
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)

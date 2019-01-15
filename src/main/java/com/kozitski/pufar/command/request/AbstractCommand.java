@@ -12,9 +12,9 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Properties;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AbstractCommand.
+ * Super class for commands which receive RequestValue wrapper.
  */
 public abstract class AbstractCommand {
     
@@ -32,7 +32,7 @@ public abstract class AbstractCommand {
     }
     
     /**
-     * Inits the.
+     * Inits the methods which inject all necessary dependencies
      */
     private void init(){
 

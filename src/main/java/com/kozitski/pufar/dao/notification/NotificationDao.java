@@ -9,7 +9,6 @@ import com.kozitski.pufar.exception.PufarDAOException;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface NotificationDao.
  */

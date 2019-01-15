@@ -1,16 +1,49 @@
 package com.kozitski.pufar.entity.notification;
 
+/**
+ * The enum Unit type.
+ */
 public enum UnitType {
 
+    /**
+     * Other unit type.
+     */
     OTHER,
+    /**
+     * Auto unit type.
+     */
     AUTO,
+    /**
+     * Home unit type.
+     */
     HOME,
+    /**
+     * Child unit type.
+     */
     CHILD,
+    /**
+     * Food unit type.
+     */
     FOOD,
+    /**
+     * Work unit type.
+     */
     WORK,
+    /**
+     * Beauty unit type.
+     */
     BEAUTY,
+    /**
+     * Electronics unit type.
+     */
     ELECTRONICS;
 
+    /**
+     * Get unit db position int.
+     *
+     * @param unitType the unit type
+     * @return the int
+     */
     public static int getUnitDBPosition(UnitType unitType){
         int result;
 

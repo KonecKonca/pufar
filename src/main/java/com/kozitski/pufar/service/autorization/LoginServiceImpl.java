@@ -12,7 +12,6 @@ import com.kozitski.pufar.util.encoder.PasswordEncoder;
 
 import java.util.Optional;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class LoginServiceImpl.
  */

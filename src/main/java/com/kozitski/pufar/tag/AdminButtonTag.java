@@ -9,11 +9,12 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AdminButtonTag.
+ * Custom tag which represented by button which
+ * will be enable only for user with ADMIN or
+ * SUPER_ADMIN status
  */
-@SuppressWarnings("serial")
 public class AdminButtonTag extends TagSupport {
     
     /** The value. */

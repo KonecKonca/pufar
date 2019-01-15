@@ -13,9 +13,9 @@ import java.sql.*;
 import java.util.List;
 import java.util.Optional;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class NumberDaoImpl.
+ * Implementation of NumberDao on MySQL
  */
 public class NumberDaoImpl implements NumberDao {
     

@@ -4,7 +4,6 @@ import com.kozitski.pufar.command.PagePath;
 import com.kozitski.pufar.entity.user.UserStatus;
 import com.kozitski.pufar.service.AbstractService;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ErrorHandleServiceImpl.
  */

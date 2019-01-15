@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SearchUserCommand.
+ * Command to search user
  */
 public class SearchUserCommand extends AbstractCommand {
     

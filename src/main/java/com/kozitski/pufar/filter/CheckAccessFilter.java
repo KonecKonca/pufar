@@ -16,9 +16,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CheckAccessFilter.
+ * Filter for checking user rights and
+ * rights which necessary for go on any page
  */
 @WebFilter(urlPatterns = "*.jsp")
 public class CheckAccessFilter implements Filter {
@@ -86,14 +87,12 @@ public class CheckAccessFilter implements Filter {
      * @throws ServletException the servlet exception
      */
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-    }
+    public void init(FilterConfig filterConfig) throws ServletException { }
     
     /**
      * Destroy.
      */
     @Override
-    public void destroy() {
-    }
+    public void destroy() { }
 
 }

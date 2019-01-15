@@ -1,6 +1,5 @@
 package com.kozitski.pufar.util;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CommonConstant.
  */
@@ -56,7 +55,7 @@ public class CommonConstant {
     public static final String LAST_MESSAGES = "lastMessages";
     
     /** The Constant HOW_MUCH_USERS_CHAT_PAGE. */
-    public static final int HOW_MUCH_USERS_CHAT_PAGE = 11;
+    public static final int HOW_MUCH_USERS_CHAT_PAGE = 10;
     
     /** The Constant LOCALE. */
     public static final String LOCALE = "locale";

@@ -7,7 +7,6 @@ import com.kozitski.pufar.validation.annotation.primitive.string.StringValid;
 
 import java.util.Optional;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface LoginService.
  */

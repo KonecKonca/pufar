@@ -4,9 +4,9 @@ import com.kozitski.pufar.command.impl.IndexCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// TODO: Auto-generated Javadoc
 /**
- * A factory for creating Command objects.
+ * A factory for creating Command objects, which
+ * receive RequestValue
  */
 public class CommandFactory {
     

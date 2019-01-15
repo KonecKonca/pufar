@@ -10,9 +10,10 @@ import com.kozitski.pufar.util.CommonConstant;
 import java.util.List;
 import java.util.Optional;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ShowAdditionalNotificationCommand.
+ * Command for showing additional information
+ * about selected notification
  */
 public class ShowAdditionalNotificationCommand extends AbstractCommand {
     

@@ -9,9 +9,9 @@ import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PutMarkCommand.
+ * Command for put mark on notification
  */
 public class PutMarkCommand extends AbstractCommand {
     

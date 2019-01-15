@@ -10,9 +10,9 @@ import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ChangeNotificationMessageCommand.
+ * Command to change notification content
  */
 public class ChangeNotificationMessageCommand extends AbstractCommand {
     

@@ -10,11 +10,12 @@ import com.kozitski.pufar.util.CommonConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RegistrationCommand.
+ * Command to change actual page on registration page
  */
 public class RegistrationCommand extends AbstractCommand {
     
@@ -45,8 +46,11 @@ public class RegistrationCommand extends AbstractCommand {
         String currentLogin = request.getAttribute(LOGIN).toString();
         String currentPassword = request.getAttribute(PASSWORD).toString();
 
+        String utf8Login = new String(currentLogin.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+        String utf8Password = new String(currentPassword.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+
         try {
-            User user = service.addUser(currentLogin, currentPassword);
+            User user = service.addUser(utf8Login, utf8Password);
 
             Optional<User> optionalUser = service.searchUserById(user.getUserId());
             if (optionalUser.isPresent()) {
