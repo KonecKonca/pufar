@@ -1,0 +1,41 @@
+body{
+    background: url(../../image/phone.jpg) top right no-repeat;
+    height: 100%;
+
+    -moz-background-size: 100%; /* Firefox 3.6+ */
+    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: 100%; /* Opera 9.6+ */
+    background-size: 100%; /* Современные браузеры */
+
+    overflow:scroll;
+}
+
+.footer{
+    position: relative;
+    bottom: 0px;
+
+    width: 100%;
+}
+
+table{
+    width: 70%;
+    /*margin-top: 65px;*/
+}
+
+.controlPanel{
+    opacity: 0.91;
+    margin: 4% 25% 0%;
+}
+
+i{
+    font-family: Monotype Corsiva;
+}
+
+#isPasswordEquals1{
+    color: red;
+    font-size: 22px;
+}
+#isPasswordEquals2{
+    color: red;
+    font-size: 22px;
+}

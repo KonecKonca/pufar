@@ -1,0 +1,30 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite thread-count="1" verbose="1" name="MainSuit" annotations="JDK" parallel="tests">
+
+    <test name="UtilTest">
+        <classes>
+            <class name="com.kozitski.pufar.util.encoder.PasswordEncoderTest"/>
+
+        </classes>
+    </test>
+
+    <test name="ConnectionPool">
+        <classes>
+            <class name="com.kozitski.pufar.database.ConnectionPoolTest"/>
+
+        </classes>
+    </test>
+
+    <test name="ValidatorTest">
+        <classes>
+            <class name="com.kozitski.pufar.validation.validator.MessageValidator"/>
+            <class name="com.kozitski.pufar.validation.validator.CommentValidator"/>
+            <class name="com.kozitski.pufar.validation.validator.NotificationValidatorTest"/>
+            <class name="com.kozitski.pufar.validation.validator.NumberValidatorTest"/>
+            <class name="com.kozitski.pufar.validation.validator.UserValidatorTest"/>
+
+        </classes>
+    </test>
+
+</suite>
