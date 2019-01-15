@@ -33,6 +33,7 @@ public class CommandFactory {
 
         try {
             CommandType type = CommandType.valueOf(commandName.toUpperCase());
+
             command = type.getCommand();
             LOGGER.info("Command defined correctly: [" + commandName.toUpperCase() + "]");
         }

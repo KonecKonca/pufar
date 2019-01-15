@@ -99,7 +99,6 @@ public enum CommandType {
     /**
      * The Open profile page.
      */
-// profile page
     OPEN_PROFILE_PAGE(new OpenProfilePageCommand()),
     /**
      * The Drop myself notification.
@@ -117,14 +116,11 @@ public enum CommandType {
     /**
      * The Change locale.
      */
-// locale
     CHANGE_LOCALE(new ChangeLocalCommand()),
 
     /**
      * The Ban user.
      */
-// admin commands
-    // define inputPage
     BAN_USER(new BanUserCommand()),
     /**
      * The Unban user.
@@ -165,7 +161,6 @@ public enum CommandType {
     /**
      * The Chose user execute.
      */
-// execute search
     CHOSE_USER_EXECUTE(new SearchUserCommand()),
     /**
      * The Chose notification execute.

@@ -23,19 +23,19 @@ import java.util.Set;
  */
 @WebFilter(urlPatterns = "*.jsp")
 public class CheckAccessFilter implements Filter {
-    
+
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(CheckAccessFilter.class);
 
     /** The admin pages. */
     private static Set<String> adminPages = new HashSet<>(Arrays.asList(PagePath.ADMIN_CONTROL_PANEL.getJspPath(), PagePath.ADMIN_ERROR_PAGE.getJspPath(),
             PagePath.ADMIN_SEARCH_NOTIFICATION.getJspPath(), PagePath.ADMIN_SEARCH_USER.getJspPath()));
-    
+
     /** The not login pages. */
     private static Set<String> notLoginPages = new HashSet<>(Arrays.asList(PagePath.PUFAR_INDEX.getJspPath(), PagePath.PUFAR_CONTROLLER.getJspPath(),
             PagePath.INDEX_PAGE.getJspPath(), PagePath.LOGIN_PAGE.getJspPath(), PagePath.TEMPLATE_PAGE.getJspPath(),
             PagePath.NOTIFICATION_ADDITIONAL.getJspPath()));
-    
+
     /** The all exist pages. */
     private static Set<String> allExistPages;
     static {
@@ -88,7 +88,7 @@ public class CheckAccessFilter implements Filter {
      */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException { }
-    
+
     /**
      * Destroy.
      */

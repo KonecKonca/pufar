@@ -37,6 +37,7 @@ public abstract class AbstractCommand {
     private void init(){
 
         Properties properties = new Properties();
+
         try(FileInputStream fileInputStream = new FileInputStream(WebPathReturner.webPath + COMMAND_INJECTION_PROPERTY_PATH)){
             properties.load(fileInputStream);
         }
@@ -51,14 +52,33 @@ public abstract class AbstractCommand {
             if(annotation != null){
 
                 String injectedType = field.getType().getSimpleName();
-                String injectedRealType = properties.get(injectedType).toString();
+                String injectedRealType = null;
 
-                try {
-                    field.set(this, Class.forName(injectedRealType).newInstance());
+                Object propertyElem = properties.get(injectedType);
+
+                if(propertyElem != null) {
+                    injectedRealType = propertyElem.toString();
+
+                    if(injectedRealType!= null && !injectedRealType.isEmpty()){
+
+                        try {
+                            Object injectedService;
+                            Class<?> clazz = Class.forName(injectedRealType);
+
+                            if(clazz != null){
+                                injectedService = clazz.newInstance();
+                                field.set(this, injectedService);
+                            }
+                        }
+                        catch (IllegalAccessException | ClassNotFoundException | InstantiationException e) {
+                            LOGGER.error("Field with type " + field.getType() + ", with name " + field.getName() + " wasn't initialize", e);
+                        }
+
+                    }
+
                 }
-                catch (IllegalAccessException | ClassNotFoundException | InstantiationException e) {
-                    LOGGER.error("Field with type " + field.getType() + ", with name " + field.getName() + " wasn't initialize", e);
-                }
+
+
             }
 
         }

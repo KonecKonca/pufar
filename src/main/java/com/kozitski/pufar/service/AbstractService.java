@@ -48,14 +48,34 @@ public abstract class AbstractService {
             InjectDao annotation = field.getAnnotation(InjectDao.class);
             if(annotation != null){
 
-                String injectedRealType = properties.get(field.getType().getSimpleName()).toString();
+                String injectedType = field.getType().getSimpleName();
+                String injectedRealType = null;
 
-                try {
-                    field.set(this, Class.forName(injectedRealType).newInstance());
+                Object propertyElem = properties.get(injectedType);
+
+                if(propertyElem != null){
+                    injectedRealType = propertyElem.toString();
+
+                    if(injectedRealType!= null && !injectedRealType.isEmpty()){
+
+                        try {
+                            Object injectedDao = null;
+                            Class<?> clazz = Class.forName(injectedRealType);
+
+                            if(clazz != null){
+                                injectedDao = clazz.newInstance();
+                                field.set(this, injectedDao);
+                            }
+
+                        }
+                        catch (IllegalAccessException | ClassNotFoundException | InstantiationException e) {
+                            LOGGER.error("Field with type " + field.getType() + ", with name " + field.getName() + " wasn't initialize", e);
+                        }
+
+                    }
+
                 }
-                catch (IllegalAccessException | ClassNotFoundException | InstantiationException e) {
-                    LOGGER.error("Field with type " + field.getType() + ", with name " + field.getName() + " wasn't initialize", e);
-                }
+
             }
 
         }
