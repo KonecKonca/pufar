@@ -39,10 +39,9 @@ public class CheckPasswordCommand implements ResponseCommand {
      * @param response the response
      * @return the router
      * @throws IOException Signals that an I/O exception has occurred.
-     * @throws ServletException the servlet exception
      */
     @Override
-    public Router execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public Router execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Router router = new Router();
         router.setRouteType(Router.RouteType.RESPONSE_WRITE);
         router.setPagePath(PagePath.PROFILE_PAGE.getJspPath());

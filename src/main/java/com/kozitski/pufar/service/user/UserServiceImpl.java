@@ -73,7 +73,6 @@ public class UserServiceImpl extends AbstractService implements UserService {
      */
     @Override
     public Optional<User> searchUserByLogin(String login) throws PufarValidationException {
-        // any validation
         return userDao.searchUserByLogin(login);
     }
 

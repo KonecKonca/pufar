@@ -16,7 +16,9 @@
     <link rel="stylesheet" href="css/index/common/templatemo-style.css">
 
     <script type="text/javascript" src="js/index/modernizr.custom.86080.js"></script>
+    <script type="text/javascript" src="js/login/jquery-3.2.1.min.js"></script>
 
+    <script type="text/javascript" src="js/index/loginPerforming.js"></script>
 
 </head>
 
@@ -60,7 +62,10 @@
                     <tr>
                         <th align="right"><div class="indexLabel">${locale.getValue("indexRegisterLogin")}</div></th>
                         <td><input type="text" name="login" placeholder="${locale.getValue("indexRegisterLogin")}" class="form-control" required
-                                   pattern=".{5,20}" title="${locale.getValue("commonLoginPattern")}"/></td>
+                                   pattern=".{5,20}" title="${locale.getValue("commonLoginPattern")}" id="inputLogin"/>
+                        </td>
+                        <td><span id="isLoginQnique"></span><br></td>
+
                     </tr>
                     <tr>
                         <th align="right"><div class="indexLabel">${locale.getValue("indexRegisterPassword")}</div></th>

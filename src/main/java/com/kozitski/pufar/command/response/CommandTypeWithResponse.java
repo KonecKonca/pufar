@@ -1,6 +1,7 @@
 package com.kozitski.pufar.command.response;
 
 import com.kozitski.pufar.command.impl.ajax.CheckPasswordCommand;
+import com.kozitski.pufar.command.impl.ajax.CheckUniqueLogin;
 import com.kozitski.pufar.command.impl.autorization.LogoutCommand;
 import com.kozitski.pufar.command.impl.image.LoadImageCommand;
 import com.kozitski.pufar.command.impl.image.ShowImageCommand;
@@ -22,6 +23,10 @@ public enum CommandTypeWithResponse {
      * The Check passwords.
      */
     CHECK_PASSWORDS(new CheckPasswordCommand()),
+    /**
+     * The Check Login.
+     */
+    CHECK_LOGIN(new CheckUniqueLogin()),
     /**
      * The Logout.
      */

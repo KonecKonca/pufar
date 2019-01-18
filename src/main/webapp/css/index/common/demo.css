@@ -193,3 +193,9 @@ p.codrops-demos a.current-demo:hover{
 	font-size: 24px;
 	text-shadow: whitesmoke 1px 1px 1px;
 }
+
+.isLoginQnique{
+	color: red;
+	font-size: 40px;
+	text-shadow: white 1px 1px 1px;
+}
