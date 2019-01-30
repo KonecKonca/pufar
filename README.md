@@ -11,4 +11,4 @@ Using next technologies:
     - MySQL
     - AJAX
       
-        
+        ![](https://github.com/KonecKonca/pufar/blob/master/img/1.jpg)
