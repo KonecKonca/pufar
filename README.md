@@ -11,16 +11,11 @@ Epam final task project. Represented by site for resale.
    ### - MySQL
    ### - AJAX
       
-![Uploadi
-![5](https://user-images.githubusercontent.com/43682428/51968559-ec43ff00-247a-11e9-90d9-51f0319e216a.jpg)
-![6](https://user-images.githubusercontent.com/43682428/51968560-ec43ff00-247a-11e9-8a0d-35d4302ee32c.jpg)
-![7](https://user-images.githubusercontent.com/43682428/51968562-ec43ff00-247a-11e9-8599-5309bb3b584c.jpg)
-![8](https://user-images.githubusercontent.com/43682428/51968563-ec43ff00-247a-11e9-8b2f-a0e1bdeca1ca.jpg)
-
-
-
-ng 1.jpg…]()
-![2](https://user-images.githubusercontent.com/43682428/51968555-ebab6880-247a-11e9-9eec-51449ddaef60.jpg)
-![3](https://user-images.githubusercontent.com/43682428/51968556-ebab6880-247a-11e9-9fe6-fe6827c249e2.jpg)
-![4](https://user-images.githubusercontent.com/43682428/51968557-ebab6880-247a-11e9-92c9-f7e6fb301769.jpg)
-
+![1](https://user-images.githubusercontent.com/43682428/51968670-375e1200-247b-11e9-8944-47ee27caa55f.jpg)
+![2](https://user-images.githubusercontent.com/43682428/51968678-3a590280-247b-11e9-8c55-6245439ba394.jpg)
+![3](https://user-images.githubusercontent.com/43682428/51968679-3c22c600-247b-11e9-9ecc-d667dfce7a67.jpg)
+![4](https://user-images.githubusercontent.com/43682428/51968683-3e852000-247b-11e9-9629-1cb070e98971.jpg)
+![5](https://user-images.githubusercontent.com/43682428/51968686-41801080-247b-11e9-99b0-6c976e4701f4.jpg)
+![6](https://user-images.githubusercontent.com/43682428/51968689-4349d400-247b-11e9-8ec9-3b7695355003.jpg)
+![7](https://user-images.githubusercontent.com/43682428/51968695-45139780-247b-11e9-9ffd-997d605b776d.jpg)
+![8](https://user-images.githubusercontent.com/43682428/51968696-4644c480-247b-11e9-91b6-3f4b465e8c4b.jpg)
