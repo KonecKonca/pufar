@@ -10,4 +10,4 @@ Using next technologies:
     - AspectJ
     - MySQL
     - AJAX
-        
+        ![alt text](pom.xml)
