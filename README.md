@@ -12,3 +12,6 @@ Using next technologies:
     - AJAX
       
         ![Image alt](https://github.com/KonecKonca/pufar/blob/master/img/1.jpg)
+        
+        <img src="img/1.png" width="200" height="50"/>
+
